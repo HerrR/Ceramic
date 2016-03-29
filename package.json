@@ -24,6 +24,8 @@
     "bower": "^1.7.7",
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
+    "karma": "^0.13.22",
+    "protractor": "^3.2.2",
     "require-dir": "^0.3.0"
   },
   "dependencies": {
@@ -31,6 +33,7 @@
     "express": "^4.13.4",
     "log4js": "^0.6.33",
     "mongoose": "^4.4.10",
+    "node-uuid": "^1.4.7",
     "passport": "^0.3.2"
   }
 }

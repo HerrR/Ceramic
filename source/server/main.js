@@ -12,6 +12,9 @@
   // TODO: compression
   // TODO: mongoose
   // TODO: cache (redis)
+  // TODO: node-uuid
+
+  // TODO: do not accept posts larger than ??? bytes
 
   var app = express();
 
@@ -27,7 +30,7 @@
 
   // TODO: supply content folder data
 
-  // TODO: load config file
+  // TODO: load config file, if nothing then load 'default.json'
   var port = process.argv[2] || 9050;
 
   app.listen(port);
