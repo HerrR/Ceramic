@@ -23,7 +23,9 @@
     // TODO: get version + other info
   });
 
-  // TODO: add methods
+  // TODO: add methods here
+
+  // TODO: supply content folder data
 
   // TODO: load config file
   var port = process.argv[2] || 9050;

@@ -19,6 +19,8 @@
   ],
   "dependencies": {
     "angularjs": "~1.5.3",
-    "angular-material": "~1.0.6"
+    "angular-material": "~1.0.6",
+    "jquery-file-upload": "~9.12.1",
+    "jquery": "~2.2.2"
   }
 }
