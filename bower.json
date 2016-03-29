@@ -1,0 +1,20 @@
+{
+  "name": "Ceramic",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Axodoss/Ceramic",
+  "authors": [
+    "Lukas Heise <lukas.heise@gmail.com>"
+  ],
+  "description": "no description",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "ceramic",
+  "version": "0.1.0",
+  "description": "no description",
+  "main": "source/server/main.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Axodoss/Ceramic.git"
+  },
+  "author": "Lukas Heise",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Axodoss/Ceramic/issues"
+  },
+  "homepage": "https://github.com/Axodoss/Ceramic#readme",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "gulp": "^3.9.1",
+    "require-dir": "^0.3.0"
+  },
+  "dependencies": {}
+}
