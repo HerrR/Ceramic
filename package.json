@@ -22,8 +22,15 @@
   "homepage": "https://github.com/Axodoss/Ceramic#readme",
   "devDependencies": {
     "bower": "^1.7.7",
+    "browserify": "^13.0.0",
     "gulp": "^3.9.1",
     "require-dir": "^0.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "log4js": "^0.6.33",
+    "mongoose": "^4.4.10",
+    "passport": "^0.3.2"
+  }
 }

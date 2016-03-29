@@ -27,3 +27,5 @@
 * database backup
 * indexing
 * system failure sms notification
+* Send/recieve messages
+* Calendar

@@ -11,7 +11,7 @@
   var bodyParser = require('body-parser');
   // TODO: compression
   // TODO: mongoose
-  // TODO: cache
+  // TODO: cache (redis)
 
   var app = express();
 
