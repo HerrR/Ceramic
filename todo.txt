@@ -1,0 +1,29 @@
+* add npm and bower packages
+* connect to database
+* database schema
+* gulp tasks
+* test infrastructure
+* create method list
+* logger
+* clustering
+* PM2
+* Keymetrics
+* index page
+* login page
+* user page
+* company page
+* value sets
+* passport
+* search page (user)
+* search page (company)
+* developer page
+* unit tests
+* e2e tests
+* security (vulnerabilities)
+* picture upload
+* pdf generation
+* travis
+* autodeploy
+* database backup
+* indexing
+* system failure sms notification
