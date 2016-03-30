@@ -1,0 +1,14 @@
+{
+    "log4js": {
+        "appenders": [
+            { 
+                "type": "console"
+            },
+            {
+                "type": "file", 
+                "filename": "logs/base.log", 
+                "category": "base"
+            }
+        ]
+    }
+}

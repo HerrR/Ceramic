@@ -29,4 +29,5 @@
 * system failure sms notification
 * Send/recieve messages
 * Calendar
-* CV Central Look and Feel
+* Look and Feel
+* send email
