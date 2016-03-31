@@ -34,3 +34,9 @@
 * Look and Feel
 * send email
 * use CDN repo
+* load balancing
+* generate image atlas and pack image files (https://tinypng.com/developers/reference/nodejs)
+* source code documentation for new developers
+* disaster recovery
+* setup private npm and bower repo (https://www.npmjs.com/package/sinopia http://toranbillups.com/blog/archive/2013/08/04/How-to-host-a-private-bower-registry/ https://www.npmjs.com/package/private-bower https://www.npmjs.com/package/npm-private)
+* fetch build info in the status page
