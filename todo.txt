@@ -31,3 +31,6 @@
 * Calendar
 * CV Central Look and Feel
 * import profile data from Google and Facebook
+* Look and Feel
+* send email
+* use CDN repo
