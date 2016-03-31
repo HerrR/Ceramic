@@ -30,3 +30,4 @@
 * Send/recieve messages
 * Calendar
 * CV Central Look and Feel
+* import profile data from Google and Facebook
