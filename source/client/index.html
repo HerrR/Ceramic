@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html ng-app="cvcentral" lang="en">
+<html ng-app="cvc" ng-controller="MainController" lang="en" ng-strict-di>
     <head>
         <title>{{'common.page_title' | translate}}</title>
-        <!-- TODO: header stuff -->
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="pragma" content="no-cache" />
+
+        <link rel="icon" type="image/ico" href="img/fav.ico" />
+
+        <!-- inject:css -->
+        <!-- endinject -->
     </head>
 
     <body>
-        <!-- TODO: html code -->
+        <div id="cvcContent" data-ui-view></div>
 
-        <!-- TOOD: include scripts -->
+        <!-- inject:js -->
+        <!-- endinject -->
+
+        <!-- inject:text -->
     </body>
 </html>

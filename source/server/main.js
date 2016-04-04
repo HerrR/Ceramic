@@ -25,7 +25,7 @@
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
-  app.get('/status', function(req, res) {
+  app.get('/rest/status', function(req, res) {
     res.send({message: 'Ceramic v.0.1.0'});
     // TODO: get version + other info
   });

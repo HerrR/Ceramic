@@ -40,3 +40,7 @@
 * disaster recovery
 * setup private npm and bower repo (https://www.npmjs.com/package/sinopia http://toranbillups.com/blog/archive/2013/08/04/How-to-host-a-private-bower-registry/ https://www.npmjs.com/package/private-bower https://www.npmjs.com/package/npm-private)
 * fetch build info in the status page
+* use local storage if connection is down
+* Register website
+* Hosting service
+* SSL certificate

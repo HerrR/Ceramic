@@ -1,45 +1,51 @@
 module.exports = {
+  conf: {
+    source: ['./gulp/*.conf.js'],
+    lint_exlude: ''
+  },
+
   test: {
     unit: {
-      source: '../test/unit/**/*.spec.js'
+      source: './source/test/unit/**/*.spec.js',
+      lint_exlude: ''
     },
     e2e: {
-      source: '../test/e2e/**/*.spec.js'
-    }
-  },test: {
-    unit: {
-      source: '../test/unit/**/*.spec.js'
-    },
-    e2e: {
-      source: '../test/e2e/**/*.spec.js'
+      source: './source/test/e2e/**/*.spec.js',
+      lint_exlude: ''
     }
   },
 
   gulp: {
-    source: ['gulpfile.js', 'tasks/**/*.js']
+    source: ['gulpfile.js', './gulp/tasks/**/*.js'],
+    lint_exlude: ''
   },
 
   node: {
-    main: '../source/server/main.js',
-    source: '../source/server/**/*.js',
-    config: ''
+    main: './source/server/main.js',
+    source: './source/server/**/*.js',
+    lint_exlude: '',
+    config: '',
     exec: ''
   },
 
   js: {
-    source: ['../source/server/**/*.js', '../source/client/js/**/*.js']
+    source: ['./source/server/**/*.js', './source/client/js/**/*.js'],
+    lint_exlude: ''
   },
 
   css: {
-    source: ''
+    source: '',
+    lint_exlude: ''
   },
 
   html: {
-    source: ''
+    source: ['./source/client/**/*.html'],
+    lint_exlude: ''
   },
 
   images: {
-    source: ''
+    source: '',
+    lint_exlude: ''
   },
 
   destination: {

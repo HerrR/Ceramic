@@ -34,3 +34,12 @@ bower_components
 .node_repl_history
 
 sublime_project.sublime-workspace
+
+screenshots/*
+coverage/*
+dist/*
+
+dependency*.min.js
+dependency*.min.js.map
+cvcentral*.min.js
+cvcentral*.min.js.map
