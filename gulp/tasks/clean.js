@@ -4,27 +4,27 @@
  * @author Lukas Heise
  */
 
-/*var config = require('../main.conf'),
+var config = require('../main.conf'),
     gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     clean = require('gulp-clean');
 
-gulp.task('clean:scripts', function() {
-    return gulp.src(config.paths.main.generated.scripts, {read: false})
+gulp.task('clean:client:js', function() {
+    return gulp.src(config.destination.client.js, {read: false})
         .pipe(plumber())
         .pipe(clean());
 });
 
-gulp.task('clean:dependency', function() {
-    return gulp.src(config.paths.main.generated.dependency, {read: false})
+gulp.task('clean:css', function() {
+    return gulp.src(config.destination.client.css, {read: false})
         .pipe(plumber())
         .pipe(clean());
 });
 
-gulp.task('clean:styles', function() {
-    return gulp.src(config.paths.main.generated.styles, {read: false})
+gulp.task('clean:server:js', function() {
+    return gulp.src(config.destination.server.js, {read: false})
         .pipe(plumber())
         .pipe(clean());
 });
 
-gulp.task('clean', ['clean:styles', 'clean:dependency', 'clean:scripts']);*/
+gulp.task('clean', ['clean:client:js', 'clean:css', 'clean:server:js']);
