@@ -1,4 +1,10 @@
+* setup angular
+* prioritize this list
+
+
+
 * add npm and bower packages
+* load tests (should aim for ~20 writes and ~60 reads per second)
 * connect to database
 * database schema
 * gulp tasks
@@ -44,3 +50,4 @@
 * Register website
 * Hosting service
 * SSL certificate
+* angular 2
