@@ -35,8 +35,9 @@ module.exports = {
     source: ['./source/server/**/*.js', './source/client/js/**/*.js'],
     client: {
       generated: {
-        js: ['dist/client/client*.min.js','dist/client/client*.min.map'],
-        dependency: ['dependency*.min.js', 'dependency*.min.map']
+        js: ['client*.min.js','client*.min.map'],
+        dependency: ['dependency*.min.js', 'dependency*.min.map'],
+        destination: 'client.min.js'
       },
       source: './source/client/js/**/*.js',
       exclude: './source/client/js/browserify.js',
@@ -71,7 +72,7 @@ module.exports = {
     source: './source/client/**/*.html',
     lint_exlude: '',
     main: './source/client/index.html',
-    inject: ['dependency*.min.js', 'client*.min.js', 'client*.min.css'],
+    inject: ['./dist/client/dependency*.min.js', './dist/client/client*.min.js', './dist/client/client*.min.css'],
     angular: {
       source: './source/client/partials/**/*.html',
       module_name: 'cvc',
@@ -87,6 +88,7 @@ module.exports = {
 
   destination: {
     base_dir: 'dist/',
+    all: ['dist/client/**/*','dist/server/**/*'],
     server: {
       base_dir: 'dist/server/',
       js: ['dist/server/**/*.js', 'dist/server/**/*.map'],

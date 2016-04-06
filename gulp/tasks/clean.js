@@ -27,4 +27,8 @@ gulp.task('clean:server:js', function() {
         .pipe(clean());
 });
 
-gulp.task('clean', ['clean:client:js', 'clean:css', 'clean:server:js']);
+gulp.task('clean', function() {
+    return gulp.src(config.destination.all, {read: false})
+        .pipe(plumber())
+        .pipe(clean());
+});

@@ -9,7 +9,8 @@
   jshint = require('gulp-jshint'),
   csslint = require('gulp-csslint'),
   htmlhint = require("gulp-htmlhint"),
-  gulpIgnore = require('gulp-ignore');
+  gulpIgnore = require('gulp-ignore'),
+  jsonlint = require("gulp-jsonlint");
 
 gulp.task('lint:js', function() {
   return gulp.src(config.js.source)
@@ -69,7 +70,7 @@ gulp.task('lint:html', function() {
     .pipe(htmlhint.reporter());
 });
 
-// TODO: lint JSON files
+//gulp.src("./src/*.json").pipe(jsonlint()).pipe(jsonlint.reporter());
 
 gulp.task('lint:tests', ['lint:unit', 'lint:e2e']);
 gulp.task('lint', ['lint:js', 'lint:node', 'lint:tests', 'lint:config', 'lint:gulp', 'lint:css', 'lint:html']);

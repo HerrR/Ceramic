@@ -38,6 +38,7 @@ sublime_project.sublime-workspace
 screenshots/*
 coverage/*
 dist/*
+temp/*
 
 dependency*.min.js
 dependency*.min.js.map

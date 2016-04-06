@@ -22,6 +22,6 @@ gulp.task('dependency', function() {
     .pipe(rev())
     .pipe(sourcemaps.init())
     .pipe(uglify())
-    .pipe(sourcemaps.write(config.destination.client.base_dir))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.destination.client.base_dir));
 });
