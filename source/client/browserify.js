@@ -1,7 +1,7 @@
 var 
-    jQuery = global.jQuery = $ = jquery = require('../../../bower_components/jquery/dist/jquery.min'),
+    jQuery = global.jQuery = $ = jquery = require('../../bower_components/jquery/dist/jquery.min'),
 
-    angular = require('../../../bower_components/angular')
+    angular = require('../../bower_components/angular')
 
     //ngFilter = require('../../../bower_components/angular-filter/dist/angular-filter.min'),
     //ngAnimate = require('../../../bower_components/angular-animate/angular-animate.min'),

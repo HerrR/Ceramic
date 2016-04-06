@@ -40,9 +40,9 @@ module.exports = {
         destination: 'client.min.js'
       },
       source: './source/client/js/**/*.js',
-      exclude: './source/client/js/browserify.js',
+      exclude: './source/client/browserify.js',
       dependency: {
-        source: './source/client/js/browserify.js',
+        source: './source/client/browserify.js',
         destination: 'dependency.min.js'
       }
     },
@@ -55,16 +55,19 @@ module.exports = {
 
   css: {
     source: './source/client/css/**/*.css',
-    generated: ['dist/client/client*.min.css'],
+    generated: 'dist/client/client*.min.css',
     screen: {
-      source: './source/client/css/client-screen.css',
+      source: [
+        './source/client/css/client-screen.css',
+        './bower_components/angular-material/angular-material.css'
+      ],
       destination_name: 'client-screen.min.css'
     },
     print: {
       source: './source/client/css/client-print.css',
       destination_name: 'client-print.min.css'
     },
-    lint_exlude: '',
+    lint_exlude: ['./bower_components/angular-material/angular-material.css'],
     compatibility: 'ie8'
   },
 
