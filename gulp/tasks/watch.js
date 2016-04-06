@@ -34,10 +34,12 @@ gulp.task('livereload:html', function() {
     .pipe(livereload());
 });
 
-// TODO: watch:node
+gulp.task('watch:node', function(done) {
+  runSequence('chain:server:scripts', done);
+});
 
 gulp.task('watch:js', function(done) {
-  runSequence('chain:devapp', 'livereload:js', done);
+  runSequence('chain:client:scripts', 'livereload:js', done);
 });
 
 gulp.task('watch:dependency', function(done) {
@@ -55,6 +57,7 @@ gulp.task('watch:html', function(done) {
 gulp.task('watch', function() {
   livereload.listen();
 
+  gulp.watch(config.js.server.source, ['watch:node']);
   gulp.watch(config.js.client.source, ['watch:js']);
   gulp.watch(config.test.e2e.source, ['lint:e2e']);
   gulp.watch(config.test.unit.source, ['lint:unit', 'test']);
@@ -62,4 +65,6 @@ gulp.task('watch', function() {
   gulp.watch(config.css.source, ['watch:css']);
   gulp.watch(config.html.source, ['watch:html']);
   gulp.watch(config.gulp.source, ['lint:config']);
+
+  runSequence('serve');
 });

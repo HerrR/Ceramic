@@ -26,7 +26,7 @@
   app.use(bodyParser.json());
 
   app.get('/rest/status', function(req, res) {
-    res.send({message: 'Ceramic v.0.1.0'});
+    res.send({message: 'Ceramic v.0.1.1'});
     // TODO: get version + other info
   });
 

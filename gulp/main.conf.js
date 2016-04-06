@@ -24,7 +24,7 @@ module.exports = {
   },
 
   node: {
-    main: './source/server/main.js',
+    main: 'main.js',
     source: './source/server/**/*.js',
     lint_exlude: '',
     config: '',
