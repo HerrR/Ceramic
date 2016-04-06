@@ -1,2 +1,3 @@
 #!/bin/sh
-mongod --dbpath ./database/
+mkdir -p ./temp/database/
+mongod --dbpath ./temp/database/

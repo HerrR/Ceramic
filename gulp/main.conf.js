@@ -88,7 +88,7 @@ module.exports = {
 
   destination: {
     base_dir: 'dist/',
-    all: ['dist/client/**/*','dist/server/**/*'],
+    all: ['dist/client/**/*','dist/server/**/*','temp/*.js'],
     server: {
       base_dir: 'dist/server/',
       js: ['dist/server/**/*.js', 'dist/server/**/*.map'],

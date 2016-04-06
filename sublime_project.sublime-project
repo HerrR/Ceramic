@@ -3,7 +3,7 @@
     [
         {
             "path": "./",
-            "folder_exclude_patterns": ["build","node_modules","bower_components"],
+            "folder_exclude_patterns": ["dist","node_modules","bower_components","temp"],
             "file_exclude_patterns": ["sublime_project*","*gitignore"]
         }
     ],
