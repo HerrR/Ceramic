@@ -71,9 +71,9 @@ module.exports = {
     source: './source/client/**/*.html',
     lint_exlude: '',
     main: './source/client/index.html',
-    inject: ['dependency*.min.js', 'client*.min.js', 'client*.min.css']
+    inject: ['dependency*.min.js', 'client*.min.js', 'client*.min.css'],
     angular: {
-      source: './source/client/partials/**/*.html'
+      source: './source/client/partials/**/*.html',
       module_name: 'cvc',
       prefix: 'partials/',
       destination_dir: 'temp'
