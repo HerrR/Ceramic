@@ -16,6 +16,7 @@ gulp.task('serve:copy', function () {
 gulp.task('serve', function () {
   nodemon({ script: config.destination.server.base_dir + config.node.main,
     ext: 'html js',
+    watch: config.node.source,
     ignore: [],
     tasks: ['serve:copy']
   })

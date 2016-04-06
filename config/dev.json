@@ -1,4 +1,9 @@
 {
+    "server": {
+        "port": 9010,
+        "static_files": "/../client/"
+    },
+
     "log4js": {
         "appenders": [
             { 
