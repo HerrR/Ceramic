@@ -46,7 +46,6 @@ gulp.task('lint:e2e', function() {
     .pipe(jshint.reporter('default'));
 });
 
-
 gulp.task('lint:config', function() {
   return gulp.src(config.conf.source)
     .pipe(gulpIgnore.exclude(config.conf.lint_exclude))
@@ -72,4 +71,5 @@ gulp.task('lint:html', function() {
 
 // TODO: lint JSON files
 
-gulp.task('lint', ['lint:js', 'lint:node', 'lint:unit', 'lint:e2e', 'lint:config', 'lint:gulp', 'lint:css', 'lint:html']);
+gulp.task('lint:tests', ['lint:unit', 'lint:e2e']);
+gulp.task('lint', ['lint:js', 'lint:node', 'lint:tests', 'lint:config', 'lint:gulp', 'lint:css', 'lint:html']);

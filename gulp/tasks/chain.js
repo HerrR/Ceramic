@@ -32,7 +32,12 @@ gulp.task('chain:test', function(done) {
   runSequence('lint', ['test', 'e2e'], done);
 });
 
-// Full build process
+// Full build process, production
 gulp.task('build', function(done) {
-  runSequence('clean', 'lint', 'html2js', ['css', 'scripts', 'dependency'], 'index', done);
+  runSequence('clean', 'lint', 'html2js', ['css', 'scripts', 'dependency'], 'index:dist', done);
+});
+
+// Full build process, development
+gulp.task('developer', function(done) {
+  runSequence('clean', 'lint', 'html2js', ['css', 'scripts', 'dependency'], 'index:dev', done);
 });

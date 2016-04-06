@@ -10,29 +10,31 @@ var config = require('../main.conf'),
   runSequence = require('run-sequence'),
   livereload = require('gulp-livereload');
 
-/*gulp.task('livereload:js', function() {
-  return gulp.src(config.generated.scripts)
+gulp.task('livereload:js', function() {
+  return gulp.src(config.js.client.generated.js)
     .pipe(plumber())
     .pipe(livereload());
 });
 
 gulp.task('livereload:dependency', function() {
-  return gulp.src(config..generated.dependency)
+  return gulp.src(config.js.client.generated.dependency)
     .pipe(plumber())
     .pipe(livereload());
 });
 
 gulp.task('livereload:css', function() {
-  return gulp.src(config..generated.styles)
+  return gulp.src(config.css.generated)
     .pipe(plumber())
     .pipe(livereload());
 });
 
 gulp.task('livereload:html', function() {
-  return gulp.src(config.html.all)
+  return gulp.src(config.html.source)
     .pipe(plumber())
     .pipe(livereload());
 });
+
+// TODO: watch:node
 
 gulp.task('watch:js', function(done) {
   runSequence('chain:devapp', 'livereload:js', done);
@@ -43,21 +45,21 @@ gulp.task('watch:dependency', function(done) {
 });
 
 gulp.task('watch:css', function(done) {
-  runSequence('clean:styles', 'lint:styles', 'styles', 'index:dev', 'livereload:styles', done);
+  runSequence('clean:css', 'lint:css', 'css', 'index:dev', 'livereload:css', done);
 });
 
 gulp.task('watch:html', function(done) {
-  runSequence('lint:html', 'clean:scripts', 'html2js', 'scripts', 'index:dev', 'livereload:html', done);
+  runSequence('lint:html', 'clean:client:js', 'html2js', 'scripts', 'index:dev', 'livereload:html', done);
 });
 
 gulp.task('watch', function() {
   livereload.listen();
 
-  gulp.watch(config.js.application.source, ['watch:js']);
-  gulp.watch(config.paths.test.e2e, ['lint:tests']);
-  gulp.watch(config.paths.test.unit, ['lint:tests', 'test']);
-  gulp.watch([config.js.dependency.source, config.js.development.source], ['watch:dependency']);
-  gulp.watch(config.css.all, ['watch:styles']);
-  gulp.watch(config.html.all, ['watch:html']);
-  gulp.watch(config.config.all, ['lint:config']);
-});*/
+  gulp.watch(config.js.client.source, ['watch:js']);
+  gulp.watch(config.test.e2e.source, ['lint:e2e']);
+  gulp.watch(config.test.unit.source, ['lint:unit', 'test']);
+  gulp.watch([config.js.client.dependency.source], ['watch:dependency']);
+  gulp.watch(config.css.source, ['watch:css']);
+  gulp.watch(config.html.source, ['watch:html']);
+  gulp.watch(config.gulp.source, ['lint:config']);
+});

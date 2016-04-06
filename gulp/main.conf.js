@@ -34,6 +34,10 @@ module.exports = {
   js: {
     source: ['./source/server/**/*.js', './source/client/js/**/*.js'],
     client: {
+      generated: {
+        js: ['dist/client/client*.min.js','dist/client/client*.min.map'],
+        dependency: ['dependency*.min.js', 'dependency*.min.map']
+      },
       source: './source/client/js/**/*.js',
       exclude: './source/client/js/browserify.js',
       dependency: {
@@ -50,13 +54,14 @@ module.exports = {
 
   css: {
     source: './source/client/css/**/*.css',
+    generated: ['dist/client/client*.min.css'],
     screen: {
-      source: './source/client/css/cvc-screen.css',
-      destination_name: 'cvc-screen.min.css'
+      source: './source/client/css/client-screen.css',
+      destination_name: 'client-screen.min.css'
     },
     print: {
-      source: './source/client/css/cvc-print.css',
-      destination_name: 'cvc-print.min.css'
+      source: './source/client/css/client-print.css',
+      destination_name: 'client-print.min.css'
     },
     lint_exlude: '',
     compatibility: 'ie8'
@@ -66,7 +71,7 @@ module.exports = {
     source: './source/client/**/*.html',
     lint_exlude: '',
     main: './source/client/index.html',
-    inject: ['dependency*.min.js', 'cvc*.min.js', 'cvc*.min.css']
+    inject: ['dependency*.min.js', 'client*.min.js', 'client*.min.css']
     angular: {
       source: './source/client/partials/**/*.html'
       module_name: 'cvc',
@@ -84,7 +89,7 @@ module.exports = {
     base_dir: 'dist/',
     server: {
       base_dir: 'dist/server/',
-      js: 'dist/server/**/*.js',
+      js: ['dist/server/**/*.js', 'dist/server/**/*.map'],
     },
     client: {
       base_dir: 'dist/client/',
