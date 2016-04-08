@@ -18,7 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-animate": "~1.5.3",
+    "angular-animate": "^1.5.3",
     "angular-material": "~1.0.6",
     "angularjs": "~1.5.3",
     "animate.css": "~3.5.1",
@@ -26,6 +26,11 @@
     "jquery-file-upload": "~9.12.1",
     "angular-filter": "^0.5.8",
     "angular-local-storage": "^0.2.7",
-    "angular-translate": "^2.11.0"
+    "angular-translate": "^2.11.0",
+    "angular-cookies": "^1.5.3",
+    "angular-ui-router": "^0.2.18",
+    "angular-resource": "^1.5.3",
+    "bootstrap": "^3.3.6",
+    "angular-aria": "^1.5.3"
   }
 }

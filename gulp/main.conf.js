@@ -39,7 +39,7 @@ module.exports = {
         dependency: ['dependency*.min.js', 'dependency*.min.map'],
         destination: 'client.min.js'
       },
-      source: './source/client/js/**/*.js',
+      source: ['./source/client/js/**/*.js', 'temp/*.js'],
       exclude: './source/client/browserify.js',
       dependency: {
         source: './source/client/browserify.js',
@@ -50,7 +50,7 @@ module.exports = {
       source: './source/server/**/*.js',
       exclude: ''
     },
-    lint_exlude: ''
+    lint_exlude: ['**/3rdparty/**/*.js']
   },
 
   css: {
@@ -58,8 +58,9 @@ module.exports = {
     generated: 'dist/client/client*.min.css',
     screen: {
       source: [
+        './bower_components/angular-material/angular-material.css',
+        //'./bower_components/bootstrap/dist/css/bootstrap.css',
         './source/client/css/client-screen.css',
-        './bower_components/angular-material/angular-material.css'
       ],
       destination_name: 'client-screen.min.css'
     },
@@ -94,7 +95,7 @@ module.exports = {
     all: ['dist/client/**/*','dist/server/**/*','temp/*.js'],
     server: {
       base_dir: 'dist/server/',
-      js: ['dist/server/**/*.js', 'dist/server/**/*.map'],
+      js: ['dist/server/**/*.js', 'dist/server/**/*.map','temp/*.js'],
     },
     client: {
       base_dir: 'dist/client/',

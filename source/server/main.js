@@ -29,6 +29,10 @@
   logger.info('Serving static files: ' + config.server.static_files);
   app.use(express.static(__dirname + config.server.static_files));
 
+  app.get('/rest/translations/:locale', function(req, res) {
+    res.send({});
+  });
+
   app.get('/rest/status', function(req, res) {
     res.send({message: 'Ceramic v.0.1.1'});
     // TODO: get version + other info

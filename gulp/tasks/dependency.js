@@ -17,7 +17,7 @@ gulp.task('dependency', function() {
     .pipe(concat(config.js.client.dependency.destination))
     .pipe(browserify({
       insertGlobals: true,
-      debug: !gulp.env.production
+      debug: false
     }))
     .pipe(rev())
     .pipe(sourcemaps.init())
