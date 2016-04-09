@@ -99,7 +99,9 @@ module.exports = {
     },
     client: {
       base_dir: 'dist/client/',
-      js: 'dist/client/**/*.js',
+      js: ['dist/client/**/*.js','temp/*.js','dist/client/**/*.map'],
+      scripts: ['dist/client/client*.js','temp/*.js','dist/client/client*.map'],
+      dependency: ['dist/client/dependency*.js','dist/client/dependency*.map'],
       css: 'dist/client/**/*.css'
     }
   }

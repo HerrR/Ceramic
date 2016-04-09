@@ -14,12 +14,12 @@ gulp.task('chain:client:scripts', function(done) {
 
 // Recreate server scripts
 gulp.task('chain:server:scripts', function(done) {
-  runSequence('lint', 'clean:server:js', done);
+  runSequence('lint', 'clean:server:js', 'serve:copy', done);
 });
 
 // Recreate dependencies
 gulp.task('chain:dependency', function(done) {
-  runSequence('clean:dependency', 'dependency', 'index', done);
+  runSequence('clean:client:dependency', 'dependency', 'index', done);
 });
 
 // Recreate styles

@@ -3,6 +3,7 @@
 * exclude 3rdparty from linting
 * setup angular
 * prioritize this list
+* run gulp developer as a pretask to watch
 
 
 

@@ -34,37 +34,38 @@ gulp.task('livereload:html', function() {
     .pipe(livereload());
 });
 
-gulp.task('watch:node', function(done) {
+/*gulp.task('watch:node', function(done) {
   runSequence('chain:server:scripts', done);
-});
+});*/
 
 gulp.task('watch:js', function(done) {
-  runSequence('chain:client:scripts', 'livereload:js', done);
+  runSequence('lint:js', 'lint:html', 'clean:client:scripts', 'html2js', 'scripts', 'index:dev', 'livereload:js', done);
 });
 
 gulp.task('watch:dependency', function(done) {
-  runSequence('chain:devdependency', 'livereload:dependency', done);
+  runSequence('lint:js','clean:client:dependency', 'dependency', 'index:dev', 'livereload:dependency', done);
 });
 
 gulp.task('watch:css', function(done) {
-  runSequence('clean:css', 'lint:css', 'css', 'index:dev', 'livereload:css', done);
+  runSequence('lint:css', 'clean:css', 'css', 'index:dev', 'livereload:css', done);
 });
 
 gulp.task('watch:html', function(done) {
-  runSequence('lint:html', 'clean:client:js', 'html2js', 'scripts', 'index:dev', 'livereload:html', done);
+  runSequence('lint:html', 'clean:client:scripts', 'html2js', 'scripts', 'index:dev', 'livereload:html', done);
 });
 
 gulp.task('watch', function() {
   livereload.listen();
 
-  gulp.watch(config.js.server.source, ['watch:node']);
+  //gulp.watch(config.js.server.source, ['watch:node']);
   gulp.watch(config.js.client.source, ['watch:js']);
   gulp.watch(config.test.e2e.source, ['lint:e2e']);
   gulp.watch(config.test.unit.source, ['lint:unit', 'test']);
-  gulp.watch([config.js.client.dependency.source], ['watch:dependency']);
+  gulp.watch(config.js.client.dependency.source, ['watch:dependency']);
   gulp.watch(config.css.source, ['watch:css']);
   gulp.watch(config.html.source, ['watch:html']);
   gulp.watch(config.gulp.source, ['lint:config']);
 
-  runSequence('serve');
+  //runSequence('developer');
+  //runSequence('serve');
 });

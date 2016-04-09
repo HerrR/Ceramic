@@ -15,6 +15,18 @@ gulp.task('clean:client:js', function() {
         .pipe(clean());
 });
 
+gulp.task('clean:client:scripts', function() {
+    return gulp.src(config.destination.client.scripts, {read: false})
+        .pipe(plumber())
+        .pipe(clean());
+});
+
+gulp.task('clean:client:dependency', function() {
+    return gulp.src(config.destination.client.dependency, {read: false})
+        .pipe(plumber())
+        .pipe(clean());
+});
+
 gulp.task('clean:css', function() {
     return gulp.src(config.destination.client.css, {read: false})
         .pipe(plumber())
