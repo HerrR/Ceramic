@@ -60,6 +60,7 @@ module.exports = {
       source: [
         './bower_components/angular-material/angular-material.css',
         //'./bower_components/bootstrap/dist/css/bootstrap.css',
+        './bower_components/font-awesome/css/font-awesome.css',
         './source/client/css/client-screen.css',
       ],
       destination_name: 'client-screen.min.css'

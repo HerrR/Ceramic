@@ -1,10 +1,7 @@
-* fix gulp: dependency*.js sometimes does not build, watch does not rebuild, gulp developer sometimes does not copy server code
 * browserify file content seems to be included with the generated dependency file
 * exclude 3rdparty from linting
-* setup angular
 * prioritize this list
-* run gulp developer as a pretask to watch
-
+* translations
 
 
 * add npm and bower packages

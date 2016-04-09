@@ -1,7 +1,11 @@
 {
     "server": {
         "port": 9010,
-        "static_files": "/../client/"
+        "static_files": "/../client/",
+
+        "database": { 
+            "datasetCacheLifeTime": 7200000
+        }
     },
 
     "log4js": {
