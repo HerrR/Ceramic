@@ -9,6 +9,7 @@ Todo
 * passport
 * connect to database
 * CRUD methods
+* fix the watch task
 
 Bonus
 =====
@@ -21,10 +22,9 @@ Bonus
 
 
 
-Future
-======
+Future Main Tasks
+=================
 * google analytics
-* load tests (should aim for ~20 writes and ~60 reads per second)
 * database schema
 * test infrastructure
 * create method list
@@ -35,14 +35,10 @@ Future
 * search page (user)
 * search page (company)
 * developer page
-* unit tests
-* e2e tests
 * admin page
 * security (vulnerabilities)
 * picture upload
 * pdf generation
-* travis
-* autodeploy
 * database backup
 * indexing
 * system failure sms notification
@@ -52,15 +48,23 @@ Future
 * Look and Feel
 * send email
 * load balancing
-* source code documentation for new developers
 * disaster recovery
 * setup private npm and bower repo (https://www.npmjs.com/package/sinopia http://toranbillups.com/blog/archive/2013/08/04/How-to-host-a-private-bower-registry/ https://www.npmjs.com/package/private-bower https://www.npmjs.com/package/npm-private)
 * fetch build info in the status page
-* use local storage if connection is down
 * Register website
+* upload video
 * Hosting service
 * SSL certificate
-* angular 2
 * status page
+
+Future Bonus Tasks
+==================
 * browserify file content seems to be included with the generated dependency file
-* favicon
+* load tests (should aim for ~20 writes and ~60 reads per second)
+* source code documentation for new developers
+* use local storage if connection is down
+* unit tests
+* autodeploy
+* travis
+* e2e tests
+* angular 2
