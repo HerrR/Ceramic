@@ -13,7 +13,7 @@ var config = require('../main.conf'),
   sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('dependency', function() {
-  return gulp.src(config.js.client.dependency.source)
+  /*return gulp.src(config.js.client.dependency.source)
     .pipe(concat(config.js.client.dependency.destination))
     .pipe(browserify({
       insertGlobals: true,
@@ -23,5 +23,5 @@ gulp.task('dependency', function() {
     .pipe(sourcemaps.init())
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(config.destination.client.base_dir));
+    .pipe(gulp.dest(config.destination.client.base_dir));*/
 });

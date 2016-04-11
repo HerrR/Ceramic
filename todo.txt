@@ -1,31 +1,43 @@
-* browserify file content seems to be included with the generated dependency file
-* exclude 3rdparty from linting
-* prioritize this list
+
+Todo
+====
 * translations
-
-
-* add npm and bower packages
-* load tests (should aim for ~20 writes and ~60 reads per second)
-* connect to database
-* database schema
-* gulp tasks
-* test infrastructure
-* create method list
-* logger
-* clustering
-* PM2
-* Keymetrics
 * index page
 * login page
 * user page
 * company page
-* value sets
 * passport
+* connect to database
+* CRUD methods
+
+Bonus
+=====
+* import profile data from Google and Facebook
+* logger
+* generate image atlas and pack image files (https://tinypng.com/developers/reference/nodejs)
+* exclude 3rdparty from linting
+* use gulp-plumber
+* CDN hash
+
+
+
+Future
+======
+* google analytics
+* load tests (should aim for ~20 writes and ~60 reads per second)
+* database schema
+* test infrastructure
+* create method list
+* clustering
+* PM2
+* Keymetrics
+* value sets
 * search page (user)
 * search page (company)
 * developer page
 * unit tests
 * e2e tests
+* admin page
 * security (vulnerabilities)
 * picture upload
 * pdf generation
@@ -37,12 +49,9 @@
 * Send/recieve messages
 * Calendar
 * CV Central Look and Feel
-* import profile data from Google and Facebook
 * Look and Feel
 * send email
-* use CDN repo
 * load balancing
-* generate image atlas and pack image files (https://tinypng.com/developers/reference/nodejs)
 * source code documentation for new developers
 * disaster recovery
 * setup private npm and bower repo (https://www.npmjs.com/package/sinopia http://toranbillups.com/blog/archive/2013/08/04/How-to-host-a-private-bower-registry/ https://www.npmjs.com/package/private-bower https://www.npmjs.com/package/npm-private)
@@ -52,3 +61,6 @@
 * Hosting service
 * SSL certificate
 * angular 2
+* status page
+* browserify file content seems to be included with the generated dependency file
+* favicon
