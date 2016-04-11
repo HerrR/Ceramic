@@ -34,10 +34,10 @@ gulp.task('chain:test', function(done) {
 
 // Full build process, production
 gulp.task('build', function(done) {
-  runSequence('clean', 'lint', 'html2js', ['css', 'scripts', 'dependency'], 'index:dist', 'serve:copy', done);
+  runSequence('clean', 'lint', 'html2js', ['css', 'scripts', 'dependency', 'resources'], 'index:dist', 'serve:copy', done);
 });
 
 // Full build process, development
 gulp.task('developer', function(done) {
-  runSequence('clean', 'lint', 'html2js', ['css', 'scripts', 'dependency'], 'index:dev', 'serve:copy', done);
+  runSequence('clean', 'lint', 'html2js', ['css', 'scripts', 'dependency', 'resources'], 'index:dev', 'serve:copy', done);
 });

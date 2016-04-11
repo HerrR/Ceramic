@@ -8,12 +8,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="pragma" content="no-cache" />
 
-        <link rel="icon" type="image/ico" href="img/fav.ico" />
+        <link rel="icon" type="image/ico" href="favicon.ico" />
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.7/angular-material.min.css"/>
 
-        <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-aria.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.7/angular-material.min.js"></script>
@@ -27,23 +28,11 @@
 
         <!-- inject:css -->
         <!-- endinject -->
-
-        <style type="text/css">
-            /**
-             * Hide when Angular is not yet loaded and initialized
-             */
-            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-              display: none !important;
-            }
-        </style>
     </head>
 
-    <body layout="column" ng-cloak>
-        <div data-ui-view></div>
-
+    <body ng-cloak ui-view>
         <!-- inject:js -->
         <!-- endinject -->
-
         <!-- inject:text -->
     </body>
 </html>

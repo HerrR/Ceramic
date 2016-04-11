@@ -1,9 +1,15 @@
 {
-    "en": [
-        {"common.page_title": "Velcome to CV Central"}
-    ],
+    "en": {
+        "locale": "en",
+        "translations": {
+            "common.page_title": "Title"
+        }
+    },
     
-    "se": [
-        {"common.page_title": "Välkommen till CV Central"}
-    ]
+    "sv": {
+        "locale": "sv",
+        "translations": {
+            "common.page_title": "Titel"
+        }
+    }
 }

@@ -86,9 +86,17 @@ module.exports = {
     }
   },
 
+  resources: {
+    client: {
+      source: ['./source/client/favicon.ico','./source/client/images/*.jpg']
+    },
+    server: {
+      source: ['./source/server/*.json']
+    }
+  },
+
   images: {
-    source: '',
-    lint_exlude: ''
+    source: './source/client/images/**/*.png'
   },
 
   destination: {
