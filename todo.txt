@@ -56,6 +56,7 @@ Future Bonus Tasks
 * developer page
 * status page
 * Calendar
+* print css
 * unit tests
 * autodeploy
 * travis
