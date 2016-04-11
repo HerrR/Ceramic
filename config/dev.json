@@ -5,19 +5,55 @@
 
         "database": { 
             "datasetCacheLifeTime": 7200000
+        },
+
+        "datasets": {
+            "watch": ["./text_resource.json"],
+            "datasetCacheLifeTime": 7200000,
+            "translations": "./text_resource.json"
         }
     },
 
+    "authentication": [
+        {
+            "name": "local",
+            "enabled": true,
+            "consumerKey": "",
+            "consumerSecret": ""
+        },
+        {
+            "name": "google",
+            "enabled": true,
+            "consumerKey": "",
+            "consumerSecret": ""
+        },
+        {
+            "name": "facebook",
+            "enabled": true,
+            "consumerKey": "",
+            "consumerSecret": ""
+        },
+        {
+            "name": "twitter",
+            "enabled": true,
+            "consumerKey": "",
+            "consumerSecret": ""
+        }
+    ],
+
     "log4js": {
-        "appenders": [
-            { 
-                "type": "console"
-            },
-            {
-                "type": "file", 
-                "filename": "logs/base.log", 
-                "category": "base"
-            }
-        ]
+        "level": "INFO",
+        "config": {
+            "appenders": [
+                { 
+                    "type": "console"
+                },
+                {
+                    "type": "file", 
+                    "filename": "temp/base.log", 
+                    "category": "base"
+                }
+            ]
+        }
     }
 }

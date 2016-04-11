@@ -7,51 +7,90 @@
 (function () {
   "use strict";
 
+  var fs = require('fs');
+  var http = require('http');
+  var https = require('https');
   var config = require(process.argv[2] || '../../config/dev.json');
   var log4js = require('log4js');
   var express = require('express');
   var bodyParser = require('body-parser');
-  // TODO: compression
-  // TODO: mongoose
-  // TODO: cache (redis)
-  // TODO: node-uuid
+  var passport = require('passport');
+  var compression = require('compression');
+  var mongoose = require('mongoose');
+  var uuid = require('node-uuid');
+  var watch = require('node-watch');
+  var datasets = {
+    translations: require(config.server.datasets.translations)
+  };
 
-  // TODO: do not accept posts larger than ??? bytes
-  // TODO: setup logger
-  var logger = log4js.getLogger('base');
-  logger.setLevel('INFO'); // TODO: fetch level from config
 
+  log4js.configure(config.log4js.config);
+
+
+  // Setup variables
   var app = express();
+  var logger = log4js.getLogger('base');
 
+  
+  // Setup Logger
+  logger.setLevel(config.log4js.level);
+
+
+  // Connect to database
+  // TODO: mongoose.connect('mongodb://localhost/test');
+  // TODO: var Cat = mongoose.model('Cat', { name: String });
+
+
+  // Setup Express
+  // TODO: do not accept posts larger than ??? bytes
+  // TODO: SSL
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
-
-  logger.info('Serving static files: ' + config.server.static_files);
+  app.use(compression());
   app.use(express.static(__dirname + config.server.static_files));
 
+
+  // Setup watch
+  watch(config.server.datasets.watch, function(filename) {
+    logger.info('Watch triggered on file: ' + filename);
+    if (filename === require(config.server.datasets.translations)) {
+      datasets.translations = require(filename);
+    }
+  });
+
+
+  //app.post('/rest/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+
   app.get('/rest/translations/:locale', function(req, res) {
-    res.send({});
+    res.send(datasets.translations[req.params.locale]);
   });
 
   app.get('/rest/status', function(req, res) {
-    res.send({message: 'Ceramic v.0.1.1'});
-    // TODO: get version + other info
+    res.send({
+      // TODO: get version + other info
+    });
   });
 
-  // TODO: add methods here
+  app.get('/rest/profile/:userid', function(req, res) {
+    res.send({
+      // TODO: get profile from database
+    });
+  });
 
-  // TODO: supply content folder data
+  app.post('/rest/profile/:userid', function(req, res) {
+    res.send({
+      // TODO: save/update profile to database
+    });
+  });
 
-  // TODO: load config file, if nothing then load 'default.json'
 
-  app.listen(config.server.port);
-  logger.info('Started application on port: ' + config.server.port);
   logger.info('Starting directory: ' + __dirname);
+  logger.info('Serving static files: ' + config.server.static_files);
+  logger.info('Started application on port: ' + config.server.port);
+  app.listen(config.server.port);
 }());
 
 /*
-  // HTTPS
-
   var fs = require('fs');
   var http = require('http');
   var https = require('https');
