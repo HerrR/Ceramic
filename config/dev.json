@@ -8,9 +8,10 @@
         },
 
         "datasets": {
-            "watch": ["./text_resource.json"],
+            "watch": ["./dist/server/text_resource.json"],
             "datasetCacheLifeTime": 7200000,
-            "translations": "./text_resource.json"
+            "folder": "./",
+            "translations": "text_resource.json"
         }
     },
 

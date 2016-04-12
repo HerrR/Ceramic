@@ -7,13 +7,14 @@ Todo
 * company page
 * connect to database
 * CRUD methods
-* fix the watch tasks
 * copy resources
+* basic profile page
 
 Bonus
 =====
-* import profile data from Google and Facebook
 * generate image atlas and pack image files (https://tinypng.com/developers/reference/nodejs)
+* import profile data from Google and Facebook
+* fix the watch tasks
 * exclude 3rdparty from linting
 * use gulp-plumber
 * CDN hash
@@ -44,6 +45,7 @@ Future Main Tasks
 * upload video
 * SSL certificate
 * Docker
+* we are using cookies warning message
 
 Future Bonus Tasks
 ==================

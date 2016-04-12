@@ -3,10 +3,23 @@ footer {
 }
 
 body {
-    background-color: #ddd;
+    background-color: #aaa;
 }
 
 .cvc-mainselect {
     padding-top:40px;
     padding-bottom:40px;
+}
+
+.cvc-page-title {
+    padding-left:30px;
+    font-weight: bold;
+}
+
+.cvc-footer {
+    padding-top:20px;
+    padding-bottom:20px;
+    background-color: black;
+    color: white;
+    font-size: 80%;
 }

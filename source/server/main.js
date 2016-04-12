@@ -20,7 +20,7 @@
   var uuid = require('node-uuid');
   var watch = require('node-watch');
   var datasets = {
-    translations: require(config.server.datasets.translations)
+    translations: require(config.server.datasets.folder + config.server.datasets.translations)
   };
 
 
@@ -53,8 +53,9 @@
   // Setup watch
   watch(config.server.datasets.watch, function(filename) {
     logger.info('Watch triggered on file: ' + filename);
-    if (filename === require(config.server.datasets.translations)) {
-      datasets.translations = require(filename);
+    if (filename.indexOf(config.server.datasets.translations) > -1) {
+      logger.info('Reloading Translations');
+      datasets.translations = require(config.server.datasets.folder + config.server.datasets.translations);
     }
   });
 

@@ -26,7 +26,7 @@
 
     function Config($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-            .primaryPalette('light-blue')
-            .accentPalette('lime');
+            .primaryPalette('blue')
+            .accentPalette('grey');
     }
 })();
