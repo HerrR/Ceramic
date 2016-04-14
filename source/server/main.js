@@ -53,6 +53,7 @@
   // Setup watch
   watch(config.server.datasets.watch, function(filename) {
     logger.info('Watch triggered on file: ' + filename);
+    // TODO: try catch errors here
     if (filename.indexOf(config.server.datasets.translations) > -1) {
       logger.info('Reloading Translations');
       datasets.translations = require(config.server.datasets.folder + config.server.datasets.translations);
