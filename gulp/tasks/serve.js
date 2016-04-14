@@ -18,7 +18,7 @@ gulp.task('serve', function () {
     ext: 'html js',
     watch: config.node.source,
     ignore: [],
-    tasks: ['chain:server:scripts','resources:server']
+    tasks: ['chain:server:scripts']
   })
   .on('restart', function () {
     console.log('Restarted NodeJS');

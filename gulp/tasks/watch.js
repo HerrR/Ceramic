@@ -60,15 +60,20 @@ gulp.task('watch:html', function(done) {
   runSequence('lint:html', 'clean:client:scripts', 'html2js', 'scripts', 'index:dev', 'livereload:html', done);
 });
 
-gulp.task('watch:resources', function(done) {
+gulp.task('watch:resources:client', function(done) {
   runSequence('resources:client', done);
+});
+
+gulp.task('watch:resources:server', function(done) {
+  runSequence('resources:server', done);
 });
 
 gulp.task('watch', function() {
   livereload.listen();
 
   //gulp.watch(config.js.server.source, ['watch:node']);
-  //gulp.watch(config.resources.client.source, ['watch:resources']);
+  //gulp.watch(config.resources.client.source, ['watch:resources:client']);
+  gulp.watch(config.resources.server.source, ['watch:resources:server']);
   gulp.watch(config.js.client.source, ['watch:js']);
   gulp.watch(config.test.e2e.source, ['lint:e2e']);
   gulp.watch(config.test.unit.source, ['lint:unit', 'test']);

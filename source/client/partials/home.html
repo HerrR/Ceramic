@@ -1,42 +1,39 @@
 <div layout="column" layout-fill>
     <header>
         <md-toolbar class="md-medium-tall" layout="row" md-whiteframe="4">
-            <h1 class="md-display-1 cvc-page-title">{{'common.page_title' | translate}}</h1>
+            <h1 class="md-display-1 cvc-page-title">{{'page_title' | translate}}</h1>
             <div flex></div>
         </md-toolbar>
     </header>
 
     <!-- TODO: if the user has not signed in display welcome page, else goto user page -->
+    <main class="md-padding" layout="column" layout-align="center center" flex>
+        <h1>{{'home.select_user_or_company' | translate}}</h1>
+        <main class="md-padding" layout="row" layout-align="space-around start" flex>
+            <md-card class="animated fadeIn cvc-main-select-card">
+                <img src="logo-company.jpg" class="md-card-image" alt="{{'common.company' | translate}}">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{'home.company.title' | translate}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>{{'home.company.description' | translate}}</p>
+                </md-card-content>
+            </md-card>
 
-    <main class="md-padding cvc-mainselect" layout="row" layout-align="center" flex>
-        <div layout="row" layout-xs="column">
-            <div flex>
-                <md-card class="animated fadeIn">
-                    <img src="logo-company.jpg" class="md-card-image" alt="{{'common.company' | translate}}">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">{{'common.company' | translate}}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                        <p>{{'company.mainpage.description' | translate}}</p>
-                    </md-card-content>
-                </md-card>
-            </div>
-            <div flex class="animated fadeIn">
-                <md-card>
-                    <img src="logo-user.jpg" class="md-card-image" alt="{{'common.user' | translate}}">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">{{'common.user' | translate}}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                        <p>{{'user.mainpage.description' | translate}}</p>
-                    </md-card-content>
-                </md-card>
-            </div>
-        </div>
+            <md-card class="animated fadeIn cvc-main-select-card">
+                <img src="logo-user.jpg" class="md-card-image" alt="{{'common.user' | translate}}">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{'home.user.title' | translate}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>{{'home.user.description' | translate}}</p>
+                </md-card-content>
+            </md-card>
+        </main>
     </main>
 
     <footer>

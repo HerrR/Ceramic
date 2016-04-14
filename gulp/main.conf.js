@@ -91,7 +91,7 @@ module.exports = {
       source: ['./source/client/favicon.ico','./source/client/images/*.jpg']
     },
     server: {
-      source: ['./source/server/*.json']
+      source: ['./source/server/*.json', './database/datasets/*.json']
     }
   },
 

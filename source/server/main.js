@@ -7,6 +7,10 @@
 (function () {
   "use strict";
 
+  function readJsonFileSync(filepath) {
+    return JSON.parse(fs.readFileSync(filepath));
+  }
+
   var fs = require('fs');
   var http = require('http');
   var https = require('https');
@@ -20,7 +24,7 @@
   var uuid = require('node-uuid');
   var watch = require('node-watch');
   var datasets = {
-    translations: require(config.server.datasets.folder + config.server.datasets.translations)
+    translations: readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations)
   };
 
 
@@ -56,7 +60,7 @@
     // TODO: try catch errors here
     if (filename.indexOf(config.server.datasets.translations) > -1) {
       logger.info('Reloading Translations');
-      datasets.translations = require(config.server.datasets.folder + config.server.datasets.translations);
+      datasets.translations = readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations);
     }
   });
 

@@ -6,20 +6,28 @@ body {
     background-color: #aaa;
 }
 
-.cvc-mainselect {
-    padding-top:40px;
-    padding-bottom:40px;
-}
-
 .cvc-page-title {
-    padding-left:30px;
+    padding-left: 30px;
     font-weight: bold;
 }
 
 .cvc-footer {
-    padding-top:20px;
-    padding-bottom:20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background-color: black;
     color: white;
     font-size: 80%;
+}
+
+.cvc-main-select-card {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+}
+
+.cvc-main-select-card:hover {
+    -ms-transform: scale(1.04,1.04);
+    -webkit-transform: scale(1.04,1.04);
+    transform: scale(1.04,1.04);
 }

@@ -2,7 +2,11 @@
     "en": {
         "locale": "en",
         "translations": {
-            "common.page_title": "Title"
+            "page_title": "Title",
+            "home.company.title": "Company",
+            "home.company.description": "Short description of what this is and for who this is for.",
+            "home.user.title": "User",
+            "home.user.description": "Short description of what this is and for who this is for."
         }
     },
     
