@@ -5,20 +5,31 @@
 
     angular
         .module('cvc')
-        .service('Profile', Profile);
+        .service('ProfileService', ProfileService);
 
-    Profile.$inject = [];
+    ProfileService.$inject = ['AppConstants'];
 
-    function Profile() {
+    function ProfileService(AppConstants) {
         var self = this;
+        var userToken;
+        var userType = AppConstants.USER_TYPES.PERSON;
 
         self.signIn = function(serviceName) {
-            // TODO: 
+            // TODO: implement this
+            userToken = 'test_token';
+            userType = serviceName;
         };
 
         self.hasSignedIn = function() {
-            // TODO
-            return false;
+            return (userToken !== undefined);
+        };
+
+        self.isCompany = function() {
+            return (userType === AppConstants.USER_TYPES.COMPANY); // TODO: feteched from REST call result
+        };
+
+        self.isPerson = function() {
+            return (userType === AppConstants.USER_TYPES.PERSON); // TODO: feteched from REST call result
         };
 
         // TODO: holds data for all profile types

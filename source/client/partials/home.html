@@ -1,44 +1,13 @@
 <div layout="column" layout-fill>
     <header>
-        <md-toolbar class="md-medium-tall" layout="row" md-whiteframe="4">
-            <h1 class="md-display-1 cvc-page-title">{{'page_title' | translate}}</h1>
-            <div flex></div>
-        </md-toolbar>
+        <cvc-header></cvc-header>
     </header>
 
-    <!-- TODO: if the user has not signed in display welcome page, else goto user page -->
-    <main class="md-padding" layout="column" layout-align="center center" flex>
-        <h1>{{'home.select_user_or_company' | translate}}</h1>
-        <main class="md-padding" layout="row" layout-align="space-around start" flex>
-            <md-card class="animated fadeIn cvc-main-select-card">
-                <img src="logo-company.jpg" class="md-card-image" alt="{{'common.company' | translate}}">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{'home.company.title' | translate}}</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <p>{{'home.company.description' | translate}}</p>
-                </md-card-content>
-            </md-card>
-
-            <md-card class="animated fadeIn cvc-main-select-card">
-                <img src="logo-user.jpg" class="md-card-image" alt="{{'common.user' | translate}}">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{'home.user.title' | translate}}</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <p>{{'home.user.description' | translate}}</p>
-                </md-card-content>
-            </md-card>
-        </main>
-    </main>
-
+    <cvc-welcome></cvc-welcome>
+    <cvc-person></cvc-person>
+    <cvc-company></cvc-company>
+    
     <footer>
-        <div class="cvc-footer" layout="row" layout-align="center center" md-whiteframe="2" flex>
-            Company &copy; 2016 TODO: Footer (fix: screen height is smaller than page height)
-        </div>
+        <cvc-footer></cvc-footer>
     </footer>
 </div>

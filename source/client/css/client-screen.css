@@ -22,11 +22,15 @@ body {
 .cvc-main-select-card {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
 }
 
 .cvc-main-select-card:hover {
+    -o-transform: scale(1.04,1.04);
+    -moz-transform: scale(1.04,1.04);
     -ms-transform: scale(1.04,1.04);
     -webkit-transform: scale(1.04,1.04);
     transform: scale(1.04,1.04);
