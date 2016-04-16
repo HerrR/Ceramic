@@ -7,8 +7,19 @@
         .module('cvc')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope'];
+    MainController.$inject = ['$scope', 'ProfileService'];
 
-    function MainController($scope) {
+    function MainController($scope, ProfileService) {
+        $scope.hasSignedIn = function() {
+            return ProfileService.hasSignedIn();
+        };
+
+        $scope.isPerson = function() {
+            return ProfileService.isPerson();
+        };
+
+        $scope.isCompany = function() {
+            return ProfileService.isCompany();
+        };
     }
 })();

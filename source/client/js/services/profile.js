@@ -32,6 +32,8 @@
             return (userType === AppConstants.USER_TYPES.PERSON); // TODO: feteched from REST call result
         };
 
-        // TODO: holds data for all profile types
+        self.save = function() {
+            // TODO: post the profile
+        };
     }
 })();

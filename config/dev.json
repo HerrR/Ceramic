@@ -4,7 +4,10 @@
         "static_files": "/../client/",
 
         "database": { 
-            "datasetCacheLifeTime": 7200000
+            "datasetCacheLifeTime": 7200000,
+            "username": "sa",
+            "password": "sa",
+            "url": "mongodb://localhost:27017/cvc"
         },
 
         "datasets": {

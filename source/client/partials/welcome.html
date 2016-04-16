@@ -1,28 +1,30 @@
-<main ng-if="hasSignedIn() === false" class="md-padding" layout="column" layout-align="center center" flex>
-    <h1>{{'home.select_user_or_company' | translate}}</h1>
-    <main class="md-padding" layout="row" layout-align="space-around start" flex>
-        <md-card class="animated fadeIn cvc-main-select-card" ng-click="testSignIn('COMPANY')">
-            <img src="logo-company.jpg" class="md-card-image" alt="{{'common.company' | translate}}">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">{{'home.company.title' | translate}}</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <p>{{'home.company.description' | translate}}</p>
-            </md-card-content>
-        </md-card>
+<md-content class="md-padding" layout-align-lg="column" layout="row" layout-align="center center" flex>
+    <main class="md-padding" layout="column" layout-align="center center" flex>
+        <h1>{{'home.select_user_or_company' | translate}}</h1>
+        <main class="md-padding" layout="row" layout-align="space-around start" flex>
+            <md-card class="animated fadeIn cvc-main-select-card" ng-click="testSignIn('COMPANY')">
+                <img src="logo-company.jpg" class="md-card-image" alt="{{'common.company' | translate}}">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{'home.company.title' | translate}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>{{'home.company.description' | translate}}</p>
+                </md-card-content>
+            </md-card>
 
-        <md-card class="animated fadeIn cvc-main-select-card" ng-click="testSignIn('PERSON')">
-            <img src="logo-user.jpg" class="md-card-image" alt="{{'common.user' | translate}}">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">{{'home.user.title' | translate}}</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <p>{{'home.user.description' | translate}}</p>
-            </md-card-content>
-        </md-card>
+            <md-card class="animated fadeIn cvc-main-select-card" ng-click="testSignIn('PERSON')">
+                <img src="logo-user.jpg" class="md-card-image" alt="{{'common.user' | translate}}">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{'home.user.title' | translate}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>{{'home.user.description' | translate}}</p>
+                </md-card-content>
+            </md-card>
+        </main>
     </main>
-</main>
+</md-content>

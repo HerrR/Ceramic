@@ -11,6 +11,21 @@
     return JSON.parse(fs.readFileSync(filepath));
   }
 
+  function exitHandler(options, err) {
+    if (options.cleanup) {
+      console.log('Shutting Down...');
+    }
+
+    if (err) {
+      console.log(err.stack);
+      logger.error(err.stack);
+    }
+
+    if (options.exit) {
+      process.exit();
+    }
+  }
+
   var fs = require('fs');
   var http = require('http');
   var https = require('https');
@@ -23,9 +38,12 @@
   var mongoose = require('mongoose');
   var uuid = require('node-uuid');
   var watch = require('node-watch');
+
   var datasets = {
     translations: readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations)
   };
+
+  // TODO: node-cache, query-string-parser
 
 
   log4js.configure(config.log4js.config);
@@ -34,15 +52,20 @@
   // Setup variables
   var app = express();
   var logger = log4js.getLogger('base');
+  var database = mongoose.connection;
 
   
   // Setup Logger
   logger.setLevel(config.log4js.level);
 
 
-  // Connect to database
-  // TODO: mongoose.connect('mongodb://localhost/test');
-  // TODO: var Cat = mongoose.model('Cat', { name: String });
+  // Setup Database
+  database.on('error', logger.error);
+  database.once('open', function() {
+    logger.info('Connected to MongoDB');
+
+    // TODO: var Cat = mongoose.model('Cat', { name: String });
+  });
 
 
   // Setup Express
@@ -89,10 +112,16 @@
     });
   });
 
+  process.stdin.resume();
+  process.on('exit', exitHandler.bind(null,{cleanup:true}));
+  process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+  process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
   logger.info('Starting directory: ' + __dirname);
   logger.info('Serving static files: ' + config.server.static_files);
   logger.info('Started application on port: ' + config.server.port);
+
+  mongoose.connect(config.server.database.url);
   app.listen(config.server.port);
 }());
 

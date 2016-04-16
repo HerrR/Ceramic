@@ -1,9 +1,5 @@
-footer {
-    background-color: #ccc;
-}
-
 body {
-    background-color: #aaa;
+    background-color: #bbb;
 }
 
 .cvc-page-title {
@@ -34,4 +30,21 @@ body {
     -ms-transform: scale(1.04,1.04);
     -webkit-transform: scale(1.04,1.04);
     transform: scale(1.04,1.04);
+}
+
+.cvc-padding-lmd {
+    padding-left: 10px;
+}
+
+.cvc-padding-rxs {
+    padding-right: 5px;
+}
+
+.cvc-profile-name {
+    font-weight: bold;
+    font-size: 200%;
+}
+
+.cvc-menubar {
+    background-color: transparent;
 }
