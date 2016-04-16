@@ -7,17 +7,25 @@
 (function () {
   "use strict";
 
-  function readJsonFileSync(filepath) {
-    return JSON.parse(fs.readFileSync(filepath));
+  function readJsonFileSync(filepath, defaultValue, doCrash) {
+    try {
+      return JSON.parse(fs.readFileSync(filepath));
+    } catch (err) {
+      logger.error('Failed to load: ' + filepath);
+      if (doCrash) {
+        throw err;
+      }
+    }
+    return defaultValue;
   }
 
   function exitHandler(options, err) {
     if (options.cleanup) {
-      console.log('Shutting Down...');
+      console.log(chalk.blue('Shutting Down...'));
     }
 
     if (err) {
-      console.log(err.stack);
+      console.log(chalk.red(err.stack));
       logger.error(err.stack);
     }
 
@@ -26,10 +34,11 @@
     }
   }
 
+  var config = require(process.argv[2] || '../../config/dev.json');
+  
   var fs = require('fs');
   var http = require('http');
   var https = require('https');
-  var config = require(process.argv[2] || '../../config/dev.json');
   var log4js = require('log4js');
   var express = require('express');
   var bodyParser = require('body-parser');
@@ -38,15 +47,14 @@
   var mongoose = require('mongoose');
   var uuid = require('node-uuid');
   var watch = require('node-watch');
+  var chalk = require('chalk');
+  var ddos = require("ddos-express");
+  var queryParser = require('query-string-parser')
+  // TODO: node-cache
 
   var datasets = {
-    translations: readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations)
+    translations: readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations,{},true)
   };
-
-  // TODO: node-cache, query-string-parser
-
-
-  log4js.configure(config.log4js.config);
 
 
   // Setup variables
@@ -56,6 +64,7 @@
 
   
   // Setup Logger
+  log4js.configure(config.log4js.config);
   logger.setLevel(config.log4js.level);
 
 
@@ -69,26 +78,27 @@
 
 
   // Setup Express
-  // TODO: do not accept posts larger than ??? bytes
   // TODO: SSL
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
+  app.use(bodyParser.json({limit: config.server.dataSizeLimit}));
   app.use(compression());
-  app.use(express.static(__dirname + config.server.static_files));
+  app.use(express.static(__dirname + config.server.staticFiles));
+  app.use(ddos({
+    // TODO: Configuration options
+  }));
 
 
-  // Setup watch
   watch(config.server.datasets.watch, function(filename) {
     logger.info('Watch triggered on file: ' + filename);
-    // TODO: try catch errors here
+
     if (filename.indexOf(config.server.datasets.translations) > -1) {
       logger.info('Reloading Translations');
-      datasets.translations = readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations);
+      datasets.translations = readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations, datasets.translations, false);
     }
   });
 
-
-  //app.post('/rest/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+  // TODO: app.post('/rest/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+  // TODO: datasets app.get
 
   app.get('/rest/translations/:locale', function(req, res) {
     res.send(datasets.translations[req.params.locale]);
@@ -118,10 +128,16 @@
   process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
   logger.info('Starting directory: ' + __dirname);
-  logger.info('Serving static files: ' + config.server.static_files);
+  logger.info('Serving static files: ' + config.server.staticFiles);
   logger.info('Started application on port: ' + config.server.port);
 
-  mongoose.connect(config.server.database.url);
+  try {
+    mongoose.connect(config.server.database.url);
+  } catch (err) {
+    logger.error('Failed to connect to database: ' + config.server.database.url);
+    throw err;
+  }
+
   app.listen(config.server.port);
 }());
 
