@@ -10,6 +10,11 @@
     Controller.$inject = ['$scope', 'ProfileService'];
 
     function Controller($scope, ProfileService) {
+        $scope.gotoHome = function() {
+            // TODO
+            console.log('gotoHome');
+        };
+
         $scope.hasSignedIn = function() {
             return ProfileService.hasSignedIn();
         };

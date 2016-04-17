@@ -7,8 +7,9 @@
         .module('cvc')
         .controller('CvcPersonController', Controller);
 
-    Controller.$inject = ['$scope', 'ProfileService'];
+    Controller.$inject = ['$scope', 'ProfileService', 'AppConstants'];
 
-    function Controller($scope, ProfileService) {
+    function Controller($scope, ProfileService, AppConstants) {
+        $scope.IMAGES = AppConstants.IMAGES;
     }
 })();

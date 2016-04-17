@@ -34,6 +34,23 @@
     }
   }
 
+  function hideSecretProfileData(profileData) {
+    profileData.system.note = '';
+
+    if (profileData.system.person) {
+      profileData.company = undefined;
+    } else {
+      profileData.person = undefined;
+    }
+
+    return profileData;
+  }
+
+  function createNewProfile(userid) {
+    // TODO: return default values object
+    return {};
+  }
+
   var config = require(process.argv[2] || '../../config/dev.json');
   
   var fs = require('fs');
@@ -49,11 +66,15 @@
   var watch = require('node-watch');
   var chalk = require('chalk');
   var ddos = require("ddos-express");
-  var queryParser = require('query-string-parser')
+  var queryParser = require('query-string-parser');
   // TODO: node-cache
 
   var datasets = {
     translations: readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations,{},true)
+  };
+
+  var datamodels = {
+    profile: undefined
   };
 
 
@@ -73,7 +94,26 @@
   database.once('open', function() {
     logger.info('Connected to MongoDB');
 
-    // TODO: var Cat = mongoose.model('Cat', { name: String });
+    datamodels.profile = mongoose.model('Profile', new mongoose.Schema({
+      userid: String,
+      system: {
+        created: Date,
+        locked: Date,
+        deleted: Date,
+        updated: Date,
+        note: String,
+        visible: mongoose.Schema.Types.Boolean,
+        person: mongoose.Schema.Types.Boolean
+      },
+      person: {
+        name: String
+      },
+      company: {
+        name: String
+      }
+    }));
+
+
   });
 
 
@@ -98,7 +138,6 @@
   });
 
   // TODO: app.post('/rest/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
-  // TODO: datasets app.get
 
   app.get('/rest/translations/:locale', function(req, res) {
     res.send(datasets.translations[req.params.locale]);
@@ -111,12 +150,25 @@
   });
 
   app.get('/rest/profile/:userid', function(req, res) {
-    res.send({
-      // TODO: get profile from database
+    // TODO: check if the userid is valid
+
+    datamodels.profile.findOne({userid:req.params.userid}, function(err, profileData) {
+      if (err !== null) {
+        logger.warn(err);
+        res.send({error: 'error.get_profile'});
+      } else if (profileData === null) {
+        var newProfile = new datamodels.profile(createNewProfile(req.params.userid));
+        // TODO: save
+        res.send(newProfile);
+      } else {
+        res.send(hideSecretProfileData(profileData));
+      }
     });
   });
 
   app.post('/rest/profile/:userid', function(req, res) {
+    // TODO: check if the userid is valid
+
     res.send({
       // TODO: save/update profile to database
     });

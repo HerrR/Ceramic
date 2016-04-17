@@ -7,7 +7,9 @@
             "home.company.description": "Short description of what this is and for who this is for.",
             "home.user.title": "User",
             "home.user.description": "Short description of what this is and for who this is for.",
-            "home.select_user_or_company": "select compnay or user ..."
+            "home.select_user_or_company": "select compnay or user ...",
+
+            "error.get_profile": "Failed to fetch profile info"
         }
     },
     

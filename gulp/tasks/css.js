@@ -22,15 +22,4 @@ gulp.task('css:screen', function() {
     .pipe(gulp.dest(config.destination.client.base_dir));
 });
 
-gulp.task('css:print', function() {
-  return gulp.src(config.css.print.source)
-    .pipe(plumber())
-    .pipe(concat(config.css.print.destination_name))
-    .pipe(rev())
-    .pipe(minifyCss({
-      compatibility: config.css.compatibility
-    }))
-    .pipe(gulp.dest(config.destination.client.base_dir));
-});
-
-gulp.task('css', ['css:screen', 'css:print']);
+gulp.task('css', ['css:screen']);

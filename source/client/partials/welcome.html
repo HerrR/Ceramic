@@ -3,7 +3,7 @@
         <h1>{{'home.select_user_or_company' | translate}}</h1>
         <main class="md-padding" layout="row" layout-align="space-around start" flex>
             <md-card class="animated fadeIn cvc-main-select-card" ng-click="testSignIn('COMPANY')">
-                <img src="logo-company.jpg" class="md-card-image" alt="{{'common.company' | translate}}">
+                <img src="{{IMAGES.MAIN_COMPANY}}" class="md-card-image" alt="{{'common.company' | translate}}">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{'home.company.title' | translate}}</span>
@@ -15,7 +15,7 @@
             </md-card>
 
             <md-card class="animated fadeIn cvc-main-select-card" ng-click="testSignIn('PERSON')">
-                <img src="logo-user.jpg" class="md-card-image" alt="{{'common.user' | translate}}">
+                <img src="{{IMAGES.MAIN_PERSON}}" class="md-card-image" alt="{{'common.user' | translate}}">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{'home.user.title' | translate}}</span>

@@ -65,10 +65,6 @@ module.exports = {
       ],
       destination_name: 'client-screen.min.css'
     },
-    print: {
-      source: './source/client/css/client-print.css',
-      destination_name: 'client-print.min.css'
-    },
     lint_exlude: ['./bower_components/angular-material/angular-material.css'],
     compatibility: 'ie8'
   },

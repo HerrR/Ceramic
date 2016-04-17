@@ -7,9 +7,11 @@
         .module('cvc')
         .controller('CvcWelcomeController', Controller);
 
-    Controller.$inject = ['$scope', 'ProfileService'];
+    Controller.$inject = ['$scope', 'ProfileService', 'AppConstants'];
 
-    function Controller($scope, ProfileService) {
+    function Controller($scope, ProfileService, AppConstants) {
+        $scope.IMAGES = AppConstants.IMAGES;
+
         $scope.testSignIn = function(type) {
             ProfileService.signIn(type);
         };
