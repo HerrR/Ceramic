@@ -1,0 +1,1 @@
+call mongod --dbpath ./temp/database/
