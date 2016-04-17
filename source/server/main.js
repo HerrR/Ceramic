@@ -106,7 +106,8 @@
         person: mongoose.Schema.Types.Boolean
       },
       person: {
-        name: String
+        name: String,
+        dateOfBirth: Date
       },
       company: {
         name: String
