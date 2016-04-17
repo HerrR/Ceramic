@@ -51,6 +51,11 @@
     return {};
   }
 
+  function validateProfile(profile) {
+    // TODO: clamp texts like name etc..
+    return profile;
+  }
+
   const config = require(process.argv[2] || '../../config/dev.json');
   
   const fs = require('fs');
@@ -113,8 +118,6 @@
         name: String
       }
     }));
-
-
   });
 
 

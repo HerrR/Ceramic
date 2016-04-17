@@ -9,6 +9,9 @@
             "home.user.description": "Short description of what this is and for who this is for.",
             "home.select_user_or_company": "select compnay or user ...",
 
+            "profile.save": "save",
+            "profile.cancel": "cancel",
+
             "error.get_profile": "Failed to fetch profile info"
         }
     },

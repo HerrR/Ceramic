@@ -48,3 +48,8 @@ body {
 .cvc-menubar {
     background-color: transparent;
 }
+
+.cvc-profile-card-header {
+    font-size: 120%;
+    font-weight: bold;
+}

@@ -8,64 +8,58 @@
                     </div>
                 </md-card-title-media>
                 <md-card-title-text class="cvc-padding-lmd">
-                    <span class="md-headline cvc-profile-name">Donald Duck</span>
-                    <span class="md-subhead">Some short description</span>
+                    <md-input-container>
+                    <span class="md-headline cvc-profile-name">
+                        <label style="font-size:50%; font-weight:normal;">{{'profile.your_name' | translate}}</label>
+                        <input style="font-weight:bold;" type="text" maxlength="60" required/>
+                    </span>
+                    <span class="md-subhead">
+                        <md-datepicker md-placeholder="{{'profile.date_of_birth' | translate}}" ng-model="a"></md-datepicker>
+                        <md-checkbox ng-model="d" aria-label="{{'profile.searchable' | translate}}">{{'profile.searchable' | translate}}</md-checkbox>
+                    </span>
+                    </md-input-container>
                 </md-card-title-text>
             </md-card-title>
         </md-card>
         
         <md-card>
+            <md-card-header class="cvc-profile-card-header">Level 1 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
         <md-card>
+            <md-card-header class="cvc-profile-card-header">Level 2 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
         <md-card>
+            <md-card-header class="cvc-profile-card-header">Level 3 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
         <md-card>
+            <md-card-header class="cvc-profile-card-header">Level 4 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
         <md-card>
+            <md-card-header class="cvc-profile-card-header">Level 5 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
-        <md-card>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
-
-        <md-card>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
-
-        <md-card>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
-
-        <md-card>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
+        <md-content class="md-padding cvc-menubar" layout-align-lg="column" layout="row" layout-align="center center">
+            <md-button class="md-raised md-warn" ng-disabled="false"><i class="fa fa-ban" aria-hidden="true"></i> {{'profile.cancel' | translate}}</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="false"><i class="fa fa-hdd-o" aria-hidden="true"></i> {{'profile.save' | translate}}</md-button>
+        </md-content>
     </div>
 </md-content>
