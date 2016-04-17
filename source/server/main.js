@@ -51,22 +51,22 @@
     return {};
   }
 
-  var config = require(process.argv[2] || '../../config/dev.json');
+  const config = require(process.argv[2] || '../../config/dev.json');
   
-  var fs = require('fs');
-  var http = require('http');
-  var https = require('https');
-  var log4js = require('log4js');
-  var express = require('express');
-  var bodyParser = require('body-parser');
-  var passport = require('passport');
-  var compression = require('compression');
-  var mongoose = require('mongoose');
-  var uuid = require('node-uuid');
-  var watch = require('node-watch');
-  var chalk = require('chalk');
-  var ddos = require("ddos-express");
-  var queryParser = require('query-string-parser');
+  const fs = require('fs');
+  const http = require('http');
+  const https = require('https');
+  const log4js = require('log4js');
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const passport = require('passport');
+  const compression = require('compression');
+  const mongoose = require('mongoose');
+  const uuid = require('node-uuid');
+  const watch = require('node-watch');
+  const chalk = require('chalk');
+  const ddos = require("ddos-express");
+  const queryParser = require('query-string-parser');
   // TODO: node-cache
 
   var datasets = {
