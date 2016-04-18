@@ -7,6 +7,31 @@
 (function () {
   "use strict";
 
+  const config = require(process.argv[2] || '../../config/dev.json');
+  
+  const fs = require('fs');
+  const http = require('http');
+  const https = require('https');
+  const log4js = require('log4js');
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const cookieParser = require('cookie-parser');
+  const expressSession = require('express-session');
+  const compression = require('compression');
+  const mongoose = require('mongoose');
+  const uuid = require('node-uuid');
+  const watch = require('node-watch');
+  const chalk = require('chalk');
+  const ddos = require("ddos-express");
+  const queryParser = require('query-string-parser'); // TODO: dont need this?
+  const passport = require('passport');
+  const passportHttp = require('passport-http');
+  const passportLocal = require('passport-local');
+  const passportGoogle = require('passport-google');
+  const passportFacebook = require('passport-facebook');
+  const passportTwitter = require('passport-twitter');
+  // TODO: node-cache
+
   function readJsonFileSync(filepath, defaultValue, doCrash) {
     try {
       return JSON.parse(fs.readFileSync(filepath));
@@ -55,24 +80,6 @@
     // TODO: clamp texts like name etc..
     return profile;
   }
-
-  const config = require(process.argv[2] || '../../config/dev.json');
-  
-  const fs = require('fs');
-  const http = require('http');
-  const https = require('https');
-  const log4js = require('log4js');
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  const passport = require('passport');
-  const compression = require('compression');
-  const mongoose = require('mongoose');
-  const uuid = require('node-uuid');
-  const watch = require('node-watch');
-  const chalk = require('chalk');
-  const ddos = require("ddos-express");
-  const queryParser = require('query-string-parser');
-  // TODO: node-cache
 
   var datasets = {
     translations: readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations,{},true)
@@ -125,11 +132,39 @@
   // TODO: SSL
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json({limit: config.server.dataSizeLimit}));
+  app.use(cookieParser());
+  app.use(expressSession({
+    secret: process.env.SESSION_KEY || config.server.sessionSecretKey,
+    resave: false,
+    saveUninitialized: false
+  }));
   app.use(compression());
   app.use(express.static(__dirname + config.server.staticFiles));
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(ddos({
     // TODO: Configuration options
   }));
+
+
+  // TODO: configure passport
+  passport.use(new passportLocal.Strategy(function(username, password, done) {
+    var user = null;
+    var error = null; // new Error('message')
+    
+    // TODO: verify username/password, use node crypto.pbkdf2
+    user = {userid:'test_user'};
+
+    done(error, user);
+  }));
+
+  passport.serializeUser(function(user, done) {
+    done(null, user.userid);
+  });
+
+  passport.deserializeUser(function(userid, done) {
+    done(null, {userid: userid});
+  });
 
 
   watch(config.server.datasets.watch, function(filename) {
@@ -141,7 +176,14 @@
     }
   });
 
-  // TODO: app.post('/rest/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+  app.post('/rest/login/local', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+  app.post('/rest/login/google', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+  // TODO: add more passport strategies
+
+  app.get('/rest/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
 
   app.get('/rest/translations/:locale', function(req, res) {
     res.send(datasets.translations[req.params.locale]);
@@ -172,6 +214,7 @@
 
   app.post('/rest/profile/:userid', function(req, res) {
     // TODO: check if the userid is valid
+    // req.isAuthenticated(), req.user
 
     res.send({
       // TODO: save/update profile to database
@@ -188,6 +231,7 @@
   logger.info('Started application on port: ' + config.server.port);
 
   try {
+    // TODO: username and password
     mongoose.connect(config.server.database.url);
   } catch (err) {
     logger.error('Failed to connect to database: ' + config.server.database.url);

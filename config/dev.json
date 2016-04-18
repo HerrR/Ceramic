@@ -3,6 +3,7 @@
         "port": 9010,
         "staticFiles": "/../client/",
         "dataSizeLimit": "400kb",
+        "sessionSecretKey": "secret_session_key",
 
         "database": { 
             "datasetCacheLifeTime": 7200000,
