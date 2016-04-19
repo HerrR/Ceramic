@@ -20,32 +20,33 @@
         }
     },
 
-    "authentication": [
-        {
-            "name": "local",
+    "authentication": {
+        "local": {
             "enabled": true,
             "consumerKey": "",
             "consumerSecret": ""
         },
-        {
-            "name": "google",
+        "http": {
             "enabled": true,
             "consumerKey": "",
             "consumerSecret": ""
         },
-        {
-            "name": "facebook",
+        "google": {
             "enabled": true,
             "consumerKey": "",
             "consumerSecret": ""
         },
-        {
-            "name": "twitter",
+        "facebook": {
+            "enabled": true,
+            "consumerKey": "",
+            "consumerSecret": ""
+        },
+        "twitter": {
             "enabled": true,
             "consumerKey": "",
             "consumerSecret": ""
         }
-    ],
+    },
 
     "log4js": {
         "level": "INFO",

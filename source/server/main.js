@@ -2,7 +2,8 @@
  * Ceramic - Main Server Startup
  */
 
- /*jshint node:true */
+ /* jshint node:true */
+ /* jshint esversion: 6 */
 
 (function () {
   "use strict";
@@ -81,6 +82,24 @@
     return profile;
   }
 
+  function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.send(403);
+    }
+  }
+
+  function verifyCredentials(username, password, done) {
+    var user = null;
+    var error = null; // new Error('message')
+    
+    // TODO: verify username/password, use node crypto.pbkdf2
+    user = {userid:'test_user'};
+
+    done(error, user);
+  }
+
   var datasets = {
     translations: readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations,{},true)
   };
@@ -129,8 +148,8 @@
 
 
   // Setup Express
-  // TODO: SSL
-  app.use(bodyParser.urlencoded({ extended: true }));
+  // TODO: SSL / TLS
+  app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json({limit: config.server.dataSizeLimit}));
   app.use(cookieParser());
   app.use(expressSession({
@@ -138,6 +157,7 @@
     resave: false,
     saveUninitialized: false
   }));
+  app.use('/api', passport.authenticate('basic', {session: false}));
   app.use(compression());
   app.use(express.static(__dirname + config.server.staticFiles));
   app.use(passport.initialize());
@@ -148,15 +168,8 @@
 
 
   // TODO: configure passport
-  passport.use(new passportLocal.Strategy(function(username, password, done) {
-    var user = null;
-    var error = null; // new Error('message')
-    
-    // TODO: verify username/password, use node crypto.pbkdf2
-    user = {userid:'test_user'};
-
-    done(error, user);
-  }));
+  passport.use(new passportLocal.Strategy(verifyCredentials));
+  passport.use(new passportHttp.BasicStrategy(verifyCredentials));
 
   passport.serializeUser(function(user, done) {
     done(null, user.userid);
@@ -176,47 +189,51 @@
     }
   });
 
-  app.post('/rest/login/local', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/loginfailed' }));
-  app.post('/rest/login/google', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+  if (config.authentication.local.enabled) {
+    app.post('/public/login/local', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+  }
+
+  if (config.authentication.local.enabled) {
+    app.post('/public/login/google', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+  }
+
   // TODO: add more passport strategies
 
-  app.get('/rest/logout', function(req, res) {
+  app.get('/public/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
 
-  app.get('/rest/translations/:locale', function(req, res) {
-    res.send(datasets.translations[req.params.locale]);
+  app.get('/public/translations/:locale', function(req, res) {
+    res.json(datasets.translations[req.params.locale]);
   });
 
-  app.get('/rest/status', function(req, res) {
-    res.send({
+  app.get('/public/status', function(req, res) {
+    res.json({
       // TODO: get version + other info
     });
   });
 
-  app.get('/rest/profile/:userid', function(req, res) {
-    // TODO: check if the userid is valid
-
+  app.get('/private/profile', ensureAuthenticated, function(req, res) {
+    // TODO: userid (req.user)
     datamodels.profile.findOne({userid:req.params.userid}, function(err, profileData) {
       if (err !== null) {
         logger.warn(err);
-        res.send({error: 'error.get_profile'});
+        res.json({error: 'error.get_profile'});
       } else if (profileData === null) {
         var newProfile = new datamodels.profile(createNewProfile(req.params.userid));
         // TODO: save
-        res.send(newProfile);
+        res.json(newProfile);
       } else {
-        res.send(hideSecretProfileData(profileData));
+        res.json(hideSecretProfileData(profileData));
       }
     });
   });
 
-  app.post('/rest/profile/:userid', function(req, res) {
-    // TODO: check if the userid is valid
-    // req.isAuthenticated(), req.user
+  app.post('/private/profile', ensureAuthenticated, function(req, res) {
+    // TODO: userid (req.user)
 
-    res.send({
+    res.json({
       // TODO: save/update profile to database
     });
   });
@@ -242,6 +259,9 @@
 }());
 
 /*
+  // generate key
+  // openssl req -x509 -nodes -days 365 -newkey rsa:1024 -out my.crt -keyout my.key
+
   var fs = require('fs');
   var http = require('http');
   var https = require('https');
