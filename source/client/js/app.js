@@ -17,7 +17,7 @@
         .run(Run);
 
     Run.$inject = ['localStorageService'];
-    Config.$inject = ['$mdThemingProvider'];
+    Config.$inject = ['$mdThemingProvider', '$mdDateLocaleProvider'];
 
     function Run(localStorageService) {
         // TODO: determine if user has signed in
@@ -28,5 +28,7 @@
         $mdThemingProvider.theme('default')
             .primaryPalette('blue')
             .accentPalette('grey');
+
+        // TODO: $mdDateLocaleProvider, https://material.angularjs.org/latest/api/service/$mdDateLocaleProvider
     }
 })();

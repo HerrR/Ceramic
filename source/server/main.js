@@ -45,6 +45,10 @@
     return defaultValue;
   }
 
+  function readDataset(filename, defaultValue, doCrash) {
+    return readJsonFileSync(config.server.datasets.folder + filename, defaultValue, doCrash);
+  }
+
   function exitHandler(options, err) {
     if (options.cleanup) {
       console.log(chalk.blue('Shutting Down...'));
@@ -72,7 +76,7 @@
     return profileData;
   }
 
-  function createNewProfile(userid) {
+  function createNewProfile(userid, isPerson) {
     // TODO: return default values object
     return {};
   }
@@ -101,7 +105,7 @@
   }
 
   var datasets = {
-    translations: readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations,{},true)
+    translations: readDataset(config.server.datasets.translations,{},true)
   };
 
   var datamodels = {
@@ -185,7 +189,7 @@
 
     if (filename.indexOf(config.server.datasets.translations) > -1) {
       logger.info('Reloading Translations');
-      datasets.translations = readJsonFileSync(config.server.datasets.folder + config.server.datasets.translations, datasets.translations, false);
+      datasets.translations = readDataset(config.server.datasets.translations, datasets.translations, false);
     }
   });
 
@@ -216,12 +220,14 @@
 
   app.get('/private/profile', ensureAuthenticated, function(req, res) {
     // TODO: userid (req.user)
+
     datamodels.profile.findOne({userid:req.params.userid}, function(err, profileData) {
       if (err !== null) {
         logger.warn(err);
         res.json({error: 'error.get_profile'});
       } else if (profileData === null) {
-        var newProfile = new datamodels.profile(createNewProfile(req.params.userid));
+        var isPerson = true; // TODO: determine if this is a person or company
+        var newProfile = new datamodels.profile(createNewProfile(req.params.userid, isPerson));
         // TODO: save
         res.json(newProfile);
       } else {
