@@ -31,7 +31,7 @@
   const passportGoogle = require('passport-google');
   const passportFacebook = require('passport-facebook');
   const passportTwitter = require('passport-twitter');
-  // TODO: node-cache
+  // TODO: node-cache, nodemailer
 
   function readJsonFileSync(filepath, defaultValue, doCrash) {
     try {
