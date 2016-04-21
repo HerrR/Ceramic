@@ -34,8 +34,13 @@ body {
 
 .cvc-profile-username {
     font-weight: bold;
-    max-width: 90%;
     border-style: none;
+    border-radius: 2px;
+}
+
+.cvc-full-width {
+    min-width: 100%;
+    max-width: 100%;   
 }
 
 .cvc-padding-lmd {

@@ -1,5 +1,5 @@
 <md-content class="md-padding" layout-align-xs="column" layout="row" layout-align="center center">
-    <div flex flex-gt-md="40" layout="column">
+    <div flex flex-gt-md="60" layout="column">
         <md-card>
             <md-card-title>
                 <md-card-title-media>
@@ -8,11 +8,13 @@
                     </div>
                 </md-card-title-media>
                 <md-card-title-text class="cvc-padding-lmd">
-                        <span class="md-headline cvc-profile-name">
-                            <input class="cvc-profile-username" placeholder="{{'profile.username' | translate}}" type="text" maxlength="60" required/>
+                        <span class="md-headline cvc-profile-name cvc-full-width">
+                            <input class="cvc-profile-username" placeholder="{{'profile.username' | translate}}" type="text" maxlength="30" required/>
                         </span>
                         <span class="md-subhead">
-                            <p><md-datepicker md-placeholder="{{'profile.date_of_birth' | translate}}" ng-model="a"></md-datepicker></p>
+                            <p>
+                                <md-datepicker md-placeholder="{{'profile.date_of_birth' | translate}}" ng-model="a"></md-datepicker>
+                            </p>
                             <md-checkbox ng-model="d" aria-label="{{'profile.searchable' | translate}}">{{'profile.searchable' | translate}}</md-checkbox>
                         </span>
                 </md-card-title-text>
