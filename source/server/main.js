@@ -138,7 +138,9 @@
         updated: Date,
         note: String,
         visible: mongoose.Schema.Types.Boolean,
-        person: mongoose.Schema.Types.Boolean
+        person: mongoose.Schema.Types.Boolean,
+        schemaVersion: mongoose.Schema.Types.Number,
+        updateVersion: mongoose.Schema.Types.Number
       },
       person: {
         name: String,
