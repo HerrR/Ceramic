@@ -33,6 +33,13 @@
   const passportTwitter = require('passport-twitter');
   // TODO: node-cache, nodemailer
 
+  const CONSTANTS = {
+    USER_TYPES: {
+      COMPANY: 'COMPANY',
+      PERSON: 'PERSON'
+    }
+  };
+
   function readJsonFileSync(filepath, defaultValue, doCrash) {
     try {
       return JSON.parse(fs.readFileSync(filepath));
@@ -138,13 +145,14 @@
         updated: Date,
         note: String,
         visible: mongoose.Schema.Types.Boolean,
-        person: mongoose.Schema.Types.Boolean,
+        userType: String,
         schemaVersion: mongoose.Schema.Types.Number,
         updateVersion: mongoose.Schema.Types.Number
       },
       person: {
         name: String,
-        dateOfBirth: Date
+        dateOfBirth: Date,
+        searchable: mongoose.Schema.Types.Boolean
       },
       company: {
         name: String

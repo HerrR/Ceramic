@@ -12,12 +12,29 @@
     function ProfileService(AppConstants) {
         var self = this;
         var userToken;
-        var userType = AppConstants.USER_TYPES.PERSON;
+        
+        // TODO: remove dummy data
+        var profileData = {
+            userid: undefined,
+            system: {
+                userType: AppConstants.USER_TYPES.PERSON,
+            },
+            person: {
+                name: 'Kalle Anka',
+                dateOfBirth: new Date(1967,5,23,0,0,0,0),
+                searchable: true
+            }
+        };
 
         self.signIn = function(serviceName) {
             // TODO: implement this
             userToken = 'test_token';
-            userType = serviceName;
+            profileData.system.userType = serviceName;
+        };
+
+        self.signOut = function() {
+            // TODO: sign out
+            userToken = undefined;
         };
 
         self.hasSignedIn = function() {
@@ -25,15 +42,25 @@
         };
 
         self.isCompany = function() {
-            return (userType === AppConstants.USER_TYPES.COMPANY); // TODO: feteched from REST call result
+            return (profileData.system.userType === AppConstants.USER_TYPES.COMPANY);
         };
 
         self.isPerson = function() {
-            return (userType === AppConstants.USER_TYPES.PERSON); // TODO: feteched from REST call result
+            return (profileData.system.userType === AppConstants.USER_TYPES.PERSON);
         };
 
-        self.save = function() {
-            // TODO: post the profile
+        self.getProfile = function() {
+            return profileData;
+        };
+
+        self.reload = function(callback) {
+            console.log('reload');
+            // TODO: reload the profile information from server
+        };
+
+        self.save = function(callback) {
+            console.log('save');
+            // TODO: save profile information
         };
     }
 })();

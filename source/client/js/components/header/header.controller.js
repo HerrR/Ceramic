@@ -15,6 +15,10 @@
             console.log('gotoHome');
         };
 
+        $scope.signOut = function() {
+            ProfileService.signOut();
+        };
+
         $scope.hasSignedIn = function() {
             return ProfileService.hasSignedIn();
         };

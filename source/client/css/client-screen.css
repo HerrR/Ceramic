@@ -2,6 +2,10 @@ body {
     background-color: #bbb;
 }
 
+.cvc-background {
+    background-color: transparent;
+}
+
 .cvc-page-title {
     padding-left: 30px;
     font-weight: bold;
@@ -49,6 +53,11 @@ body {
 
 .cvc-padding-rxs {
     padding-right: 5px;
+}
+
+.cvc-padding-tbmd {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .cvc-profile-name {

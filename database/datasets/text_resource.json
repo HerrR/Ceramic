@@ -11,6 +11,9 @@
 
             "profile.save": "save",
             "profile.cancel": "cancel",
+            "profile.username": "Full name",
+            "profile.date_of_birth": "Date of birth",
+            "profile.searchable": "Make profile searchable?",
 
             "error.get_profile": "Failed to fetch profile info"
         }
