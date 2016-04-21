@@ -2,8 +2,35 @@ body {
     background-color: #bbb;
 }
 
-.cvc-background {
+.cvc-nobackground {
     background-color: transparent;
+}
+
+.cvc-background {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a4b357+0,75890c+100;Olive+3D+%233 */
+    background: #a4b357; /* Old browsers */
+    background: -moz-linear-gradient(top,  #a4b357 0%, #75890c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #a4b357 0%,#75890c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #a4b357 0%,#75890c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c',GradientType=0 ); /* IE6-9 */
+}
+
+.cvc-header {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7abcff+0,60abf8+44,4096ee+100;Blue+3D+%2314 */
+    background: #7abcff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
+}
+
+.cvc-card {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f2f5f6+0,e3eaed+37,c8d7dc+100;Grey+3D+%234 */
+    background: rgb(242,245,246); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(242,245,246,1) 0%, rgba(227,234,237,1) 37%, rgba(200,215,220,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=0 ); /* IE6-9 */
 }
 
 .cvc-page-title {
@@ -40,6 +67,12 @@ body {
     font-weight: bold;
     border-style: none;
     border-radius: 2px;
+}
+
+.cvc-profile-username:hover {
+    -webkit-box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.75);
 }
 
 .cvc-full-width {

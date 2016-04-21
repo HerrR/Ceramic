@@ -1,6 +1,6 @@
 <md-content class="md-padding cvc-background" layout-align-xs="column" layout="row" layout-align="center center">
     <div flex flex-gt-md="50" layout="column">
-        <md-card>
+        <md-card class="cvc-card">
             <md-card-title>
                 <md-card-title-media>
                     <img src="{{IMAGES.ANONYMOUS_PERSON}}"/>
@@ -9,12 +9,12 @@
                     <div layout="column">
                         <div>
                             <span class="cvc-profile-name cvc-full-width">
-                                <input class="cvc-profile-username" placeholder="{{'profile.username' | translate}}" type="text" maxlength="30" ng-model="person.name" ng-change="answerChanged()" required/>
+                                <input class="cvc-profile-username cvc-nobackground" placeholder="{{'profile.username' | translate}}" type="text" maxlength="30" ng-model="person.name" ng-change="answerChanged()" required/>
                             </span>
                         </div>
                         <div>
                             <p>
-                                <md-datepicker ng-change="answerChanged()" md-min-date="MIN_DATE" md-max-date="MAX_DATE" md-placeholder="{{'profile.date_of_birth' | translate}}" ng-required="true" ng-model="person.dateOfBirth"></md-datepicker>
+                                <md-datepicker class="cvc-nobackground" ng-change="answerChanged()" md-min-date="MIN_DATE" md-max-date="MAX_DATE" md-placeholder="{{'profile.date_of_birth' | translate}}" ng-required="true" ng-model="person.dateOfBirth"></md-datepicker>
                             </p>
                         </div>
                         <div>
@@ -48,35 +48,35 @@
 -->
         </md-card>
         
-        <md-card>
+        <md-card class="cvc-card">
             <md-card-header class="cvc-profile-card-header">Level 1 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
-        <md-card>
+        <md-card class="cvc-card">
             <md-card-header class="cvc-profile-card-header">Level 2 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
-        <md-card>
+        <md-card class="cvc-card">
             <md-card-header class="cvc-profile-card-header">Level 3 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
-        <md-card>
+        <md-card class="cvc-card">
             <md-card-header class="cvc-profile-card-header">Level 4 info</md-card-header>
             <md-card-title>
                 another level of info...
             </md-card-title>
         </md-card>
 
-        <md-card>
+        <md-card class="cvc-card">
             <md-card-header class="cvc-profile-card-header">Level 5 info</md-card-header>
             <md-card-title>
                 another level of info...
