@@ -124,6 +124,10 @@
   var app = express();
   var logger = log4js.getLogger('base');
   var database = mongoose.connection;
+  var server = https.createServer({
+    cert: fs.readFileSync(config.server.https.cert),
+    key: fs.readFileSync(config.server.https.key)
+  }, app);
 
   
   // Setup Logger
@@ -261,7 +265,6 @@
 
   logger.info('Starting directory: ' + __dirname);
   logger.info('Serving static files: ' + config.server.staticFiles);
-  logger.info('Started application on port: ' + config.server.port);
 
   try {
     // TODO: username and password
@@ -271,28 +274,7 @@
     throw err;
   }
 
-  app.listen(config.server.port);
+  server.listen(config.server.port, function() {
+    logger.info('Started application on port: ' + config.server.port);
+  });
 }());
-
-/*
-  // generate key
-  // openssl req -x509 -nodes -days 365 -newkey rsa:1024 -out my.crt -keyout my.key
-
-  var fs = require('fs');
-  var http = require('http');
-  var https = require('https');
-  var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-  var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
-
-  var credentials = {key: privateKey, cert: certificate};
-  var express = require('express');
-  var app = express();
-
-  // your express configuration here
-
-  var httpServer = http.createServer(app);
-  var httpsServer = https.createServer(credentials, app);
-
-  httpServer.listen(80);
-  httpsServer.listen(443);
-*/

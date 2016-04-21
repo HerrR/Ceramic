@@ -4,6 +4,10 @@
         "staticFiles": "/../client/",
         "dataSizeLimit": "400kb",
         "sessionSecretKey": "secret_session_key",
+        "https": {
+            "key": "local.key",
+            "cert": "local.crt"
+        },
 
         "database": { 
             "datasetCacheLifeTime": 7200000,

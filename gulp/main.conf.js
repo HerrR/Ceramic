@@ -87,7 +87,7 @@ module.exports = {
       source: ['./source/client/favicon.ico','./source/client/images/*.jpg']
     },
     server: {
-      source: ['./source/server/*.json', './database/datasets/*.json']
+      source: ['./source/server/*.json', './database/datasets/*.json', 'local.crt', 'local.key']
     }
   },
 
