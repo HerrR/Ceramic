@@ -8,13 +8,13 @@
 (function () {
   "use strict";
 
-  const config = require(process.argv[2] || '../../config/dev.json');
-  
+  const os = require('os');
   const fs = require('fs');
   const http = require('http');
   const https = require('https');
   const log4js = require('log4js');
   const express = require('express');
+  const cluster = require('cluster');
   const bodyParser = require('body-parser');
   const cookieParser = require('cookie-parser');
   const expressSession = require('express-session');
@@ -31,6 +31,10 @@
   const passportFacebook = require('passport-facebook');
   const passportTwitter = require('passport-twitter');
   const nodemailer = require('nodemailer');
+
+  const config = require(process.argv[2] || '../../config/dev.json');
+  const numCPUs = os.cpus().length;
+  const numClusters = config.server.clusters === 0 ? numCPUs : config.server.clusters;
 
   const CONSTANTS = {
     USER_TYPES: {
@@ -80,6 +84,11 @@
     }
 
     return profileData;
+  }
+
+  function prepareToUpdateProfile(newProfileData, oldProfileData) {
+    // TODO
+    return newProfileData;
   }
 
   function createNewProfile(userid, isPerson) {
@@ -293,7 +302,7 @@
         var isPerson = true; // TODO: determine if this is a person or company
         var newProfile = new datamodels.profile(createNewProfile(req.params.userid, isPerson));
         // TODO: save into db
-        res.json(newProfile);
+        res.json(hideSecretProfileData(newProfile));
       } else {
         res.json(hideSecretProfileData(profileData));
       }
@@ -314,12 +323,16 @@
   process.on('SIGINT', exitHandler.bind(null, {exit:true}));
   process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
+  logger.info('Number of clusters: ' + numClusters);
   logger.info('Starting directory: ' + __dirname);
   logger.info('Serving static files: ' + config.server.staticFiles);
 
   try {
-    // TODO: username and password
-    mongoose.connect(config.server.database.url);
+    var dbUser = process.env.DB_USERNAME || config.server.database.username;
+    var dbPass = process.env.DB_PASSWORD || config.server.database.password;
+    var dbUrl = config.server.database.url;
+    dbUrl = dbUrl.replace('{username}',dbUser).replace('{passwrd}',dbPass);
+    mongoose.connect(dbUrl);
   } catch (err) {
     logger.error('Failed to connect to database: ' + config.server.database.url);
     throw err;

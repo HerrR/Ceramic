@@ -4,6 +4,8 @@
         "staticFiles": "/../client/",
         "dataSizeLimit": "400kb",
         "sessionSecretKey": "secret_session_key",
+        "clusters": 1,
+
         "https": {
             "key": "local.key",
             "cert": "local.crt"
@@ -11,8 +13,8 @@
 
         "database": { 
             "datasetCacheLifeTime": 7200000,
-            "username": "sa",
-            "password": "sa",
+            "username": "cvc",
+            "password": "test",
             "url": "mongodb://localhost:27017/cvc"
         },
 
@@ -43,7 +45,7 @@
         "twitter": {
             "enabled": false,
             "consumerKey": "",
-            "consumerSecret": ""
+            "consumerSecret": "fetch from process.env"
         }
     },
 
