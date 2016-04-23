@@ -24,7 +24,6 @@
   const watch = require('node-watch');
   const chalk = require('chalk');
   const ddos = require("ddos-express");
-  const queryParser = require('query-string-parser'); // TODO: dont need this?
   const passport = require('passport');
   const passportHttp = require('passport-http');
   const passportLocal = require('passport-local');
@@ -184,7 +183,6 @@
   }));
 
 
-  // TODO: configure passport
   if (config.authentication.local.enabled) {
     passport.use(new passportLocal.Strategy(verifyCredentials));
   }
@@ -203,6 +201,14 @@
     }));
   }
 
+  if (config.authentication.google.enabled) {
+    // TODO: configure passport
+  }
+
+  if (config.authentication.twitter.enabled) {
+    // TODO: configure passport
+  }
+
   passport.serializeUser(function(user, done) {
     done(null, user.userid);
   });
@@ -219,6 +225,8 @@
       logger.info('Reloading Translations');
       datasets.translations = readDataset(config.server.datasets.translations, datasets.translations, false);
     }
+
+    // TODO: reload more datasets
   });
 
   if (config.authentication.local.enabled) {
@@ -231,6 +239,32 @@
 
   // TODO: add more passport strategies
 
+  app.get('/public/loginstrategies', function(req, res) {
+    var list = [];
+
+    if (config.authentication.local.enabled) {
+      list.push('local');
+    }
+
+    if (config.authentication.http.enabled) {
+      list.push('http');
+    }
+
+    if (config.authentication.facebook.enabled) {
+      list.push('facebook');
+    }
+
+    if (config.authentication.google.enabled) {
+      list.push('google');
+    }
+
+    if (config.authentication.twitter.enabled) {
+      list.push('twitter');
+    }
+
+    res.json(list);
+  });
+
   app.get('/public/logout', function(req, res) {
     req.logout();
     res.redirect('/');
@@ -239,6 +273,8 @@
   app.get('/public/translations/:locale', function(req, res) {
     res.json(datasets.translations[req.params.locale]);
   });
+
+  // TODO: app.get more datasets
 
   app.get('/public/status', function(req, res) {
     res.json({
@@ -256,7 +292,7 @@
       } else if (profileData === null) {
         var isPerson = true; // TODO: determine if this is a person or company
         var newProfile = new datamodels.profile(createNewProfile(req.params.userid, isPerson));
-        // TODO: save
+        // TODO: save into db
         res.json(newProfile);
       } else {
         res.json(hideSecretProfileData(profileData));
@@ -266,6 +302,7 @@
 
   app.post('/private/profile', ensureAuthenticated, function(req, res) {
     // TODO: userid (req.user)
+    // TODO: fetch hidden information and update visible information
 
     res.json({
       // TODO: save/update profile to database

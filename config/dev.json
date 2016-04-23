@@ -26,26 +26,22 @@
 
     "authentication": {
         "local": {
-            "enabled": true,
-            "consumerKey": "",
-            "consumerSecret": ""
+            "enabled": true
         },
         "http": {
-            "enabled": true,
-            "consumerKey": "",
-            "consumerSecret": ""
+            "enabled": true
         },
         "google": {
-            "enabled": true,
+            "enabled": false,
             "consumerKey": "",
             "consumerSecret": ""
         },
         "facebook": {
-            "enabled": true,
+            "enabled": false,
             "callbackURL": ""
         },
         "twitter": {
-            "enabled": true,
+            "enabled": false,
             "consumerKey": "",
             "consumerSecret": ""
         }
