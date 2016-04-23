@@ -42,8 +42,7 @@
         },
         "facebook": {
             "enabled": true,
-            "consumerKey": "",
-            "consumerSecret": ""
+            "callbackURL": ""
         },
         "twitter": {
             "enabled": true,

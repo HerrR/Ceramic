@@ -166,7 +166,6 @@
 
 
   // Setup Express
-  // TODO: SSL / TLS
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json({limit: config.server.dataSizeLimit}));
   app.use(cookieParser());
@@ -186,8 +185,23 @@
 
 
   // TODO: configure passport
-  passport.use(new passportLocal.Strategy(verifyCredentials));
-  passport.use(new passportHttp.BasicStrategy(verifyCredentials));
+  if (config.authentication.local.enabled) {
+    passport.use(new passportLocal.Strategy(verifyCredentials));
+  }
+
+  if (config.authentication.http.enabled) {
+    passport.use(new passportHttp.BasicStrategy(verifyCredentials));
+  }
+
+  if (config.authentication.facebook.enabled) {
+    passport.use(new passportFacebook.Strategy({
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: config.authentication.facebook.callbackURL
+    }, function(accessToken, refreshToken, profile, done) {
+      // TODO: use profile properties: provider, id, displayName, name, emails, etc..
+    }));
+  }
 
   passport.serializeUser(function(user, done) {
     done(null, user.userid);
