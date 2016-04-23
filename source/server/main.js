@@ -30,7 +30,7 @@
   const passportGoogle = require('passport-google');
   const passportFacebook = require('passport-facebook');
   const passportTwitter = require('passport-twitter');
-  // TODO: node-cache, nodemailer
+  const nodemailer = require('nodemailer');
 
   const CONSTANTS = {
     USER_TYPES: {
