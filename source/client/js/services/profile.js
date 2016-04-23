@@ -7,11 +7,11 @@
         .module('cvc')
         .service('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['AppConstants'];
+    ProfileService.$inject = ['$http','AppConstants'];
 
-    function ProfileService(AppConstants) {
+    function ProfileService($http, AppConstants) {
         var self = this;
-        var userToken;
+        var userid;
         
         // TODO: remove dummy data
         var profileData = {
@@ -28,17 +28,18 @@
 
         self.signIn = function(serviceName) {
             // TODO: implement this
-            userToken = 'test_token';
+            userid = 'test_token';
             profileData.system.userType = serviceName;
         };
 
         self.signOut = function() {
+            // $http.get(AppConstants.RESOURCE_PATH + 'logout', function())
             // TODO: sign out
-            userToken = undefined;
+            userid = undefined;
         };
 
         self.hasSignedIn = function() {
-            return (userToken !== undefined);
+            return (userid !== undefined);
         };
 
         self.isCompany = function() {
