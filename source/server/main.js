@@ -120,14 +120,14 @@
     done(error, user);
   }
 
-  function filterDataset(filter, dataset) {
+  function filterDataset(filter, dataset, compareFunc) {
     var filtered = [];
     var filterText = filter.toLowerCase();
 
     for (var key in dataset) {
       if (dataset.hasOwnProperty(key)) {
         var value = dataset[key];
-        if (value.toLowerCase().indexOf(filterText) > -1) {
+        if (compareFunc(value.toLowerCase(),filterText)) {
           var jsonText = '{"' + key + '":"' + value + '"}';
           filtered.push(JSON.parse(jsonText));
         }
@@ -329,7 +329,9 @@
   });
 
   app.get('/public/countries/:filter', function(req, res) {
-    res.json(filterDataset(req.params.filter, datasets.countries));
+    res.json(filterDataset(req.params.filter, datasets.countries, function(value, filter) {
+      return value.indexOf(filter) === 0;
+    }));
   });
 
   app.get('/public/cities/:country/:filter', function(req, res) {
