@@ -22,7 +22,12 @@
             "watch": ["./dist/server/text_resource.json"],
             "datasetCacheLifeTime": 7200000,
             "folder": "./dist/server/",
-            "translations": "text_resource.json"
+
+            "translations": "text_resource.json",
+            "countries": "countries.json",
+            "cities": "",
+            "schools": "",
+            "skills": ""
         }
     },
 

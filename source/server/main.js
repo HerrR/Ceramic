@@ -15,6 +15,7 @@
   const log4js = require('log4js');
   const express = require('express');
   const cluster = require('cluster');
+  const bcrypt = require('bcrypt');
   const bodyParser = require('body-parser');
   const cookieParser = require('cookie-parser');
   const expressSession = require('express-session');
@@ -119,8 +120,26 @@
     done(error, user);
   }
 
+  function filterDataset(filter, dataset) {
+    var filtered = [];
+    var filterText = filter.toLowerCase();
+
+    for (var key in dataset) {
+      if (dataset.hasOwnProperty(key)) {
+        var value = dataset[key];
+        if (value.toLowerCase().indexOf(filterText) > -1) {
+          var jsonText = '{"' + key + '":"' + value + '"}';
+          filtered.push(JSON.parse(jsonText));
+        }
+      }
+    }
+
+    return filtered;
+  }
+
   var datasets = {
-    translations: readDataset(config.server.datasets.translations,{},true)
+    translations: readDataset(config.server.datasets.translations,{},true),
+    countries: readDataset(config.server.datasets.countries,{},true)
   };
 
   var datamodels = {
@@ -235,6 +254,11 @@
       datasets.translations = readDataset(config.server.datasets.translations, datasets.translations, false);
     }
 
+    if (filename.indexOf(config.server.datasets.countries) > -1) {
+      logger.info('Reloading Countries');
+      datasets.countries = readDataset(config.server.datasets.countries, datasets.countries, false);
+    }
+
     // TODO: reload more datasets
   });
 
@@ -279,16 +303,37 @@
     res.redirect('/');
   });
 
-  app.get('/public/translations/:locale', function(req, res) {
-    res.json(datasets.translations[req.params.locale]);
+  app.post('/public/user/register', function(req, res) {
+    // TODO: register user
+    // https://www.npmjs.com/package/bcrypt
   });
 
-  // TODO: app.get more datasets
+  app.get('/public/user/reset', function(req, res) {
+    // TODO: email reset password
+  });
 
-  app.get('/public/status', function(req, res) {
-    res.json({
-      // TODO: get version + other info
-    });
+  app.get('/public/user/update', function(req, res) {
+    // TODO: update password, email
+  });
+
+  app.get('/public/translations/:locale', function(req, res) {
+    res.json(datasets.translations[req.params.locale] || {});
+  });
+
+  app.get('/public/schools/:filter', function(req, res) {
+    // TODO: fetch all schools that contain 'filter'
+  });
+
+  app.get('/public/skills/:filter', function(req, res) {
+    // TODO: fetch all skills that contain 'filter'
+  });
+
+  app.get('/public/countries/:filter', function(req, res) {
+    res.json(filterDataset(req.params.filter, datasets.countries));
+  });
+
+  app.get('/public/cities/:country/:filter', function(req, res) {
+    // TODO: fetch all cities that contain 'filter' and are in 'country'
   });
 
   app.get('/private/profile', ensureAuthenticated, function(req, res) {
@@ -319,7 +364,7 @@
   });
 
   process.stdin.resume();
-  process.on('exit', exitHandler.bind(null,{cleanup:true}));
+  process.on('exit', exitHandler.bind(null, {cleanup:true}));
   process.on('SIGINT', exitHandler.bind(null, {exit:true}));
   process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 

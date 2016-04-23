@@ -29,6 +29,8 @@
                 template: '<cvc-error />'
             })*/
 
+            /* /loginfailed */
+
             // TODO: status
         ;
     }
