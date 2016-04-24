@@ -22,6 +22,18 @@
                                 <md-checkbox ng-change="answerChanged()" ng-model="person.searchable" aria-label="{{'profile.searchable' | translate}}">{{'profile.searchable' | translate}}</md-checkbox>
                             </p>
                         </div>
+                        <div>
+                            <p>
+                                <md-autocomplete placeholder="Select your country" md-select-on-match="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display">
+                                    <md-item-template>
+                                        <span md-highlight-text="searchText">{{item.display}}</span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No matches found.
+                                    </md-not-found>
+                                </md-autocomplete>
+                            </p>
+                        </div>
                     </div>
                 </md-card-title-text>
             </md-card-title>

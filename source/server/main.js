@@ -15,7 +15,7 @@
   const log4js = require('log4js');
   const express = require('express');
   const cluster = require('cluster');
-  const bcrypt = require('bcrypt');
+  //const bcrypt = require('bcrypt');
   const bodyParser = require('body-parser');
   const cookieParser = require('cookie-parser');
   const expressSession = require('express-session');
@@ -326,6 +326,10 @@
 
   app.get('/public/skills/:filter', function(req, res) {
     // TODO: fetch all skills that contain 'filter'
+  });
+
+  app.get('/public/countries', function(req, res) {
+    res.json(datasets.countries);
   });
 
   app.get('/public/countries/:filter', function(req, res) {

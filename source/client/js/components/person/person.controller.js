@@ -7,9 +7,9 @@
         .module('cvc')
         .controller('CvcPersonController', Controller);
 
-    Controller.$inject = ['$scope', 'ProfileService', 'AppConstants'];
+    Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants'];
 
-    function Controller($scope, ProfileService, AppConstants) {
+    function Controller($scope, $http, ProfileService, AppConstants) {
         $scope.IMAGES = AppConstants.IMAGES;
         $scope.MIN_DATE = new Date(1940,0,1,0,0,0,0);
         $scope.MAX_DATE = new Date();
@@ -17,6 +17,17 @@
         $scope.oldHashCode = computeHashCode($scope.person);
         $scope.newHashCode = computeHashCode($scope.person);
         $scope.valuesChanged = false;
+
+        $http.get(AppConstants.RESOURCE_PATH + 'countries', {}).then(function(resp) {
+            var items = [];
+            for (var key in resp.data) {
+                items.push({display: resp.data[key]});
+            }
+
+            $scope.countries = items;
+        }, function() {
+            console.log('error');
+        });
 
         $scope.answerChanged = function() {
             $scope.newHashCode = computeHashCode($scope.person);
@@ -41,6 +52,19 @@
                 $scope.newHashCode = computeHashCode($scope.person);
                 $scope.valuesChanged = false;
             });
+        };
+
+        $scope.getMatches = function(filter) {
+            var filtered = [];
+            var filterText = filter.toLowerCase();
+            for (var country in $scope.countries) {
+                console.log('obj',$scope.countries[country]);
+                if ($scope.countries[country].display.toLowerCase().indexOf(filterText) === 0) {
+                    filtered.push($scope.countries[country]);
+                }
+            }
+
+            return filtered;
         };
 
         function computeHashCode(object) {
