@@ -10,6 +10,7 @@
 
   const os = require('os');
   const fs = require('fs');
+  const path = require('path');
   const http = require('http');
   const https = require('https');
   const log4js = require('log4js');
@@ -57,7 +58,7 @@
   }
 
   function readDataset(filename, defaultValue, doCrash) {
-    return readJsonFileSync(config.server.datasets.folder + filename, defaultValue, doCrash);
+    return readJsonFileSync(config.server.datasets.folder + filename, defaultValue, doCrash);  // TODO: user path.joint(a,b)
   }
 
   function exitHandler(options, err) {
@@ -76,13 +77,8 @@
   }
 
   function hideSecretProfileData(profileData) {
-    profileData.system.note = '';
-
-    if (profileData.system.person) {
-      profileData.company = undefined;
-    } else {
-      profileData.person = undefined;
-    }
+    profileData.system = undefined;
+    profileData.userid = undefined;
 
     return profileData;
   }
@@ -143,7 +139,9 @@
   };
 
   var datamodels = {
-    profile: undefined
+    person: undefined,
+    company: undefined,
+    admin: undefined
   };
 
 
@@ -167,8 +165,28 @@
   database.once('open', function() {
     logger.info('Connected to MongoDB');
 
-    datamodels.profile = mongoose.model('Profile', new mongoose.Schema({
+    datamodels.person = mongoose.model('Person', new mongoose.Schema({
       userid: String,
+      updateVersion: mongoose.Schema.Types.Number,
+      system: {
+        created: Date,
+        locked: Date,
+        deleted: Date,
+        updated: Date,
+        note: String,
+        visible: mongoose.Schema.Types.Boolean,
+        schemaVersion: mongoose.Schema.Types.Number
+      },
+      person: {
+        name: String,
+        dateOfBirth: Date,
+        searchable: mongoose.Schema.Types.Boolean
+      }
+    }));
+
+    datamodels.company = mongoose.model('Company', new mongoose.Schema({
+      userid: String,
+      updateVersion: mongoose.Schema.Types.Number,
       system: {
         created: Date,
         locked: Date,
@@ -177,17 +195,16 @@
         note: String,
         visible: mongoose.Schema.Types.Boolean,
         userType: String,
-        schemaVersion: mongoose.Schema.Types.Number,
-        updateVersion: mongoose.Schema.Types.Number
-      },
-      person: {
-        name: String,
-        dateOfBirth: Date,
-        searchable: mongoose.Schema.Types.Boolean
+        schemaVersion: mongoose.Schema.Types.Number
       },
       company: {
         name: String
       }
+    }));
+
+    datamodels.admin = mongoose.model('Admin', new mongoose.Schema({
+      userid: String,
+      level: mongoose.Schema.Types.Number
     }));
   });
 
@@ -203,7 +220,7 @@
   }));
   app.use('/api', passport.authenticate('basic', {session: false}));
   app.use(compression());
-  app.use(express.static(__dirname + config.server.staticFiles));
+  app.use(express.static(__dirname + config.server.staticFiles)); // TODO: user path.joint(a,b)
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(ddos({

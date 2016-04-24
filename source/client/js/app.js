@@ -1,4 +1,5 @@
 /* global angular */
+/* global window */
 
 (function() {
     'use strict';
@@ -16,15 +17,30 @@
         .config(Config)
         .run(Run);
 
-    Run.$inject = ['localStorageService'];
+    Run.$inject = ['$rootScope','localStorageService'];
     Config.$inject = ['$mdThemingProvider', '$mdDateLocaleProvider'];
 
-    function Run(localStorageService) {
-        // TODO: determine if user has signed in
+    function Run($rootScope, localStorageService) {
         localStorageService.clearAll();
+    
+        var lang2lang = [
+            {k: 'sv', v:'se'},
+            {k: 'se', v:'se'},
+            {k: 'en', v:'en'}
+        ];
+        var language = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
+        var transformedLanguage = 'en';
+        for (var i in lang2lang) {
+            if (language.indexOf(lang2lang[i].k) > -1) {
+                transformedLanguage = lang2lang[i].v;
+                break;
+            }
+        }
+
+        $rootScope.language = transformedLanguage;
     }
 
-    function Config($mdThemingProvider) {
+    function Config($mdThemingProvider, $mdDateLocaleProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue')
             .accentPalette('grey');

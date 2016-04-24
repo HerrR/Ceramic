@@ -11,11 +11,6 @@
             USER_TYPES: {
                 COMPANY: 'COMPANY',
                 PERSON: 'PERSON'
-            },
-            IMAGES: {
-                MAIN_COMPANY: 'logo-company.jpg',
-                MAIN_PERSON: 'logo-person.jpg',
-                ANONYMOUS_PERSON: 'anonymous-user-profile.jpg'
             }
         });
 })();

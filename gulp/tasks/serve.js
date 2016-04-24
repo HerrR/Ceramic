@@ -10,15 +10,17 @@ var config = require('../main.conf'),
   nodemon  = require('gulp-nodemon');
 
 gulp.task('serve:copy', function () {
-    return gulp.src(config.node.source).pipe(gulp.dest(config.destination.server.base_dir));
+    return gulp.src(config.node.source)
+      .pipe(gulp.dest(config.destination.server.base_dir));
 });
 
 gulp.task('serve', function () {
-  nodemon({ script: config.destination.server.base_dir + config.node.main,
+  nodemon({
+    script: config.destination.server.base_dir + config.node.main,
     ext: 'html js',
-    watch: config.node.source,
+    watch: config.destination.server.js,
     ignore: [],
-    tasks: ['chain:server:scripts']
+    tasks: []
   })
   .on('restart', function () {
     console.log('Restarted NodeJS');

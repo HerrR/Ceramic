@@ -47,7 +47,7 @@ module.exports = {
       }
     },
     server: {
-      source: './source/server/**/*.js',
+      source: ['./source/server/**/*.js'],
       exclude: ''
     },
     lint_exlude: ['**/3rdparty/**/*.js']
@@ -100,7 +100,7 @@ module.exports = {
     all: ['dist/client/**/*','dist/server/**/*','temp/*.js'],
     server: {
       base_dir: 'dist/server/',
-      js: ['dist/server/**/*.js', 'dist/server/**/*.map','temp/*.js'],
+      js: ['dist/server/**/*.js'],
     },
     client: {
       base_dir: 'dist/client/',

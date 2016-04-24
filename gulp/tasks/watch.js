@@ -5,6 +5,8 @@
  */
 
 var config = require('../main.conf'),
+  fs = require('fs'),
+  path = require('path'),
   gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   runSequence = require('run-sequence'),
@@ -40,9 +42,9 @@ gulp.task('livereload:resources', function() {
     .pipe(livereload());
 });
 
-/*gulp.task('watch:node', function(done) {
+gulp.task('watch:node', function(done) {
   runSequence('chain:server:scripts', done);
-});*/
+});
 
 gulp.task('watch:js', function(done) {
   runSequence('lint:js', 'lint:html', 'clean:client:scripts', 'html2js', 'scripts', 'index:dev', 'livereload:js', done);
@@ -68,10 +70,14 @@ gulp.task('watch:resources:server', function(done) {
   runSequence('resources:server', done);
 });
 
-gulp.task('watch', function() {
-  livereload.listen();
+gulp.task('watch', function(done) {
+  livereload.listen({
+    port:35729,
+    key: fs.readFileSync(path.join(__dirname, '../../local.key'), 'utf-8'),
+    cert: fs.readFileSync(path.join(__dirname, '../../local.crt'), 'utf-8')
+  });
 
-  //gulp.watch(config.js.server.source, ['watch:node']);
+  gulp.watch(config.js.server.source, ['watch:node']);
   //gulp.watch(config.resources.client.source, ['watch:resources:client']);
   gulp.watch(config.resources.server.source, ['watch:resources:server']);
   gulp.watch(config.js.client.source, ['watch:js']);
@@ -82,6 +88,5 @@ gulp.task('watch', function() {
   gulp.watch(config.html.source, ['watch:html']);
   gulp.watch(config.gulp.source, ['lint:config']);
 
-  //runSequence('developer');
-  //runSequence('serve');
+  runSequence('developer', done);
 });
