@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - '4.4'
 
+compiler: clang-3.6
 env:
   - CXX=g++-4.8
 addons:
@@ -9,6 +10,7 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
+      - clang-3.6
       - g++-4.8
 
 sudo: false
