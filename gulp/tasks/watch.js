@@ -73,8 +73,8 @@ gulp.task('watch:resources:server', function(done) {
 gulp.task('watch', function(done) {
   livereload.listen({
     port:35729,
-    key: fs.readFileSync(path.join(__dirname, '../../local.key'), 'utf-8'),
-    cert: fs.readFileSync(path.join(__dirname, '../../local.crt'), 'utf-8')
+    key: fs.readFileSync(path.join(__dirname, config.settings.https.keyFile), 'utf-8'),
+    cert: fs.readFileSync(path.join(__dirname, config.settings.https.certFile), 'utf-8')
   });
 
   gulp.watch(config.js.server.source, ['watch:node']);

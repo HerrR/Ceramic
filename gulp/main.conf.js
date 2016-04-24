@@ -1,4 +1,10 @@
 module.exports = {
+  settings: {
+    https: {
+      keyFile: '../../local.key',
+      certFile: '../../local.crt'
+    }
+  },
   conf: {
     source: ['./gulp/*.conf.js'],
     lint_exlude: ''
