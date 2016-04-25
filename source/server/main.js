@@ -76,6 +76,24 @@
     }
   }
 
+  function sendEmail(recipient, subject, text, html) {
+    var mailOptions = {
+      from: config.server.email.from,
+      to: recipient,
+      subject: subject,
+      text: text,
+      html: html
+    };
+
+    emailTransporter.sendMail(mailOptions, function(error, info) {
+      if (error){
+        return logger.error(error);
+      }
+
+      logger.info('Message sent: ' + info.response);
+    });
+  }
+
   function hideSecretProfileData(profileData) {
     profileData.system = undefined;
     profileData.userid = undefined;
@@ -146,6 +164,7 @@
 
 
   // Setup variables
+  var emailTransporter = nodemailer.createTransport(config.server.email.transporter);
   var app = express();
   var logger = log4js.getLogger('base');
   var database = mongoose.connection;

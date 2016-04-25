@@ -5,6 +5,10 @@
         "dataSizeLimit": "400kb",
         "sessionSecretKey": "secret_session_key",
         "clusters": 1,
+        "email": {
+            "transporter": "",
+            "from": "",
+        },
 
         "https": {
             "key": "local.key",
