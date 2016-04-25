@@ -152,7 +152,8 @@
   var datamodels = {
     person: undefined,
     company: undefined,
-    admin: undefined
+    admin: undefined,
+    message: undefined
   };
 
 
@@ -189,10 +190,28 @@
         visible: mongoose.Schema.Types.Boolean,
         schemaVersion: mongoose.Schema.Types.Number
       },
+      settings: {
+        recieveEmailNotifications: mongoose.Schema.Types.Boolean
+      },
       person: {
         name: String,
+        description: String,
         dateOfBirth: Date,
-        searchable: mongoose.Schema.Types.Boolean
+        searchable: mongoose.Schema.Types.Boolean,
+        skills: [{
+          type: String,
+          level: mongoose.Schema.Types.Number
+        }],
+        experience: {
+          company: String,
+          industry: String,
+          fromDate: Date,
+          toDate: Date,
+          responsibilities: [{
+            type: String,
+            amount: mongoose.Schema.Types.Number
+          }]
+        }
       }
     }));
 
@@ -210,13 +229,38 @@
         schemaVersion: mongoose.Schema.Types.Number
       },
       company: {
-        name: String
+        name: String,
+        description: String,
+        industry: String,
+        searchCriteria: {
+          skills: [{
+            type: String,
+            minLevel: mongoose.Schema.Types.Number
+          }],
+          responsibilities: [{
+            type: String,
+            minAmount: mongoose.Schema.Types.Number
+          }]
+        }
       }
     }));
 
     datamodels.admin = mongoose.model('Admin', new mongoose.Schema({
       userid: String,
       level: mongoose.Schema.Types.Number
+    }));
+
+    datamodels.message = mongoose.model('Message', new mongoose.Schema({
+      fromUserid: String,
+      toUserid: String,
+      created: Date,
+      wasRead: mongoose.Schema.Types.Boolean,
+      wasRemoved: mongoose.Schema.Types.Boolean,
+      wasReplied: mongoose.Schema.Types.Boolean,
+      wasNotified: mongoose.Schema.Types.Boolean,
+      wasReported: mongoose.Schema.Types.Boolean,
+      subject: String,
+      message: String
     }));
   });
 
