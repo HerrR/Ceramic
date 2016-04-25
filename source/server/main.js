@@ -38,13 +38,6 @@
   const numCPUs = os.cpus().length;
   const numClusters = config.server.clusters === 0 ? numCPUs : config.server.clusters;
 
-  const CONSTANTS = {
-    USER_TYPES: {
-      COMPANY: 'COMPANY',
-      PERSON: 'PERSON'
-    }
-  };
-
   function readJsonFileSync(filepath, defaultValue, doCrash) {
     try {
       return JSON.parse(fs.readFileSync(filepath));
