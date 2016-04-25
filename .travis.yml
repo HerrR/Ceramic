@@ -13,14 +13,13 @@ addons:
       - clang-3.6
       - g++-4.8
 
-sudo: false
+sudo: true
 
 before_install:
   
 
 before_script:
   - npm install
-  - npm install -g gulp
 
 script: 
   - gulp build
