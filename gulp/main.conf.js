@@ -1,4 +1,7 @@
 module.exports = {
+  stats: [
+    './source/**/*.js'
+  ],
   settings: {
     https: {
       keyFile: '../../local.key',
@@ -7,32 +10,32 @@ module.exports = {
   },
   conf: {
     source: ['./gulp/*.conf.js'],
-    lint_exlude: ''
+    lint_exlude: []
   },
 
   test: {
     unit: {
       source: './source/test/unit/**/*.spec.js',
       karma: __dirname + '/karma.conf.js',
-      lint_exlude: ''
+      lint_exlude: []
     },
     e2e: {
       source: './source/test/e2e/**/*.spec.js',
       protractor: 'gulp/protractor.conf.js',
       url:'',
-      lint_exlude: ''
+      lint_exlude: []
     }
   },
 
   gulp: {
     source: ['gulpfile.js', './gulp/tasks/**/*.js'],
-    lint_exlude: ''
+    lint_exlude: []
   },
 
   node: {
     main: 'main.js',
     source: './source/server/**/*.js',
-    lint_exlude: '',
+    lint_exlude: [],
     config: '',
     exec: ''
   },
@@ -76,7 +79,7 @@ module.exports = {
 
   html: {
     source: './source/client/**/*.html',
-    lint_exlude: '',
+    lint_exlude: [],
     main: './source/client/index.html',
     inject: ['./dist/client/dependency*.min.js', './dist/client/client*.min.js', './dist/client/client*.min.css'],
     angular: {
@@ -85,6 +88,11 @@ module.exports = {
       prefix: 'partials/',
       destination_dir: 'temp'
     }
+  },
+
+  json: {
+    source: ['./source/server/*.json', './database/datasets/*.json'],
+    lint_exlude: []
   },
 
   resources: {
