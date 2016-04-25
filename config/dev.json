@@ -7,7 +7,7 @@
         "clusters": 1,
         "email": {
             "transporter": "",
-            "from": "",
+            "from": ""
         },
 
         "https": {
