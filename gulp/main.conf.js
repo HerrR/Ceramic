@@ -101,7 +101,7 @@ module.exports = {
   },
 
   destination: {
-    pack_destination: '',
+    pack_destination: 'C:/Users/Lukas/Dropbox/ProjectX/Technology/Builds',
     files: 'dist/**/*',
     base_dir: 'dist/',
     all: ['dist/client/**/*','dist/server/**/*','temp/*.js'],

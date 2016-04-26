@@ -5,14 +5,23 @@
  */
 
  var config = require('../main.conf'),
-    npmpack = require('../../package.json'),
     gulp = require('gulp'),
-    plumber = require('gulp-plumber'),
     bump = require('gulp-bump');
 
 gulp.task('bump:patch', function() {
-    return gulp.src('../../package.json')
-        .pipe(plumber())
-        .pipe(bump())
+    return gulp.src('package.json')
+        .pipe(bump({key: 'version'}))
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump:minor', function() {
+    return gulp.src('package.json')
+        .pipe(bump({type:'minor', key: 'version'}))
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump:major', function() {
+    return gulp.src('package.json')
+        .pipe(bump({type:'major', key: 'version'}))
         .pipe(gulp.dest('./'));
 });

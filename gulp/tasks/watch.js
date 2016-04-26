@@ -72,7 +72,7 @@ gulp.task('watch:resources:server', function(done) {
 
 gulp.task('watch', function(done) {
   livereload.listen({
-    port:35729,
+    port: 35729,
     key: fs.readFileSync(path.join(__dirname, config.settings.https.keyFile), 'utf-8'),
     cert: fs.readFileSync(path.join(__dirname, config.settings.https.certFile), 'utf-8')
   });
