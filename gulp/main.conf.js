@@ -101,6 +101,8 @@ module.exports = {
   },
 
   destination: {
+    pack_destination: '',
+    files: 'dist/**/*',
     base_dir: 'dist/',
     all: ['dist/client/**/*','dist/server/**/*','temp/*.js'],
     server: {
