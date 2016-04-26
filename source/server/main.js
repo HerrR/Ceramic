@@ -5,6 +5,16 @@
  /* jshint node:true */
  /* jshint esversion: 6 */
 
+ /**
+  * Environment Variables
+  * =====================
+  * SESSION_KEY = express sesstion
+  * FACEBOOK_APP_ID = facebook app id
+  * FACEBOOK_APP_SECRET = facebook secret id
+  * DB_USERNAME = mongodb user
+  * DB_PASSWORD = mongodb password
+  */
+
 (function () {
   "use strict";
 
@@ -37,6 +47,8 @@
   const config = require(process.argv[2] || '../../config/dev.json');
   const numCPUs = os.cpus().length;
   const numClusters = config.server.clusters === 0 ? numCPUs : config.server.clusters;
+
+  const PERSON_SCHEMA_VERSION = 1;
 
   function readJsonFileSync(filepath, defaultValue, doCrash) {
     try {
@@ -88,8 +100,12 @@
   }
 
   function hideSecretProfileData(profileData) {
-    profileData.system = undefined;
-    profileData.userid = undefined;
+    if (profileData) {
+      //profileData.system = undefined;
+      //profileData.userid = undefined;
+
+      // TODO
+    }
 
     return profileData;
   }
@@ -97,11 +113,6 @@
   function prepareToUpdateProfile(newProfileData, oldProfileData) {
     // TODO
     return newProfileData;
-  }
-
-  function createNewProfile(userid, isPerson) {
-    // TODO: return default values object
-    return {};
   }
 
   function validateProfile(profile) {
@@ -113,7 +124,7 @@
     if (req.isAuthenticated()) {
       next();
     } else {
-      res.send(403);
+      res.sendStatus(403);
     }
   }
 
@@ -153,7 +164,8 @@
     person: undefined,
     company: undefined,
     admin: undefined,
-    message: undefined
+    message: undefined,
+    receipt: undefined
   };
 
 
@@ -262,6 +274,16 @@
       subject: String,
       message: String
     }));
+
+    datamodels.receipt = mongoose.model('Receipt', new mongoose.Schema({
+      userid: String,
+      paymentDate: Date,
+      amount: mongoose.Schema.Types.Number,
+      currency: String,
+      method: String,
+      purchase: String,
+      transaction: String
+    }));
   });
 
 
@@ -299,6 +321,35 @@
       callbackURL: config.authentication.facebook.callbackURL
     }, function(accessToken, refreshToken, profile, done) {
       // TODO: use profile properties: provider, id, displayName, name, emails, etc..
+
+      var system = {
+        created: new Date(),
+        locked: undefined,
+        deleted: undefined,
+        updated: new Date(),
+        note: '',
+        visible: true,
+        schemaVersion: PERSON_SCHEMA_VERSION
+      };
+
+      var settings = {
+        recieveEmailNotifications: true
+      };
+
+      var person = {
+        name: profile.displayName
+      };
+
+      var newPerson = new datamodels.person({userid:profile.id, person:person, system:system});
+      newPerson.save(function(err) {
+        if (err) {
+          logger.error(err);
+        } else {
+          logger.info('New User: ' + person.name);
+        }
+      });
+
+      done(null, profile);
     }));
   }
 
@@ -311,39 +362,31 @@
   }
 
   passport.serializeUser(function(user, done) {
-    done(null, user.userid);
+    done(null, user.id);
   });
 
   passport.deserializeUser(function(userid, done) {
-    done(null, {userid: userid});
-  });
-
-
-  watch(config.server.datasets.watch, function(filename) {
-    logger.info('Watch triggered on file: ' + filename);
-
-    if (filename.indexOf(config.server.datasets.translations) > -1) {
-      logger.info('Reloading Translations');
-      datasets.translations = readDataset(config.server.datasets.translations, datasets.translations, false);
-    }
-
-    if (filename.indexOf(config.server.datasets.countries) > -1) {
-      logger.info('Reloading Countries');
-      datasets.countries = readDataset(config.server.datasets.countries, datasets.countries, false);
-    }
-
-    // TODO: reload more datasets
+    done(null, {id: userid});
   });
 
   if (config.authentication.local.enabled) {
-    app.post('/public/login/local', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+    app.post('/auth/local/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/loginfailed' }));
   }
 
   if (config.authentication.local.enabled) {
-    app.post('/public/login/google', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+    app.post('/auth/google/login', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));
   }
 
-  // TODO: add more passport strategies
+  if (config.authentication.facebook.enabled) {
+    app.get('/auth/facebook/login', passport.authenticate('facebook', {scope:['email']}));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }), function(req, res) {
+      res.redirect('/');
+    });
+  }
+
+  if (config.authentication.twitter.enabled) {
+    app.post('/public/twitter/login', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+  }
 
   app.get('/public/loginstrategies', function(req, res) {
     var list = [];
@@ -371,12 +414,28 @@
     res.json(list);
   });
 
+  watch(config.server.datasets.watch, function(filename) {
+    logger.info('Watch triggered on file: ' + filename);
+
+    if (filename.indexOf(config.server.datasets.translations) > -1) {
+      logger.info('Reloading Translations');
+      datasets.translations = readDataset(config.server.datasets.translations, datasets.translations, false);
+    }
+
+    if (filename.indexOf(config.server.datasets.countries) > -1) {
+      logger.info('Reloading Countries');
+      datasets.countries = readDataset(config.server.datasets.countries, datasets.countries, false);
+    }
+
+    // TODO: reload more datasets
+  });
+
   app.get('/public/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
 
-  app.post('/public/user/register', function(req, res) {
+  /*app.post('/public/user/register', function(req, res) {
     // TODO: register user
     // https://www.npmjs.com/package/bcrypt
   });
@@ -387,7 +446,7 @@
 
   app.get('/public/user/update', function(req, res) {
     // TODO: update password, email
-  });
+  });*/
 
   app.get('/public/translations/:locale', function(req, res) {
     res.json(datasets.translations[req.params.locale] || {});
@@ -415,20 +474,13 @@
     // TODO: fetch all cities that contain 'filter' and are in 'country'
   });
 
-  app.get('/private/profile', ensureAuthenticated, function(req, res) {
-    // TODO: userid (req.user)
-
-    datamodels.profile.findOne({userid:req.params.userid}, function(err, profileData) {
+  app.get('/private/person', ensureAuthenticated, function(req, res) {
+    datamodels.person.findOne({userid:req.user.id}, function(err, data) {
       if (err !== null) {
         logger.warn(err);
         res.json({error: 'error.get_profile'});
-      } else if (profileData === null) {
-        var isPerson = true; // TODO: determine if this is a person or company
-        var newProfile = new datamodels.profile(createNewProfile(req.params.userid, isPerson));
-        // TODO: save into db
-        res.json(hideSecretProfileData(newProfile));
       } else {
-        res.json(hideSecretProfileData(profileData));
+        res.json(hideSecretProfileData(data));
       }
     });
   });

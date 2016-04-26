@@ -1,4 +1,5 @@
 /* global angular */
+/* global window */
 
 (function() {
     'use strict';
@@ -12,8 +13,10 @@
     function Controller($scope, ProfileService, AppConstants) {
         $scope.IMAGES = AppConstants.IMAGES;
 
+        ProfileService.signIn('PERSON');
+
         $scope.testSignIn = function(type) {
-            ProfileService.signIn(type);
+            window.location.href = AppConstants.AUTH_PATH + 'facebook/login';
         };
 
         $scope.hasSignedIn = function() {

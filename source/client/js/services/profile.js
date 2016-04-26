@@ -12,29 +12,27 @@
     function ProfileService($http, AppConstants) {
         var self = this;
         var userid;
+        var userType;
         
         // TODO: remove dummy data
-        var profileData = {
-            userid: undefined,
-            system: {
-                userType: AppConstants.USER_TYPES.PERSON,
-            },
-            person: {
-                name: 'Kalle Anka',
-                dateOfBirth: new Date(1967,5,23,0,0,0,0),
-                searchable: true
-            }
-        };
+        var profileData;
 
         self.signIn = function(serviceName) {
-            // TODO: implement this
-            userid = 'test_token';
-            profileData.system.userType = serviceName;
+            $http.get(AppConstants.PRIVATE_PATH + 'person',{}).then(function(resp) {
+                // TODO: implement this
+                profileData = resp.data;
+                if (profileData !== undefined) {
+                    userid = profileData.userid;
+                    userType = AppConstants.USER_TYPES.PERSON;
+                    console.log('user',profileData);
+                }
+            });
         };
 
         self.signOut = function() {
-            // $http.get(AppConstants.RESOURCE_PATH + 'logout', function())
+            // $location.get(AppConstants.RESOURCE_PATH + 'logout', function())
             // TODO: sign out
+            userType = undefined;
             userid = undefined;
         };
 
@@ -43,11 +41,11 @@
         };
 
         self.isCompany = function() {
-            return (profileData.system.userType === AppConstants.USER_TYPES.COMPANY);
+            return (userType === AppConstants.USER_TYPES.COMPANY);
         };
 
         self.isPerson = function() {
-            return (profileData.system.userType === AppConstants.USER_TYPES.PERSON);
+            return (userType === AppConstants.USER_TYPES.PERSON);
         };
 
         self.getProfile = function() {

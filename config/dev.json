@@ -48,8 +48,8 @@
             "consumerSecret": ""
         },
         "facebook": {
-            "enabled": false,
-            "callbackURL": ""
+            "enabled": true,
+            "callbackURL": "https://localhost:9010/auth/facebook/callback"
         },
         "twitter": {
             "enabled": false,
