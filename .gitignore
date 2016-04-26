@@ -39,6 +39,7 @@ screenshots/*
 coverage/*
 dist/*
 temp/*
+report/*
 
 dependency*.min.js
 dependency*.min.js.map

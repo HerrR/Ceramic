@@ -70,7 +70,12 @@ gulp.task('lint:html', function() {
     .pipe(htmlhint.reporter());
 });
 
-//gulp.src("./src/*.json").pipe(jsonlint()).pipe(jsonlint.reporter());
+gulp.task('lint:json', function() {
+  return gulp.src(config.json.source)
+    .pipe(gulpIgnore.exclude(config.json.lint_exclude))
+    .pipe(jsonlint())
+    .pipe(jsonlint.reporter());
+});
 
 gulp.task('lint:tests', ['lint:unit', 'lint:e2e']);
-gulp.task('lint', ['lint:js', 'lint:node', 'lint:tests', 'lint:config', 'lint:gulp', 'lint:css', 'lint:html']);
+gulp.task('lint', ['lint:json', 'lint:js', 'lint:node', 'lint:tests', 'lint:config', 'lint:gulp', 'lint:css', 'lint:html']);
