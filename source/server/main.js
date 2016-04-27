@@ -485,8 +485,7 @@
     });
   });
 
-  app.post('/private/profile', ensureAuthenticated, function(req, res) {
-    // TODO: userid (req.user)
+  app.post('/private/person', ensureAuthenticated, function(req, res) {
     // TODO: fetch hidden information and update visible information
 
     res.json({
