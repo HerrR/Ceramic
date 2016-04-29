@@ -110,6 +110,10 @@
     return profileData;
   }
 
+  function mergePersonData(dst, src) {
+    // TODO: merge data from newProfile into savedProfile, also update timestamps
+  }
+
   function prepareToUpdateProfile(newProfileData, oldProfileData) {
     // TODO
     return newProfileData;
@@ -486,10 +490,21 @@
   });
 
   app.post('/private/person', ensureAuthenticated, function(req, res) {
-    // TODO: fetch hidden information and update visible information
-
-    res.json({
-      // TODO: save/update profile to database
+    var newProfile = req.body
+    datamodels.person.findOne({userid:req.user.id}, function(err, savedProfile) {
+      if (err !== null) {
+        logger.warn(err);
+        res.json({error: 'error.save_profile'});
+      } else {
+        mergePersonData(savedProfile, newProfile);
+        savedProfile.save(function(err) {
+          if (err !== null) {
+            res.json({error:'error.get_profile'});
+          } else {
+            res.json({message:'message.saved_success'});
+          }
+        });
+      }
     });
   });
 

@@ -15,7 +15,9 @@
             "profile.date_of_birth": "Date of birth",
             "profile.searchable": "Make profile searchable?",
 
-            "error.get_profile": "Failed to fetch profile info"
+            "error.get_profile": "Failed to fetch profile info",
+
+            "message.saved_success": "Profile saved"
         }
     },
     
