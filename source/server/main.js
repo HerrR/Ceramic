@@ -101,22 +101,25 @@
 
   function hideSecretProfileData(profileData) {
     if (profileData) {
-      //profileData.system = undefined;
-      //profileData.userid = undefined;
-
-      // TODO
+      profileData.system = undefined;
+      profileData.userid = undefined;
     }
-
-    return profileData;
   }
 
-  function mergePersonData(dst, src) {
-    // TODO: merge data from newProfile into savedProfile, also update timestamps
-  }
+  function mergeProfileData(dst, src) {
+    dst.system.updated = new Date();
 
-  function prepareToUpdateProfile(newProfileData, oldProfileData) {
-    // TODO
-    return newProfileData;
+    if (dst.system.locked === undefined) {
+      if (dst.person !== undefined) {
+        dst.person = src.person;
+      }
+
+      if (dst.company !== undefined) {
+        dst.company = src.company;
+      }
+    } else {
+      logger.warn('User ' + dst.userid + ' tried to update locked data.');
+    }
   }
 
   function validateProfile(profile) {
@@ -342,6 +345,7 @@
 
       var person = {
         name: profile.displayName
+        // TODO: fill in more information
       };
 
       var newPerson = new datamodels.person({userid:profile.id, person:person, system:system});
@@ -479,12 +483,13 @@
   });
 
   app.get('/private/person', ensureAuthenticated, function(req, res) {
-    datamodels.person.findOne({userid:req.user.id}, function(err, data) {
+    datamodels.person.findOne({userid:req.user.id}, function(err, profile) {
       if (err !== null) {
         logger.warn(err);
         res.json({error: 'error.get_profile'});
       } else {
-        res.json(hideSecretProfileData(data));
+        hideSecretProfileData(profile);
+        res.json(profile);
       }
     });
   });
@@ -496,7 +501,7 @@
         logger.warn(err);
         res.json({error: 'error.save_profile'});
       } else {
-        mergePersonData(savedProfile, newProfile);
+        mergeProfileData(savedProfile, newProfile);
         savedProfile.save(function(err) {
           if (err !== null) {
             res.json({error:'error.get_profile'});
