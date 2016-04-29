@@ -495,7 +495,7 @@
   });
 
   app.post('/private/person', ensureAuthenticated, function(req, res) {
-    var newProfile = req.body
+    var newProfile = req.body;
     datamodels.person.findOne({userid:req.user.id}, function(err, savedProfile) {
       if (err !== null) {
         logger.warn(err);

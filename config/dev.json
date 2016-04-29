@@ -37,10 +37,10 @@
 
     "authentication": {
         "local": {
-            "enabled": true
+            "enabled": false
         },
         "http": {
-            "enabled": true
+            "enabled": false
         },
         "google": {
             "enabled": false,
