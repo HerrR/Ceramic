@@ -101,6 +101,8 @@
 
   function hideSecretProfileData(profileData) {
     if (profileData) {
+      profileData._id = undefined;
+      profileData.__v = undefined;
       profileData.system = undefined;
       profileData.userid = undefined;
     }
@@ -329,35 +331,43 @@
     }, function(accessToken, refreshToken, profile, done) {
       // TODO: use profile properties: provider, id, displayName, name, emails, etc..
 
-      var system = {
-        created: new Date(),
-        locked: undefined,
-        deleted: undefined,
-        updated: new Date(),
-        note: '',
-        visible: true,
-        schemaVersion: PERSON_SCHEMA_VERSION
-      };
+      datamodels.person.findOne({userid:profile.id}, function(err, savedProfile) {
+        if (err !== null) {
+          logger.warn(err);
+          done(err, profile);
+        } else if (savedProfile === null) {
+          var system = {
+            created: new Date(),
+            locked: undefined,
+            deleted: undefined,
+            updated: new Date(),
+            note: '',
+            visible: true,
+            schemaVersion: PERSON_SCHEMA_VERSION
+          };
 
-      var settings = {
-        recieveEmailNotifications: true
-      };
+          var settings = {
+            recieveEmailNotifications: true
+          };
 
-      var person = {
-        name: profile.displayName
-        // TODO: fill in more information
-      };
-
-      var newPerson = new datamodels.person({userid:profile.id, person:person, system:system});
-      newPerson.save(function(err) {
-        if (err) {
-          logger.error(err);
+          var person = {
+            name: profile.displayName
+            // TODO: fill in more information
+          };
+          var newPerson = new datamodels.person({userid:profile.id, person:person, system:system});
+          newPerson.save(function(err) {
+            if (err) {
+              logger.error(err);
+              done(err, profile);
+            } else {
+              logger.info('New Person: ' + person.name);
+              done(null, profile);
+            }
+          });
         } else {
-          logger.info('New User: ' + person.name);
+          done(null, profile);
         }
       });
-
-      done(null, profile);
     }));
   }
 
@@ -438,7 +448,7 @@
     // TODO: reload more datasets
   });
 
-  app.get('/public/logout', function(req, res) {
+  app.get('/auth/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
@@ -483,13 +493,17 @@
   });
 
   app.get('/private/person', ensureAuthenticated, function(req, res) {
-    datamodels.person.findOne({userid:req.user.id}, function(err, profile) {
+    datamodels.person.findOne({userid:req.user.id}, function(err, savedProfile) {
       if (err !== null) {
-        logger.warn(err);
-        res.json({error: 'error.get_profile'});
+        logger.error(err);
+        res.sendStatus(404);
+      } else if (savedProfile === null) {
+        logger.error('No data for person: ' + req.user.id);
+        res.sendStatus(400);
       } else {
-        hideSecretProfileData(profile);
-        res.json(profile);
+        logger.debug('Fetched Person: ' + savedProfile.person.name);
+        hideSecretProfileData(savedProfile);
+        res.json(savedProfile);
       }
     });
   });

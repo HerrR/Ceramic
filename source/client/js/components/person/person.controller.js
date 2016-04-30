@@ -37,7 +37,8 @@
         $scope.save = function() {
             // TODO: validation
 
-            ProfileService.save(function(data) {
+            ProfileService.save(function(data, err) {
+                // TODO: handle error
                 $scope.person = data.person;
                 $scope.oldHashCode = computeHashCode($scope.person);
                 $scope.newHashCode = computeHashCode($scope.person);
@@ -46,7 +47,8 @@
         };
 
         $scope.cancel = function() {
-            ProfileService.reload(function (data) {
+            ProfileService.reload(function (data, err) {
+                // TODO: handle error
                 $scope.person = data.person;
                 $scope.oldHashCode = computeHashCode($scope.person);
                 $scope.newHashCode = computeHashCode($scope.person);

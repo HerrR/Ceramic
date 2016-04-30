@@ -37,7 +37,7 @@ gulp.task('chain:test', function(done) {
 
 // Full build process, production
 gulp.task('build', function(done) {
-  runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'index:dist', 'serve:copy', 'pack', 'bump:patch', 'stats', done);
+  runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'index:dist', 'serve:copy', 'pack', 'git:tag', 'bump:patch', 'stats', done);
 });
 
 // Full build process, development

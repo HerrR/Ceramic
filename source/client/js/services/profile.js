@@ -1,4 +1,5 @@
 /* global angular */
+/* global window */
 
 (function() {
     'use strict';
@@ -13,31 +14,36 @@
         var self = this;
         var userid;
         var userType;
-        
-        // TODO: remove dummy data
         var profileData;
 
-        self.signIn = function(serviceName) {
-            $http.get(AppConstants.PRIVATE_PATH + 'person',{}).then(function(resp) {
-                // TODO: implement this
-                profileData = resp.data;
-                if (profileData !== undefined) {
-                    userid = profileData.userid;
-                    userType = AppConstants.USER_TYPES.PERSON;
-                    console.log('user',profileData);
+        function prepareProfileData(profile) {
+            if (profile) {
+                if (profile.person) {
+                    profile.person.dateOfBirth = new Date(profile.person.dateOfBirth);
                 }
+
+                if (profile.company) {
+                    // TODO
+                }
+            }
+        }
+
+        self.signIn = function(serviceName) {
+            userType = serviceName;
+            self.reload(function(data,err) {
+                // TODO: handle errors
             });
         };
 
         self.signOut = function() {
-            // $location.get(AppConstants.RESOURCE_PATH + 'logout', function())
-            // TODO: sign out
             userType = undefined;
             userid = undefined;
+            profileData = undefined;
+            window.location.href = AppConstants.AUTH_PATH + 'logout'
         };
 
         self.hasSignedIn = function() {
-            return (userid !== undefined);
+            return (profileData !== undefined);
         };
 
         self.isCompany = function() {
@@ -53,13 +59,33 @@
         };
 
         self.reload = function(callback) {
-            console.log('reload');
-            // TODO: reload the profile information from server
+            $http.get(AppConstants.PRIVATE_PATH + userType.toLowerCase(),{}).then(function(resp) {
+                // TODO: handle error
+                profileData = resp.data;
+                prepareProfileData(profileData);
+                if (callback) {
+                    callback(profileData, null);
+                }
+            }, function(err) {
+                if (callback) {
+                    callback(null, err);
+                }
+            });
         };
 
         self.save = function(callback) {
-            console.log('save');
-            // TODO: save profile information
+            if (profileData) {
+                $http.post(AppConstants.PRIVATE_PATH + userType.toLowerCase(),profileData).then(function(resp) {
+                    // TODO: handle error
+                    if (callback) {
+                        callback(profileData, null);
+                    }
+                }, function(err) {
+                    if (callback) {
+                        callback(null, err);
+                    }
+                });
+            }
         };
     }
 })();

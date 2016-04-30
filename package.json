@@ -33,6 +33,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-cordova": "^6.0.0",
     "gulp-csslint": "^0.3.0",
+    "gulp-git": "^1.7.1",
     "gulp-htmlhint": "^0.3.1",
     "gulp-htmlmin": "^1.3.0",
     "gulp-ignore": "^2.0.1",
