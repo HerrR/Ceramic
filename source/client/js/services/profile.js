@@ -8,9 +8,9 @@
         .module('cvc')
         .service('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$http','AppConstants'];
+    ProfileService.$inject = ['$http','AppConstants', 'MessageService'];
 
-    function ProfileService($http, AppConstants) {
+    function ProfileService($http, AppConstants, MessageService) {
         var self = this;
         var userid;
         var userType;
@@ -20,6 +20,7 @@
             if (profile) {
                 if (profile.person) {
                     profile.person.dateOfBirth = new Date(profile.person.dateOfBirth);
+                    // TODO
                 }
 
                 if (profile.company) {
@@ -31,7 +32,7 @@
         self.signIn = function(serviceName) {
             userType = serviceName;
             self.reload(function(data,err) {
-                // TODO: handle errors
+                MessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
             });
         };
 
@@ -60,13 +61,13 @@
 
         self.reload = function(callback) {
             $http.get(AppConstants.PRIVATE_PATH + userType.toLowerCase(),{}).then(function(resp) {
-                // TODO: handle error
                 profileData = resp.data;
                 prepareProfileData(profileData);
                 if (callback) {
                     callback(profileData, null);
                 }
             }, function(err) {
+                MessageService.error(AppConstants.TEXT_KEYS.FETCH_PROFILE_ERROR);
                 if (callback) {
                     callback(null, err);
                 }
@@ -76,11 +77,12 @@
         self.save = function(callback) {
             if (profileData) {
                 $http.post(AppConstants.PRIVATE_PATH + userType.toLowerCase(),profileData).then(function(resp) {
-                    // TODO: handle error
+                    MessageService.info(AppConstants.TEXT_KEYS.PROFILE_SAVED);
                     if (callback) {
                         callback(profileData, null);
                     }
                 }, function(err) {
+                    MessageService.error(AppConstants.TEXT_KEYS.SAVE_PROFILE_ERROR);
                     if (callback) {
                         callback(null, err);
                     }

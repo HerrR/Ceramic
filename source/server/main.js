@@ -513,14 +513,16 @@
     datamodels.person.findOne({userid:req.user.id}, function(err, savedProfile) {
       if (err !== null) {
         logger.warn(err);
-        res.json({error: 'error.save_profile'});
+        res.sendStatus(400);
       } else {
+        // TODO: validate that the fetched data has person data and not company
+
         mergeProfileData(savedProfile, newProfile);
         savedProfile.save(function(err) {
           if (err !== null) {
-            res.json({error:'error.get_profile'});
+            res.sendStatus(400);
           } else {
-            res.json({message:'message.saved_success'});
+            res.sendStatus(200);
           }
         });
       }
