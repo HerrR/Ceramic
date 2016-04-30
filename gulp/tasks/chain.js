@@ -36,8 +36,14 @@ gulp.task('chain:test', function(done) {
 });
 
 // Full build process, production
-gulp.task('build', function(done) {
+gulp.task('deploy', function(done) {
   runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'index:dist', 'serve:copy', 'pack', 'git:tag', 'bump:patch', 'stats', done);
+});
+
+// Full build process, for continues integration
+// TODO: add tasks: 'test', 'e2e'
+gulp.task('build', function(done) {
+  runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'index:dist', 'serve:copy', 'stats', done);
 });
 
 // Full build process, development
