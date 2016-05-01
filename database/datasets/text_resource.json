@@ -17,7 +17,8 @@
 
             "error.get_profile": "Failed to fetch profile info",
 
-            "message.saved_success": "Profile saved"
+            "message.saved_success": "Profile saved",
+            "message.cancel_success": "Success"
         }
     },
     

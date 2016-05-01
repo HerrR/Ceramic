@@ -29,7 +29,7 @@
             message = {
                 type: type,
                 message: $filter('translate')(message),
-                lifeTime: new Date().getTime() + MESSAGE_LIFE
+                lifeTime: new Date().getTime() + AppConstants.MESSAGE_LIFE
             };
         };
 
@@ -42,11 +42,12 @@
         };
 
         self.hasMessage = function() {
-            return (message !== undefined);
+            var m = self.getMessage();
+            return (m !== undefined && m !== null && m.message !== undefined && m.message !== '');
         };
 
         self.clear = function() {
-            message = undefined;
+            message = null;
         };
     }
 })();

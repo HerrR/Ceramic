@@ -520,8 +520,10 @@
         mergeProfileData(savedProfile, newProfile);
         savedProfile.save(function(err) {
           if (err !== null) {
+            logger.warn('Failed to update profile: ' + req.user.id + ", error: " + err);
             res.sendStatus(400);
           } else {
+            logger.info('Updated profile: ' + req.user.id);
             res.sendStatus(200);
           }
         });

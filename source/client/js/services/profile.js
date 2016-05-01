@@ -69,7 +69,7 @@
             }, function(err) {
                 ScreenMessageService.error(AppConstants.TEXT_KEYS.FETCH_PROFILE_ERROR);
                 if (callback) {
-                    callback(null, err);
+                    callback(profileData, err);
                 }
             });
         };
@@ -84,7 +84,7 @@
                 }, function(err) {
                     ScreenMessageService.error(AppConstants.TEXT_KEYS.SAVE_PROFILE_ERROR);
                     if (callback) {
-                        callback(null, err);
+                        callback(profileData, err);
                     }
                 });
             }

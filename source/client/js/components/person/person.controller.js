@@ -7,9 +7,9 @@
         .module('cvc')
         .controller('CvcPersonController', Controller);
 
-    Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants'];
+    Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants', 'ScreenMessageService'];
 
-    function Controller($scope, $http, ProfileService, AppConstants) {
+    function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService) {
         $scope.IMAGES = AppConstants.IMAGES;
         $scope.MIN_DATE = new Date(1940,0,1,0,0,0,0);
         $scope.MAX_DATE = new Date();
@@ -38,21 +38,24 @@
             // TODO: validation
 
             ProfileService.save(function(data, err) {
-                // TODO: handle error
-                $scope.person = data.person;
-                $scope.oldHashCode = computeHashCode($scope.person);
-                $scope.newHashCode = computeHashCode($scope.person);
-                $scope.valuesChanged = false;
+                if (err === null) {
+                    $scope.person = data.person;
+                    $scope.oldHashCode = computeHashCode($scope.person);
+                    $scope.newHashCode = computeHashCode($scope.person);
+                    $scope.valuesChanged = false;
+                }
             });
         };
 
         $scope.cancel = function() {
             ProfileService.reload(function (data, err) {
-                // TODO: handle error
-                $scope.person = data.person;
-                $scope.oldHashCode = computeHashCode($scope.person);
-                $scope.newHashCode = computeHashCode($scope.person);
-                $scope.valuesChanged = false;
+                if (err === null) {
+                    $scope.person = data.person;
+                    $scope.oldHashCode = computeHashCode($scope.person);
+                    $scope.newHashCode = computeHashCode($scope.person);
+                    $scope.valuesChanged = false;
+                    ScreenMessageService.info('message.cancel_success');
+                }
             });
         };
 
