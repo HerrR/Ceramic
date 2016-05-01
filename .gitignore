@@ -46,5 +46,5 @@ dependency*.min.js.map
 cvcentral*.min.js
 cvcentral*.min.js.map
 local.crt
-
 local.key
+env.sh
