@@ -125,5 +125,10 @@ module.exports = {
       dependency: ['dist/client/dependency*.js','dist/client/dependency*.map'],
       css: 'dist/client/**/*.css'
     }
+  },
+
+  publish: {
+    url: '192.168.0.140',
+    path: '/root/'
   }
 };

@@ -542,7 +542,7 @@
     var dbUser = process.env.DB_USERNAME || config.server.database.username;
     var dbPass = process.env.DB_PASSWORD || config.server.database.password;
     var dbUrl = config.server.database.url;
-    dbUrl = dbUrl.replace('{username}',dbUser).replace('{passwrd}',dbPass);
+    dbUrl = dbUrl.replace('{username}',dbUser).replace('{password}',dbPass);
     mongoose.connect(dbUrl);
   } catch (err) {
     logger.error('Failed to connect to database: ' + config.server.database.url);

@@ -12,7 +12,18 @@ var config = require('../main.conf'),
     plumber = require('gulp-ssh'),
     clean = require('gulp-clean');
 
+var gulpSSH = new ssh({
+  ignoreErrors: false,
+  sshConfig: {
+    host: config.publish.url,
+    port: 22,
+    username: gutil.env.PUBLISH_USER || 'root',
+    passwod: gutil.env.PUBLISH_PASSWORD
+    privateKey: undefined //fs.readFileSync('/Users/zensh/.ssh/id_rsa')
+  }
+});
 
+var config = 
 
 gulp.task('ssh:create', function() {
     return gulp.src(config.destination.files)
@@ -22,10 +33,8 @@ gulp.task('ssh:create', function() {
 });
 
 gulp.task('ssh:send', function() {
-    // TODO
-    // gutil.env.type
-    /*return gulp.src(config.destination.temp_folder + 'build.zip')
-        .p*/
+    return gulp.src(config.destination.temp_folder + 'build.zip')
+        .pipe(gulpSSH.dest(config.publish.path));
 });
 
 gulp.task('ssh:clean', function() {
@@ -34,6 +43,6 @@ gulp.task('ssh:clean', function() {
         .pipe(clean());
 });
 
-gulp.task('ssh', function(done) {
+gulp.task('publish', function(done) {
   runSequence('ssh:create', 'ssh:send', 'ssh:clean', 'stats', done);
 });
