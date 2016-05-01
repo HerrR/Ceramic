@@ -1,12 +1,14 @@
 <md-toolbar class="md-medium-tall cvc-header" layout="row" md-whiteframe="4">
-    <h1 style="cursor: pointer" ng-click="gotoHome()" class="md-display-1 cvc-page-title">{{'page_title' | translate}}</h1>
+    <h1 style="cursor: pointer" ng-click="gotoHome()" class="md-display-1 cvc-page-title cvc-title-color">{{'page_title' | translate}}</h1>
     <div flex></div>
     <md-content class="md-padding cvc-menubar" layout-align-lg="column" layout="row" layout-align="center center">
         <div class="fb-like md-display-1" data-share="true" data-width="450" data-show-faces="true"></div>
-        <md-button ng-if="isPerson()" class="md-raised md-warn md-hue-2" ng-disabled="!hasSignedIn()">
-            <i class="fa fa-commenting-o fa-lg cvc-padding-rxs" aria-hidden="true"></i>Messages
+        <md-button class="md-accent" style="text-transform:none">Why XXXX</md-button>
+        <md-button class="md-accent" style="text-transform:none">About us</md-button>
+        <md-button ng-if="isPerson()" class="md-raised md-primary md-hue-2" style="text-transform:none" ng-disabled="!hasSignedIn()">
+            <i class="fa fa-commenting-o fa-lg cvc-padding-rxs" aria-hidden="true"></i>Messages (0)
         </md-button>
-        <md-button class="md-raised md-warn md-hue-2" ng-click="signOut()" ng-disabled="!hasSignedIn()">
+        <md-button class="md-raised md-primary md-hue-2" style="text-transform:none" ng-click="signOut()" ng-disabled="!hasSignedIn()">
             <i class="fa fa-sign-out fa-lg cvc-padding-rxs" aria-hidden="true"></i>Sign out
         </md-button>
     </md-content>
