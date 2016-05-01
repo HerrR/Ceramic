@@ -52,10 +52,9 @@
   const numCPUs = os.cpus().length;
   const numClusters = config.server.clusters === 0 ? numCPUs : config.server.clusters;
 
-  const PERSON_SCHEMA_VERSION = 1;
-
   function exitHandler(options, err) {
     if (options.cleanup) {
+      // TODO: cleanup
       console.log(chalk.blue('Shutting Down...'));
     }
 
@@ -66,44 +65,6 @@
 
     if (options.exit) {
       process.exit();
-    }
-  }
-
-  function hideSecretProfileData(profileData) {
-    if (profileData) {
-      profileData._id = undefined;
-      profileData.__v = undefined;
-      profileData.system = undefined;
-      profileData.userid = undefined;
-    }
-  }
-
-  function mergeProfileData(dst, src) {
-    dst.system.updated = new Date();
-
-    if (dst.system.locked === undefined) {
-      if (dst.person !== undefined) {
-        dst.person = src.person;
-      }
-
-      if (dst.company !== undefined) {
-        dst.company = src.company;
-      }
-    } else {
-      logger.warn('User ' + dst.userid + ' tried to update locked data.');
-    }
-  }
-
-  function validateProfile(profile) {
-    // TODO: clamp texts like name etc..
-    return profile;
-  }
-
-  function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      next();
-    } else {
-      res.sendStatus(403);
     }
   }
 
@@ -156,7 +117,6 @@
     // TODO: Configuration options
   }));
 
-
   if (config.authentication.local.enabled) {
     passport.use(new passportLocal.Strategy(verifyCredentials));
   }
@@ -178,15 +138,7 @@
           logger.warn(err);
           done(err, profile);
         } else if (savedProfile === null) {
-          var system = {
-            created: new Date(),
-            locked: undefined,
-            deleted: undefined,
-            updated: new Date(),
-            note: '',
-            visible: true,
-            schemaVersion: PERSON_SCHEMA_VERSION
-          };
+          var system = cvcDatabase.createSystemObject();
 
           var settings = {
             recieveEmailNotifications: true
@@ -249,29 +201,7 @@
   }
 
   app.get('/public/loginstrategies', function(req, res) {
-    var list = [];
-
-    if (config.authentication.local.enabled) {
-      list.push('local');
-    }
-
-    if (config.authentication.http.enabled) {
-      list.push('http');
-    }
-
-    if (config.authentication.facebook.enabled) {
-      list.push('facebook');
-    }
-
-    if (config.authentication.google.enabled) {
-      list.push('google');
-    }
-
-    if (config.authentication.twitter.enabled) {
-      list.push('twitter');
-    }
-
-    res.json(list);
+    res.json(cvcAuthentication.listEnabledMethods());
   });
 
   app.get('/auth/logout', function(req, res) {
@@ -318,7 +248,7 @@
     // TODO: fetch all cities that contain 'filter' and are in 'country'
   });
 
-  app.get('/private/person', ensureAuthenticated, function(req, res) {
+  app.get('/private/person', cvcAuthentication.ensureAuthenticated, function(req, res) {
     cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, savedProfile) {
       if (err !== null) {
         logger.error(err);
@@ -328,13 +258,13 @@
         res.sendStatus(400);
       } else {
         logger.debug('Fetched Person: ' + savedProfile.person.name);
-        hideSecretProfileData(savedProfile);
+        cvcDatabase.hideSecretProfileData(savedProfile);
         res.json(savedProfile);
       }
     });
   });
 
-  app.post('/private/person', ensureAuthenticated, function(req, res) {
+  app.post('/private/person', cvcAuthentication.ensureAuthenticated, function(req, res) {
     var newProfile = req.body;
     cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, savedProfile) {
       if (err !== null) {
@@ -343,7 +273,7 @@
       } else {
         // TODO: validate that the fetched data has person data and not company
 
-        mergeProfileData(savedProfile, newProfile);
+        cvcDatabase.mergeProfileData(savedProfile, newProfile);
         savedProfile.save(function(err) {
           if (err !== null) {
             logger.warn('Failed to update profile: ' + req.user.id + ", error: " + err);

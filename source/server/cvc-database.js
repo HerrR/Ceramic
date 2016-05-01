@@ -9,6 +9,8 @@
 
 (function () {
   "use strict";
+    
+    const PERSON_SCHEMA_VERSION = 1;
 
     const mongoose = require('mongoose');
 
@@ -146,6 +148,48 @@
 
         getDatamodels: function() {
             return datamodels;
+        },
+
+        hideSecretProfileData: function(profileData) {
+            if (profileData) {
+                profileData._id = undefined;
+                profileData.__v = undefined;
+                profileData.system = undefined;
+                profileData.userid = undefined;
+            }
+        },
+
+        mergeProfileData: function(dst, src) {
+            dst.system.updated = new Date();
+
+            if (dst.system.locked === undefined) {
+                if (dst.person !== undefined) {
+                    dst.person = src.person;
+                }
+
+                if (dst.company !== undefined) {
+                    dst.company = src.company;
+                }
+            } else {
+                logger.warn('User ' + dst.userid + ' tried to update locked data.');
+            }
+        },
+
+        validateProfile: function(profile) {
+            // TODO: clamp texts like name etc..
+            return profile;
+        },
+
+        createSystemObject: function() {
+            return {
+                created: new Date(),
+                locked: undefined,
+                deleted: undefined,
+                updated: new Date(),
+                note: '',
+                visible: true,
+                schemaVersion: PERSON_SCHEMA_VERSION
+            };
         }
     };
 })();
