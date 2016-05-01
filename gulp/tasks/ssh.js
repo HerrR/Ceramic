@@ -18,7 +18,7 @@ var gulpSSH = new ssh({
     host: config.publish.url,
     port: 22,
     username: gutil.env.PUBLISH_USER || 'root',
-    passwod: gutil.env.PUBLISH_PASSWORD
+    passwod: gutil.env.PUBLISH_PASSWORD,
     privateKey: undefined //fs.readFileSync('/Users/zensh/.ssh/id_rsa')
   }
 });

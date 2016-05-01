@@ -49,4 +49,4 @@
             message = undefined;
         };
     }
-});
+})();

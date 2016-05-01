@@ -40,7 +40,7 @@
             userType = undefined;
             userid = undefined;
             profileData = undefined;
-            window.location.href = AppConstants.AUTH_PATH + 'logout'
+            window.location.href = AppConstants.AUTH_PATH + 'logout';
         };
 
         self.hasSignedIn = function() {
