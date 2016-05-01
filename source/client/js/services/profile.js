@@ -8,9 +8,9 @@
         .module('cvc')
         .service('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$http','AppConstants', 'MessageService'];
+    ProfileService.$inject = ['$http','AppConstants', 'ScreenMessageService'];
 
-    function ProfileService($http, AppConstants, MessageService) {
+    function ProfileService($http, AppConstants, ScreenMessageService) {
         var self = this;
         var userid;
         var userType;
@@ -32,7 +32,7 @@
         self.signIn = function(serviceName) {
             userType = serviceName;
             self.reload(function(data,err) {
-                MessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
+                ScreenMessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
             });
         };
 
@@ -67,7 +67,7 @@
                     callback(profileData, null);
                 }
             }, function(err) {
-                MessageService.error(AppConstants.TEXT_KEYS.FETCH_PROFILE_ERROR);
+                ScreenMessageService.error(AppConstants.TEXT_KEYS.FETCH_PROFILE_ERROR);
                 if (callback) {
                     callback(null, err);
                 }
@@ -77,12 +77,12 @@
         self.save = function(callback) {
             if (profileData) {
                 $http.post(AppConstants.PRIVATE_PATH + userType.toLowerCase(),profileData).then(function(resp) {
-                    MessageService.info(AppConstants.TEXT_KEYS.PROFILE_SAVED);
+                    ScreenMessageService.info(AppConstants.TEXT_KEYS.PROFILE_SAVED);
                     if (callback) {
                         callback(profileData, null);
                     }
                 }, function(err) {
-                    MessageService.error(AppConstants.TEXT_KEYS.SAVE_PROFILE_ERROR);
+                    ScreenMessageService.error(AppConstants.TEXT_KEYS.SAVE_PROFILE_ERROR);
                     if (callback) {
                         callback(null, err);
                     }

@@ -5,24 +5,24 @@
 
     angular
         .module('cvc')
-        .service('MessageService', MessageService);
+        .service('ScreenMessageService', ScreenMessageService);
 
-    MessageService.$inject = ['$filter', 'AppConstants'];
+    ScreenMessageService.$inject = ['$filter', 'AppConstants'];
 
-    function MessageService($filter, AppConstants) {
+    function ScreenMessageService($filter, AppConstants) {
         var self = this;
         var message;
 
         self.info = function(message) {
-            setMessage(AppConstants.MESSAGE_TYPE.INFO, message);
+            self.setMessage(AppConstants.MESSAGE_TYPE.INFO, message);
         };
 
         self.warn = function(message) {
-            setMessage(AppConstants.MESSAGE_TYPE.WARN, message);
+            self.setMessage(AppConstants.MESSAGE_TYPE.WARN, message);
         };
 
         self.error = function(message) {
-            setMessage(AppConstants.MESSAGE_TYPE.ERROR, message);
+            self.setMessage(AppConstants.MESSAGE_TYPE.ERROR, message);
         };
 
         self.setMessage = function(type, message) {
@@ -35,7 +35,7 @@
 
         self.getMessage = function() {
             if (message && new Date().getTime() > message.lifeTime) {
-                message = undefined;
+                self.clear();
             }
 
             return message;
@@ -43,6 +43,10 @@
 
         self.hasMessage = function() {
             return (message !== undefined);
+        };
+
+        self.clear = function() {
+            message = undefined;
         };
     }
 });

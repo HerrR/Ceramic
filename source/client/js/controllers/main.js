@@ -7,9 +7,13 @@
         .module('cvc')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', 'ProfileService'];
+    MainController.$inject = ['$scope', 'ProfileService', 'ScreenMessageService'];
 
-    function MainController($scope, ProfileService) {
+    function MainController($scope, ProfileService, ScreenMessageService) {
+        $scope.hasScreenMessage = function() {
+            return ScreenMessageService.hasMessage();
+        };
+
         $scope.hasSignedIn = function() {
             return ProfileService.hasSignedIn();
         };
