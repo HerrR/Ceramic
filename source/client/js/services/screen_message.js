@@ -11,7 +11,7 @@
 
     function ScreenMessageService($filter, AppConstants) {
         var self = this;
-        var message;
+        var message = null;
 
         self.info = function(message) {
             self.setMessage(AppConstants.MESSAGE_TYPE.INFO, message);
@@ -25,25 +25,21 @@
             self.setMessage(AppConstants.MESSAGE_TYPE.ERROR, message);
         };
 
-        self.setMessage = function(type, message) {
-            message = {
-                type: type,
-                message: $filter('translate')(message),
-                lifeTime: new Date().getTime() + AppConstants.MESSAGE_LIFE
-            };
+        self.setMessage = function(type, text) {
+            if (text !== undefined && text !== '') {
+                message = {
+                    type: type,
+                    message: $filter('translate')(text)
+                };
+            }
         };
 
         self.getMessage = function() {
-            if (message && new Date().getTime() > message.lifeTime) {
-                self.clear();
-            }
-
             return message;
         };
 
         self.hasMessage = function() {
-            var m = self.getMessage();
-            return (m !== undefined && m !== null && m.message !== undefined && m.message !== '');
+            return (message !== null);
         };
 
         self.clear = function() {

@@ -120,3 +120,29 @@ body {
     font-size: 120%;
     font-weight: bold;
 }
+
+.cvc-screen-message {
+    position: fixed;
+    text-align: center;
+    z-index: 1000;
+    margin: 0.5em;
+    padding: 0.5em;
+    font-size: 150%;
+    font-weight: bold;
+    border-radius: 0.25em;
+}
+
+.cvc-screen-message-info {
+    background-color: #18DE46;
+    box-shadow: 0 0 1em #0F992F;
+}
+
+.cvc-screen-message-warn {
+    background-color: #E3E01B;
+    box-shadow: 0 0 1em #C9A606;
+}
+
+.cvc-screen-message-error {
+    background-color: #C90606;
+    box-shadow: 0 0 1em #992D0F;
+}

@@ -9,7 +9,7 @@
             RESOURCE_PATH: 'public/',
             PRIVATE_PATH: 'private/',
             AUTH_PATH: 'auth/',
-            MESSAGE_LIFE: 5000,
+            MESSAGE_LIFE: 2000,
             USER_TYPES: {
                 COMPANY: 'COMPANY',
                 PERSON: 'PERSON'

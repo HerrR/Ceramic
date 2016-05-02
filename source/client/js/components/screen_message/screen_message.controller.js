@@ -1,4 +1,5 @@
 /* global angular */
+/* global $ */
 
 (function() {
     'use strict';
@@ -7,12 +8,16 @@
         .module('cvc')
         .controller('CvcScreenMessageController', Controller);
 
-    Controller.$inject = ['$scope', 'ScreenMessageService'];
+    Controller.$inject = ['$scope', 'ScreenMessageService', 'AppConstants'];
 
-    function Controller($scope, ScreenMessageService) {
-        $scope.getType = function() {
-            return ScreenMessageService.getMessage().type;
-        };
+    function Controller($scope, ScreenMessageService, AppConstants) {
+        setTimeout(function() {
+            $('#screenMessage').removeClass('slideInLeft');
+            $('#screenMessage').addClass('slideOutLeft');
+            ScreenMessageService.clear();
+        }, AppConstants.MESSAGE_LIFE);
+
+        $scope.class = 'animated slideInLeft cvc-screen-message cvc-screen-message-' + ScreenMessageService.getMessage().type.toLowerCase();
 
         $scope.getMessage = function() {
             return ScreenMessageService.getMessage().message;
