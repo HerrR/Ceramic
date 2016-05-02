@@ -27,8 +27,7 @@
   const cluster = require('cluster');
   const uuid = require('node-uuid');
   const chalk = require('chalk');
-  
-  const cvcUtils = require('./cvc-utils');
+
   const cvcEndpoint = require('./cvc-endpoint');
 
   const config = require(process.argv[2] || '../../config/dev.json');
