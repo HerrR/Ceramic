@@ -24,19 +24,21 @@
     }
 
     function watchDatasets(filename) {
-        logger.info('Watch triggered on file: ' + filename);
+        if (config.datasets.watchEnabled) {
+            logger.info('Watch triggered on file: ' + filename);
 
-        if (filename.indexOf(config.server.datasets.translations) > -1) {
-            logger.info('Reloading Translations');
-            datasets.translations = readDataset(config.server.datasets.translations, datasets.translations, false);
+            if (filename.indexOf(config.server.datasets.translations) > -1) {
+                logger.info('Reloading Translations');
+                datasets.translations = readDataset(config.server.datasets.translations, datasets.translations, false);
+            }
+
+            if (filename.indexOf(config.server.datasets.countries) > -1) {
+                logger.info('Reloading Countries');
+                datasets.countries = readDataset(config.server.datasets.countries, datasets.countries, false);
+            }
+
+            // TODO: reload more datasets
         }
-
-        if (filename.indexOf(config.server.datasets.countries) > -1) {
-            logger.info('Reloading Countries');
-            datasets.countries = readDataset(config.server.datasets.countries, datasets.countries, false);
-        }
-
-        // TODO: reload more datasets
     }
 
     module.exports = {

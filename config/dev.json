@@ -24,6 +24,7 @@
 
         "datasets": {
             "watch": ["./dist/server/text_resource.json"],
+            "watchEnabled": true,
             "datasetCacheLifeTime": 7200000,
             "folder": "./dist/server/",
 
