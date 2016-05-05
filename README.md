@@ -1,14 +1,23 @@
 # Ceramic
-<img src="https://travis-ci.org/Axodoss/Ceramic.svg"/>
-<img src="https://david-dm.org/Axodoss/Ceramic.svg"/>
+![](https://travis-ci.org/Axodoss/Ceramic.svg)
+![](https://david-dm.org/Axodoss/Ceramic.svg)
 
 ## Description
 TODO
 
 ## How to build
+##### Setup
+* **Node JS and NPM** => TODO
+* **MongoDB** => TODO
+* **SSL** => TODO
+
+##### Develop
 TODO
 
-## How to run tests
+##### Build
+TODO
+
+##### Test
 TODO
 
 ## How to deploy
