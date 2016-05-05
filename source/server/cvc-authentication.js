@@ -74,12 +74,14 @@
             }, function(accessToken, refreshToken, profile, done) {
                 // TODO: use profile properties: provider, id, displayName, name, emails, etc..
 
+                // TODO: check if user email is already registered, if yes then deny registration
+
                 cvcDatabase.getDatamodels().Person.findOne({userid:profile.id}, function(err, savedProfile) {
                     if (err !== null) {
                         logger.warn(err);
                         done(err, profile);
                     } else if (savedProfile === null) {
-                        var system = cvcDatabase.createSystemObject();
+                        var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
 
                         var settings = {
                             recieveEmailNotifications: true

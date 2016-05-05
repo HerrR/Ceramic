@@ -12,7 +12,9 @@
             'ngCookies',
             'ui.router',
             'pascalprecht.translate',
-            'LocalStorageModule'
+            'LocalStorageModule',
+            'angulartics',
+            'angulartics.google.analytics'
             ])
         .config(Config)
         .run(Run);

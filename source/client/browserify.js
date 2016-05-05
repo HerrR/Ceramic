@@ -12,3 +12,6 @@
 //var ngUIRouter = require('../../bower_components/angular-ui-router/release/angular-ui-router');
 //var ngAria = require('../../bower_components/angular-aria');
 //var ngMaterial = require('../../bower_components/angular-material/angular-material');
+
+//var angulartics = require('../../bower_components/angulartics/dist/angulartics.min.js');
+//var googleAngulartics = require('../../bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js');

@@ -50,14 +50,13 @@
     }
   }
 
-  var logger = log4js.getLogger('base');
+  const logger = log4js.getLogger('base');
   log4js.configure(config.log4js.config);
   logger.setLevel(config.log4js.level);
 
-  cvcUtils.init(config, logger);
   cvcEndpoint.init(config, logger);
 
-  var server = https.createServer({
+  const server = https.createServer({
     cert: fs.readFileSync(config.server.https.cert),
     key: fs.readFileSync(config.server.https.key)
   }, cvcEndpoint.getApp());

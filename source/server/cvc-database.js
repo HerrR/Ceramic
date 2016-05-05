@@ -22,12 +22,14 @@
         updated: Date,
         note: String,
         visible: mongoose.Schema.Types.Boolean,
-        schemaVersion: mongoose.Schema.Types.Number
+        schemaVersion: mongoose.Schema.Types.Number,
+        updateVersion: mongoose.Schema.Types.Number,
+        authenticationProvider: String
     };
 
     const schemaPerson = {
-        userid: String,
-        updateVersion: mongoose.Schema.Types.Number,
+        userid: { type: String, index: true },
+        email: { type: String, index: true },
         system: schemaSystem,
         settings: {
             recieveEmailNotifications: mongoose.Schema.Types.Boolean
@@ -55,7 +57,8 @@
     };
 
     const schemaCompany = {
-        userid: String,
+        userid: { type: String, index: true },
+        email: { type: String, index: true },
         updateVersion: mongoose.Schema.Types.Number,
         system: schemaSystem,
         company: {
@@ -81,8 +84,8 @@
     };
 
     const schemaMessage = {
-        fromUserid: String,
-        toUserid: String,
+        fromUserid: { type: String, index: true },
+        toUserid: { type: String, index: true },
         created: Date,
         wasRead: mongoose.Schema.Types.Boolean,
         wasRemoved: mongoose.Schema.Types.Boolean,
@@ -94,7 +97,7 @@
     };
 
     const schemaReceipt = {
-        userid: String,
+        userid: { type: String, index: true },
         paymentDate: Date,
         amount: mongoose.Schema.Types.Number,
         currency: String,
@@ -174,6 +177,8 @@
             } else {
                 logger.warn('User ' + dst.userid + ' tried to update locked data.');
             }
+
+            dst.system.updateVersion++;
         },
 
         validateProfile: function(profile) {
@@ -181,7 +186,7 @@
             return profile;
         },
 
-        createSystemObject: function() {
+        createSystemObject: function(authenticationProvider) {
             return {
                 created: new Date(),
                 locked: undefined,
@@ -189,7 +194,9 @@
                 updated: new Date(),
                 note: '',
                 visible: true,
-                schemaVersion: PERSON_SCHEMA_VERSION
+                schemaVersion: PERSON_SCHEMA_VERSION,
+                authenticationProvider: authenticationProvider,
+                updateVersion: 0
             };
         }
     };

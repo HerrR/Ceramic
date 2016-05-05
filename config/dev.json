@@ -37,21 +37,26 @@
 
     "authentication": {
         "local": {
+            "name": "LOCAL",
             "enabled": false
         },
         "http": {
+            "name": "HTTP",
             "enabled": false
         },
         "google": {
+            "name": "GOOGLE",
             "enabled": false,
             "consumerKey": "",
             "consumerSecret": ""
         },
         "facebook": {
+            "name": "FACEBOOK",
             "enabled": true,
             "callbackURL": "https://localhost:9010/auth/facebook/callback"
         },
         "twitter": {
+            "name": "TWITTER",
             "enabled": false,
             "consumerKey": "",
             "consumerSecret": "fetch from process.env"

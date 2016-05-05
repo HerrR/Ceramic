@@ -20,7 +20,7 @@
     const cvcDatabase = require('./cvc-database');
     const cvcAuthentication = require('./cvc-authentication');
 
-    var app = express();
+    const app = express();
 
     var config;
     var logger;
