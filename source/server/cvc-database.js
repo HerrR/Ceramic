@@ -1,12 +1,15 @@
+/* jshint node:true */
+/* jshint esversion: 6 */
+/* jshint esnext: true */
+
 /**
+ * @module {Ceramic}
+ * @parent main
+ *
  * Database
  *
  * @author Lukas Heise
  */
-
- /* jshint node:true */
- /* jshint esversion: 6 */
- /* jshint esnext: true */
 
 (function () {
   "use strict";
