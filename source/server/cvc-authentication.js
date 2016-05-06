@@ -75,6 +75,7 @@
                 // TODO: use profile properties: provider, id, displayName, name, emails, etc..
 
                 // TODO: check if user email is already registered, if yes then deny registration
+                // $or:[{userid:profile.id}, {email:profile.email}]
 
                 cvcDatabase.getDatamodels().Person.findOne({userid:profile.id}, function(err, savedProfile) {
                     if (err !== null) {
