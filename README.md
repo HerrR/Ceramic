@@ -1,6 +1,7 @@
 # Ceramic
-![](https://travis-ci.org/Axodoss/Ceramic.svg)
-![](https://david-dm.org/Axodoss/Ceramic.svg)
+[![Travis]()](https://travis-ci.org/Axodoss/Ceramic.svg)
+[![David]()](https://david-dm.org/Axodoss/Ceramic.svg)
+[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/Axodoss/ceramic)
 
 ## Description
 TODO
