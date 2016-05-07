@@ -9,15 +9,16 @@ md-sidenav.md-closed.md-locked-open-add-active {
 */
 
 .md-datepicker-button {
-    display: none !important;   
+    display: none !important;
 }
 
 .md-datepicker-input-container {
-    margin-left: 0 !important;    
+    margin-left: 0 !important;
 }
 
 body {
     background-color: #bbb;
+    font: normal normal normal 16px/18px 'Helvetica Neue', Arial, sans-serif;
 }
 
 .cvc-main-color {
@@ -187,8 +188,29 @@ body {
     border: solid 2px;
     margin: 8px;
     border-color: #3EBF3E;
-    border-radius: 4px;
+    border-radius: 3px;
     padding: 8px;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(45deg,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    -webkit-box-shadow: 2px 2px 2px -1px rgba(100,100,100,0.85);
+    -moz-box-shadow: 2px 2px 2px -1px rgba(100,100,100,0.85);
+    box-shadow: 2px 2px 2px -1px rgba(100,100,0,100.85);
+}
+
+.cvc-profile-picture {
+    min-width: 100%;
+    min-height: auto;
+    border-radius: 4px;
+
+    -webkit-box-shadow: 2px 2px 2px -1px rgba(100,100,100,0.85);
+    -moz-box-shadow: 2px 2px 2px -1px rgba(100,100,100,0.85);
+    box-shadow: 2px 2px 2px -1px rgba(100,100,0,100.85);
 }
 
 .twitter-share-button {

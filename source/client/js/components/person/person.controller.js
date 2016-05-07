@@ -47,6 +47,7 @@
                     $scope.oldHashCode = computeHashCode($scope.person);
                     $scope.newHashCode = computeHashCode($scope.person);
                     $scope.valuesChanged = false;
+                    ScreenMessageService.info('message.saved_success');
                 }
             });
         };

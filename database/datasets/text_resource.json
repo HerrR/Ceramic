@@ -26,7 +26,7 @@
             "error.required": "This is required.",
 
             "message.saved_success": "Profile saved",
-            "message.cancel_success": "Success"
+            "message.cancel_success": "Nothing saved"
         }
     },
     
