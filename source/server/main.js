@@ -19,7 +19,6 @@
 
   const os = require('os');
   const fs = require('fs');
-  const path = require('path');
   const https = require('https');
   const log4js = require('log4js');
   const cluster = require('cluster');

@@ -8,14 +8,22 @@
             "home.user.title": "User",
             "home.user.description": "Short description of what this is and for who this is for.",
             "home.select_user_or_company": "Career Direct Connect",
+            "home.subtitle": "The premier Peer 2 Peer recrutting facilitator",
 
+            "profile.generate_pdf": "Get PDF",
             "profile.save": "save",
             "profile.cancel": "cancel",
             "profile.username": "Full name",
             "profile.date_of_birth": "Date of birth",
             "profile.searchable": "Make profile searchable?",
 
+            "profile.basic": "Basic",
+            "profile.education": "Education",
+            "profile.work_experience": "Work Experience",
+            "profile.general_info": "General Information",
+
             "error.get_profile": "Failed to fetch profile info",
+            "error.required": "This is required.",
 
             "message.saved_success": "Profile saved",
             "message.cancel_success": "Success"

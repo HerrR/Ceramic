@@ -14,6 +14,7 @@
 (function () {
   "use strict";
 
+    const path = require('path');
     const ddos = require("ddos-express");
     const express = require('express');
     const bodyParser = require('body-parser');

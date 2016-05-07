@@ -1,4 +1,5 @@
 /* global angular */
+/* global document */
 
 (function() {
     'use strict';
@@ -7,28 +8,47 @@
         .module('cvc')
         .controller('CvcHeaderController', Controller);
 
-    Controller.$inject = ['$scope', 'ProfileService'];
+    Controller.$inject = ['$scope', '$mdDialog', '$mdMedia' , 'ProfileService'];
+    DialogController.$inject = ['$scope', '$mdDialog'];
 
-    function Controller($scope, ProfileService) {
-        $scope.gotoHome = function() {
-            // TODO
-            console.log('gotoHome');
+    function Controller($scope, $mdDialog, $mdMedia, ProfileService) {
+        $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+
+        $scope.showAbout = function(ev) {
+            doDialog(ev, 'partials/about.html');
         };
 
-        $scope.signOut = function() {
-            ProfileService.signOut();
+        $scope.showWhy = function(ev) {
+            doDialog(ev, 'partials/why.html');
         };
 
-        $scope.hasSignedIn = function() {
-            return ProfileService.hasSignedIn();
-        };
+        function doDialog(ev, template) {
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 
-        $scope.isPerson = function() {
-            return ProfileService.isPerson();
-        };
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: template,
+                parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: useFullScreen
+                })
+                .then(function(answer) {
+                }, function() {
+                }
+            );
 
-        $scope.isCompany = function() {
-            return ProfileService.isCompany();
+            $scope.$watch(function() {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function(wantsFullScreen) {
+                $scope.customFullscreen = (wantsFullScreen === true);
+            });
+        }
+    }
+
+    function DialogController($scope, $mdDialog) {
+        $scope.cancel = function() {
+            $mdDialog.cancel();
         };
     }
 })();

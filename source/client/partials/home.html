@@ -4,12 +4,12 @@
             <cvc-header></cvc-header>
         </header>
 
-        <cvc-screen-message ng-if="hasScreenMessage()"></cvc-screen-message>
         <cvc-welcome ng-if="hasSignedIn() === false"></cvc-welcome>
         <cvc-person ng-if="hasSignedIn() === true && isPerson()"></cvc-person>
         <cvc-company ng-if="hasSignedIn() === true && isCompany()"></cvc-company>
-        <footer>
+
+        <!--<footer>
             <cvc-footer></cvc-footer>
-        </footer>
+        </footer>-->
     </div>
 </div>

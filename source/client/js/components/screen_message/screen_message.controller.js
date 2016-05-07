@@ -12,12 +12,12 @@
 
     function Controller($scope, ScreenMessageService, AppConstants) {
         setTimeout(function() {
-            $('#screenMessage').removeClass('slideInLeft');
-            $('#screenMessage').addClass('slideOutLeft');
+            $('#screenMessage').removeClass('bounceInDown');
+            $('#screenMessage').addClass('bounceOutUp');
             ScreenMessageService.clear();
         }, AppConstants.MESSAGE_LIFE);
 
-        $scope.class = 'animated slideInLeft cvc-screen-message cvc-screen-message-' + ScreenMessageService.getMessage().type.toLowerCase();
+        $scope.class = 'animated bounceInDown cvc-screen-message cvc-screen-message-' + ScreenMessageService.getMessage().type.toLowerCase();
 
         $scope.getMessage = function() {
             return ScreenMessageService.getMessage().message;

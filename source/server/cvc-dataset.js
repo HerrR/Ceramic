@@ -14,6 +14,7 @@
 (function () {
   "use strict";
 
+    const path = require('path');
     const watch = require('node-watch');
 
     const cvcUtils = require('./cvc-utils');
@@ -27,7 +28,7 @@
     }
 
     function watchDatasets(filename) {
-        if (config.datasets.watchEnabled) {
+        if (config.server.datasets.watchEnabled) {
             logger.info('Watch triggered on file: ' + filename);
 
             if (filename.indexOf(config.server.datasets.translations) > -1) {

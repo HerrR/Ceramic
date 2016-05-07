@@ -1,15 +1,11 @@
 <md-toolbar class="md-medium-tall cvc-header" layout="row" md-whiteframe="4">
-    <h1 style="cursor: pointer" ng-click="gotoHome()" class="md-display-1 cvc-page-title cvc-title-color">{{'page_title' | translate}}</h1>
+    <h1 style="cursor: default;" class="md-display-1 cvc-page-title cvc-title-color">{{'page_title' | translate}}</h1>
     <div flex></div>
-    <md-content class="md-padding cvc-menubar" layout-align-lg="column" layout="row" layout-align="center center">
-        <div class="fb-like md-display-1" data-share="true" data-width="450" data-show-faces="true"></div>
-        <md-button class="md-accent" style="text-transform:none">Why XXXX</md-button>
-        <md-button class="md-accent" style="text-transform:none">About us</md-button>
-        <md-button ng-if="isPerson()" class="md-raised md-primary md-hue-2" style="text-transform:none" ng-disabled="!hasSignedIn()">
-            <i class="fa fa-commenting-o fa-lg cvc-padding-rxs" aria-hidden="true"></i>Messages (0)
-        </md-button>
-        <md-button class="md-raised md-primary md-hue-2" style="text-transform:none" ng-click="signOut()" ng-disabled="!hasSignedIn()">
-            <i class="fa fa-sign-out fa-lg cvc-padding-rxs" aria-hidden="true"></i>Sign out
-        </md-button>
-    </md-content>
+    <md-button class="md-accent" style="text-transform:none; color: #343434" ng-click="showWhy($event)">Why XXXX</md-button>
+    <md-button class="md-accent" style="text-transform:none; color: #343434" ng-click="showAbout($event)">About us</md-button>
+    <div style="padding-left: 10px; padding-right: 10px; min-width: 160px">
+        <div class="fb-like md-display-1" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+        <div><a href="https://twitter.com/share" class="twitter-share-button" data-via="me"><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</a></div>
+    </div>
 </md-toolbar>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

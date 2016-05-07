@@ -29,6 +29,10 @@
             console.log('error');
         });
 
+        $scope.hasScreenMessage = function() {
+            return ScreenMessageService.hasMessage();
+        };
+
         $scope.answerChanged = function() {
             $scope.newHashCode = computeHashCode($scope.person);
             $scope.valuesChanged = ($scope.newHashCode != $scope.oldHashCode);
@@ -57,6 +61,14 @@
                     ScreenMessageService.info('message.cancel_success');
                 }
             });
+        };
+
+        $scope.signOut = function() {
+            ProfileService.signOut();
+        };
+
+        $scope.hasSignedIn = function() {
+            return ProfileService.hasSignedIn();
         };
 
         $scope.getMatches = function(filter) {

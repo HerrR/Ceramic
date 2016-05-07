@@ -10,10 +10,6 @@
     MainController.$inject = ['$scope', 'ProfileService', 'ScreenMessageService'];
 
     function MainController($scope, ProfileService, ScreenMessageService) {
-        $scope.hasScreenMessage = function() {
-            return ScreenMessageService.hasMessage();
-        };
-
         $scope.hasSignedIn = function() {
             return ProfileService.hasSignedIn();
         };

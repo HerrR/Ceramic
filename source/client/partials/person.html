@@ -1,103 +1,115 @@
-<md-content class="md-padding cvc-transparent" layout-align-xs="column" layout="row" layout-align="center center">
-    <div flex flex-gt-md="50" layout="column">
-        <md-card class="cvc-card">
-            <md-card-title>
-                <md-card-title-media>
-                    <img src="anonymous-user-profile.jpg"/>
-                </md-card-title-media>
-                <md-card-title-text class="cvc-padding-lmd">
-                    <div layout="column">
-                        <div>
-                            <span class="cvc-profile-name cvc-full-width">
-                                <input class="cvc-profile-username cvc-nobackground" placeholder="{{'profile.username' | translate}}" type="text" maxlength="30" ng-model="person.name" ng-change="answerChanged()" required/>
-                            </span>
+<md-toolbar layout="row" style="background-color: rgb(125,126,125); min-height: 32px" md-whiteframe="4">
+    <md-button class="md-raised md-warn" ng-disabled="!valuesChanged" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> {{'profile.cancel' | translate}}</md-button>
+    <md-button class="md-raised md-primary" ng-disabled="!valuesChanged" ng-click="save()"><i class="fa fa-hdd-o" aria-hidden="true"></i> {{'profile.save' | translate}}</md-button>
+    <md-button class="md-raised" style="background-color: red; color:white" ng-click="generatePDF()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{'profile.generate_pdf' | translate}}</md-button>
+    <div flex></div>
+    <cvc-screen-message ng-if="hasScreenMessage()"></cvc-screen-message>
+    <div flex></div>
+    <md-button class="md-raised md-primary md-hue-2" style="text-transform:none" ng-disabled="!hasSignedIn()">
+        <i class="fa fa-commenting-o fa-lg cvc-padding-rxs" aria-hidden="true"></i>Messages (0)
+    </md-button>
+    <md-button class="md-raised md-primary" style="text-transform:none" ng-click="signOut()" ng-disabled="!hasSignedIn()">
+        <i class="fa fa-sign-out fa-lg cvc-padding-rxs" aria-hidden="true"></i>Sign out
+    </md-button>
+</md-toolbar>
+
+<form name="personForm">
+    <div flex layout="row">
+        <md-sidenav md-is-locked-open="true" class="cvc-nobackground" style="z-index: 0">
+            <md-list class="cvc-container-border">
+                <md-list-item>
+                    <img style="min-width: 100%; min-height: auto" src="anonymous-user-profile.jpg"/>
+                </md-list-item>
+
+                <md-list-item>
+                    <md-input-container class="md-block cvc-full-width" style="margin-bottom: 0">
+                        <label>{{'profile.username' | translate}}</label>
+                        <input ng-change="answerChanged()" name="name" ng-model="person.name" required/>
+                        <div ng-messages="person.name.$error">
+                            <div ng-message="required">{{'error.required' | translate}}</div>
                         </div>
-                        <div>
-                            <p>
-                                <md-datepicker class="cvc-nobackground" ng-change="answerChanged()" md-min-date="MIN_DATE" md-max-date="MAX_DATE" md-placeholder="{{'profile.date_of_birth' | translate}}" ng-required="true" ng-model="person.dateOfBirth"></md-datepicker>
-                            </p>
+                    </md-input-container>
+                </md-list-item>
+
+                <md-list-item>
+                    <label class="cvc-full-width">
+                        <i class="fa fa-birthday-cake cvc-padding-rxs" aria-hidden="true"></i>
+                        <md-datepicker class="cvc-nobackground" ng-change="answerChanged()" md-min-date="MIN_DATE" md-max-date="MAX_DATE" md-placeholder="{{'profile.date_of_birth' | translate}}" ng-required="true" ng-model="person.dateOfBirth"></md-datepicker>
+                    </label>
+                </md-list-item>
+
+                <md-list-item>
+                    <label class="cvc-full-width">
+                        <i class="fa fa-globe cvc-padding-rxs" aria-hidden="true"></i>
+                        [COUNTRY]
+                    </label>
+                </md-list-item>
+
+                <md-list-item>
+                    <label class="cvc-full-width">
+                        <i class="fa fa-map-signs cvc-padding-rxs" aria-hidden="true"></i>
+                        [CITY]
+                    </label>
+                </md-list-item>
+
+                <md-list-item>
+                    <label class="cvc-full-width">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        [EMAIL]
+                    </label>
+                </md-list-item>
+
+                <md-list-item>
+                    <label class="cvc-full-width">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        [PHONE]
+                    </label>
+                </md-list-item>
+
+                 <md-list-item>
+                    <label class="cvc-full-width">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        [ACTIVE]
+                    </label>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+
+         <md-content flex id="content" class="cvc-nobackground">
+            <md-list class="cvc-container-border">
+                <md-list-item style="padding-bottom: 32px">
+                    <label style="width: 100%"><b>{{'profile.basic' | translate}}</b>
+                        <div class="cvc-container-border">
+                            <label>{{person.name}}</label>
+                            <!-- TODO: more data goes here -->
                         </div>
-                        <div>
-                            <p>
-                                <md-checkbox ng-change="answerChanged()" ng-model="person.searchable" aria-label="{{'profile.searchable' | translate}}">{{'profile.searchable' | translate}}</md-checkbox>
-                            </p>
+                    </label>
+                </md-list-item>
+
+                <md-list-item style="padding-bottom: 32px">
+                    <label style="width: 100%"><b>{{'profile.education' | translate}}</b>
+                        <div class="cvc-container-border">
+                            <!-- TODO: more data goes here -->
                         </div>
-                        <div>
-                            <p>
-                                <md-autocomplete placeholder="Select your country" md-select-on-match="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display">
-                                    <md-item-template>
-                                        <span md-highlight-text="searchText">{{item.display}}</span>
-                                    </md-item-template>
-                                    <md-not-found>
-                                        No matches found.
-                                    </md-not-found>
-                                </md-autocomplete>
-                            </p>
+                    </label>
+                </md-list-item>
+
+                <md-list-item style="padding-bottom: 32px">
+                    <label style="width: 100%"><b>{{'profile.work_experience' | translate}}</b>
+                        <div class="cvc-container-border">
+                            <!-- TODO: more data goes here -->
                         </div>
-                    </div>
-                </md-card-title-text>
-            </md-card-title>
+                    </label>
+                </md-list-item>
 
-                
-
-<!--
-            <md-card-title>
-                <md-card-title-media>
-                    <div class="md-media-lg card-media">
-                        <img src="{{IMAGES.ANONYMOUS_PERSON}}"/>
-                    </div>
-                </md-card-title-media>
-                <md-card-title-text class="cvc-padding-lmd">
-                        <span class="md-headline cvc-profile-name cvc-full-width">
-                            <input class="cvc-profile-username" placeholder="{{'profile.username' | translate}}" type="text" maxlength="30" required/>
-                        </span>
-                        <span class="md-subhead">
-                            <md-datepicker md-placeholder="{{'profile.date_of_birth' | translate}}" ng-model="a"></md-datepicker>
-                            <md-checkbox ng-model="d" aria-label="{{'profile.searchable' | translate}}">{{'profile.searchable' | translate}}</md-checkbox>
-                        </span>
-                </md-card-title-text>
-            </md-card-title>
--->
-        </md-card>
-        
-        <md-card class="cvc-card">
-            <md-card-header class="cvc-profile-card-header">Level 1 info</md-card-header>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
-
-        <md-card class="cvc-card">
-            <md-card-header class="cvc-profile-card-header">Level 2 info</md-card-header>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
-
-        <md-card class="cvc-card">
-            <md-card-header class="cvc-profile-card-header">Level 3 info</md-card-header>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
-
-        <md-card class="cvc-card">
-            <md-card-header class="cvc-profile-card-header">Level 4 info</md-card-header>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
-
-        <md-card class="cvc-card">
-            <md-card-header class="cvc-profile-card-header">Level 5 info</md-card-header>
-            <md-card-title>
-                another level of info...
-            </md-card-title>
-        </md-card>
-
-        <md-content class="md-padding cvc-menubar" layout-align-md="column" layout="row" layout-align="center center">
-            <md-button class="md-raised md-warn" ng-disabled="!valuesChanged" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> {{'profile.cancel' | translate}}</md-button>
-            <md-button class="md-raised md-primary" ng-disabled="!valuesChanged" ng-click="save()"><i class="fa fa-hdd-o" aria-hidden="true"></i> {{'profile.save' | translate}}</md-button>
-        </md-content>
+                <md-list-item style="padding-bottom: 32px">
+                    <label style="width: 100%"><b>{{'profile.general_info' | translate}}</b>
+                        <div class="cvc-container-border">
+                            <!-- TODO: more data goes here -->
+                        </div>
+                    </label>
+                </md-list-item>
+            </md-list>
+         </md-content>
     </div>
-</md-content>
+</form>
