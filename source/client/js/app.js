@@ -20,7 +20,7 @@
         .run(Run);
 
     Run.$inject = ['$rootScope','localStorageService'];
-    Config.$inject = ['$mdThemingProvider', '$mdDateLocaleProvider'];
+    Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider'];
 
     function Run($rootScope, localStorageService) {
         localStorageService.clearAll();
@@ -42,7 +42,9 @@
         $rootScope.language = transformedLanguage;
     }
 
-    function Config($mdThemingProvider, $mdDateLocaleProvider) {
+    function Config($compileProvider, $mdThemingProvider, $mdDateLocaleProvider) {
+        $compileProvider.debugInfoEnabled(false);
+
         $mdThemingProvider.theme('default')
             .primaryPalette('blue')
             .accentPalette('grey');
