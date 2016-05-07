@@ -32,7 +32,7 @@
         app.use(bodyParser.urlencoded({extended: true}));
         app.use(bodyParser.json({limit: config.server.dataSizeLimit}));
         app.use(compression());
-        app.use(express.static(__dirname + config.server.staticFiles)); // TODO: user path.joint(a,b)
+        app.use(express.static(path.join(__dirname,config.server.staticFiles)));
         app.use(ddos({
             // TODO: Configuration options
         }));
@@ -73,7 +73,7 @@
         });
 
         app.get('/public/countries/:filter', function(req, res) {
-            res.json(cvcDataset.filterDataset(req.params.filter, cvcDataset.getDatasets().countries, function(value, filter) {
+            res.json(cvcDataset.filterDataset(req.params.filter, cvcDataset.getDatasets().countries, 5, function(value, filter) {
                 return value.indexOf(filter) === 0;
             }));
         });

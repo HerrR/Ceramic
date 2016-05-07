@@ -23,7 +23,7 @@
     var datasets;
 
     function readDataset(filename, defaultValue, doCrash) {
-        return cvcUtils.readJsonFileSync(config.server.datasets.folder + filename, defaultValue, doCrash);  // TODO: user path.join(a,b)
+        return cvcUtils.readJsonFileSync(path.join(config.server.datasets.folder,filename), defaultValue, doCrash);
     }
 
     function watchDatasets(filename) {
@@ -57,13 +57,15 @@
             };
 
             watch(config.server.datasets.watch, watchDatasets);
+
+            // TODO: create REST endpoints here for all datasets
         },
 
         getDatasets: function() {
             return datasets;
         },
 
-        filterDataset: function(filter, dataset, compareFunc) {
+        filterDataset: function(filter, dataset, maxResultCount, compareFunc) {
             var filtered = [];
             var filterText = filter.toLowerCase();
 
@@ -74,6 +76,10 @@
                         if (compareFunc(value.toLowerCase(),filterText)) {
                             var jsonText = '{"' + key + '":"' + value + '"}';
                             filtered.push(JSON.parse(jsonText));
+
+                            if (maxResultCount-- <= 0) {
+                                return filtered;
+                            }
                         }
                     }
                 }
