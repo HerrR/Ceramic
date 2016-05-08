@@ -1,3 +1,15 @@
-<md-dialog aria-label="About" ng-cloak>
-    <md-button ng-click="cancel()">Hide</md-button>
+<md-dialog aria-label="{{'about.title' | translate}}" ng-cloak style="width: 600px; max-width: 600px">
+    <md-toolbar class="cvc-header">
+        <div class="md-toolbar-tools">
+            <h1 style="cursor: default;" class="cvc-title-color cvc-page-title">{{'about.title' | translate}}</h1>
+            <span flex></span>
+            <md-button ng-click="cancel()"><i class="fa fa-times fa-lg cvc-title-color" aria-hidden="true"></i></md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <!-- TODO: trusted HTML -->
+        </div>
+    </md-dialog-content>
 </md-dialog>

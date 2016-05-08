@@ -185,9 +185,9 @@ body {
 }
 
 .cvc-container-border {
-    border: solid 2px;
+    border: solid 1px;
     margin: 8px;
-    border-color: #3EBF3E;
+    border-color: #A0A0A0;
     border-radius: 3px;
     padding: 8px;
 
@@ -204,6 +204,8 @@ body {
 }
 
 .cvc-profile-picture {
+    border: solid 1px;
+    border-color: #A0A0A0;
     min-width: 100%;
     min-height: auto;
     border-radius: 4px;
