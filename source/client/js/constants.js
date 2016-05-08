@@ -6,9 +6,12 @@
     angular
         .module('cvc')
         .constant('AppConstants', {
-            RESOURCE_PATH: 'public/',
-            PRIVATE_PATH: 'private/',
-            AUTH_PATH: 'auth/',
+            PATHS: {
+                PUBLIC: 'public/',
+                PRIVATE: 'private/',
+                DATASETS: 'public/',
+                AUTHORIZED: 'auth/'
+            },
             MESSAGE_LIFE: 2000,
             USER_TYPES: {
                 COMPANY: 'COMPANY',

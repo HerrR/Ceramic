@@ -21,7 +21,6 @@
   const fs = require('fs');
   const https = require('https');
   const log4js = require('log4js');
-  const cluster = require('cluster');
   const uuid = require('node-uuid');
   const chalk = require('chalk');
 
@@ -64,6 +63,7 @@
   process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
   logger.info('Number of clusters: ' + numClusters);
+  logger.info('Number of CPU\'s: ' + numCPUs);
   logger.info('Starting directory: ' + __dirname);
   logger.info('Serving static files: ' + config.server.staticFiles);
 

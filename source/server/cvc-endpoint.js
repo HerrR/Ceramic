@@ -57,32 +57,6 @@
             // TODO: update password, email
         });*/
 
-        app.get('/public/translations/:locale', function(req, res) {
-            res.json(cvcDataset.getDatasets().translations[req.params.locale] || {});
-        });
-
-        app.get('/public/schools/:filter', function(req, res) {
-            // TODO: fetch all schools that contain 'filter'
-        });
-
-        app.get('/public/skills/:filter', function(req, res) {
-            // TODO: fetch all skills that contain 'filter'
-        });
-
-        app.get('/public/countries', function(req, res) {
-            res.json(cvcDataset.getDatasets().countries);
-        });
-
-        app.get('/public/countries/:filter', function(req, res) {
-            res.json(cvcDataset.filterDataset(req.params.filter, cvcDataset.getDatasets().countries, 5, function(value, filter) {
-                return value.indexOf(filter) === 0;
-            }));
-        });
-
-        app.get('/public/cities/:country/:filter', function(req, res) {
-            // TODO: fetch all cities that contain 'filter' and are in 'country'
-        });
-
         app.get('/private/person', cvcAuthentication.ensureAuthenticated, function(req, res) {
             cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, savedProfile) {
                 if (err !== null) {
@@ -128,10 +102,11 @@
             config = _config;
             logger = _logger;
 
-            cvcDataset.init(config, logger);
             cvcDatabase.init(config, logger);
 
             initExpress();
+
+            cvcDataset.init(config, logger, app);
             cvcAuthentication.init(config, logger, app, cvcDatabase);
 
             initEndpoints();

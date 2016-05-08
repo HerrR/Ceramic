@@ -10,7 +10,7 @@
   Translations.$inject = ['$resource', 'AppConstants', 'LocalCache'];
 
   function Translations($resource, AppConstants, LocalCache) {
-    return $resource(AppConstants.RESOURCE_PATH + 'translations/:locale', {}, {
+    return $resource(AppConstants.PATHS.DATASETS + 'translations/:locale', {}, {
       'get': {
         method: 'GET',
         cache: LocalCache

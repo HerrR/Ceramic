@@ -40,7 +40,7 @@
             userType = undefined;
             userid = undefined;
             profileData = undefined;
-            window.location.href = AppConstants.AUTH_PATH + 'logout';
+            window.location.href = AppConstants.PATHS.AUTHORIZED + 'logout';
         };
 
         self.hasSignedIn = function() {
@@ -60,7 +60,7 @@
         };
 
         self.reload = function(callback) {
-            $http.get(AppConstants.PRIVATE_PATH + userType.toLowerCase(),{}).then(function(resp) {
+            $http.get(AppConstants.PATHS.PRIVATE + userType.toLowerCase(),{}).then(function(resp) {
                 profileData = resp.data;
                 prepareProfileData(profileData);
                 if (callback) {
@@ -76,7 +76,7 @@
 
         self.save = function(callback) {
             if (profileData) {
-                $http.post(AppConstants.PRIVATE_PATH + userType.toLowerCase(),profileData).then(function(resp) {
+                $http.post(AppConstants.PATHS.PRIVATE + userType.toLowerCase(),profileData).then(function(resp) {
                     ScreenMessageService.info(AppConstants.TEXT_KEYS.PROFILE_SAVED);
                     if (callback) {
                         callback(profileData, null);

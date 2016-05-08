@@ -16,7 +16,7 @@
         ProfileService.signIn('PERSON');
 
         $scope.testSignIn = function(type) {
-            window.location.href = AppConstants.AUTH_PATH + 'facebook/login';
+            window.location.href = AppConstants.PATHS.AUTHORIZED + 'facebook/login';
         };
 
         $scope.hasSignedIn = function() {

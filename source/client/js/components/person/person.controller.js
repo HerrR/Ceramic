@@ -10,15 +10,14 @@
     Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants', 'ScreenMessageService'];
 
     function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService) {
-        $scope.IMAGES = AppConstants.IMAGES;
-        $scope.MIN_DATE = new Date(1940,0,1,0,0,0,0);
+        $scope.MIN_DATE = new Date(1900,0,1,0,0,0,0);
         $scope.MAX_DATE = new Date();
         $scope.person = ProfileService.getProfile().person;
         $scope.oldHashCode = computeHashCode($scope.person);
         $scope.newHashCode = computeHashCode($scope.person);
         $scope.valuesChanged = false;
 
-        $http.get(AppConstants.RESOURCE_PATH + 'countries', {}).then(function(resp) {
+        $http.get(AppConstants.PATHS.DATASETS + 'countries', {}).then(function(resp) {
             var items = [];
             for (var key in resp.data) {
                 items.push({display: resp.data[key]});
