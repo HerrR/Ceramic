@@ -13,8 +13,8 @@
     </md-button>
 </md-toolbar>
 
-<form name="personForm">
-    <div flex layout="row" class="cvc-nobackground">
+<form name="personForm" class="cvc-nobackground" ng-if="hasSignedIn()" style="z-index: 2">
+    <div flex layout="row">
         <md-sidenav md-is-locked-open="true" class="cvc-nobackground" style="z-index: 0">
             <md-list class="cvc-container-border">
                 <md-list-item>

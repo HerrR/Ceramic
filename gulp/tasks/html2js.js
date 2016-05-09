@@ -7,11 +7,13 @@
 
 var config = require('../main.conf'),
   gulp = require('gulp'),
+  plumber = require('gulp-plumber'),
   htmlmin = require('gulp-htmlmin'),
   ngHtml2Js = require("gulp-ng-html2js");
 
 gulp.task('html2js', function() {
   return gulp.src(config.html.angular.source)
+    .pipe(plumber())
     .pipe(htmlmin({
       collapseWhitespace: true,
       removeComments: true

@@ -25,7 +25,7 @@
 
             $scope.countries = items;
         }, function() {
-            console.log('error');
+            // TODO: handle error
         });
 
         $scope.hasScreenMessage = function() {

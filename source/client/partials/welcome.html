@@ -1,31 +1,55 @@
-<md-content class="md-padding cvc-transparent cvc-welcome-background" layout-align-lg="column" layout="row" layout-align="center center">
-    <main class="md-padding" style="padding-bottom: 94px" layout="column" layout-align="center center" flex>
-        <h1 class="cvc-title-color cvc-welcome-text">{{'home.select_user_or_company' | translate}}</h1>
-        <label style="position: relative; bottom: 20px">{{'home.subtitle' | translate}}</label>
+<md-content class="md-padding cvc-transparent" layout-align-lg="column" layout="row" layout-align="center center">
+    <main class="md-padding" layout="column" layout-align="center center" flex>
+        <h1 class="animated fadeIn cvc-title-color cvc-welcome-text cvc-welcome-title-delay">{{'home.select_user_or_company' | translate}}</h1>
+        <label class="animated fadeIn cvc-subtitle cvc-welcome-title-delay">{{'home.subtitle' | translate}}</label>
+        
         <main class="md-padding" layout="row" layout-align="space-around start" flex>
-            <md-card class="animated fadeIn cvc-main-select-card" ng-click="testSignIn('COMPANY')">
-                <img src="logo-company.jpg" class="md-card-image" alt="{{'common.company' | translate}}">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{'home.company.title' | translate}}</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <p>{{'home.company.description' | translate}}</p>
-                </md-card-content>
-            </md-card>
+            
+            <div class="animated fadeInLeft" style="animation-delay: 0.6s">
+                <md-card class="cvc-welcome-company cvc-main-select-card" ng-click="signInCompany('')">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline"></span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p>{{'home.company.description' | translate}}</p>
+                    </md-card-content>
+                </md-card>
+            </div>
 
-            <md-card class="animated fadeIn cvc-main-select-card" ng-click="testSignIn('PERSON')">
-                <img src="logo-person.jpg" class="md-card-image" alt="{{'common.user' | translate}}" />
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{'home.user.title' | translate}}</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <p>{{'home.user.description' | translate}}</p>
-                </md-card-content>
-            </md-card>
+            <div class="animated fadeInRight" style="animation-delay: 0.6s">
+                <md-card ng-if="!isShowSignInPerson()" class="cvc-welcome-person cvc-main-select-card" ng-click="doSignInPerson()">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline"></span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p>{{'home.user.description' | translate}}</p>
+                    </md-card-content>
+                </md-card>
+
+                <div ng-if="isShowSignInPerson()" class="animated flipInY">
+                    <md-card class="cvc-main-select-card" style="cursor: default;">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">
+                                    <p ng-repeat="provider in loginProviders" ng-if="loginProviders.length > 0">
+                                        <md-button style="min-width: 100%; font-size: 75%" class="md-raised md-primary" ng-click="signInPerson(provider)"><i class="fa fa-lg fa-{{provider}}-square" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
+                                    </p>
+                                    <p ng-if="loginProviders.length === 0">
+                                        <!-- TODO: display error message -->
+                                    </p>
+                                </span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>{{'home.select_sign_in_method' | translate}}</p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
         </main>
     </main>
 </md-content>

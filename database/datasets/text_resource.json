@@ -4,11 +4,13 @@
         "translations": {
             "page_title": "Title of the page",
             "home.company.title": "Company",
-            "home.company.description": "Short description of what this is and for who this is for.",
+            "home.company.description": "Looking to employ?",
             "home.user.title": "User",
-            "home.user.description": "Short description of what this is and for who this is for.",
+            "home.user.description": "Looking for work?",
             "home.select_user_or_company": "Career Direct Connect",
             "home.subtitle": "The premier Peer 2 Peer recrutting facilitator",
+            "home.select_sign_in_method": "Select login method",
+            "home.sign_in_using": "Sign in using",
 
             "profile.generate_pdf": "Get PDF",
             "profile.save": "save",

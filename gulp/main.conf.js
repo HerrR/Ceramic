@@ -97,7 +97,7 @@ module.exports = {
 
   resources: {
     client: {
-      source: ['./source/client/favicon.ico','./source/client/images/*.jpg']
+      source: ['./source/client/favicon.ico','./source/client/images/*.*']
     },
     server: {
       source: ['./source/server/*.json', './database/datasets/*.json', 'local.crt', 'local.key']
