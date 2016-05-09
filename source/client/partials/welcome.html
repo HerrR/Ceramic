@@ -19,7 +19,7 @@
             </div>
 
             <div class="animated fadeInRight" style="animation-delay: 0.6s">
-                <md-card ng-if="!isShowSignInPerson()" class="cvc-welcome-person cvc-main-select-card" ng-click="doSignInPerson()">
+                <md-card id="cvcPersonMainCard" class="cvc-welcome-person cvc-main-select-card" onclick="$('#cvcPersonMainCard').hide(); $('#cvcPersonLoginCard').show();">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline"></span>
@@ -30,7 +30,7 @@
                     </md-card-content>
                 </md-card>
 
-                <div ng-if="isShowSignInPerson()" class="animated flipInY">
+                <div id="cvcPersonLoginCard" class="animated flipInY" style="display: none">
                     <md-card class="cvc-main-select-card" style="cursor: default;">
                         <md-card-title>
                             <md-card-title-text>

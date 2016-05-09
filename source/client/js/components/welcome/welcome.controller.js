@@ -11,7 +11,6 @@
     Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants'];
 
     function Controller($scope, $http, ProfileService, AppConstants) {
-        $scope.showSignInPerson = false;
         $scope.loginProviders = [];
 
         ProfileService.signIn('PERSON');
@@ -33,14 +32,6 @@
 
         $scope.hasSignedIn = function() {
             return ProfileService.hasSignedIn();
-        };
-
-        $scope.isShowSignInPerson = function() {
-            return $scope.showSignInPerson;
-        };
-
-        $scope.doSignInPerson = function() {
-            $scope.showSignInPerson = true;
         };
     }
 })();
