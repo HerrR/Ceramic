@@ -22,6 +22,27 @@
                 </md-list-item>
 
                 <md-list-item>
+                    <md-input-container class="md-icon-float md-block">
+                        <label>{{'profile.username' | translate}}</label>
+                        <md-icon class="fa fa-user fa-lg" aria-hidden="true"></md-icon>
+                        <input ng-change="answerChanged()" ng-model="person.name" type="text" required/>
+                        <div ng-messages="person.name.$error">
+                            <div ng-message="required">{{'error.required' | translate}}</div>
+                        </div>
+                    </md-input-container>
+                </md-list-item>
+
+                <md-list-item>
+                    <md-input-container class="md-icon-float md-block">
+                        <label>{{'profile.date_of_birth' | translate}}</label>
+                        <md-icon class="fa fa-birthday-cake fa-lg" aria-hidden="true"></md-icon>
+                        <md-datepicker class="cvc-nobackground" ng-change="answerChanged()" md-min-date="MIN_DATE" md-max-date="MAX_DATE" ng-required="true" ng-model="person.dateOfBirth"></md-datepicker>
+                        <div ng-messages="person.name.$error">
+                            <div ng-message="required">{{'error.required' | translate}}</div>
+                        </div>
+                    </md-input-container>
+                </md-list-item>
+                <!--<md-list-item>
                     <md-input-container class="md-block cvc-full-width" style="margin-bottom: 0">
                         <label>{{'profile.username' | translate}}</label>
                         <input ng-change="answerChanged()" name="name" ng-model="person.name" required/>
@@ -71,7 +92,7 @@
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         [ACTIVE]
                     </label>
-                </md-list-item>
+                </md-list-item>-->
             </md-list>
         </md-sidenav>
 

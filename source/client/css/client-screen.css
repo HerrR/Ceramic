@@ -18,7 +18,15 @@ md-sidenav.md-closed.md-locked-open-add-active {
 
 body {
     background-color: #bbb;
-    font: normal normal normal 16px/18px 'Helvetica Neue', Arial, sans-serif;
+    font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+p {
+    font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.cvc-font {
+    font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .cvc-main-color {
@@ -73,6 +81,11 @@ body {
 
 .cvc-transparent {
     background-color: rgba(0,0,0,0);
+}
+
+.cvc-welcome-card-text {
+    font-size: 110%;
+    font-weight: bold;
 }
 
 .cvc-welcome-company {
@@ -272,4 +285,8 @@ body {
     box-sizing: border-box;
     text-decoration: none;
     font: normal normal normal 12px/18px 'Helvetica Neue',Arial,sans-serif;
+}
+
+.twitter-share-button:hover {
+    background-color: #1DA1F2;
 }
