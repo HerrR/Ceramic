@@ -35,10 +35,14 @@
             recieveEmailNotifications: mongoose.Schema.Types.Boolean
         },
         person: {
-            name: String,
+            name: String,           // TODO: put in "general"
             description: String,
             dateOfBirth: Date,
-            searchable: mongoose.Schema.Types.Boolean,
+            email: String,          // TODO: initialize to registered email
+
+
+            searchable: mongoose.Schema.Types.Boolean, // TODO: put in "settings"
+            
             skills: [{
                 type: String,
                 level: mongoose.Schema.Types.Number

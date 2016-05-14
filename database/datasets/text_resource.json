@@ -19,6 +19,11 @@
             "profile.date_of_birth": "Date of birth",
             "profile.searchable": "Make profile searchable?",
 
+            "profile.dashboard": "Dashboard",
+            "profile.cv": "CV",
+            "profile.library": "Library",
+            "profile.settings": "Settings",
+
             "profile.basic": "Basic",
             "profile.education": "Education",
             "profile.work_experience": "Work Experience",

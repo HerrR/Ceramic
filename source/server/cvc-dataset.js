@@ -115,6 +115,13 @@
 
             initDatasets();
             initEndPoints(_app);
+        },
+
+        isCountry: function(key) {
+            // TODO
+            return true;
         }
+
+        // TODO: verification functions for all datasets
     };
 })();

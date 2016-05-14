@@ -18,13 +18,15 @@
         <md-sidenav md-is-locked-open="true" class="cvc-nobackground">
             <md-list class="cvc-container-border">
                 <md-list-item>
-                    <img class="cvc-profile-picture" src="anonymous-user-profile.jpg"/>
+                    <div style="text-align:center; min-width: 100%;">
+                        <img class="cvc-profile-picture" src="anonymous-user-profile.jpg"/>
+                    </div>
                 </md-list-item>
 
                 <md-list-item>
-                    <md-input-container class="md-icon-float md-block">
+                    <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
                         <label>{{'profile.username' | translate}}</label>
-                        <md-icon class="fa fa-user fa-lg" aria-hidden="true"></md-icon>
+                        <md-icon class="fa fa-user fa-lg" aria-hidden="true" style="color:DodgerBlue"></md-icon>
                         <input ng-change="answerChanged()" ng-model="person.name" type="text" required/>
                         <div ng-messages="person.name.$error">
                             <div ng-message="required">{{'error.required' | translate}}</div>
@@ -33,19 +35,10 @@
                 </md-list-item>
 
                 <md-list-item>
-                    <md-input-container class="md-icon-float md-block">
+                    <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
                         <label>{{'profile.date_of_birth' | translate}}</label>
-                        <md-icon class="fa fa-birthday-cake fa-lg" aria-hidden="true"></md-icon>
-                        <md-datepicker class="cvc-nobackground" ng-change="answerChanged()" md-min-date="MIN_DATE" md-max-date="MAX_DATE" ng-required="true" ng-model="person.dateOfBirth"></md-datepicker>
-                        <div ng-messages="person.name.$error">
-                            <div ng-message="required">{{'error.required' | translate}}</div>
-                        </div>
-                    </md-input-container>
-                </md-list-item>
-                <!--<md-list-item>
-                    <md-input-container class="md-block cvc-full-width" style="margin-bottom: 0">
-                        <label>{{'profile.username' | translate}}</label>
-                        <input ng-change="answerChanged()" name="name" ng-model="person.name" required/>
+                        <md-icon class="fa fa-birthday-cake fa-lg" aria-hidden="true" style="color:red"></md-icon>
+                        <input ng-change="answerChanged()" ng-model="person.dateOfBirth" type="date" required/>
                         <div ng-messages="person.name.$error">
                             <div ng-message="required">{{'error.required' | translate}}</div>
                         </div>
@@ -54,90 +47,98 @@
 
                 <md-list-item>
                     <label class="cvc-full-width">
-                        <i class="fa fa-birthday-cake cvc-padding-rxs" aria-hidden="true"></i>
-                        <md-datepicker class="cvc-nobackground" ng-change="answerChanged()" md-min-date="MIN_DATE" md-max-date="MAX_DATE" md-placeholder="{{'profile.date_of_birth' | translate}}" ng-required="true" ng-model="person.dateOfBirth"></md-datepicker>
-                    </label>
-                </md-list-item>
-
-                <md-list-item>
-                    <label class="cvc-full-width">
-                        <i class="fa fa-globe cvc-padding-rxs" aria-hidden="true"></i>
+                        <i class="fa fa-globe fa-lg" aria-hidden="true" style="color:blue"></i>
                         [COUNTRY]
                     </label>
                 </md-list-item>
 
                 <md-list-item>
                     <label class="cvc-full-width">
-                        <i class="fa fa-map-signs cvc-padding-rxs" aria-hidden="true"></i>
+                        <i class="fa fa-map-signs fa-lg" aria-hidden="true" style="color:Peru"></i>
                         [CITY]
                     </label>
                 </md-list-item>
 
                 <md-list-item>
                     <label class="cvc-full-width">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <i class="fa fa-envelope fa-lg" aria-hidden="true" style="color:Tan"></i>
                         [EMAIL]
                     </label>
                 </md-list-item>
 
                 <md-list-item>
                     <label class="cvc-full-width">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <i class="fa fa-phone fa-lg" aria-hidden="true" style="color:DarkSlateGray"></i>
                         [PHONE]
                     </label>
                 </md-list-item>
-
-                 <md-list-item>
-                    <label class="cvc-full-width">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                        [ACTIVE]
-                    </label>
-                </md-list-item>-->
             </md-list>
         </md-sidenav>
 
          <md-content flex id="content" class="cvc-nobackground">
-            <md-list class="cvc-container-border">
-                <md-list-item style="padding-bottom: 32px">
-                    <label style="width: 100%"><b>{{'profile.settings' | translate}}</b>
-                        <div class="cvc-container-border">
-                            <!-- TODO: more data goes here -->
-                        </div>
-                    </label>
-                </md-list-item>
+            <md-tabs md-dynamic-height md-border-bottom class="cvc-container-border">
+                <md-tab label="{{'profile.dashboard' | translate}}">
+                    <md-content class="md-padding cvc-nobackground">
+                        <!-- TODO: more data goes here -->
+                        TODO
+                    </md-content>
+                </md-tab>
 
-                <md-list-item style="padding-bottom: 32px">
-                    <label style="width: 100%"><b>{{'profile.education' | translate}}</b>
-                        <div class="cvc-container-border">
-                            <!-- TODO: more data goes here -->
-                        </div>
-                    </label>
-                </md-list-item>
+                <md-tab label="{{'profile.cv' | translate}}">
+                    <md-content class="md-padding cvc-nobackground">
+                        <md-list>
+                            <md-list-item style="padding-bottom: 32px">
+                                <label style="width: 100%"><b>{{'profile.education' | translate}}</b>
+                                    <div class="cvc-container-border">
+                                        <!-- TODO: more data goes here -->
+                                        TODO
+                                    </div>
+                                </label>
+                            </md-list-item>
 
-                <md-list-item style="padding-bottom: 32px">
-                    <label style="width: 100%"><b>{{'profile.work_experience' | translate}}</b>
-                        <div class="cvc-container-border">
-                            <!-- TODO: more data goes here -->
-                        </div>
-                    </label>
-                </md-list-item>
+                            <md-list-item style="padding-bottom: 32px">
+                                <label style="width: 100%"><b>{{'profile.work_experience' | translate}}</b>
+                                    <div class="cvc-container-border">
+                                        <!-- TODO: more data goes here -->
+                                        TODO
+                                    </div>
+                                </label>
+                            </md-list-item>
 
-                <md-list-item style="padding-bottom: 32px">
-                    <label style="width: 100%"><b>{{'profile.general_info' | translate}}</b>
-                        <div class="cvc-container-border">
-                            <!-- TODO: more data goes here -->
-                        </div>
-                    </label>
-                </md-list-item>
+                            <md-list-item style="padding-bottom: 32px">
+                                <label style="width: 100%"><b>{{'profile.general_info' | translate}}</b>
+                                    <div class="cvc-container-border">
+                                        <!-- TODO: more data goes here -->
+                                        TODO
+                                    </div>
+                                </label>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </md-tab>
 
-                <md-list-item style="padding-bottom: 32px">
-                    <label style="width: 100%"><b>{{'profile.attachments' | translate}}</b>
-                        <div class="cvc-container-border">
-                            <!-- TODO: more data goes here -->
-                        </div>
-                    </label>
-                </md-list-item>
-            </md-list>
+                <md-tab label="{{'profile.library' | translate}}">
+                    <md-content class="md-padding cvc-nobackground">
+                        <md-list>
+                            <md-list-item style="padding-bottom: 32px">
+                                <label style="width: 100%"><b>{{'profile.attachments' | translate}}</b>
+                                    <div class="cvc-container-border">
+                                        <!-- TODO: more data goes here -->
+                                        TODO
+                                    </div>
+                                </label>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </md-tab>
+
+                <md-tab label="{{'profile.settings' | translate}}">
+                    <md-content class="md-padding cvc-nobackground">
+                        <!-- TODO: more data goes here -->
+                        TODO
+                    </md-content>
+                </md-tab>
+            </md-tabs>
          </md-content>
     </div>
 </form>
