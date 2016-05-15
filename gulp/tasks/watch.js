@@ -19,7 +19,7 @@ gulp.task('livereload:js', function() {
 });
 
 gulp.task('livereload:dependency', function() {
-  return gulp.src(config.js.client.generated.dependency)
+  return gulp.src(config.js.client.source)
     .pipe(plumber())
     .pipe(livereload());
 });
@@ -78,9 +78,9 @@ gulp.task('watch', function(done) {
   });
 
   gulp.watch(config.js.server.source, ['watch:node']);
-  //gulp.watch(config.resources.client.source, ['watch:resources:client']);
+  gulp.watch(config.resources.client.source, ['watch:resources:client']);
   gulp.watch(config.resources.server.source, ['watch:resources:server']);
-  gulp.watch(config.js.client.source, ['watch:js']);
+  gulp.watch(config.js.client.watch, ['watch:js']);
   gulp.watch(config.test.e2e.source, ['lint:e2e']);
   gulp.watch(config.test.unit.source, ['lint:unit', 'test']);
   gulp.watch(config.js.client.dependency.source, ['watch:dependency']);

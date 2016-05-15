@@ -44,11 +44,12 @@ module.exports = {
     source: ['./source/server/**/*.js', './source/client/js/**/*.js'],
     client: {
       generated: {
-        js: ['client*.min.js','client*.min.map'],
+        js: ['./dist/client/client*.min.js','./dist/client/client*.min.map'],
         dependency: ['dependency*.min.js', 'dependency*.min.map'],
         destination: 'client.min.js'
       },
-      source: ['./source/client/js/**/*.js', 'temp/*.js'],
+      watch: './source/client/js/**/*.js',
+      source: ['./source/client/js/**/*.js', 'temp/js/**/*.js'],
       exclude: './source/client/browserify.js',
       dependency: {
         source: './source/client/browserify.js',
@@ -69,6 +70,7 @@ module.exports = {
       source: [
         //'./bower_components/angular-material/angular-material.css',
         //'./bower_components/font-awesome/css/font-awesome.css',
+        //'./bower_components/flag-icon-css/css/flag-icon-css.css',
         './source/client/css/client-screen.css'
       ],
       destination_name: 'client-screen.min.css'
@@ -86,7 +88,7 @@ module.exports = {
       source: './source/client/partials/**/*.html',
       module_name: 'cvc',
       prefix: 'partials/',
-      destination_dir: 'temp'
+      destination_dir: 'temp/js'
     }
   },
 
@@ -97,7 +99,7 @@ module.exports = {
 
   resources: {
     client: {
-      source: ['./source/client/favicon.ico','./source/client/images/*.*']
+      source: ['./source/client/favicon.ico','./source/client/images/**/*.*']
     },
     server: {
       source: ['./source/server/*.json', './database/datasets/*.json', 'local.crt', 'local.key']
@@ -113,15 +115,15 @@ module.exports = {
     files: 'dist/**/*',
     base_dir: 'dist/',
     temp_folder: './temp/',
-    all: ['dist/client/**/*','dist/server/**/*','temp/*.js'],
+    all: ['dist/client/**/*','dist/server/**/*','temp/js/**/*.js'],
     server: {
       base_dir: 'dist/server/',
       js: ['dist/server/**/*.js'],
     },
     client: {
       base_dir: 'dist/client/',
-      js: ['dist/client/**/*.js','temp/*.js','dist/client/**/*.map'],
-      scripts: ['dist/client/client*.js','temp/*.js','dist/client/client*.map'],
+      js: ['dist/client/**/*.js','temp/js/**/*.js','dist/client/**/*.map'],
+      scripts: ['dist/client/client*.js','temp/js/**/*.js','dist/client/client*.map'],
       dependency: ['dist/client/dependency*.js','dist/client/dependency*.map'],
       css: 'dist/client/**/*.css'
     }

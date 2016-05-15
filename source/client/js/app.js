@@ -14,17 +14,19 @@
             'pascalprecht.translate',
             'LocalStorageModule',
             'angulartics',
-            'angulartics.google.analytics'
+            'angulartics.google.analytics',
+            'chart.js'
             ])
         .config(Config)
         .run(Run);
 
     Run.$inject = ['$rootScope','localStorageService'];
-    Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider'];
+    Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider', 'ChartJsProvider'];
 
     function Run($rootScope, localStorageService) {
         localStorageService.clearAll();
     
+        // TODO: load from service
         var lang2lang = [
             {k: 'sv', v:'se'},
             {k: 'se', v:'se'},
@@ -42,12 +44,15 @@
         $rootScope.language = transformedLanguage;
     }
 
-    function Config($compileProvider, $mdThemingProvider, $mdDateLocaleProvider) {
+    function Config($compileProvider, $mdThemingProvider, $mdDateLocaleProvider, ChartJsProvider) {
         $compileProvider.debugInfoEnabled(false);
 
         $mdThemingProvider.theme('default')
             .primaryPalette('blue')
             .accentPalette('grey');
+
+        //ChartJsProvider.setOptions({ colours : [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
+        //ChartJsProvider.setOptions('Line', { datasetFill: false });
 
         // TODO: $mdDateLocaleProvider, https://material.angularjs.org/latest/api/service/$mdDateLocaleProvider
     }

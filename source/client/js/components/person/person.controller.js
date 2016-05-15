@@ -84,6 +84,18 @@
             return filtered;
         };
 
+        $scope.getTabFile = function(tab) {
+            return 'partials/person/' + tab + '.html';
+        };
+
+        $scope.getSidebar = function() {
+            return 'partials/person/sidebar.html';
+        };
+
+        $scope.getToolbar = function() {
+            return 'partials/person/toolbar.html';
+        };
+
         function computeHashCode(object) {
             var data = JSON.stringify(object);
             var hash = 0, i, chr, len;

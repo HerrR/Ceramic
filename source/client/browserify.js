@@ -15,3 +15,6 @@
 
 //var angulartics = require('../../bower_components/angulartics/dist/angulartics.min.js');
 //var googleAngulartics = require('../../bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js');
+
+//var charts = require('../../bower_components/chart.js');
+//var ngCharts = require('../../bower_components/angular-chart.js');
