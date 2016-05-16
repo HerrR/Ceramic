@@ -96,6 +96,7 @@
             return 'partials/person/toolbar.html';
         };
 
+        // TODO: cant just use the JSON.stringify as the hash value
         function computeHashCode(object) {
             var data = JSON.stringify(object);
             var hash = 0, i, chr, len;

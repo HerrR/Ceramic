@@ -6,7 +6,7 @@
         <main class="md-padding" layout="row" layout-align="space-around start" flex>
             
             <div class="animated fadeInLeft" style="animation-delay: 0.6s">
-                <md-card class="cvc-welcome-company cvc-main-select-card" ng-click="signInCompany('')">
+                <md-card id="cvcCompanyMainCard" class="cvc-welcome-company cvc-main-select-card" ng-click="signInCompany('')">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline"></span>
@@ -36,7 +36,7 @@
                             <md-card-title-text>
                                 <span class="md-headline">
                                     <p ng-repeat="provider in loginProviders" ng-if="loginProviders.length > 0">
-                                        <md-button style="min-width: 95%" class="md-raised md-primary" ng-click="signInPerson(provider)"><i class="fa fa-lg fa-{{provider}}-square" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
+                                        <md-button id="{{provider}}SignIn" style="min-width: 95%" class="md-raised md-primary" ng-click="signInPerson(provider)"><i class="fa fa-lg fa-{{provider}}-square" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
                                     </p>
                                     <p ng-if="loginProviders.length === 0">
                                         <!-- TODO: display error message -->

@@ -9,7 +9,7 @@
         <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
             <label>{{'profile.username' | translate}}</label>
             <md-icon class="fa fa-user fa-lg" aria-hidden="true" style="color:DodgerBlue"></md-icon>
-            <input ng-change="answerChanged()" ng-model="person.name" type="text" required/>
+            <input id="cvcPersonName" ng-change="answerChanged()" ng-model="person.name" type="text" required/>
             <div ng-messages="person.name.$error">
                 <div ng-message="required">{{'error.required' | translate}}</div>
             </div>
@@ -20,7 +20,7 @@
         <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
             <label>{{'profile.date_of_birth' | translate}}</label>
             <md-icon class="fa fa-birthday-cake fa-lg" aria-hidden="true" style="color:red"></md-icon>
-            <input ng-change="answerChanged()" ng-model="person.dateOfBirth" type="date" required/>
+            <input id="cvcPersonDateOfBirth" ng-change="answerChanged()" ng-model="person.dateOfBirth" type="date" required/>
             <div ng-messages="person.name.$error">
                 <div ng-message="required">{{'error.required' | translate}}</div>
             </div>

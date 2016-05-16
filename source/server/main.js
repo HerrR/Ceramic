@@ -45,6 +45,8 @@
     }
   }
 
+  // TODO: check if all environment variables exist and are set
+
   const logger = log4js.getLogger('base');
   log4js.configure(config.log4js.config);
   logger.setLevel(config.log4js.level);

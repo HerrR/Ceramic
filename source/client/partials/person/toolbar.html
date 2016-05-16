@@ -1,14 +1,14 @@
 <md-toolbar layout="row" style="background-color: rgb(125,126,125); min-height: 32px" md-whiteframe="4">
-    <md-button class="md-raised md-warn" ng-disabled="!valuesChanged" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> {{'profile.cancel' | translate}}</md-button>
-    <md-button class="md-raised md-primary" ng-disabled="!valuesChanged" ng-click="save()"><i class="fa fa-hdd-o" aria-hidden="true"></i> {{'profile.save' | translate}}</md-button>
+    <md-button id="cvcCancel" class="md-raised md-warn" ng-disabled="!valuesChanged" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> {{'profile.cancel' | translate}}</md-button>
+    <md-button id="cvcSave" class="md-raised md-primary" ng-disabled="!valuesChanged" ng-click="save()"><i class="fa fa-hdd-o" aria-hidden="true"></i> {{'profile.save' | translate}}</md-button>
     <div flex></div>
     <cvc-screen-message ng-if="hasScreenMessage()"></cvc-screen-message>
     <div flex></div>
-    <md-button class="md-raised" style="background-color: red; color:white" ng-click="generatePDF()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{'profile.generate_pdf' | translate}}</md-button>
-    <md-button class="md-raised md-primary md-hue-2" style="text-transform:none" ng-disabled="!hasSignedIn()">
+    <md-button id="cvcGetPDF" class="md-raised" style="background-color: red; color:white" ng-click="generatePDF()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{'profile.generate_pdf' | translate}}</md-button>
+    <md-button id="cvcMessages" class="md-raised md-primary md-hue-2" style="text-transform:none">
         <i class="fa fa-commenting-o fa-lg cvc-padding-rxs" aria-hidden="true"></i>Messages (0)
     </md-button>
-    <md-button class="md-raised md-primary" style="text-transform:none" ng-click="signOut()" ng-disabled="!hasSignedIn()">
+    <md-button id="cvcSignOut" class="md-raised md-primary" style="text-transform:none" ng-click="signOut()">
         <i class="fa fa-sign-out fa-lg cvc-padding-rxs" aria-hidden="true"></i>Sign out
     </md-button>
 </md-toolbar>

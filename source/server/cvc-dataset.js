@@ -15,6 +15,7 @@
 
     const path = require('path');
     const watch = require('node-watch');
+    const redis = require("redis");
 
     const cvcUtils = require('./cvc-utils');
 
@@ -22,10 +23,32 @@
     var logger;
     var datasets;
 
+    /*var cacheClient = redis.createClient();
+
+    cacheClient.on("error", function (err) {
+        logger.error("Cache: " + err);
+    });*/
+
+    /*
+    cacheClient.set("string key", "string val", redis.print);
+    cacheClient.hset("hash key", "hashtest 1", "some value", redis.print);
+    cacheClient.hset(["hash key", "hashtest 2", "some other value"], redis.print);
+    cacheClient.hkeys("hash key", function (err, replies) {
+        console.log(replies.length + " replies:");
+        replies.forEach(function (reply, i) {
+            console.log("    " + i + ": " + reply);
+        });
+        cacheClient.quit();
+    });
+
+    https://www.npmjs.com/package/redis
+    */
+
     function readDataset(filename, defaultValue, doCrash) {
         return cvcUtils.readJsonFileSync(path.join(config.server.datasets.folder,filename), defaultValue, doCrash);
     }
 
+    // TODO: this code should not be here, a service should update and fill the cache
     function watchDatasets(filename) {
         if (config.server.datasets.watchEnabled) {
             logger.info('Watch triggered on file: ' + filename);
