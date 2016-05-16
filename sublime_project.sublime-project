@@ -4,7 +4,7 @@
         {
             "path": "./",
             "folder_exclude_patterns": ["dist","node_modules","bower_components","temp","report","docs","coverage"],
-            "file_exclude_patterns": ["sublime_project*","*gitignore","local.*"]
+            "file_exclude_patterns": ["sublime_project*","local.*"]
         }
     ],
     "settings":
