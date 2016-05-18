@@ -39,7 +39,9 @@
             description: String,
             dateOfBirth: Date,
             email: String,          // TODO: initialize to registered email
-
+            country: String,
+            city: String,
+            phone: String,
 
             searchable: mongoose.Schema.Types.Boolean, // TODO: put in "settings"
             

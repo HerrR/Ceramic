@@ -19,6 +19,12 @@
             "profile.date_of_birth": "Date of birth",
             "profile.searchable": "Make profile searchable?",
 
+            "profile.country": "Country",
+            "profile.city": "City",
+            "profile.email": "Email",
+            "profile.phone_number": "Phone Number",
+
+
             "profile.dashboard": "Dashboard",
             "profile.cv": "CV",
             "profile.library": "Library",

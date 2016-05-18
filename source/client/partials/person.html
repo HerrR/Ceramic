@@ -1,6 +1,6 @@
 <ng-include src="getToolbar()"></ng-include>
 
-<form name="personForm" class="cvc-nobackground" ng-if="hasSignedIn()" style="z-index: 2">
+<form name="personForm" class="cvc-nobackground" ng-if="hasSignedIn()" style="z-index: 2" autocomplete="on">
     <div flex layout="row">
         <md-sidenav md-is-locked-open="true" class="cvc-nobackground">
             <ng-include src="getSidebar()"></ng-include>

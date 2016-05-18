@@ -9,7 +9,7 @@
         <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
             <label>{{'profile.username' | translate}}</label>
             <md-icon class="fa fa-user fa-lg" aria-hidden="true" style="color:DodgerBlue"></md-icon>
-            <input id="cvcPersonName" ng-change="answerChanged()" ng-model="person.name" type="text" required/>
+            <input id="cvcPersonName" ng-change="answerChanged()" ng-model="person.name" type="text" name="full-name" required/>
             <div ng-messages="person.name.$error">
                 <div ng-message="required">{{'error.required' | translate}}</div>
             </div>
@@ -20,7 +20,7 @@
         <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
             <label>{{'profile.date_of_birth' | translate}}</label>
             <md-icon class="fa fa-birthday-cake fa-lg" aria-hidden="true" style="color:red"></md-icon>
-            <input id="cvcPersonDateOfBirth" ng-change="answerChanged()" ng-model="person.dateOfBirth" type="date" required/>
+            <input id="cvcPersonDateOfBirth" ng-change="answerChanged()" ng-model="person.dateOfBirth" type="date" name="birthday" required/>
             <div ng-messages="person.name.$error">
                 <div ng-message="required">{{'error.required' | translate}}</div>
             </div>
@@ -28,30 +28,46 @@
     </md-list-item>
 
     <md-list-item>
-        <label class="cvc-full-width">
-            <i class="fa fa-globe fa-lg" aria-hidden="true" style="color:blue"></i>
-            [COUNTRY]
-        </label>
+        <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
+            <label>{{'profile.country' | translate}}</label>
+            <md-icon class="fa fa-globe fa-lg" aria-hidden="true" style="color:blue"></md-icon>
+            <input id="cvcPersonCountry" ng-change="answerChanged()" ng-model="person.country" type="text" name="country"/>
+            <div ng-messages="person.name.$error">
+                <div ng-message="required">{{'error.required' | translate}}</div>
+            </div>
+        </md-input-container>
     </md-list-item>
 
     <md-list-item>
-        <label class="cvc-full-width">
-            <i class="fa fa-map-signs fa-lg" aria-hidden="true" style="color:Peru"></i>
-            [CITY]
-        </label>
+        <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
+            <label>{{'profile.city' | translate}}</label>
+            <md-icon class="fa fa-map-signs fa-lg" aria-hidden="true" style="color:peru"></md-icon>
+            <input id="cvcPersonCity" ng-change="answerChanged()" ng-model="person.city" type="text" name="city"/>
+            <div ng-messages="person.name.$error">
+                <div ng-message="required">{{'error.required' | translate}}</div>
+            </div>
+        </md-input-container>
     </md-list-item>
 
     <md-list-item>
-        <label class="cvc-full-width">
-            <i class="fa fa-envelope fa-lg" aria-hidden="true" style="color:Tan"></i>
-            [EMAIL]
-        </label>
+        <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
+            <label>{{'profile.email' | translate}}</label>
+            <md-icon class="fa fa-envelope fa-lg" aria-hidden="true" style="color:tan"></md-icon>
+            <input id="cvcPersonEmail" ng-change="answerChanged()" ng-model="person.email" type="text" name="email" required/>
+            <div ng-messages="person.name.$error">
+                <div ng-message="required">{{'error.required' | translate}}</div>
+            </div>
+        </md-input-container>
     </md-list-item>
 
     <md-list-item>
-        <label class="cvc-full-width">
-            <i class="fa fa-phone fa-lg" aria-hidden="true" style="color:DarkSlateGray"></i>
-            [PHONE]
-        </label>
+        <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
+            <label>{{'profile.phone_number' | translate}}</label>
+            <md-icon class="fa fa-phone fa-lg" aria-hidden="true" style="color:DarkSlateGray"></md-icon>
+            <input id="cvcPersonPhoneNumber" ng-change="answerChanged()" ng-model="person.phone" type="text" name="phone"/>
+            <div ng-messages="person.name.$error">
+                <div ng-message="required">{{'error.required' | translate}}</div>
+            </div>
+        </md-input-container>
     </md-list-item>
 </md-list>
