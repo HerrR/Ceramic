@@ -10,8 +10,9 @@
     Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants', 'ScreenMessageService'];
 
     function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService) {
-        $scope.MIN_DATE = new Date(1900,0,1,0,0,0,0);
-        $scope.MAX_DATE = new Date();
+        $scope.MIN_DATE = "1900-01-01";
+        $scope.MAX_DATE = new Date(); // TODO: at least 16 years old
+
         $scope.person = ProfileService.getProfile().person;
         $scope.oldHashCode = computeHashCode($scope.person);
         $scope.newHashCode = computeHashCode($scope.person);

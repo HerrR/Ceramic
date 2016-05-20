@@ -13,9 +13,9 @@
 (function () {
   "use strict";
 
-  const mongoose = require('mongoose');
+    const mongoose = require('mongoose');
 
-  const System = {
+    const System = {
         created: Date,
         locked: Date,
         deleted: Date,
@@ -27,12 +27,36 @@
         authenticationProvider: String
     };
 
+    const Skill = {
+        type: String,
+        level: mongoose.Schema.Types.Number
+    };
+
+    const Experience = {
+        company: String,
+        industry: String,
+        fromDate: Date,
+        toDate: Date,
+        responsibilities: [{
+            type: String,
+            amount: mongoose.Schema.Types.Number
+        }]
+    };
+
+    const Library = {
+        ame: String,
+        type: String,
+        size: mongoose.Schema.Types.Number,
+        added: Date
+    };
+
     const Person = {
         userid: { type: String, index: true },
         email: { type: String, index: true },
         system: System,
         settings: {
-            recieveEmailNotifications: mongoose.Schema.Types.Boolean
+            recieveEmailNotifications: mongoose.Schema.Types.Boolean,
+            searchable: mongoose.Schema.Types.Boolean
         },
         person: {
             name: String,           // TODO: put in "general"
@@ -42,23 +66,12 @@
             country: String,
             city: String,
             phone: String,
-
-            searchable: mongoose.Schema.Types.Boolean, // TODO: put in "settings"
             
-            skills: [{
-                type: String,
-                level: mongoose.Schema.Types.Number
-            }],
-            experience: {
-                company: String,
-                industry: String,
-                fromDate: Date,
-                toDate: Date,
-                responsibilities: [{
-                    type: String,
-                    amount: mongoose.Schema.Types.Number
-                }]
-            }
+            skills: [Skill],
+            experience: [Experience],
+            library: [Library]
+
+            // TODO: education, general information
         }
     };
 

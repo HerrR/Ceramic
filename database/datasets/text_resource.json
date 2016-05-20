@@ -18,6 +18,7 @@
             "profile.username": "Full name",
             "profile.date_of_birth": "Date of birth",
             "profile.searchable": "Make profile searchable?",
+            "profile.recieveEmailNotifications": "Recieve email notifications?",
 
             "profile.country": "Country",
             "profile.city": "City",

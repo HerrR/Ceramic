@@ -13,7 +13,7 @@
     function Controller($scope, $http, ProfileService, AppConstants) {
         $scope.loginProviders = [];
 
-        ProfileService.signIn('PERSON');
+        ProfileService.signIn(AppConstants.USER_TYPES.PERSON); // TODO: the type must be stored locally or in the user token
 
         $http.get(AppConstants.PATHS.PUBLIC + 'loginstrategies', {}).then(function(res) {
             $scope.loginProviders = res.data;

@@ -1,4 +1,5 @@
 <md-content class="md-padding cvc-nobackground">
-    <!-- TODO: more data goes here -->
-    TODO: Settings
+    <md-checkbox ng-change="answerChanged()" ng-model="person.settings.searchable" aria-label="searchable">{{'profile.searchable' | translate}}</md-checkbox>
+    <br>
+    <md-checkbox ng-change="answerChanged()" ng-model="person.settings.recieveEmailNotifications" aria-label="searchable">{{'profile.recieveEmailNotifications' | translate}}</md-checkbox>
 </md-content>
