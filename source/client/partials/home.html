@@ -1,10 +1,11 @@
 <div layout="column" layout-fill>
-    <div class="cvc-welcome-background" style="min-height: 100vh; max-width: 100vw;">
+    <div class="cvc-welcome-background">
         <header><cvc-header></cvc-header></header>
-        <footer><cvc-footer></cvc-footer></footer>
 
         <cvc-welcome ng-if="hasSignedIn() === false"></cvc-welcome>
         <cvc-person ng-if="hasSignedIn() === true && isPerson()"></cvc-person>
         <cvc-company ng-if="hasSignedIn() === true && isCompany()"></cvc-company>
+
+        <footer><cvc-footer></cvc-footer></footer>
     </div>
 </div>

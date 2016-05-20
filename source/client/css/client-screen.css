@@ -25,6 +25,11 @@ p {
     font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
+#cvcWelcome {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .cvc-font {
     font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -109,7 +114,7 @@ p {
     background: black;
     opacity: 0.4;
 
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -228,6 +233,12 @@ p {
 .cvc-welcome-background {
     background-image: url('bg-main.jpg');
     background-size: cover;
+    /*background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;*/
+
+    /*min-height: 100vh;
+    max-width: 100vw;*/
 }
 
 .cvc-welcome-text {
