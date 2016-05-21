@@ -25,6 +25,46 @@ p {
     font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
+#facebookSignIn {
+    background-color: #3b5998;
+}
+
+#googleSignIn {
+    background-color: #dd4b39;
+}
+
+#localSignIn {
+    background-color: #f4c20d;
+}
+
+#httpSignIn {
+    background-color: #3cba54;
+}
+
+#linkedinSignIn {
+    background-color: #007bb5;
+}
+
+#githubSignIn {
+    background-color: #000000;
+}
+
+#twitterSignIn {
+    background-color: #55acee;
+}
+
+#youtubeSignIn {
+    background-color: #bb0000;
+}
+
+#instagramSignIn {
+    background-color: #125688;
+}
+
+#whatsappSignIn {
+    background-color: #4dc247;
+}
+
 #cvcWelcome {
     overflow-x: hidden;
     overflow-y: hidden;
