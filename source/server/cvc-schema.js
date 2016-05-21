@@ -27,14 +27,15 @@
         authenticationProvider: String
     };
 
-    const Skill = {
+    const PersonSkill = {
         type: String,
         level: mongoose.Schema.Types.Number
     };
 
-    const Experience = {
+    const PersonExperience = {
         company: String,
         industry: String,
+        role: String,
         fromDate: Date,
         toDate: Date,
         responsibilities: [{
@@ -50,14 +51,36 @@
         added: Date
     };
 
+    const PersonSettings = {
+        recieveEmailNotifications: mongoose.Schema.Types.Boolean,
+        searchable: mongoose.Schema.Types.Boolean
+    };
+
+    const PersonEducation = {
+        school: String,
+        degree: String,
+        faculty: String,
+        fromDate: Date,
+        toDate: Date
+    };
+
+    const PersonLanguage = {
+        name: String,
+        level: mongoose.Schema.Types.Number
+    }
+
+    const PersonGeneralInfo = {
+        language: [PersonLanguage],
+        personalDescription: String,
+        interests: String,
+        otherMerits: String
+    };
+
     const Person = {
         userid: { type: String, index: true },
         email: { type: String, index: true },
         system: System,
-        settings: {
-            recieveEmailNotifications: mongoose.Schema.Types.Boolean,
-            searchable: mongoose.Schema.Types.Boolean
-        },
+        settings: PersonSettings,
         person: {
             name: String,           // TODO: put in "general"
             description: String,
@@ -67,11 +90,14 @@
             city: String,
             phone: String,
             
-            skills: [Skill],
-            experience: [Experience],
-            library: [Library]
+            cv: {
+                skills: [PersonSkill],
+                experience: [PersonExperience],
+                education: [PersonEducation],
+                generalInfo: PersonGeneralInfo
+            },
 
-            // TODO: education, general information
+            library: [Library]
         }
     };
 

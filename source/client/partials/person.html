@@ -1,4 +1,4 @@
-<ng-include src="getToolbar()"></ng-include>
+<ng-include ng-if="hasSignedIn()" src="getToolbar()"></ng-include>
 
 <form name="personForm" class="cvc-nobackground" ng-if="hasSignedIn()" style="z-index: 2" autocomplete="on">
     <div flex layout="row">
@@ -15,3 +15,5 @@
         </md-content>
     </div>
 </form>
+
+<div style="min-height:5.6vh"></div>

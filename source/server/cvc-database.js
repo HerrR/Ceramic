@@ -87,6 +87,7 @@
 
             if (dst.system.locked === undefined) {
                 if (dst.person !== undefined) {
+                    dst.settings = src.settings;
                     dst.person = src.person;
                 }
 

@@ -13,9 +13,9 @@
         $scope.MIN_DATE = "1900-01-01";
         $scope.MAX_DATE = new Date(); // TODO: at least 16 years old
 
-        $scope.person = ProfileService.getProfile().person;
-        $scope.oldHashCode = computeHashCode($scope.person);
-        $scope.newHashCode = computeHashCode($scope.person);
+        $scope.profile = ProfileService.getProfile();
+        $scope.oldHashCode = computeHashCode($scope.profile);
+        $scope.newHashCode = computeHashCode($scope.profile);
         $scope.valuesChanged = false;
 
         $http.get(AppConstants.PATHS.DATASETS + 'countries', {}).then(function(resp) {
@@ -34,7 +34,7 @@
         };
 
         $scope.answerChanged = function() {
-            $scope.newHashCode = computeHashCode($scope.person);
+            $scope.newHashCode = computeHashCode($scope.profile);
             $scope.valuesChanged = ($scope.newHashCode != $scope.oldHashCode);
         };
 
@@ -43,9 +43,9 @@
 
             ProfileService.save(function(data, err) {
                 if (err === null) {
-                    $scope.person = data.person;
-                    $scope.oldHashCode = computeHashCode($scope.person);
-                    $scope.newHashCode = computeHashCode($scope.person);
+                    $scope.profile = data;
+                    $scope.oldHashCode = computeHashCode($scope.profile);
+                    $scope.newHashCode = computeHashCode($scope.profile);
                     $scope.valuesChanged = false;
                     ScreenMessageService.info('message.saved_success');
                 }
@@ -55,9 +55,9 @@
         $scope.cancel = function() {
             ProfileService.reload(function (data, err) {
                 if (err === null) {
-                    $scope.person = data.person;
-                    $scope.oldHashCode = computeHashCode($scope.person);
-                    $scope.newHashCode = computeHashCode($scope.person);
+                    $scope.profile = data;
+                    $scope.oldHashCode = computeHashCode($scope.profile);
+                    $scope.newHashCode = computeHashCode($scope.profile);
                     $scope.valuesChanged = false;
                     ScreenMessageService.info('message.cancel_success');
                 }
@@ -65,11 +65,12 @@
         };
 
         $scope.signOut = function() {
+            $scope.profile = null;
             ProfileService.signOut();
         };
 
         $scope.hasSignedIn = function() {
-            return ProfileService.hasSignedIn();
+            return ($scope.profile !== null && $scope.profile !== undefined);
         };
 
         $scope.getMatches = function(filter) {
@@ -99,6 +100,10 @@
 
         // TODO: cant just use the JSON.stringify as the hash value
         function computeHashCode(object) {
+            if (object === null || object === undefined) {
+                return '';
+            }
+
             var data = JSON.stringify(object);
             var hash = 0, i, chr, len;
 
