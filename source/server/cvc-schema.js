@@ -45,8 +45,10 @@
     };
 
     const Library = {
-        ame: String,
+        id: String,
+        name: String,
         type: String,
+        checksum: String,
         size: mongoose.Schema.Types.Number,
         added: Date
     };

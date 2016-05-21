@@ -91,7 +91,9 @@
     }
 
     function initEndPoints(app) {
-        // TODO: list supported translations
+        app.get('/public/translations', function(req, res) {
+            // TODO: filter all locales and send array
+        });
 
         app.get('/public/translations/:locale', function(req, res) {
             res.json(datasets.translations[req.params.locale] || {});
@@ -118,6 +120,38 @@
         app.get('/public/cities/:country/:filter', function(req, res) {
             // TODO: fetch all cities that contain 'filter' and are in 'country'
         });
+
+        app.get('/public/skilllevels', function(req, res) {
+            // TODO: skill level
+        });
+
+        app.get('/public/languagelevels', function(req, res) {
+            // TODO: language level
+        });
+
+        app.get('/public/industries', function(req, res) {
+            // TODO: industry
+        });
+
+        app.get('/public/roles', function(req, res) {
+            // TODO: role
+        });
+
+        app.get('/public/schooldegrees', function(req, res) {
+            // TODO: school degree
+        });
+
+        app.get('/public/schoolfaculties', function(req, res) {
+            // TODO: school faculty
+        });
+
+        app.get('/public/languages', function(req, res) {
+            // TODO: list languages
+        });
+
+        app.get('/public/languages/:filter', function(req, res) {
+            // TODO: list languages
+        });
     }
 
     function initDatasets() {
@@ -140,11 +174,49 @@
             initEndPoints(_app);
         },
 
-        isCountry: function(key) {
+        isCountry: function(country) {
+            // TODO
+            return true;
+        },
+
+        isCity: function(country, city) {
+            // TODO
+            return true;
+        },
+
+        isSkillLevel: function(level) {
+            // TODO
+            return true;
+        },
+
+        isLanguageLevel: function(level) {
+            // TODO
+            return true;
+        },
+
+        isIndustry: function(industry) {
+            // TODO
+            return true;
+        },
+
+        isRole: function(role) {
+            // TODO
+            return true;
+        },
+
+        isSchoolDegree: function(schoolDegree) {
+            // TODO
+            return true;
+        },
+
+        isSchoolFaculty: function(schoolFaculty) {
+            // TODO
+            return true;
+        },
+
+        isLanguage: function(language) {
             // TODO
             return true;
         }
-
-        // TODO: verification functions for all datasets
     };
 })();
