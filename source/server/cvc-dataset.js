@@ -20,6 +20,8 @@
 
     const cvcUtils = require('./cvc-utils');
 
+    const MAX_FILTER_ELEMENTS = 10;
+
     var config;
     var logger;
     var datasets;
@@ -64,19 +66,19 @@
         }
     }
 
-    function filterDataset(filter, dataset, maxResultCount, compareFunc) {
-        var filtered = [];
-        var filterText = filter.toLowerCase();
+    function filterDataset(filter, dataset, compareFunc) {
+        const filterText = filter.toLowerCase();
 
+        var filtered = [];
         if (dataset) {
             for (var key in dataset) {
                 if (dataset.hasOwnProperty(key)) {
                     var value = dataset[key];
                     if (compareFunc(value.toLowerCase(),filterText)) {
-                        var jsonText = '{"' + key + '":"' + value + '"}';  // TODO: use loadash?
+                        var jsonText = '{"' + key + '":"' + value + '"}';
                         filtered.push(JSON.parse(jsonText));
 
-                        if (maxResultCount-- <= 0) {
+                        if (MAX_FILTER_ELEMENTS-- <= 0) {
                             return filtered;
                         }
                     }
@@ -96,8 +98,8 @@
             res.json(datasets.translations[req.params.locale.toLowerCase()] || {});
         });
 
-        app.get('/public/schools/:filter', function(req, res) {
-            // TODO: fetch all schools that contain 'filter'
+        app.get('/public/skills', function(req, res) {
+            // TODO: fetch all skills
         });
 
         app.get('/public/skills/:filter', function(req, res) {
@@ -109,7 +111,7 @@
         });
 
         app.get('/public/countries/:filter', function(req, res) {
-            res.json(filterDataset(req.params.filter, datasets.countries, 5, function(value, filter) {
+            res.json(filterDataset(req.params.filter, datasets.countries, function(value, filter) {
                 return value.indexOf(filter) === 0;
             }));
         });
@@ -154,7 +156,15 @@
     function initDatasets() {
         datasets = {
             translations: readDataset(config.server.datasets.translations,{},true),
-            countries: readDataset(config.server.datasets.countries,{},true)
+            countries: readDataset(config.server.datasets.countries,{},true),
+            skills: {},
+            skilllevels: {},
+            languagelevels: {},
+            industries: {},
+            roles: {},
+            schooldegrees: {},
+            schoolfaculties: {},
+            languages: {}
         };
 
         watch(config.server.datasets.watch, watchDatasets);
@@ -188,7 +198,7 @@
         });
 
         cacheClient.on('message', function(channel, message) {
-
+            // TODO: listen for datasets that are to be loaded full
         });
 
         // TODO: substribe to the small datasets: cacheClient.subscribe('countries');
