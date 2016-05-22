@@ -16,6 +16,7 @@
     const path = require('path');
     const watch = require('node-watch');
     const redis = require("redis");
+    const loadashObject = require('lodash/fp/object');
 
     const cvcUtils = require('./cvc-utils');
 
@@ -88,11 +89,11 @@
 
     function initEndPoints(app) {
         app.get('/public/translations', function(req, res) {
-            // TODO: filter all locales and send array
+            res.json(loadashObject.keys(datasets.translations));
         });
 
         app.get('/public/translations/:locale', function(req, res) {
-            res.json(datasets.translations[req.params.locale] || {});
+            res.json(datasets.translations[req.params.locale.toLowerCase()] || {});
         });
 
         app.get('/public/schools/:filter', function(req, res) {
