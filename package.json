@@ -96,6 +96,7 @@
     "express-session": "^1.13.0",
     "log4js": "^0.6.33",
     "mongoose": "^4.4.12",
+    "node-schedule": "^1.1.0",
     "node-uuid": "^1.4.7",
     "node-watch": "^0.3.5",
     "nodemailer": "^2.3.2",

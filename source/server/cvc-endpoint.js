@@ -111,6 +111,12 @@
             initEndpoints();
         },
 
+        close: function() {
+            cvcAuthentication.close();
+            cvcDatabase.close();
+            cvcDataset.close();
+        },
+
         getApp: function() {
             return app;
         }

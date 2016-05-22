@@ -31,7 +31,7 @@
 
   function exitHandler(options, err) {
     if (options.cleanup) {
-      // TODO: cleanup
+      cvcEndpoint.close();
       console.log(chalk.blue('Shutting Down...'));
     }
 

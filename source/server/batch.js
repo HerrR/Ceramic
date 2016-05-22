@@ -11,8 +11,11 @@
   "use strict";
 
   const fs = require('fs');
-  const log4js = require('log4js');
   const chalk = require('chalk');
+  const redis = require("redis");
+  const log4js = require('log4js');
+  const watch = require('node-watch');
+  const schedule = require('node-schedule');
 
   const config = require(process.argv[2] || '../../config/dev.json');
 

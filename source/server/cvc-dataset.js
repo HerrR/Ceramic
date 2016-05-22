@@ -205,6 +205,10 @@
             initEndPoints(_app);
         },
 
+        close: function() {
+            cacheClient.quit();
+        },
+
         isCountry: function(country) {
             // TODO
             return true;

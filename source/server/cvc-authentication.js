@@ -181,6 +181,9 @@
             initPassportAuthentications();
         },
 
+        close: function() {
+        },
+
         listEnabledStrategies: function() {
             var list = [];
 

@@ -69,6 +69,10 @@
             connectToDatabase();
         },
 
+        close: function() {
+            database.close();
+        },
+
         getDatamodels: function() {
             return datamodels;
         },
