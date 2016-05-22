@@ -1,3 +1,9 @@
 <div class="cvc-footer" layout="row" layout-align="center center" md-whiteframe="2" flex>
-    <label>Company &copy; 2016 XXXX</label>
+    <label style="padding-right:10px">Company &copy; 2016 XXXX</label>
+    <label style="padding-right:10px">YYYY</label>
+    <label style="padding-right:10px" ng-if="translations">{{'label.selectLanguage' | translate}} 
+        <span class="cvc-language-select" ng-repeat="translation in translations" ng-click="changeLanguage(translation)">
+            <img class="flag" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/flags/4x3/{{translation}}.svg" alt="{{translation}}">
+        </span>
+    </label>
 </div>
