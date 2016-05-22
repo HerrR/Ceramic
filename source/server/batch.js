@@ -43,4 +43,7 @@
 
   // TODO: load and run batch tasks
 
+  // TODO: setup watch for datasets
+
+  // TODO: do not terminate this program when it comes to the end
 }());

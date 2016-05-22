@@ -69,7 +69,7 @@
     const PersonLanguage = {
         name: String,
         level: mongoose.Schema.Types.Number
-    }
+    };
 
     const PersonGeneralInfo = {
         language: [PersonLanguage],

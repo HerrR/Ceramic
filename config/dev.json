@@ -36,6 +36,10 @@
         }
     },
 
+    "redis": {
+        "port": 6379
+    },
+
     "authentication": {
         "local": {
             "name": "LOCAL",

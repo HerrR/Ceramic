@@ -23,11 +23,7 @@
     var logger;
     var datasets;
 
-    /*var cacheClient = redis.createClient();
-
-    cacheClient.on("error", function (err) {
-        logger.error("Cache: " + err);
-    });*/
+    var cacheClient;
 
     /*
     cacheClient.set("string key", "string val", redis.print);
@@ -76,7 +72,7 @@
                 if (dataset.hasOwnProperty(key)) {
                     var value = dataset[key];
                     if (compareFunc(value.toLowerCase(),filterText)) {
-                        var jsonText = '{"' + key + '":"' + value + '"}';
+                        var jsonText = '{"' + key + '":"' + value + '"}';  // TODO: use loadash?
                         filtered.push(JSON.parse(jsonText));
 
                         if (maxResultCount-- <= 0) {
@@ -163,6 +159,40 @@
         watch(config.server.datasets.watch, watchDatasets);
     }
 
+    function initCache() {
+        cacheClient = redis.createClient(config.redis);
+
+        cacheClient.on('error', function (err) {
+            logger.error('Redis Error: ' + err);
+        });
+
+        cacheClient.on('ready', function() {
+            logger.info('Redis is ready');
+        });
+
+        cacheClient.on('connect', function() {
+            logger.info('Connected to Redis');
+        });
+
+        cacheClient.on('reconnecting', function(delay, attempt) {
+            logger.info('Reconnected to Redis: delay=' + delay + ' attempt=' + attempt);
+        });
+
+        cacheClient.on('end', function() {
+            logger.info('Redis End');
+        });
+
+        cacheClient.on('warning', function(warn) {
+            logger.warn('Redis Warning: ' + warn);
+        });
+
+        cacheClient.on('message', function(channel, message) {
+
+        });
+
+        // TODO: substribe to the small datasets: cacheClient.subscribe('countries');
+    }
+
     module.exports = {
         init: function(_config, _logger, _app) {
             config = _config;
@@ -170,6 +200,7 @@
 
             cvcUtils.init(config, logger);
 
+            initCache();
             initDatasets();
             initEndPoints(_app);
         },
