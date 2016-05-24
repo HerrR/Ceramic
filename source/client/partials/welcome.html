@@ -36,7 +36,7 @@
                             <md-card-title-text>
                                 <span class="md-headline">
                                     <p ng-repeat="provider in loginProviders" ng-if="loginProviders.length > 0">
-                                        <md-button id="{{provider}}SignIn" style="min-width: 95%" class="md-raised" ng-click="signInPerson(provider)"><i class="fa fa-lg fa-{{provider}}-square" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
+                                        <md-button id="{{provider}}SignIn" style="min-width: 95%" class="md-raised" ng-click="signInPerson(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
                                     </p>
                                     <p ng-if="loginProviders.length === 0">
                                         <!-- TODO: display error message -->

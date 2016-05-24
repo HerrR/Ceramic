@@ -33,5 +33,13 @@
         $scope.hasSignedIn = function() {
             return ProfileService.hasSignedIn();
         };
+
+        $scope.getProviderCSS = function(provider) {
+            if (provider === 'google') {
+                return 'fa fa-lg fa-google-plus';
+            }
+
+            return 'fa fa-lg fa-' + provider + '-square';
+        };
     }
 })();

@@ -49,3 +49,5 @@ cvcentral*.min.js.map
 local.crt
 local.key
 env.sh
+
+dump.rdb

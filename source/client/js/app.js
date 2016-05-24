@@ -41,6 +41,8 @@
             }
         }
 
+        // TODO: load from $cookies
+
         $rootScope.language = transformedLanguage;
     }
 

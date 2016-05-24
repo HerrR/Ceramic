@@ -12,6 +12,8 @@
             "home.select_sign_in_method": "Select login method",
             "home.sign_in_using": "Sign in using",
 
+            "label.selectLanguage": "Select language:",
+
             "profile.generate_pdf": "Get PDF",
             "profile.save": "save",
             "profile.cancel": "cancel",

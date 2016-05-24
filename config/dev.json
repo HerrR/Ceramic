@@ -51,7 +51,7 @@
         },
         "google": {
             "name": "GOOGLE",
-            "enabled": false,
+            "enabled": true,
             "consumerKey": "",
             "consumerSecret": ""
         },
@@ -62,9 +62,15 @@
         },
         "twitter": {
             "name": "TWITTER",
-            "enabled": false,
+            "enabled": true,
             "consumerKey": "",
             "consumerSecret": "fetch from process.env"
+        },
+        "linkedin": {
+            "name": "LINKEDIN",
+            "enabled": true,
+            "consumerKey": "",
+            "callbackURL": ""
         }
     },
 
