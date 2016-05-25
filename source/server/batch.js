@@ -19,9 +19,18 @@
 
   const config = require(process.argv[2] || '../../config/dev.json');
 
+  function initialize() {
+    // TODO: setup watch for datasets
+    // TODO: setup cron jobs
+  }
+
+  function close() {
+    // TODO: cleanup
+  }
+
   function exitHandler(options, err) {
     if (options.cleanup) {
-      // TODO: cleanup
+      close();
       console.log(chalk.blue('Shutting Down...'));
     }
 
@@ -35,7 +44,7 @@
     }
   }
 
-  const logger = log4js.getLogger('base');
+  const logger = log4js.getLogger('batch');
   log4js.configure(config.log4js.config);
   logger.setLevel(config.log4js.level);
 
@@ -44,9 +53,6 @@
   process.on('SIGINT', exitHandler.bind(null, {exit:true}));
   process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
-  // TODO: load and run batch tasks
-
-  // TODO: setup watch for datasets
-
-  // TODO: do not terminate this program when it comes to the end
+  initialize();
+  logger.info('Batch Started...');
 }());

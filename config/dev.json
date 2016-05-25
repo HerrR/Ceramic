@@ -85,6 +85,11 @@
                     "type": "file", 
                     "filename": "temp/base.log", 
                     "category": "base"
+                },
+                {
+                    "type": "file", 
+                    "filename": "temp/batch.log", 
+                    "category": "batch"
                 }
             ]
         }
