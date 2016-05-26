@@ -9,6 +9,27 @@
 
     Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants', 'ScreenMessageService'];
 
+    function computeHashCode(object) {
+        if (object === null || object === undefined) {
+            return '';
+        }
+
+        var data = JSON.stringify(object);
+        var hash = 0, i, chr, len;
+
+        if (data.length === 0) {
+            return hash;
+        }
+
+        for (i = 0, len = data.length; i < len; i++) {
+            chr = data.charCodeAt(i);
+            hash = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+
+        return hash;
+    }
+
     function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService) {
         $scope.MIN_DATE = "1900-01-01";
         $scope.MAX_DATE = new Date(); // TODO: at least 16 years old
@@ -18,6 +39,7 @@
         $scope.newHashCode = computeHashCode($scope.profile);
         $scope.valuesChanged = false;
 
+        // TODO: use dataset service
         $http.get(AppConstants.PATHS.DATASETS + 'countries', {}).then(function(resp) {
             var items = [];
             for (var key in resp.data) {
@@ -98,26 +120,20 @@
             return 'partials/person/toolbar.html';
         };
 
-        // TODO: cant just use the JSON.stringify as the hash value
-        function computeHashCode(object) {
-            if (object === null || object === undefined) {
-                return '';
-            }
+        $scope.addEducation = function() {
+            // TODO
+        };
 
-            var data = JSON.stringify(object);
-            var hash = 0, i, chr, len;
+        $scope.removeEducation = function(id) {
+            // TODO
+        };
 
-            if (data.length === 0) {
-                return hash;
-            }
+        $scope.addWork = function() {
+            // TODO
+        };
 
-            for (i = 0, len = data.length; i < len; i++) {
-                chr = data.charCodeAt(i);
-                hash = ((hash << 5) - hash) + chr;
-                hash |= 0; // Convert to 32bit integer
-            }
-
-            return hash;
-        }
+        $scope.removeWork = function(id) {
+            // TODO
+        };
     }
 })();

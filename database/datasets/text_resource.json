@@ -27,6 +27,9 @@
             "profile.email": "Email",
             "profile.phone_number": "Phone Number",
 
+            "profile.label.add_education": "Add Education",
+            "profile.label.add_work": "Add Work Experience",
+
 
             "profile.dashboard": "Dashboard",
             "profile.cv": "CV",

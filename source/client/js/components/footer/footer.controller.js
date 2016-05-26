@@ -17,7 +17,7 @@
         });
 
         $scope.getCSS = function(translation) {
-            return 'flag cvc-flag' + ($rootScope.language === translation ? ' cvc-flag-selected' : '');
+            return ($rootScope.language === translation ? 'flag cvc-flag cvc-flag-selected' : 'flag cvc-flag');
         };
 
         $scope.changeLanguage = function(translation) {
@@ -25,12 +25,14 @@
             // TODO: set cookie
         };
 
-        $scope.toFlag = function(translation) {
+        $scope.getFlagURL = function(translation) {
+            var flag = translation;
+
             if (translation === 'en') {
-                return "gb";
+                flag = 'gb';
             }
 
-            return translation;
+            return 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/flags/4x3/' + flag + '.svg';
         };
     }
 })();

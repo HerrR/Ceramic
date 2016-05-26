@@ -44,7 +44,7 @@
         }]
     };
 
-    const Library = {
+    const Attachment = {
         id: String,
         name: String,
         type: String,
@@ -85,6 +85,7 @@
         settings: PersonSettings,
         person: {
             name: String,           // TODO: put in "general"
+            profilePicture: String,
             description: String,
             dateOfBirth: Date,
             email: String,          // TODO: initialize to registered email
@@ -99,7 +100,7 @@
                 generalInfo: PersonGeneralInfo
             },
 
-            library: [Library]
+            library: [Attachment]
         }
     };
 

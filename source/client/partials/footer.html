@@ -4,7 +4,7 @@
     <label style="padding-right:5px">{{'label.selectLanguage' | translate}}</label>
     <label ng-if="translations">
         <span class="cvc-language-select" ng-repeat="translation in translations" ng-click="changeLanguage(translation)">
-            <img ng-class="getCSS(translation)" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/flags/4x3/{{toFlag(translation)}}.svg" alt="{{translation}}">
+            <img ng-class="getCSS(translation)" src="{{getFlagURL(translation)}}" alt="{{translation}}">
         </span>
     </label>
 </div>

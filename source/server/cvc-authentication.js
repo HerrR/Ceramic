@@ -21,6 +21,7 @@
     const passportGoogle = require('passport-google');
     const passportFacebook = require('passport-facebook');
     const passportTwitter = require('passport-twitter');
+    const passportLinkedIn = require('passport-linkedin');
 
     var config;
     var logger;
@@ -61,6 +62,13 @@
     function initTwitterAuthentication() {
         if (config.authentication.twitter.enabled) {
             logger.info('Init Twitter Authentication');
+            // TODO: configure passport
+        }
+    }
+
+    function initLinkedInAuthentication() {
+        if (config.authentication.linkedin.enabled) {
+            logger.info('Init LinkedIn Authentication');
             // TODO: configure passport
         }
     }
@@ -119,6 +127,7 @@
         initFacebookAuthentication();
         initGoogleAuthentication();
         initTwitterAuthentication();
+        initLinkedInAuthentication();
     }
 
     function initApp(app) {
@@ -139,7 +148,7 @@
 
         // TODO: http
 
-        if (config.authentication.local.enabled) {
+        if (config.authentication.google.enabled) {
             app.post('/auth/google/login', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));
         }
 
@@ -152,6 +161,10 @@
 
         if (config.authentication.twitter.enabled) {
             app.post('/public/twitter/login', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+        }
+
+        if (config.authentication.linkedin.enabled) {
+            app.post('/public/linkedin/login', passport.authenticate('linkedin', { successRedirect: '/', failureRedirect: '/loginfailed' }));
         }
 
         app.get('/auth/logout', function(req, res) {
@@ -205,6 +218,10 @@
 
             if (config.authentication.twitter.enabled) {
                 list.push('twitter');
+            }
+
+            if (config.authentication.linkedin.enabled) {
+                list.push('linkedin');
             }
 
             return list;
