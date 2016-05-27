@@ -7,9 +7,9 @@
         .module('cvc')
         .controller('CvcFooterController', Controller);
 
-    Controller.$inject = ['$scope', '$http', '$cookies', '$rootScope', 'AppConstants'];
+    Controller.$inject = ['$scope', '$http', '$cookies', '$rootScope', '$translate', 'AppConstants'];
 
-    function Controller($scope, $http, $cookies, $rootScope, AppConstants) {
+    function Controller($scope, $http, $cookies, $rootScope, $translate, AppConstants) {
         $http.get(AppConstants.PATHS.DATASETS + 'translations', {}).then(function(translations) {
             $scope.translations = translations.data;
         }, function(err) {
@@ -22,7 +22,12 @@
 
         $scope.changeLanguage = function(translation) {
             $rootScope.language = translation;
-            // TODO: set cookie
+            $cookies.put(AppConstants.COOKIES.LANGUAGE, translation, {expires: new Date("2047-12-09")});
+            $rootScope.$broadcast('locale.changed', $rootScope.locale);
+
+            $translate.use(translation).then(function () {
+                // reset
+            });
         };
 
         $scope.getFlagURL = function(translation) {

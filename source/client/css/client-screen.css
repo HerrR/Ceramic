@@ -357,9 +357,9 @@ p {
     border-style: solid;
     border-width: 2px;
     border-color: black;
-    margin-right: 10px;
     width: 30px;
     height: auto;
+    text-decoration: none;
 }
 
 .cvc-flag:hover {
@@ -373,6 +373,13 @@ p {
     border-style: solid;
     border-width: 2px;
     border-color: #88FFAA;
+    text-decoration: none;
+}
+
+.cvc-language-select {
+    text-decoration: none;
+    border-style: none;
+    text-shadow: 0 0 0 black;
 }
 
 .cvc-add-button-1 {

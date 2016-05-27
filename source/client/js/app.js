@@ -20,30 +20,40 @@
         .config(Config)
         .run(Run);
 
-    Run.$inject = ['$rootScope','localStorageService'];
+    Run.$inject = ['$rootScope', '$cookies', '$translate','localStorageService', 'AppConstants'];
     Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider', 'ChartJsProvider'];
 
-    function Run($rootScope, localStorageService) {
+    function Run($rootScope, $cookies, $translate, localStorageService, AppConstants) {
         localStorageService.clearAll();
-    
+
+        var storedLanguage = $cookies.get(AppConstants.COOKIES.LANGUAGE);
+        var transformedLanguage = 'en';
+
         // TODO: load from service
         var lang2lang = [
             {k: 'sv', v:'se'},
             {k: 'se', v:'se'},
             {k: 'en', v:'en'}
         ];
-        var language = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
-        var transformedLanguage = 'en';
-        for (var i in lang2lang) {
-            if (language.indexOf(lang2lang[i].k) > -1) {
-                transformedLanguage = lang2lang[i].v;
-                break;
+
+        if (storedLanguage === undefined || storedLanguage === null) {
+            var language = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
+            for (var i in lang2lang) {
+                if (language.indexOf(lang2lang[i].k) > -1) {
+                    transformedLanguage = lang2lang[i].v;
+                    break;
+                }
             }
+            $cookies.put(AppConstants.COOKIES.LANGUAGE, transformedLanguage, {expires: new Date("2047-12-09")});
+        } else {
+            transformedLanguage = storedLanguage;
         }
 
-        // TODO: load from $cookies
-
         $rootScope.language = transformedLanguage;
+
+        $translate.use(transformedLanguage).then(function () {
+            // reset
+        });
     }
 
     function Config($compileProvider, $mdThemingProvider, $mdDateLocaleProvider, ChartJsProvider) {

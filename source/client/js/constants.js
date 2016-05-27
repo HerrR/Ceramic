@@ -6,6 +6,9 @@
     angular
         .module('cvc')
         .constant('AppConstants', {
+            COOKIES: {
+                LANGUAGE: 'cvc-language'
+            },
             PATHS: {
                 PUBLIC: 'public/',
                 PRIVATE: 'private/',

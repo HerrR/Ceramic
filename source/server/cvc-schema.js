@@ -86,7 +86,6 @@
         person: {
             name: String,           // TODO: put in "general"
             profilePicture: String,
-            description: String,
             dateOfBirth: Date,
             email: String,          // TODO: initialize to registered email
             country: String,
