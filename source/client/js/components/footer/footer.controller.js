@@ -17,17 +17,19 @@
         });
 
         $scope.getCSS = function(translation) {
-            return ($rootScope.language === translation ? 'flag cvc-flag cvc-flag-selected' : 'flag cvc-flag');
+            return ($rootScope.locale === translation ? 'flag cvc-flag cvc-flag-selected' : 'flag cvc-flag');
         };
 
         $scope.changeLanguage = function(translation) {
-            $rootScope.language = translation;
-            $cookies.put(AppConstants.COOKIES.LANGUAGE, translation, {expires: new Date("2047-12-09")});
-            $rootScope.$broadcast('locale.changed', $rootScope.locale);
+            if ($rootScope.locale !== translation) {
+                $rootScope.locale = translation;
+                $cookies.put(AppConstants.COOKIES.LANGUAGE, translation, {expires: new Date("2047-12-09")});
+                $rootScope.$broadcast('locale.changed', $rootScope.locale);
 
-            $translate.use(translation).then(function () {
-                // reset
-            });
+                $translate.use(translation).then(function () {
+                    // translation changed callback
+                });
+            }
         };
 
         $scope.getFlagURL = function(translation) {

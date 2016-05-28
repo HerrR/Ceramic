@@ -12,7 +12,7 @@
     function TranslateProvider($translateProvider) {
         $translateProvider
             .useLoader('TranslationsLoader')
-            .preferredLanguage('en')
+            .preferredLanguage('se')
             .useSanitizeValueStrategy('escape')
             .useMissingTranslationHandler('MissingTranslationHandler')
             .fallbackLanguage('en');

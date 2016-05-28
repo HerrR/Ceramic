@@ -39,7 +39,7 @@
         if (storedLanguage === undefined || storedLanguage === null) {
             var language = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
             for (var i in lang2lang) {
-                if (language.indexOf(lang2lang[i].k) > -1) {
+                if (language.indexOf(lang2lang[i].k) >= 0) {
                     transformedLanguage = lang2lang[i].v;
                     break;
                 }
@@ -49,10 +49,10 @@
             transformedLanguage = storedLanguage;
         }
 
-        $rootScope.language = transformedLanguage;
+        $rootScope.locale = transformedLanguage;
 
         $translate.use(transformedLanguage).then(function () {
-            // reset
+            // translation changed callback
         });
     }
 
