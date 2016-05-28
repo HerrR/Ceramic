@@ -14,8 +14,8 @@
   "use strict";
 
     const path = require('path');
-    const watch = require('node-watch');
     const redis = require("redis");
+    const watch = require('node-watch');
     const loadashObject = require('lodash/fp/object');
 
     const cvcUtils = require('./cvc-utils');
@@ -27,21 +27,6 @@
     var datasets;
 
     var cacheClient;
-
-    /*
-    cacheClient.set("string key", "string val", redis.print);
-    cacheClient.hset("hash key", "hashtest 1", "some value", redis.print);
-    cacheClient.hset(["hash key", "hashtest 2", "some other value"], redis.print);
-    cacheClient.hkeys("hash key", function (err, replies) {
-        console.log(replies.length + " replies:");
-        replies.forEach(function (reply, i) {
-            console.log("    " + i + ": " + reply);
-        });
-        cacheClient.quit();
-    });
-
-    https://www.npmjs.com/package/redis
-    */
 
     function readDataset(filename, defaultValue, doCrash) {
         return cvcUtils.readJsonFileSync(path.join(config.server.datasets.folder,filename), defaultValue, doCrash);
@@ -56,13 +41,6 @@
                 logger.info('Reloading Translations');
                 datasets.translations = readDataset(config.server.datasets.translations, datasets.translations, false);
             }
-
-            if (filename.indexOf(config.server.datasets.countries) > -1) {
-                logger.info('Reloading Countries');
-                datasets.countries = readDataset(config.server.datasets.countries, datasets.countries, false);
-            }
-
-            // TODO: reload more datasets
         }
     }
 
