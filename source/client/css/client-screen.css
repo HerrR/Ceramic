@@ -25,6 +25,22 @@ p {
     font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
+table, th, td {
+    border: 0 none;
+    border-collapse: collapse;
+}
+
+th {
+    color: #0B3861;
+    text-shadow: 1px 1px 1px green;
+    border-bottom:3px solid #34a034;
+    padding: 6px;
+}
+
+td {
+    padding: 6px;
+}
+
 #facebookSignIn {
     background-color: #3b5998;
     color: white;
@@ -388,4 +404,13 @@ p {
 
 .cvc-add-button-2 {
     color: green;
+}
+
+.cvc-button:active,
+.cvc-button:focus,
+.cvc-button.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }

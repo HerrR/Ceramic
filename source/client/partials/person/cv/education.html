@@ -1,32 +1,49 @@
-TODO: education
+<table style="width:100%; text-align:center;" ng-if="profile.person.cv.education && profile.person.cv.education.length > 0">
+    <tr>
+        <th></th>
+        <th>{{'profile.cv.education.name' | translate}}</th>
+        <th>{{'profile.cv.education.degree' | translate}}</th>
+        <th>{{'profile.cv.education.faculty' | translate}}</th>
+        <th>{{'profile.cv.education.from' | translate}}</th>
+        <th>{{'profile.cv.education.to' | translate}}</th>
+    </tr>
+    <tr ng-repeat="education in profile.person.cv.education">
+        <td>
+            <i ng-click="removeEducation($index)" class="fa fa-trash fa-lg" style="cursor:pointer" aria-hidden="true"></i>
+        </td>
+        
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="text" ng-change="answerChanged()" ng-model="education.school" maxlength="40" required/>
+            </md-input-container>
+        </td>
 
-<table style="width:100%; text-align:center;" border="0">
-    <tr style="font-size:120%">
-        <th class="cvc-container-border" style="border-bottom:3px solid black;">Name</th>
-        <th class="cvc-container-border" style="border-bottom:3px solid black;">Degree</th>
-        <th class="cvc-container-border" style="border-bottom:3px solid black;">Faculty</th>
-        <th class="cvc-container-border" style="border-bottom:3px solid black;">From Date</th>
-        <th class="cvc-container-border" style="border-bottom:3px solid black;">To Date</th>
-    </tr>
-    <tr>
-        <td style="text-align:left">&nbsp;fdf</td>
-        <td>&nbsp;dfdf</td>
-        <td>&nbsp;fdf</td>
-        <td>&nbsp;fdf</td>
-        <td>&nbsp;fdfd</td>
-    </tr>
-    <tr>
-        <td style="text-align:left">&nbsp;fdf</td>
-        <td>&nbsp;dfdf</td>
-        <td>&nbsp;fdf</td>
-        <td>&nbsp;fdf</td>
-        <td>&nbsp;fdfd</td>
-    </tr>
-    <tr>
-        <td style="text-align:left">&nbsp;fdf</td>
-        <td>&nbsp;dfdf</td>
-        <td>&nbsp;fdf</td>
-        <td>&nbsp;fdf</td>
-        <td>&nbsp;fdfd</td>
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="text" ng-change="answerChanged()" ng-model="education.degree" maxlength="40"/>
+            </md-input-container>
+        </td>
+
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="text" ng-change="answerChanged()" ng-model="education.faculty" maxlength="40"/>
+            </md-input-container>
+        </td>
+
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="date" ng-change="answerChanged()" ng-model="education.fromDate"/>
+            </md-input-container>
+        </td>
+
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="date" ng-change="answerChanged()" ng-model="education.toDate"/>
+            </md-input-container>
+        </td>
     </tr>
 </table>
+
+<p ng-if="!profile.person.cv.education || profile.person.cv.education.length === 0">
+    {{'profile.cv.education.empty_list' | translate}}
+</p>

@@ -1,1 +1,49 @@
-TODO: work experience
+<table style="width:100%; text-align:center;" ng-if="profile.person.cv.experience && profile.person.cv.experience.length > 0">
+    <tr>
+        <th></th>
+        <th>{{'profile.cv.experience.company' | translate}}</th>
+        <th>{{'profile.cv.experience.industry' | translate}}</th>
+        <th>{{'profile.cv.experience.role' | translate}}</th>
+        <th>{{'profile.cv.experience.from' | translate}}</th>
+        <th>{{'profile.cv.experience.to' | translate}}</th>
+    </tr>
+    <tr ng-repeat="experience in profile.person.cv.experience">
+        <td>
+            <i ng-click="removeWork($index)" class="fa fa-trash fa-lg" style="cursor:pointer" aria-hidden="true"></i>
+        </td>
+        
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="text" ng-change="answerChanged()" ng-model="experience.company" maxlength="40" required/>
+            </md-input-container>
+        </td>
+
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="text" ng-change="answerChanged()" ng-model="experience.industry" maxlength="40"/>
+            </md-input-container>
+        </td>
+
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="text" ng-change="answerChanged()" ng-model="experience.role" maxlength="40"/>
+            </md-input-container>
+        </td>
+
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="date" ng-change="answerChanged()" ng-model="experience.fromDate"/>
+            </md-input-container>
+        </td>
+
+        <td>
+            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                <input type="date" ng-change="answerChanged()" ng-model="experience.toDate"/>
+            </md-input-container>
+        </td>
+    </tr>
+</table>
+
+<p ng-if="!profile.person.cv.experience || profile.person.cv.experience.length === 0">
+    {{'profile.cv.experience.empty_list' | translate}}
+</p>

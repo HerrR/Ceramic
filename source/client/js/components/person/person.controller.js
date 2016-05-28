@@ -30,14 +30,43 @@
         return hash;
     }
 
+    function addElement(list, createCallback, isNotEmptyCallback, maxElements) {
+        if (!list) {
+            list = [];
+        }
+
+        if (list.length === 0) {
+            list.push(createCallback());
+        } else if (list.length < maxElements) {
+            var lastElement = list[list.length - 1];
+
+            if (isNotEmptyCallback(lastElement)) {
+                list.push(createCallback());
+            }
+        }
+    }
+
     function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService) {
         $scope.MIN_DATE = "1900-01-01";
         $scope.MAX_DATE = new Date(); // TODO: at least 16 years old
+
+        $scope.MAX_EDUCATION_COUNT = 20;
+        $scope.MAX_WORK_COUNT = 40;
+        $scope.MAX_LANGUAGE_COUNT = 20;
 
         $scope.profile = ProfileService.getProfile();
         $scope.oldHashCode = computeHashCode($scope.profile);
         $scope.newHashCode = computeHashCode($scope.profile);
         $scope.valuesChanged = false;
+
+        $scope.languageLevelToText = [
+            'profile.cv.language.level0',
+            'profile.cv.language.level1',
+            'profile.cv.language.level2',
+            'profile.cv.language.level3',
+            'profile.cv.language.level4',
+            'profile.cv.language.level5'
+        ];
 
         // TODO: use dataset service
         $http.get(AppConstants.PATHS.DATASETS + 'countries', {}).then(function(resp) {
@@ -112,28 +141,58 @@
             return 'partials/person/' + tab + '.html';
         };
 
-        $scope.getSidebar = function() {
-            return 'partials/person/sidebar.html';
-        };
-
-        $scope.getToolbar = function() {
-            return 'partials/person/toolbar.html';
-        };
-
         $scope.addEducation = function() {
-            // TODO
+            addElement($scope.profile.person.cv.education, function () {
+                return {
+                    school: '',
+                    degree: '',
+                    faculty: '',
+                    fromDate: '',
+                    toDate: ''
+                };
+            }, function(element) {
+                return element.school.trim() !== '';
+            }, $scope.MAX_EDUCATION_COUNT);
         };
 
         $scope.removeEducation = function(id) {
-            // TODO
+            $scope.profile.person.cv.education.splice(id,1);
+            $scope.answerChanged();
         };
 
         $scope.addWork = function() {
-            // TODO
+            addElement($scope.profile.person.cv.experience, function () {
+                return {
+                    company: '',
+                    industry: '',
+                    role: '',
+                    fromDate: '',
+                    toDate: '',
+                };
+            }, function(element) {
+                return element.company.trim() !== '';
+            }, $scope.MAX_WORK_COUNT);
         };
 
         $scope.removeWork = function(id) {
-            // TODO
+            $scope.profile.person.cv.experience.splice(id,1);
+            $scope.answerChanged();
+        };
+
+        $scope.addLanguage = function() {
+            addElement($scope.profile.person.cv.generalInfo.language, function () {
+                return {
+                    name: '',
+                    level: 0
+                };
+            }, function(element) {
+                return element.name.trim() !== '';
+            }, $scope.MAX_LANGUAGE_COUNT);
+        };
+
+        $scope.removeLanguage = function(id) {
+            $scope.profile.person.cv.generalInfo.language.splice(id,1);
+            $scope.answerChanged();
         };
     }
 })();

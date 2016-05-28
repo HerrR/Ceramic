@@ -30,6 +30,34 @@
             "profile.label.add_education": "Add Education",
             "profile.label.add_work": "Add Work Experience",
 
+            "profile.cv.education.name": "Name",
+            "profile.cv.education.degree": "Degree",
+            "profile.cv.education.faculty": "Faculty",
+            "profile.cv.education.from": "From date",
+            "profile.cv.education.to": "To date",
+            "profile.cv.education.empty_list": "No education added.",
+
+            "profile.cv.experience.company": "Company",
+            "profile.cv.experience.industry": "Industry",
+            "profile.cv.experience.role": "Role",
+            "profile.cv.experience.from": "From date",
+            "profile.cv.experience.to": "To date",
+            "profile.cv.experience.empty_list": "No work experience added.",
+
+            "profile.cv.generalInfo.language.name": "Language",
+            "profile.cv.generalInfo.language.level": "Skill level",
+            "profile.languages": "Languages",
+            "profile.cv.generalInfo.language.empty_list": "No languages added.",
+
+            "profile.cv.language.level0": "Basic",
+            "profile.cv.language.level1": "Good",
+            "profile.cv.language.level2": "Very good",
+            "profile.cv.language.level3": "Excellent",
+            "profile.cv.language.level4": "Fluent",
+            "profile.cv.language.level5": "Native",
+            
+
+            "profile.description": "Personal description",
 
             "profile.dashboard": "Dashboard",
             "profile.cv": "CV",

@@ -78,7 +78,7 @@
                         var jsonText = '{"' + key + '":"' + value + '"}';
                         filtered.push(JSON.parse(jsonText));
 
-                        if (MAX_FILTER_ELEMENTS-- <= 0) {
+                        if (filtered.length() === MAX_FILTER_ELEMENTS) {
                             return filtered;
                         }
                     }
@@ -124,10 +124,6 @@
             // TODO: skill level
         });
 
-        app.get('/public/languagelevels', function(req, res) {
-            // TODO: language level
-        });
-
         app.get('/public/industries', function(req, res) {
             // TODO: industry
         });
@@ -159,7 +155,6 @@
             countries: readDataset(config.server.datasets.countries,{},true),
             skills: {},
             skilllevels: {},
-            languagelevels: {},
             industries: {},
             roles: {},
             schooldegrees: {},
@@ -231,11 +226,6 @@
         },
 
         isSkillLevel: function(level) {
-            // TODO
-            return true;
-        },
-
-        isLanguageLevel: function(level) {
             // TODO
             return true;
         },
