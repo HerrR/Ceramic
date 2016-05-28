@@ -29,6 +29,7 @@
 
             "profile.label.add_education": "Add Education",
             "profile.label.add_work": "Add Work Experience",
+            "profile.label.add_language": "Add language",
 
             "profile.cv.education.name": "Name",
             "profile.cv.education.degree": "Degree",
