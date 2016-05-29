@@ -11,7 +11,7 @@
  */
 
 (function () {
-  "use strict";
+    "use strict";
 
     const cookieParser = require('cookie-parser');
     const expressSession = require('express-session');

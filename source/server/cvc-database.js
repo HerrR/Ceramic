@@ -11,7 +11,7 @@
  */
 
 (function () {
-  "use strict";
+    "use strict";
     
     const PERSON_SCHEMA_VERSION = 1;
 

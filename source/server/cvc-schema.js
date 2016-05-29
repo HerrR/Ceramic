@@ -11,7 +11,7 @@
  */
 
 (function () {
-  "use strict";
+    "use strict";
 
     const mongoose = require('mongoose');
 

@@ -11,7 +11,7 @@
  */
 
 (function () {
-  "use strict";
+    "use strict";
 
     const fs = require('fs');
     const nodemailer = require('nodemailer');

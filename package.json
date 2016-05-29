@@ -92,6 +92,7 @@
     "compression": "^1.6.1",
     "cookie-parser": "^1.4.1",
     "ddos-express": "^0.1.5",
+    "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "lodash": "^4.12.0",

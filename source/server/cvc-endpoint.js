@@ -11,7 +11,7 @@
  */
 
 (function () {
-  "use strict";
+    "use strict";
 
     const path = require('path');
     const ddos = require("ddos-express");
