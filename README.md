@@ -10,6 +10,8 @@ TODO
 ##### Setup
 * **Node JS and NPM** => TODO
 * **MongoDB** => TODO
+* **Redis** => TODO
+* **Elastic Search** => TODO
 * **SSL** => TODO
 
 ##### Environment Variables
