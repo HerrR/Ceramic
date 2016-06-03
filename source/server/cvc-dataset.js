@@ -76,37 +76,33 @@
             res.json(datasets.translations[req.params.locale.toLowerCase()] || {});
         });
 
-        app.get('/public/skills', function(req, res) {
+        app.get('/public/skills/:locale', function(req, res) {
             // TODO: fetch all skills
         });
 
-        app.get('/public/skills/:filter', function(req, res) {
+        app.get('/public/skills/:locale/:filter', function(req, res) {
             // TODO: fetch all skills that contain 'filter'
         });
 
-        app.get('/public/countries', function(req, res) {
+        app.get('/public/countries/:locale', function(req, res) {
             res.json(datasets.countries);
         });
 
-        app.get('/public/countries/:filter', function(req, res) {
+        app.get('/public/countries/:locale/:filter', function(req, res) {
             res.json(filterDataset(req.params.filter, datasets.countries, function(value, filter) {
                 return value.indexOf(filter) === 0;
             }));
         });
 
-        app.get('/public/cities/:country/:filter', function(req, res) {
+        app.get('/public/cities/:country/:locale/:filter', function(req, res) {
             // TODO: fetch all cities that contain 'filter' and are in 'country'
         });
 
-        app.get('/public/skilllevels', function(req, res) {
-            // TODO: skill level
-        });
-
-        app.get('/public/industries', function(req, res) {
+        app.get('/public/industries/:locale', function(req, res) {
             // TODO: industry
         });
 
-        app.get('/public/roles', function(req, res) {
+        app.get('/public/roles/:locale', function(req, res) {
             // TODO: role
         });
 
@@ -114,15 +110,15 @@
             // TODO: school degree
         });
 
-        app.get('/public/schoolfaculties', function(req, res) {
+        app.get('/public/schoolfaculties/:locale', function(req, res) {
             // TODO: school faculty
         });
 
-        app.get('/public/languages', function(req, res) {
+        app.get('/public/languages/:locale', function(req, res) {
             // TODO: list languages
         });
 
-        app.get('/public/languages/:filter', function(req, res) {
+        app.get('/public/languages/:locale/:filter', function(req, res) {
             // TODO: list languages
         });
     }
@@ -171,10 +167,12 @@
         });
 
         cacheClient.on('message', function(channel, message) {
-            // TODO: listen for datasets that are to be loaded full
+            if (channel === 'update') {
+                // TODO: listen for datasets that are to be loaded full
+            }
         });
 
-        // TODO: substribe to the small datasets: cacheClient.subscribe('countries');
+        cacheClient.substribe('update');
     }
 
     module.exports = {

@@ -30,8 +30,8 @@
 
             "translations": "text_resource.json",
             "countries": "countries.json",
-            "languages": "",
-            "cities": "",
+            "languages": "languages.json",
+            "cities": "cities.json",
             "skills": ""
         }
     },

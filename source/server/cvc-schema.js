@@ -107,6 +107,7 @@
         userid: { type: String, index: true },
         email: { type: String, index: true },
         updateVersion: mongoose.Schema.Types.Number,
+        credits: mongoose.Schema.Types.Number,
         system: System,
         company: {
             name: String,

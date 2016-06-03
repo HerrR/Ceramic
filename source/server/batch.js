@@ -48,11 +48,12 @@
   function reloadDataset(filename, name) {
     logger.info('Reloading: ' + name);
 
-    var oldCache = {} // TODO: load from cache
-    var newCache = readDataset(filename, oldCache, false);
+    var newCache = readDataset(filename, undefined, false);
 
-    // TODO: update cache
-    // TODO: brodcast message
+    if (newCache !== undefined) {
+      cacheClient.set(name,newCache);
+      cacheClient.publish('update',name);
+    }
   }
 
   function initCacheServer() {
@@ -103,44 +104,51 @@
         reloadDataset(config.server.datasets.countries, 'cities');
       }
 
+      if (filename.indexOf(config.server.datasets.languages) > -1) {
+        reloadDataset(config.server.datasets.countries, 'languages');
+      }
+
       // TODO: reload cities
       // TODO: reload skills
       // TODO: reload categories
-      // TODO: reload languages
     }
   }
 
   function fillCache() {
-    /*datasets = {
-      translations: readDataset(config.server.datasets.translations,{},true),
-      countries: readDataset(config.server.datasets.countries,{},true),
+    reloadDataset(config.server.datasets.translations, 'translations');
+    reloadDataset(config.server.datasets.countries, 'countries');
+    reloadDataset(config.server.datasets.cities, 'cities');
+    reloadDataset(config.server.datasets.languages, 'languages');
+
+    /*
       skills: {},
       skilllevels: {},
       industries: {},
       roles: {},
       schooldegrees: {},
       schoolfaculties: {},
-      languages: {}
-    };*/
+    */
+  }
+
+  function sendEmailNotifications() {
+    // TODO: send notification e-mails
   }
 
   function initScheduledTasks() {
-    // initalize scheduled tasts
+    // TODO: initalize scheduled tasts
   }
 
   function initialize() {
+    cvcUtils.init(config, logger);
     initCacheServer();
-
     fillCache();
-
     watch(config.server.datasets.watch, watchDatasets);
-    
     initScheduledTasks();
   }
 
   function close() {
     cacheClient.quit();
-    // close scheduled tasks
+    // TODO: close scheduled tasks
   }
 
   function exitHandler(options, err) {
