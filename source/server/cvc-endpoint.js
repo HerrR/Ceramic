@@ -56,6 +56,8 @@
             // TODO: update password, email
         });*/
 
+        // TODO: private/company
+
         app.get('/private/person', cvcAuthentication.ensureAuthenticated, function(req, res) {
             cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, savedProfile) {
                 if (err !== null) {

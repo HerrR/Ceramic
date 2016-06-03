@@ -111,6 +111,10 @@
             return profile;
         },
 
+        getGeneralStatistics: function(callback) {
+            // TODO: get general information like number of users and so on
+        },
+
         createSystemObject: function(authenticationProvider) {
             return {
                 created: new Date(),

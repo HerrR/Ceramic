@@ -48,7 +48,7 @@
 
     function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService) {
         $scope.MIN_DATE = "1900-01-01";
-        $scope.MAX_DATE = new Date(); // TODO: at least 16 years old
+        $scope.MAX_DATE = new Date(); // TODO: at least 18 years old
 
         $scope.MAX_EDUCATION_COUNT = 20;
         $scope.MAX_WORK_COUNT = 40;
@@ -59,6 +59,7 @@
         $scope.newHashCode = computeHashCode($scope.profile);
         $scope.valuesChanged = false;
 
+        // TODO: fetch from back-end
         $scope.languageLevelToText = [
             'profile.cv.language.level0',
             'profile.cv.language.level1',
