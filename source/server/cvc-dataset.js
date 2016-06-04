@@ -166,13 +166,18 @@
             logger.warn('Redis Warning: ' + warn);
         });
 
+        cacheClient.on('subscribe', function(channel, count) {
+            logger.info('Redis Subscribe: channel=' + channel + ' count=' + count);
+        });
+
         cacheClient.on('message', function(channel, message) {
+            logger.info('Redis Message: channel=' + channel + ' message=' + message);
             if (channel === 'update') {
                 // TODO: listen for datasets that are to be loaded full
             }
         });
 
-        cacheClient.substribe('update');
+        cacheClient.subscribe('update');
     }
 
     module.exports = {

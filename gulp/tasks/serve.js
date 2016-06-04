@@ -26,3 +26,16 @@ gulp.task('serve', function () {
     console.log('Restarted NodeJS');
   });
 });
+
+gulp.task('batch', function () {
+  nodemon({
+    script: config.destination.server.base_dir + config.node.batch,
+    ext: 'js',
+    watch: config.destination.server.js,
+    ignore: [],
+    tasks: []
+  })
+  .on('restart', function () {
+    console.log('Restarted Batch');
+  });
+});

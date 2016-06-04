@@ -34,6 +34,7 @@ module.exports = {
 
   node: {
     main: 'main.js',
+    batch: 'batch.js',
     source: './source/server/**/*.js',
     lint_exlude: [],
     config: '',

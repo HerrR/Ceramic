@@ -26,21 +26,6 @@
   var datasets;
   var cacheClient;
 
-  /*
-  cacheClient.set("string key", "string val", redis.print);
-  cacheClient.hset("hash key", "hashtest 1", "some value", redis.print);
-  cacheClient.hset(["hash key", "hashtest 2", "some other value"], redis.print);
-  cacheClient.hkeys("hash key", function (err, replies) {
-      console.log(replies.length + " replies:");
-      replies.forEach(function (reply, i) {
-          console.log("    " + i + ": " + reply);
-      });
-      cacheClient.quit();
-  });
-
-  https://www.npmjs.com/package/redis
-  */
-
   function readDataset(filename, defaultValue, doCrash) {
     return cvcUtils.readJsonFileSync(path.join(config.server.datasets.folder,filename), defaultValue, doCrash);
   }
@@ -51,8 +36,8 @@
     var newCache = readDataset(filename, undefined, false);
 
     if (newCache !== undefined) {
-      cacheClient.set(name,newCache);
-      cacheClient.publish('update',name);
+      cacheClient.set(name, JSON.stringify(newCache), redis.print);
+      cacheClient.publish('update', name);
     }
   }
 
@@ -83,8 +68,12 @@
       logger.warn('Redis Warning: ' + warn);
     });
 
+    cacheClient.on('subscribe', function(channel, count) {
+      logger.info('Redis Subscribe: channel=' + channel + ' count=' + count);
+    });
+
     cacheClient.on('message', function(channel, message) {
-      logger.info('Redis message: channel=' + channel + ", message=" + message);
+      logger.info('Redis message: channel=' + channel + ' message=' + message);
     });
   }
 
@@ -135,7 +124,7 @@
   }
 
   function initScheduledTasks() {
-    // TODO: initalize scheduled tasts
+    // TODO: initalize scheduled tasks
   }
 
   function initialize() {

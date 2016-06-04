@@ -56,6 +56,8 @@
             "profile.cv.language.level3": "Excellent",
             "profile.cv.language.level4": "Fluent",
             "profile.cv.language.level5": "Native",
+
+            "profile.label.remove": "Remove",
             
 
             "profile.description": "Personal description",

@@ -1,48 +1,43 @@
-<table style="width:100%; text-align:center;" ng-if="profile.person.cv.education && profile.person.cv.education.length > 0">
-    <tr>
-        <th></th>
-        <th>{{'profile.cv.education.name' | translate}}</th>
-        <th>{{'profile.cv.education.degree' | translate}}</th>
-        <th>{{'profile.cv.education.faculty' | translate}}</th>
-        <th>{{'profile.cv.education.from' | translate}}</th>
-        <th>{{'profile.cv.education.to' | translate}}</th>
-    </tr>
-    <tr ng-repeat="education in profile.person.cv.education">
-        <td>
-            <i ng-click="removeEducation($index)" class="fa fa-trash fa-lg" style="cursor:pointer" aria-hidden="true"></i>
-        </td>
-        
-        <td>
-            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                <input type="text" ng-change="answerChanged()" ng-model="education.school" maxlength="40" required/>
-            </md-input-container>
-        </td>
-
-        <td>
-            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                <input type="text" ng-change="answerChanged()" ng-model="education.degree" maxlength="40"/>
-            </md-input-container>
-        </td>
-
-        <td>
-            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                <input type="text" ng-change="answerChanged()" ng-model="education.faculty" maxlength="40"/>
-            </md-input-container>
-        </td>
-
-        <td>
-            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                <input type="date" ng-change="answerChanged()" ng-model="education.fromDate"/>
-            </md-input-container>
-        </td>
-
-        <td>
-            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                <input type="date" ng-change="answerChanged()" ng-model="education.toDate"/>
-            </md-input-container>
-        </td>
-    </tr>
-</table>
+<div layout="row" layout-xs="column" layout-wrap>
+    <div felx="auto" style="width:23%; margin:10px" ng-repeat="education in profile.person.cv.education">
+        <md-card class="cvc-container-border cvc-nobackground">
+            <md-card-header>
+                <md-card-header-text>
+                    <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                        <label>{{'profile.cv.education.name' | translate}}</label>
+                        <input type="text" ng-change="answerChanged()" ng-model="education.school" maxlength="40" style="font-weight:bold; font-size:120%" required/>
+                    </md-input-container>
+                </md-card-header-text>
+            </md-card-header>
+            <md-card-content>
+                <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                    <label>{{'profile.cv.education.degree' | translate}}</label>
+                    <input type="text" ng-change="answerChanged()" ng-model="education.degree" maxlength="40"/>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                    <label>{{'profile.cv.education.faculty' | translate}}</label>
+                    <input type="text" ng-change="answerChanged()" ng-model="education.faculty" maxlength="40"/>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                    <label>{{'profile.cv.education.from' | translate}}</label>
+                    <input type="date" ng-change="answerChanged()" ng-model="education.fromDate"/>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                    <label>{{'profile.cv.education.to' | translate}}</label>
+                    <input type="date" ng-change="answerChanged()" ng-model="education.toDate"/>
+                </md-input-container>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center center">
+                <span>
+                    <md-tooltip md-direction="left" style="font-size:100%">
+                        {{'profile.label.remove' | translate}}
+                    </md-tooltip>
+                    <i ng-click="removeEducation($index)" class="fa fa-trash fa-lg" style="cursor:pointer" aria-hidden="true"></i>
+                </span>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>
 
 <p ng-if="!profile.person.cv.education || profile.person.cv.education.length === 0">
     {{'profile.cv.education.empty_list' | translate}}
