@@ -49,6 +49,7 @@
         name: String,
         type: String,
         checksum: String,
+        link: String,
         size: mongoose.Schema.Types.Number,
         added: Date
     };
@@ -85,12 +86,12 @@
         settings: PersonSettings,
         person: {
             name: String,           // TODO: put in "general"
-            profilePicture: String,
-            dateOfBirth: Date,
-            email: String,          // TODO: initialize to registered email
-            country: String,
-            city: String,
-            phone: String,
+            profilePicture: String, // TODO: put in "general"
+            dateOfBirth: Date, // TODO: put in "general"
+            email: String,          // TODO: initialize to registered email, and put in general
+            country: String, // TODO: put in "general"
+            city: String, // TODO: put in "general"
+            phone: String, // TODO: put in "general"
             
             cv: {
                 skills: [PersonSkill],
@@ -110,14 +111,19 @@
         credits: mongoose.Schema.Types.Number,
         system: System,
         company: {
-            name: String,
-            description: String,
-            industry: String,
+            name: String, // TODO: put in "general"
+            description: String, // TODO: put in "general"
+            industry: String, // TODO: put in "general"
+
+            // TODO: money
+            // TODO: receipt
+
             searchCriteria: {
                 skills: [{
                 type: String,
                 minLevel: mongoose.Schema.Types.Number
             }],
+
             responsibilities: [{
                 type: String,
                 minAmount: mongoose.Schema.Types.Number
@@ -128,7 +134,8 @@
 
     const Admin = {
         userid: String,
-        level: mongoose.Schema.Types.Number
+        level: mongoose.Schema.Types.Number,
+        start: Date
     };
 
     const Message = {
