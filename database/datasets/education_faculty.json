@@ -1,0 +1,74 @@
+{
+    "name": "faculty",
+    "data": {
+        "EF010": {
+            "textKey": "education.faculty.economy",
+            "major": {
+                "EM010": "education.major.ef010.financing",
+                "EM020": "education.major.ef010.audit",
+                "EM030": "education.major.ef010.financial_management",
+                "EM040": "education.major.ef010.marketing",
+                "EM050": "education.major.ef010.management",
+                "EM060": "education.major.ef010.finance_and_it",
+                "EM070": "education.major.ef010.communication",
+                "EM080": "education.major.ef010.economic_history",
+                "EM090": "education.major.ef010.economics",
+                "EM100": "education.major.ef010.accounting",
+                "EM110": "education.major.ef010.financial",
+                "EM120": "education.major.ef010.entrepreneurship"
+            }
+        },
+
+        "EF020": {
+            "textKey": "education.faculty.humanism"
+        },
+
+        "EF030": {
+            "textKey": "education.faculty.law"
+        },
+
+        "EF040": {
+            "textKey": "education.faculty.medicine"
+        },
+
+        "EF050": {
+            "textKey": "education.faculty.artistic"
+        },
+
+        "EF060": {
+            "textKey": "education.faculty.science"
+        },
+
+        "EF070": {
+            "textKey": "education.faculty.social"
+        },
+
+        "EF080": {
+            "textKey": "education.faculty.history"
+        },
+
+        "EF090": {
+            "textKey": "education.faculty.philosophy"
+        },
+
+        "EF100": {
+            "textKey": "education.faculty.systems_science"
+        },
+
+        "EF110": {
+            "textKey": "education.faculty.technique"
+        },
+
+        "EF120": {
+            "textKey": "education.faculty.technique"
+        },
+
+        "EF130": {
+            "textKey": "education.faculty.pedagogy"
+        },
+
+        "EF140": {
+            "textKey": "education.faculty.theology
+        }
+    }
+}

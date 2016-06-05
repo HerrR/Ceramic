@@ -69,11 +69,11 @@
 
     function initEndPoints(app) {
         app.get('/public/translations', function(req, res) {
-            res.json(loadashObject.keys(datasets.translations));
+            res.json(loadashObject.keys(datasets.translations.data));
         });
 
         app.get('/public/translations/:locale', function(req, res) {
-            res.json(datasets.translations[req.params.locale.toLowerCase()] || {});
+            res.json(datasets.translations.data[req.params.locale.toLowerCase()] || {});
         });
 
         app.get('/public/skills/:locale', function(req, res) {

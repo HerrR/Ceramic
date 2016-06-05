@@ -1,0 +1,9 @@
+{
+    "name": "educationlevel",
+    "data": {
+        "EL10":"education.level.high_school",
+        "EL20":"education.level.bachelor",
+        "EL30":"education.level.master",
+        "EL40":"education.level.phd"
+    }
+}
