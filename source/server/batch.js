@@ -30,13 +30,15 @@
     return cvcUtils.readJsonFileSync(path.join(config.server.datasets.folder,filename), defaultValue, doCrash);
   }
 
-  function reloadDataset(filename, name) {
-    logger.info('Reloading: ' + name);
+  function reloadDataset(filename) {
+    logger.info('Loading: ' + filename);
 
     var newCache = readDataset(filename, undefined, false);
+    if (newCache && newCache.name && newCache.data) {
+      var name = newCache.name;
+      var data = newCache.data;
 
-    if (newCache !== undefined) {
-      cacheClient.set(name, JSON.stringify(newCache), redis.print);
+      cacheClient.set(name, JSON.stringify(data), redis.print);
       cacheClient.publish('update', name);
     }
   }
@@ -80,43 +82,14 @@
   function watchDatasets(filename) {
     if (config.server.datasets.watchEnabled) {
       logger.info('Watch triggered on file: ' + filename);
-
-      if (filename.indexOf(config.server.datasets.translations) > -1) {
-        reloadDataset(config.server.datasets.translations, 'translations');
-      }
-
-      if (filename.indexOf(config.server.datasets.countries) > -1) {
-        reloadDataset(config.server.datasets.countries, 'countries');
-      }
-
-      if (filename.indexOf(config.server.datasets.cities) > -1) {
-        reloadDataset(config.server.datasets.countries, 'cities');
-      }
-
-      if (filename.indexOf(config.server.datasets.languages) > -1) {
-        reloadDataset(config.server.datasets.countries, 'languages');
-      }
-
-      // TODO: reload cities
-      // TODO: reload skills
-      // TODO: reload categories
+      reloadDataset(filename);
     }
   }
 
   function fillCache() {
-    reloadDataset(config.server.datasets.translations, 'translations');
-    reloadDataset(config.server.datasets.countries, 'countries');
-    reloadDataset(config.server.datasets.cities, 'cities');
-    reloadDataset(config.server.datasets.languages, 'languages');
-
-    /*
-      skills: {},
-      skilllevels: {},
-      industries: {},
-      roles: {},
-      schooldegrees: {},
-      schoolfaculties: {},
-    */
+    for (var index = 0; index < config.server.datasets.watch.length; ++index) {
+      reloadDataset(config.server.datasets.watch[index]);
+    }
   }
 
   function sendEmailNotifications() {

@@ -23,16 +23,11 @@
         },
 
         "datasets": {
-            "watch": ["./dist/server/text_resource.json"],
+            "watch": [
+                "./dist/server/text_resource.json"
+            ],
             "watchEnabled": true,
-            "datasetCacheLifeTime": 7200000,
-            "folder": "./dist/server/",
-
-            "translations": "text_resource.json",
-            "countries": "countries.json",
-            "languages": "languages.json",
-            "cities": "cities.json",
-            "skills": ""
+            "datasetCacheLifeTime": 7200000
         }
     },
 
