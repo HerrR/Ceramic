@@ -7,13 +7,11 @@
         .module('cvc')
         .controller('CvcFooterController', Controller);
 
-    Controller.$inject = ['$scope', '$http', '$cookies', '$rootScope', '$translate', 'AppConstants'];
+    Controller.$inject = ['$scope', '$http', '$cookies', '$rootScope', '$translate', 'AppConstants', 'DatasetService'];
 
-    function Controller($scope, $http, $cookies, $rootScope, $translate, AppConstants) {
-        $http.get(AppConstants.PATHS.DATASETS + 'keys/translations', {}).then(function(translations) {
-            $scope.translations = translations.data;
-        }, function(err) {
-            // TODO
+    function Controller($scope, $http, $cookies, $rootScope, $translate, AppConstants, DatasetService) {
+        DatasetService.getAsync(AppConstants.TRANSLATION_LANGUAGES, function(data) {
+            $scope.translations = data;
         });
 
         $scope.getCSS = function(translation) {

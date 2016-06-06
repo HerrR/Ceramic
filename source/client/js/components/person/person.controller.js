@@ -7,46 +7,9 @@
         .module('cvc')
         .controller('CvcPersonController', Controller);
 
-    Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants', 'ScreenMessageService'];
+    Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants', 'ScreenMessageService', 'DatasetService'];
 
-    function computeHashCode(object) {
-        if (object === null || object === undefined) {
-            return '';
-        }
-
-        var data = JSON.stringify(object);
-        var hash = 0, i, chr, len;
-
-        if (data.length === 0) {
-            return hash;
-        }
-
-        for (i = 0, len = data.length; i < len; i++) {
-            chr = data.charCodeAt(i);
-            hash = ((hash << 5) - hash) + chr;
-            hash |= 0; // Convert to 32bit integer
-        }
-
-        return hash;
-    }
-
-    function addElement(list, createCallback, isNotEmptyCallback, maxElements) {
-        if (!list) {
-            list = [];
-        }
-
-        if (list.length === 0) {
-            list.push(createCallback());
-        } else if (list.length < maxElements) {
-            var lastElement = list[list.length - 1];
-
-            if (isNotEmptyCallback(lastElement)) {
-                list.push(createCallback());
-            }
-        }
-    }
-
-    function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService) {
+    function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService, DatasetService) {
         $scope.MIN_DATE = "1900-01-01";
         $scope.MAX_DATE = new Date(); // TODO: at least 18 years old
 
@@ -59,15 +22,9 @@
         $scope.newHashCode = computeHashCode($scope.profile);
         $scope.valuesChanged = false;
 
-        // TODO: fetch from back-end
-        $scope.languageLevelToText = [
-            'profile.cv.language.level0',
-            'profile.cv.language.level1',
-            'profile.cv.language.level2',
-            'profile.cv.language.level3',
-            'profile.cv.language.level4',
-            'profile.cv.language.level5'
-        ];
+        DatasetService.getAsync(AppConstants.LANGUAGE_LEVELS, function(data) {
+            $scope.languageLevelToText = data;
+        });
 
         // TODO: use dataset service
         $http.get(AppConstants.PATHS.DATASETS + 'countries', {}).then(function(resp) {
@@ -195,5 +152,42 @@
             $scope.profile.person.cv.generalInfo.language.splice(id,1);
             $scope.answerChanged();
         };
+    }
+
+    function computeHashCode(object) {
+        if (object === null || object === undefined) {
+            return '';
+        }
+
+        var data = JSON.stringify(object);
+        var hash = 0, i, chr, len;
+
+        if (data.length === 0) {
+            return hash;
+        }
+
+        for (i = 0, len = data.length; i < len; i++) {
+            chr = data.charCodeAt(i);
+            hash = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+
+        return hash;
+    }
+
+    function addElement(list, createCallback, isNotEmptyCallback, maxElements) {
+        if (!list) {
+            list = [];
+        }
+
+        if (list.length === 0) {
+            list.push(createCallback());
+        } else if (list.length < maxElements) {
+            var lastElement = list[list.length - 1];
+
+            if (isNotEmptyCallback(lastElement)) {
+                list.push(createCallback());
+            }
+        }
     }
 })();

@@ -15,6 +15,10 @@
                 DATASETS: 'dataset/',
                 AUTHORIZED: 'auth/'
             },
+            DATASETS: {
+                TRANSLATION_LANGUAGES: 'TRANSLATION_LANGUAGES',
+                LANGUAGE_LEVELS: 'LANGUAGE_LEVELS'
+            },
             MESSAGE_LIFE: 2000,
             USER_TYPES: {
                 COMPANY: 'COMPANY',
