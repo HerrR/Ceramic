@@ -10,6 +10,8 @@
     DatasetService.$inject = [];
 
     function DatasetService() {
-        // TODO
+        // TODO: fetch all datasets that can be stored locally
+
+        // TODO: implement functions to fetch the dataset
     }
 })();

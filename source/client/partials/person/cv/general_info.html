@@ -1,59 +1,64 @@
-<md-input-container class="md-icon-float md-block">
-    <label>{{'profile.description' | translate}}</label>
-    <textarea id="cvcPersonalDescription" ng-change="answerChanged()" ng-model="profile.person.cv.generalInfo.personalDescription"></textarea>
-</md-input-container>
+<div layout="row" layout-xs="column" layout-wrap>
+    <div felx="auto" style="width:48%; margin:10px">
+        <md-input-container class="md-icon-float md-block">
+            <label>{{'profile.description' | translate}}</label>
+            <textarea id="cvcPersonalDescription" ng-change="answerChanged()" ng-model="profile.person.cv.generalInfo.personalDescription"></textarea>
+        </md-input-container>
+    </div>
+    <div felx="auto" style="width:48%; margin:10px">
+        <md-list>
+            <md-list-item>
+                <label><b>{{'profile.languages' | translate}}</b>
+                    <div class="cvc-container-border" ng-if="profile.person.cv.generalInfo.language && profile.person.cv.generalInfo.language.length > 0">
+                        <table style="width:100%; text-align:center;">
+                            <tr>
+                                <th></th>
+                                <th>{{'profile.cv.generalInfo.language.name' | translate}}</th>
+                                <th>{{'profile.cv.generalInfo.language.level' | translate}}</th>
+                                <th></th>
+                            </tr>
+                            <tr ng-repeat="language in profile.person.cv.generalInfo.language">
+                                <td>
+                                    <span>
+                                        <md-tooltip md-direction="left" style="font-size:100%">
+                                            {{'profile.label.remove' | translate}}
+                                        </md-tooltip>
+                                        <i ng-click="removeLanguage($index)" class="fa fa-trash fa-lg" style="cursor:pointer" aria-hidden="true"></i>
+                                    </span>
+                                </td>
 
-<md-list>
-    <md-list-item>
-        <label style="max-width: 650px"><b>{{'profile.languages' | translate}}</b>
-            <div class="cvc-container-border" ng-if="profile.person.cv.generalInfo.language && profile.person.cv.generalInfo.language.length > 0">
-                <table style="width:100%; text-align:center;">
-                    <tr>
-                        <th></th>
-                        <th>{{'profile.cv.generalInfo.language.name' | translate}}</th>
-                        <th>{{'profile.cv.generalInfo.language.level' | translate}}</th>
-                        <th></th>
-                    </tr>
-                    <tr ng-repeat="language in profile.person.cv.generalInfo.language">
-                        <td>
-                            <span>
-                                <md-tooltip md-direction="left" style="font-size:100%">
-                                    {{'profile.label.remove' | translate}}
-                                </md-tooltip>
-                                <i ng-click="removeLanguage($index)" class="fa fa-trash fa-lg" style="cursor:pointer" aria-hidden="true"></i>
-                            </span>
-                        </td>
+                                <td>
+                                    <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                                        <input type="text" ng-change="answerChanged()" ng-model="language.name" maxlength="40" required/>
+                                    </md-input-container>
+                                </td>
 
-                        <td>
-                            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                                <input type="text" ng-change="answerChanged()" ng-model="language.name" maxlength="40" required/>
-                            </md-input-container>
-                        </td>
+                                <td style="width:50%">
+                                    <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                                        <md-slider class="md-primary" ng-change="answerChanged()" ng-model="language.level" step="1" min="0" max="{{languageLevelToText.length - 1}}"/>
+                                    </md-input-container>
+                                </td>
 
-                        <td style="width:50%">
-                            <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                                <md-slider class="md-primary" ng-change="answerChanged()" ng-model="language.level" step="1" min="0" max="{{languageLevelToText.length - 1}}"/>
-                            </md-input-container>
-                        </td>
+                                <td style="width:20%">
+                                    {{languageLevelToText[language.level] | translate}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
-                        <td style="width:20%">
-                            {{languageLevelToText[language.level] | translate}}
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                    <p ng-if="!profile.person.cv.generalInfo.language || profile.person.cv.generalInfo.language.length === 0">
+                        {{'profile.cv.generalInfo.language.empty_list' | translate}}
+                    </p>
+                </label>
 
-            <p ng-if="!profile.person.cv.generalInfo.language || profile.person.cv.generalInfo.language.length === 0">
-                {{'profile.cv.generalInfo.language.empty_list' | translate}}
-            </p>
-        </label>
-
-        <span class="fa-stack cvc-button" style="padding-top:16px; cursor:pointer" ng-click="addLanguage()">
-            <md-tooltip md-direction="left" style="font-size:100%">
-                {{'profile.label.add_language' | translate}}
-            </md-tooltip>
-            <i class="fa fa-plus cvc-add-button-1 fa-stack-1x" aria-hidden="true"></i>
-            <i class="fa fa-plus-circle cvc-add-button-2 fa-stack-2x" aria-hidden="true"></i>
-        </span>
-    </md-list-item>
-</md-list>
+                <span class="fa-stack cvc-button" style="padding-top:16px; cursor:pointer" ng-click="addLanguage()">
+                    <md-tooltip md-direction="left" style="font-size:100%">
+                        {{'profile.label.add_language' | translate}}
+                    </md-tooltip>
+                    <i class="fa fa-plus cvc-add-button-1 fa-stack-1x" aria-hidden="true"></i>
+                    <i class="fa fa-plus-circle cvc-add-button-2 fa-stack-2x" aria-hidden="true"></i>
+                </span>
+            </md-list-item>
+        </md-list>
+    </div>
+</div>
