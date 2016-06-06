@@ -24,7 +24,11 @@
 
         "datasets": {
             "watch": [
-                "./dist/server/text_resource.json"
+                "./dist/server/text_resource.json",
+                "./dist/server/education_level.json",
+                "./dist/server/countries.json",
+                "./dist/server/education_faculty.json",
+                "./dist/server/language_level.json"
             ],
             "watchEnabled": true,
             "datasetCacheLifeTime": 7200000

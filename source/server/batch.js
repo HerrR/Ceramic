@@ -26,20 +26,21 @@
   var datasets;
   var cacheClient;
 
-  function readDataset(filename, defaultValue, doCrash) {
-    return cvcUtils.readJsonFileSync(path.join(config.server.datasets.folder,filename), defaultValue, doCrash);
-  }
-
   function reloadDataset(filename) {
     logger.info('Loading: ' + filename);
 
-    var newCache = readDataset(filename, undefined, false);
+    var newCache = cvcUtils.readJsonFileSync(filename, undefined, false);
     if (newCache && newCache.name && newCache.data) {
+      logger.info('Loaded: ' + filename);
+
       var name = newCache.name;
       var data = newCache.data;
 
+      logger.info('Update Cache: ' + name);
       cacheClient.set(name, JSON.stringify(data), redis.print);
       cacheClient.publish('update', name);
+    } else {
+      logger.error('Failed to load: ' + filename);
     }
   }
 

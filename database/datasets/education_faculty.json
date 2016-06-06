@@ -1,5 +1,5 @@
 {
-    "name": "faculty",
+    "name": "education_faculty",
     "data": {
         "EF010": {
             "textKey": "education.faculty.economy",

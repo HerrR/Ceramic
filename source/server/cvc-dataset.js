@@ -16,6 +16,7 @@
     const path = require('path');
     const redis = require("redis");
     const watch = require('node-watch');
+    const bluebird = require('bluebird');
     const loadashObject = require('lodash/fp/object');
 
     const cvcUtils = require('./cvc-utils');
@@ -24,11 +25,11 @@
 
     var config;
     var logger;
-    var datasets;
+    //var datasets;
 
     var cacheClient;
 
-    function readDataset(filename, defaultValue, doCrash) {
+    /*function readDataset(filename, defaultValue, doCrash) {
         return cvcUtils.readJsonFileSync(path.join(config.server.datasets.folder,filename), defaultValue, doCrash);
     }
 
@@ -65,78 +66,68 @@
         }
 
         return filtered;
+    }*/
+
+    function handleMessage(channel, message) {
+        logger.info('Redis Message: channel=' + channel + ' message=' + message);
+        if (channel === 'update') {
+            // TODO: listen for datasets that are to be loaded full
+        }
     }
 
     function initEndPoints(app) {
-        app.get('/public/translations', function(req, res) {
-            res.json(loadashObject.keys(datasets.translations.data));
+        app.get('/dataset/keys/:name', function(req, res) {
+            cacheClient.getAsync(req.params.name).then(function(data) {
+                res.json(loadashObject.keys(JSON.parse(data)));
+            }).error(function(err) {
+                logger.error(err);
+            });
         });
 
-        app.get('/public/translations/:locale', function(req, res) {
-            res.json(datasets.translations.data[req.params.locale.toLowerCase()] || {});
+        app.get('/dataset/:name', function(req, res) {
+            cacheClient.getAsync(req.params.name).then(function(data) {
+                res.json(JSON.parse(data));
+            }).error(function(err) {
+                logger.error(err);
+            });
         });
 
-        app.get('/public/skills/:locale', function(req, res) {
-            // TODO: fetch all skills
+        app.get('/dataset/:name/:param0', function(req, res) {
+            cacheClient.getAsync(req.params.name).then(function(data) {
+                res.json(JSON.parse(data)[req.params.param0] || {});
+            }).error(function(err) {
+                logger.error(err);
+            });
         });
 
-        app.get('/public/skills/:locale/:filter', function(req, res) {
-            // TODO: fetch all skills that contain 'filter'
+        app.get('/dataset/:name/:param0/:param1', function(req, res) {
+            cacheClient.getAsync(req.params.name).then(function(data) {
+                res.json(JSON.parse(data)[req.params.param0][req.params.param1] || {});
+            }).error(function(err) {
+                logger.error(err);
+            });
         });
 
-        app.get('/public/countries/:locale', function(req, res) {
-            res.json(datasets.countries);
+        app.get('/dataset/:name/:param0/:param1/:param2', function(req, res) {
+            cacheClient.getAsync(req.params.name).then(function(data) {
+                res.json(JSON.parse(data)[req.params.param0][req.params.param1][req.params.param2] || {});
+            }).error(function(err) {
+                logger.error(err);
+            });
         });
 
+        /*
         app.get('/public/countries/:locale/:filter', function(req, res) {
-            res.json(filterDataset(req.params.filter, datasets.countries, function(value, filter) {
-                return value.indexOf(filter) === 0;
-            }));
+            //res.json(filterDataset(req.params.filter, datasets.countries, function(value, filter) {
+            //    return value.indexOf(filter) === 0;
+            //}));
+            res.json({});
         });
 
         app.get('/public/cities/:country/:locale/:filter', function(req, res) {
             // TODO: fetch all cities that contain 'filter' and are in 'country'
-        });
-
-        app.get('/public/industries/:locale', function(req, res) {
-            // TODO: industry
-        });
-
-        app.get('/public/roles/:locale', function(req, res) {
-            // TODO: role
-        });
-
-        app.get('/public/schooldegrees', function(req, res) {
-            // TODO: school degree
-        });
-
-        app.get('/public/schoolfaculties/:locale', function(req, res) {
-            // TODO: school faculty
-        });
-
-        app.get('/public/languages/:locale', function(req, res) {
-            // TODO: list languages
-        });
-
-        app.get('/public/languages/:locale/:filter', function(req, res) {
-            // TODO: list languages
-        });
-    }
-
-    function initDatasets() {
-        datasets = {
-            translations: readDataset(config.server.datasets.translations,{},true),
-            countries: readDataset(config.server.datasets.countries,{},true),
-            skills: {},
-            skilllevels: {},
-            industries: {},
-            roles: {},
-            schooldegrees: {},
-            schoolfaculties: {},
-            languages: {}
-        };
-
-        watch(config.server.datasets.watch, watchDatasets);
+            res.json({});
+        });*/
     }
 
     function initCache() {
@@ -171,13 +162,13 @@
         });
 
         cacheClient.on('message', function(channel, message) {
-            logger.info('Redis Message: channel=' + channel + ' message=' + message);
-            if (channel === 'update') {
-                // TODO: listen for datasets that are to be loaded full
-            }
+            handleMessage(channel, message);
         });
 
-        cacheClient.subscribe('update');
+        //cacheClient.subscribe('update');
+
+        bluebird.promisifyAll(redis.RedisClient.prototype);
+        bluebird.promisifyAll(redis.Multi.prototype);
     }
 
     module.exports = {
@@ -188,7 +179,7 @@
             cvcUtils.init(config, logger);
 
             initCache();
-            initDatasets();
+            //initDatasets();
             initEndPoints(_app);
         },
 

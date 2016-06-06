@@ -1,0 +1,13 @@
+{
+    "name": "language_level",
+    "data": {
+        "levels": [
+            "profile.cv.language.level0",
+            "profile.cv.language.level1",
+            "profile.cv.language.level2",
+            "profile.cv.language.level3",
+            "profile.cv.language.level4",
+            "profile.cv.language.level5"
+        ]
+    }
+}

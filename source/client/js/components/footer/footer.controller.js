@@ -10,7 +10,7 @@
     Controller.$inject = ['$scope', '$http', '$cookies', '$rootScope', '$translate', 'AppConstants'];
 
     function Controller($scope, $http, $cookies, $rootScope, $translate, AppConstants) {
-        $http.get(AppConstants.PATHS.DATASETS + 'translations', {}).then(function(translations) {
+        $http.get(AppConstants.PATHS.DATASETS + 'keys/translations', {}).then(function(translations) {
             $scope.translations = translations.data;
         }, function(err) {
             // TODO

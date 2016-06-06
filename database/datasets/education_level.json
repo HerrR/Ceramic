@@ -1,5 +1,5 @@
 {
-    "name": "educationlevel",
+    "name": "education_level",
     "data": {
         "EL10":"education.level.high_school",
         "EL20":"education.level.bachelor",

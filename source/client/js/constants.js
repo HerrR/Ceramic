@@ -12,7 +12,7 @@
             PATHS: {
                 PUBLIC: 'public/',
                 PRIVATE: 'private/',
-                DATASETS: 'public/',
+                DATASETS: 'dataset/',
                 AUTHORIZED: 'auth/'
             },
             MESSAGE_LIFE: 2000,
