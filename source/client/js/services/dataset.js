@@ -18,13 +18,12 @@
         // TODO: fetch all datasets that can be stored locally
 
         angular.forEach(datasets, function(value, key) {
-                console.log('loaded:' + key + " value=" + value.path);
-            var current = datasets[key];
-            
-            $http.get(current.path, {}).then(function(dataset) {
-                current.data = dataset.data;
-                for (var index = 0; index < current.callbacks.length; ++index) {
-                    current.callbacks[index](current.data);
+            console.log('loading:' + key + " value=" + value.path);
+            $http.get(value.path, {}).then(function(dataset) {
+                console.log('loaded',dataset.data);
+                value.data = dataset.data;
+                for (var index = 0; index < value.callbacks.length; ++index) {
+                    value.callbacks[index](value.data);
                 }
             }, function(err) {
                 // TODO
