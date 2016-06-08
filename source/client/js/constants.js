@@ -17,7 +17,8 @@
             },
             DATASETS: {
                 TRANSLATION_LANGUAGES: 'TRANSLATION_LANGUAGES',
-                LANGUAGE_LEVELS: 'LANGUAGE_LEVELS'
+                LANGUAGE_LEVELS: 'LANGUAGE_LEVELS',
+                COUNTRIES: 'COUNTRIES'
             },
             MESSAGE_LIFE: 2000,
             USER_TYPES: {

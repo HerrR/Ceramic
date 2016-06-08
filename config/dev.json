@@ -24,11 +24,16 @@
 
         "datasets": {
             "watch": [
-                "./dist/server/text_resource.json",
-                "./dist/server/education_level.json",
                 "./dist/server/countries.json",
+                "./dist/server/domain_experience.json",
                 "./dist/server/education_faculty.json",
-                "./dist/server/language_level.json"
+                "./dist/server/education_level.json",
+                "./dist/server/language_level.json",
+                "./dist/server/languages.json",
+                "./dist/server/professions.json",
+                "./dist/server/requirements.json",
+                "./dist/server/specific_experience.json",
+                "./dist/server/text_resource.json"
             ],
             "watchEnabled": true,
             "datasetCacheLifeTime": 7200000

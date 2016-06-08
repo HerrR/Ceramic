@@ -1,14 +1,35 @@
 {
     "name": "specific_experience",
     "data": {
-
+        "SE10": {
+            "yearsFrom": 0,
+            "yearsTo": 0,
+            "textKey": "specific_experience.se10"
+        },
+        "SE20": {
+            "yearsFrom": 0,
+            "yearsTo": 1,
+            "textKey": "specific_experience.se20"
+        },
+        "SE30": {
+            "yearsFrom": 1,
+            "yearsTo": 3,
+            "textKey": "specific_experience.se30"
+        },
+        "SE40": {
+            "yearsFrom": 3,
+            "yearsTo": 5,
+            "textKey": "specific_experience.se40"
+        },
+        "SE50": {
+            "yearsFrom": 5,
+            "yearsTo": 8,
+            "textKey": "specific_experience.se50"
+        },
+        "SE60": {
+            "yearsFrom": 8,
+            "yearsTo": 100,
+            "textKey": "specific_experience.se60"
+        }
     }
 }
-
-Expertise   Description
-0   None
-0 - 1   0 - 1 years of experience
-1 - 3   1 - 3 years of experience
-3 - 5    years of experience
-5 - 8    years of experience
-> 8  years of experience

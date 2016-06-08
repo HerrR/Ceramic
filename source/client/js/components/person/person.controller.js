@@ -22,20 +22,17 @@
         $scope.newHashCode = computeHashCode($scope.profile);
         $scope.valuesChanged = false;
 
-        DatasetService.getAsync(AppConstants.LANGUAGE_LEVELS, function(data) {
-            $scope.languageLevelToText = data;
+        DatasetService.getAsync(AppConstants.DATASETS.LANGUAGE_LEVELS, function(data) {
+            $scope.languageLevelToText = data.levels;
         });
 
-        // TODO: use dataset service
-        $http.get(AppConstants.PATHS.DATASETS + 'countries', {}).then(function(resp) {
+        DatasetService.getAsync(AppConstants.DATASETS.COUNTRIES, function(data) {
             var items = [];
-            for (var key in resp.data) {
-                items.push({display: resp.data[key]});
+            for (var key in data) {
+                items.push({display: data[key]});
             }
 
             $scope.countries = items;
-        }, function() {
-            // TODO: handle error
         });
 
         $scope.hasScreenMessage = function() {

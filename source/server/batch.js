@@ -40,7 +40,7 @@
       cacheClient.set(name, JSON.stringify(data), redis.print);
       cacheClient.publish('update', name);
     } else {
-      logger.error('Failed to load: ' + filename);
+      logger.error('Will not update cache for: ' + filename);
     }
   }
 

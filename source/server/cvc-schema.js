@@ -118,18 +118,19 @@
             // TODO: money
             // TODO: receipt
 
+            // TODO: list of SearchProfile
             searchCriteria: {
                 skills: [{
-                type: String,
-                minLevel: mongoose.Schema.Types.Number
-            }],
+                    type: String,
+                    minLevel: mongoose.Schema.Types.Number
+                }],
 
-            responsibilities: [{
-                type: String,
-                minAmount: mongoose.Schema.Types.Number
-            }]
+                responsibilities: [{
+                    type: String,
+                    minAmount: mongoose.Schema.Types.Number
+                }]
+            }
         }
-    }
     };
 
     const Admin = {

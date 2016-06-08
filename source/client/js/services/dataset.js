@@ -1,4 +1,5 @@
 /* global angular */
+/* global $ */
 
 (function() {
     'use strict';
@@ -13,14 +14,12 @@
         var self = this;
         var datasets = {};
 
-        datasets[AppConstants.TRANSLATION_LANGUAGES] = { path: AppConstants.PATHS.DATASETS + 'keys/translations', callbacks: [], data: null };
-        datasets[AppConstants.LANGUAGE_LEVELS] = { path: AppConstants.PATHS.DATASETS + 'language_level', callbacks: [], data: null };
+        datasets[AppConstants.DATASETS.TRANSLATION_LANGUAGES] = { path: 'keys/translations', callbacks: [], data: null };
+        datasets[AppConstants.DATASETS.LANGUAGE_LEVELS] = { path: 'language_level', callbacks: [], data: null };
         // TODO: fetch all datasets that can be stored locally
 
-        angular.forEach(datasets, function(value, key) {
-            console.log('loading:' + key + " value=" + value.path);
-            $http.get(value.path, {}).then(function(dataset) {
-                console.log('loaded',dataset.data);
+        $.each(datasets, function(index, value) {
+            $http.get(AppConstants.PATHS.DATASETS + value.path, {}).then(function(dataset) {
                 value.data = dataset.data;
                 for (var index = 0; index < value.callbacks.length; ++index) {
                     value.callbacks[index](value.data);
@@ -42,6 +41,10 @@
                     datasets[name].callbacks.push(callback);
                 }
             }
+        };
+
+        self.getFilter = function(name, filter, callback) {
+            // TODO
         };
 
         self.get = function(name) {
