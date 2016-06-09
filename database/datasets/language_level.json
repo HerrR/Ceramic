@@ -1,13 +1,13 @@
 {
     "name": "language_level",
     "data": {
-        "levels": [
-            "profile.cv.language.level0",
-            "profile.cv.language.level1",
-            "profile.cv.language.level2",
-            "profile.cv.language.level3",
-            "profile.cv.language.level4",
-            "profile.cv.language.level5"
+        "list": [
+            {"id": "LL10", "textKey": "profile.cv.language.level0"},
+            {"id": "LL20", "textKey": "profile.cv.language.level1"},
+            {"id": "LL30", "textKey": "profile.cv.language.level2"},
+            {"id": "LL40", "textKey": "profile.cv.language.level3"},
+            {"id": "LL50", "textKey": "profile.cv.language.level4"},
+            {"id": "LL60", "textKey": "profile.cv.language.level5"}
         ]
     }
 }

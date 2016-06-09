@@ -18,7 +18,10 @@
             DATASETS: {
                 TRANSLATION_LANGUAGES: 'TRANSLATION_LANGUAGES',
                 LANGUAGE_LEVELS: 'LANGUAGE_LEVELS',
-                COUNTRIES: 'COUNTRIES'
+                COUNTRIES: 'COUNTRIES',
+                DEGREE: 'DEGREE',
+                FACULTY: 'FACULTY',
+                INDUSTRY: 'INDUSTRY'
             },
             MESSAGE_LIFE: 2000,
             USER_TYPES: {

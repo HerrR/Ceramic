@@ -1,8 +1,0 @@
-{
-    "name": "requirements",
-    "data": {
-        "EL10": {
-            "must": "must_have"
-        }
-    }
-}

@@ -1,5 +1,28 @@
 {
     "name": "industry",
     "data": {
+        "list": [
+            {"id":"I010", "textKey":"industry.i010", "description":"industry.description.i010"},
+            {"id":"I020", "textKey":"industry.i020", "description":"industry.description.i020"},
+            {"id":"I030", "textKey":"industry.i030", "description":"industry.description.i030"},
+            {"id":"I040", "textKey":"industry.i040", "description":"industry.description.i040"},
+            {"id":"I050", "textKey":"industry.i050", "description":"industry.description.i050"},
+            {"id":"I060", "textKey":"industry.i060", "description":"industry.description.i060"},
+            {"id":"I070", "textKey":"industry.i070", "description":"industry.description.i070"},
+            {"id":"I080", "textKey":"industry.i080", "description":"industry.description.i080"},
+            {"id":"I090", "textKey":"industry.i090", "description":"industry.description.i090"},
+            {"id":"I100", "textKey":"industry.i100", "description":"industry.description.i100"},
+            {"id":"I110", "textKey":"industry.i110", "description":"industry.description.i110"},
+            {"id":"I120", "textKey":"industry.i120", "description":"industry.description.i120"},
+            {"id":"I130", "textKey":"industry.i130", "description":"industry.description.i130"},
+            {"id":"I140", "textKey":"industry.i140", "description":"industry.description.i140"},
+            {"id":"I150", "textKey":"industry.i150", "description":"industry.description.i150"},
+            {"id":"I160", "textKey":"industry.i160", "description":"industry.description.i160"},
+            {"id":"I170", "textKey":"industry.i170", "description":"industry.description.i170"},
+            {"id":"I180", "textKey":"industry.i180", "description":"industry.description.i180"},
+            {"id":"I190", "textKey":"industry.i190", "description":"industry.description.i190"},
+            {"id":"I200", "textKey":"industry.i200", "description":"industry.description.i200"},
+            {"id":"I210", "textKey":"industry.i210", "description":"industry.description.i210"}
+        ]
     }
 }

@@ -16,6 +16,10 @@
 
         datasets[AppConstants.DATASETS.TRANSLATION_LANGUAGES] = { path: 'keys/translations', callbacks: [], data: null };
         datasets[AppConstants.DATASETS.LANGUAGE_LEVELS] = { path: 'language_level', callbacks: [], data: null };
+        datasets[AppConstants.DATASETS.INDUSTRY] = { path: 'industry', callbacks: [], data: null };
+        datasets[AppConstants.DATASETS.DEGREE] = { path: 'education_level', callbacks: [], data: null };
+        datasets[AppConstants.DATASETS.FACULTY] = { path: 'education_faculty', callbacks: [], data: null };
+
         // TODO: fetch all datasets that can be stored locally
 
         $.each(datasets, function(index, value) {

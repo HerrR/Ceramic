@@ -51,7 +51,11 @@
         checksum: String,
         link: String,
         size: mongoose.Schema.Types.Number,
-        added: Date
+        added: Date,
+        validContent: mongoose.Schema.Types.Boolean,
+        maliciousContent: mongoose.Schema.Types.Boolean,
+        scanned: Date
+
     };
 
     const PersonSettings = {

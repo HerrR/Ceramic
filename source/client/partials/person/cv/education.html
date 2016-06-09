@@ -10,13 +10,15 @@
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
-                <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                    <label>{{'profile.cv.education.degree' | translate}}</label>
-                    <input type="text" ng-change="answerChanged()" ng-model="education.degree" maxlength="40"/>
+                <md-input-container class="md-icon-float md-block">
+                    <md-select ng-change="answerChanged()" ng-model="education.degree" placeholder="{{'profile.cv.education.degree' | translate}}">
+                        <md-option ng-value="degree.id" ng-repeat="degree in degrees">{{degree.textKey | translate}}</md-option>
+                    </md-select>
                 </md-input-container>
-                <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                    <label>{{'profile.cv.education.faculty' | translate}}</label>
-                    <input type="text" ng-change="answerChanged()" ng-model="education.faculty" maxlength="40"/>
+                <md-input-container class="md-icon-float md-block">
+                    <md-select ng-change="answerChanged()" ng-model="education.faculty" placeholder="{{'profile.cv.education.faculty' | translate}}">
+                        <md-option ng-value="faculty.id" ng-repeat="faculty in faculties">{{faculty.textKey | translate}}</md-option>
+                    </md-select>
                 </md-input-container>
                 <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
                     <label>{{'profile.cv.education.from' | translate}}</label>

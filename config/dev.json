@@ -31,7 +31,6 @@
                 "./dist/server/language_level.json",
                 "./dist/server/languages.json",
                 "./dist/server/professions.json",
-                "./dist/server/requirements.json",
                 "./dist/server/specific_experience.json",
                 "./dist/server/text_resource.json"
             ],

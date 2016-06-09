@@ -23,7 +23,15 @@
         $scope.valuesChanged = false;
 
         DatasetService.getAsync(AppConstants.DATASETS.LANGUAGE_LEVELS, function(data) {
-            $scope.languageLevelToText = data.levels;
+            $scope.languageLevelToText = data.list;
+        });
+
+        DatasetService.getAsync(AppConstants.DATASETS.DEGREE, function(data) {
+            $scope.degrees = data.list;
+        });
+
+        DatasetService.getAsync(AppConstants.DATASETS.FACULTY, function(data) {
+            $scope.faculties = data.list;
         });
 
         DatasetService.getAsync(AppConstants.DATASETS.COUNTRIES, function(data) {

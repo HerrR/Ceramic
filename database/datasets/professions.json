@@ -1,6 +1,30 @@
 {
     "name": "professions",
     "data": {
-        
+        "list": [
+            {"id": "P010", "textKey": "profession.p010", "description": "profession.description.p010"},
+            {"id": "P020", "textKey": "profession.p020", "description": "profession.description.p020"},
+            {"id": "P030", "textKey": "profession.p030", "description": "profession.description.p030"},
+            {"id": "P040", "textKey": "profession.p040", "description": "profession.description.p040"},
+            {"id": "P050", "textKey": "profession.p050", "description": "profession.description.p050"},
+            {"id": "P060", "textKey": "profession.p060", "description": "profession.description.p060"},
+            {"id": "P070", "textKey": "profession.p070", "description": "profession.description.p070"},
+            {"id": "P080", "textKey": "profession.p080", "description": "profession.description.p080"},
+            {"id": "P090", "textKey": "profession.p090", "description": "profession.description.p090"},
+            {"id": "P100", "textKey": "profession.p100", "description": "profession.description.p100"},
+            {"id": "P110", "textKey": "profession.p110", "description": "profession.description.p110"},
+            {"id": "P120", "textKey": "profession.p120", "description": "profession.description.p120"},
+            {"id": "P130", "textKey": "profession.p130", "description": "profession.description.p130"},
+            {"id": "P140", "textKey": "profession.p140", "description": "profession.description.p140"},
+            {"id": "P150", "textKey": "profession.p150", "description": "profession.description.p150"},
+            {"id": "P160", "textKey": "profession.p160", "description": "profession.description.p160"},
+            {"id": "P170", "textKey": "profession.p170", "description": "profession.description.p170"},
+            {"id": "P180", "textKey": "profession.p180", "description": "profession.description.p180"},
+            {"id": "P190", "textKey": "profession.p190", "description": "profession.description.p190"},
+            {"id": "P200", "textKey": "profession.p200", "description": "profession.description.p200"},
+            {"id": "P210", "textKey": "profession.p210", "description": "profession.description.p210"},
+            {"id": "P220", "textKey": "profession.p220", "description": "profession.description.p220"}
+        ]
     }
 }
+
