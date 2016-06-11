@@ -21,6 +21,7 @@
         deleted: Date,
         updated: Date,
         note: String,
+        emailAuthenticated: mongoose.Schema.Types.Boolean,
         visible: mongoose.Schema.Types.Boolean,
         schemaVersion: mongoose.Schema.Types.Number,
         updateVersion: mongoose.Schema.Types.Number,
@@ -83,20 +84,24 @@
         otherMerits: String
     };
 
+    const PersonBasic = {
+        name: String,
+        profilePicture: String,
+        dateOfBirth: Date,
+        email: String,
+        country: String,
+        city: String,
+        phone: String
+    };
+
     const Person = {
         userid: { type: String, index: true },
         email: { type: String, index: true },
         system: System,
         settings: PersonSettings,
         person: {
-            name: String,           // TODO: put in "general"
-            profilePicture: String, // TODO: put in "general"
-            dateOfBirth: Date, // TODO: put in "general"
-            email: String,          // TODO: initialize to registered email, and put in general
-            country: String, // TODO: put in "general"
-            city: String, // TODO: put in "general"
-            phone: String, // TODO: put in "general"
-            
+            basic: PersonBasic,
+
             cv: {
                 skills: [PersonSkill],
                 experience: [PersonExperience],
@@ -105,8 +110,37 @@
             },
 
             library: [Attachment]
-        }
+        },
+
+        authorizedUsers: [{
+            userid: String,
+            fromDate: Date,
+            toDate: Date
+        }]
     };
+
+    const CompanyBasic = {
+        name: String,
+        description: String,
+        industry: String
+    },
+
+    const CompanySearchProfile = {
+        education: {
+            level: [{ requirement: String, type: String }],
+            faculty: [{ requirement: String, type: String }],
+            major: [{ requirement: String, type: String }]
+        },
+        experience: {
+            industry: [{ requirement: String, type: String }],
+            function: [{ requirement: String, type: String }],
+            position: [{ requirement: String, type: String }],
+            language: [{ requirement: String, type: String }],
+            keywords: [String],
+            compensation: { currency: String, amount: mongoose.Schema.Types.Number },
+            location: { country: String, city: String }
+        }
+    },
 
     const Company = {
         userid: { type: String, index: true },
@@ -115,25 +149,8 @@
         credits: mongoose.Schema.Types.Number,
         system: System,
         company: {
-            name: String, // TODO: put in "general"
-            description: String, // TODO: put in "general"
-            industry: String, // TODO: put in "general"
-
-            // TODO: money
-            // TODO: receipt
-
-            // TODO: list of SearchProfile
-            searchCriteria: {
-                skills: [{
-                    type: String,
-                    minLevel: mongoose.Schema.Types.Number
-                }],
-
-                responsibilities: [{
-                    type: String,
-                    minAmount: mongoose.Schema.Types.Number
-                }]
-            }
+            basic: CompanyBasic,
+            searchProfile: [CompanySearchProfile]
         }
     };
 

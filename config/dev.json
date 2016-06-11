@@ -36,6 +36,18 @@
             ],
             "watchEnabled": true,
             "datasetCacheLifeTime": 7200000
+        },
+
+        "uploads": {
+            "properties": {
+                "dest": "./dist/uploads/",
+                "limits": {
+                    "fieldNameSize": 100,
+                    "fieldSize": 1048576,
+                    "fileSize": 1048576
+                }
+            },
+            "initialStorage": 1048576
         }
     },
 
