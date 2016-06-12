@@ -16,10 +16,25 @@
         var userType;
         var profileData;
 
+        function toDate(d) {
+            return new Date(d.toString().substr(0,10));
+        }
+
         function prepareProfileData(profile) {
             if (profile) {
                 if (profile.person) {
-                    profile.person.dateOfBirth = new Date(profile.person.dateOfBirth);
+                    profile.person.basic.dateOfBirth = toDate(profile.person.basic.dateOfBirth);
+                    
+                    for (var educationId = 0; educationId < profile.person.cv.education.length; ++educationId) {
+                        profile.person.cv.education[educationId].fromDate = toDate(profile.person.cv.education[educationId].fromDate);
+                        profile.person.cv.education[educationId].toDate = toDate(profile.person.cv.education[educationId].toDate);
+                    }
+
+                    for (var experienceId = 0; experienceId < profile.person.cv.experience.length; ++experienceId) {
+                        profile.person.cv.experience[experienceId].fromDate = toDate(profile.person.cv.experience[experienceId].fromDate);
+                        profile.person.cv.experience[experienceId].toDate = toDate(profile.person.cv.experience[experienceId].toDate);
+                    }
+
                     // TODO
                 }
 

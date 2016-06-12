@@ -123,7 +123,7 @@
         name: String,
         description: String,
         industry: String
-    },
+    };
 
     const CompanySearchProfile = {
         education: {
@@ -140,7 +140,7 @@
             compensation: { currency: String, amount: mongoose.Schema.Types.Number },
             location: { country: String, city: String }
         }
-    },
+    };
 
     const Company = {
         userid: { type: String, index: true },

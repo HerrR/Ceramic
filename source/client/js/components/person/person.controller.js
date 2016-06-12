@@ -16,6 +16,7 @@
         $scope.MAX_EDUCATION_COUNT = 20;
         $scope.MAX_WORK_COUNT = 40;
         $scope.MAX_LANGUAGE_COUNT = 20;
+        $scope.MAX_LIBRARY_COUNT = 100;
 
         $scope.profile = ProfileService.getProfile();
         $scope.oldHashCode = computeHashCode($scope.profile);
@@ -53,17 +54,21 @@
         };
 
         $scope.save = function() {
-            // TODO: validation
+            var validationErrors = $scope.validate();
 
-            ProfileService.save(function(data, err) {
-                if (err === null) {
-                    $scope.profile = data;
-                    $scope.oldHashCode = computeHashCode($scope.profile);
-                    $scope.newHashCode = computeHashCode($scope.profile);
-                    $scope.valuesChanged = false;
-                    ScreenMessageService.info('message.saved_success');
-                }
-            });
+            if (validationErrors.length === 0) {
+                ProfileService.save(function(data, err) {
+                    if (err === null) {
+                        $scope.profile = data;
+                        $scope.oldHashCode = computeHashCode($scope.profile);
+                        $scope.newHashCode = computeHashCode($scope.profile);
+                        $scope.valuesChanged = false;
+                        ScreenMessageService.info('message.saved_success');
+                    }
+                });
+            }
+
+            return validationErrors;
         };
 
         $scope.cancel = function() {
@@ -102,6 +107,11 @@
 
         $scope.getTabFile = function(tab) {
             return 'partials/person/' + tab + '.html';
+        };
+
+        $scope.validate = function() {
+            // TODO: validate the form and return validation errors.
+            return [];
         };
 
         $scope.addEducation = function() {
@@ -155,6 +165,23 @@
 
         $scope.removeLanguage = function(id) {
             $scope.profile.person.cv.generalInfo.language.splice(id,1);
+            $scope.answerChanged();
+        };
+
+        $scope.addLibrary = function() {
+            addElement($scope.profile.person.library, function () {
+                return {
+                    name: '',
+                    added: new Date()
+                };
+            }, function(element) {
+                return element.name.trim() !== '';
+            }, $scope.MAX_LIBRARY_COUNT);
+        };
+
+        $scope.removeLibrary = function(id) {
+            // TODO: call remove attachment back-end
+            $scope.profile.person.library.splice(id,1);
             $scope.answerChanged();
         };
     }

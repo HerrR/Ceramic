@@ -61,6 +61,9 @@
 
                         "profile.label.remove": "Remove",
 
+                        "profile.library.filename": "Filename",
+                        "profile.library.addedDate": "Added",
+
 
                         "profile.description": "Personal description",
 

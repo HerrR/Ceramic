@@ -40,7 +40,7 @@
 
         "uploads": {
             "properties": {
-                "dest": "./dist/uploads/",
+                "dest": "./temp/uploads/",
                 "limits": {
                     "fieldNameSize": 100,
                     "fieldSize": 1048576,

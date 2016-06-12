@@ -25,15 +25,15 @@
     const cvcAuthentication = require('./cvc-authentication');
 
     const app = express();
-    const upload;
-
+    
+    var upload;
     var config;
     var logger;
 
     function initUploads() {
-        var uploadSettings = config.server.uploads.settings;
+        var uploadProperties = config.server.uploads.properties;
         
-        uploadSettings.fileFilter = function(req, file, cb) {
+        uploadProperties.fileFilter = function(req, file, cb) {
             /*
               // The function should call `cb` with a boolean 
               // to indicate if the file should be accepted 
@@ -50,7 +50,7 @@
             cb(null, true);
         };
 
-        upload = multer(uploadSettings).any();
+        upload = multer(uploadProperties).any();
     }
 
     function initExpress() {
@@ -130,6 +130,11 @@
         });
 
         app.get('/private/download', cvcAuthentication.ensureAuthenticated, function(req, res) {
+            // TODO: check that this user is allowed to download the file
+            // TODO: res.sendFile('test.png');
+        });
+
+        app.delete('/private/download', cvcAuthentication.ensureAuthenticated, function(req, res) {
             // TODO: check that this user is allowed to download the file
             // TODO: res.sendFile('test.png');
         });
