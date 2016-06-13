@@ -77,7 +77,24 @@
             "code": "d",
             "name": "FACEBOOK",
             "enabled": true,
-            "callbackURL": "https://localhost:9010/auth/facebook/callback"
+            "callbackURL": "https://localhost:9010/auth/facebook/callback",
+            "profileFields": [
+                "id", 
+                "displayName", 
+                "name", 
+                "birthday", 
+                "email", 
+                "picture.type(large)",
+                "first_name",
+                "hometown",
+                "languages",
+                "last_name",
+                "locale",
+                "location",
+                "middle_name",
+                "name_format",
+                "work"
+            ]
         },
         "twitter": {
             "code": "e",

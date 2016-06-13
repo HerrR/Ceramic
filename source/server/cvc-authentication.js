@@ -83,9 +83,12 @@
                 callbackURL: config.authentication.facebook.callbackURL
             }, function(accessToken, refreshToken, profile, done) {
                 // TODO: use profile properties: provider, id, displayName, name, emails, etc..
+                // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
 
                 // TODO: check if user email is already registered, if yes then deny registration
                 // $or:[{userid:profile.id}, {email:profile.email}]
+
+                // TODO: store the facebook profile object as is in the database
 
                 cvcDatabase.getDatamodels().Person.findOne({userid:profile.id}, function(err, savedProfile) {
                     if (err !== null) {
@@ -99,8 +102,10 @@
                         };
 
                         var person = {
-                            name: profile.displayName
-                            // TODO: fill in more information
+                            basic: {
+                                name: profile.displayName
+                                // TODO: fill in more information
+                            }
                         };
 
                         var newPerson = new cvcDatabase.getDatamodels().Person({userid:profile.id, person:person, system:system});
@@ -109,7 +114,7 @@
                                 logger.error(err);
                                 done(err, profile);
                             } else {
-                                logger.info('New Person: ' + person.name);
+                                logger.info('New Person: ' + person.name, profile);
                                 done(null, profile);
                             }
                         });
@@ -153,7 +158,7 @@
         }
 
         if (config.authentication.facebook.enabled) {
-            app.get('/auth/facebook/login', passport.authenticate('facebook', {scope:['email']}));
+            app.get('/auth/facebook/login', passport.authenticate('facebook', {profileFields:config.authentication.facebook.profileFields}));
             app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }), function(req, res) {
                 res.redirect('/');
             });
