@@ -17,7 +17,7 @@
         var profileData;
 
         function toDate(d) {
-            return new Date(d.toString().substr(0,10));
+            return d ? new Date(d.toString().substr(0,10)) : null;
         }
 
         function prepareProfileData(profile) {

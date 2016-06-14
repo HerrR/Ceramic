@@ -5,6 +5,7 @@
         "dataSizeLimit": "400kb",
         "sessionSecretKey": "secret_session_key",
         "clusters": 1,
+        "defaultProfilePicture": "anonymous-user-profile.jpg",
         "email": {
             "transporter": "",
             "from": ""
@@ -85,13 +86,10 @@
                 "birthday", 
                 "email", 
                 "picture.type(large)",
-                "first_name",
                 "hometown",
                 "languages",
-                "last_name",
                 "locale",
                 "location",
-                "middle_name",
                 "name_format",
                 "work"
             ]

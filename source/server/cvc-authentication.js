@@ -80,7 +80,8 @@
             passport.use(new passportFacebook.Strategy({
                 clientID: process.env.FACEBOOK_APP_ID,
                 clientSecret: process.env.FACEBOOK_APP_SECRET,
-                callbackURL: config.authentication.facebook.callbackURL
+                callbackURL: config.authentication.facebook.callbackURL,
+                profileFields: config.authentication.facebook.profileFields
             }, function(accessToken, refreshToken, profile, done) {
                 // TODO: use profile properties: provider, id, displayName, name, emails, etc..
                 // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
@@ -98,17 +99,27 @@
                         var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
 
                         var settings = {
-                            recieveEmailNotifications: true
+                            recieveEmailNotifications: true,
+                            searchable: true
                         };
 
                         var person = {
                             basic: {
-                                name: profile.displayName
+                                name: profile.displayName,
+                                profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture)
                                 // TODO: fill in more information
                             }
                         };
 
-                        var newPerson = new cvcDatabase.getDatamodels().Person({userid:profile.id, person:person, system:system});
+                        var newProfile = {
+                            userid: profile.id,
+                            email: profile.email,
+
+                            person: person,
+                            system: system
+                        };
+
+                        var newPerson = new cvcDatabase.getDatamodels().Person(newProfile);
                         newPerson.save(function(err) {
                             if (err) {
                                 logger.error(err);
@@ -158,7 +169,7 @@
         }
 
         if (config.authentication.facebook.enabled) {
-            app.get('/auth/facebook/login', passport.authenticate('facebook', {profileFields:config.authentication.facebook.profileFields}));
+            app.get('/auth/facebook/login', passport.authenticate('facebook', { authType: 'rerequest' }));
             app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }), function(req, res) {
                 res.redirect('/');
             });
