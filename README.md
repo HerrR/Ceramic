@@ -40,4 +40,4 @@ Branches use the following naming conventions:
 * `update/{something}` => When you are iterating on an existing feature
 * `fix/{something}` => When you are fixing something broken in a feature
 * `try/{something}` => When you are trying out an idea and want feedback
-* `release/v.{major}.{minor].{patch}` => When releasing a new version
+* `release/v.{major}.{minor}.{patch}` => When releasing a new version
