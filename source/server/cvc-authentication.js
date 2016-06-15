@@ -55,7 +55,16 @@
     function initGoogleAuthentication() {
         if (config.authentication.google.enabled) {
             logger.info('Init Google Authentication');
+
             // TODO: configure passport
+            passport.use(new passportGoogle.Strategy({
+                clientID: process.env.GOOGLE_APP_ID,
+                clientSecret: process.env.GOOGLE_APP_SECRET,
+                callbackURL: config.authentication.google.callbackURL,
+                profileFields: config.authentication.google.profileFields
+            }, function(accessToken, refreshToken, profile, done) {
+                // TODO
+            }));
         }
     }
 
@@ -91,6 +100,7 @@
 
                 // TODO: store the facebook profile object as is in the database
 
+                // TODO: findOne using email and not profile.id
                 cvcDatabase.getDatamodels().Person.findOne({userid:profile.id}, function(err, savedProfile) {
                     if (err !== null) {
                         logger.warn(err);
@@ -168,6 +178,9 @@
 
         if (config.authentication.google.enabled) {
             app.post('/auth/google/login', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+            app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function(req, res) {
+                res.redirect('/');
+            });
         }
 
         if (config.authentication.facebook.enabled) {
@@ -179,10 +192,16 @@
 
         if (config.authentication.twitter.enabled) {
             app.post('/public/twitter/login', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+            app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }), function(req, res) {
+                res.redirect('/');
+            });
         }
 
         if (config.authentication.linkedin.enabled) {
             app.post('/public/linkedin/login', passport.authenticate('linkedin', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+            app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/' }), function(req, res) {
+                res.redirect('/');
+            });
         }
 
         app.get('/auth/logout', function(req, res) {
