@@ -28,6 +28,7 @@
                 for (var index = 0; index < value.callbacks.length; ++index) {
                     value.callbacks[index](value.data);
                 }
+                value.callbacks = [];
             }, function(err) {
                 // TODO
             });

@@ -106,7 +106,9 @@
                         var person = {
                             basic: {
                                 name: profile.displayName,
-                                profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture)
+                                profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
+                                email: profile.email,
+                                dateOfBirth: profile.birthday
                                 // TODO: fill in more information
                             }
                         };

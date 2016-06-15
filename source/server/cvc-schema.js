@@ -94,29 +94,31 @@
         phone: String
     };
 
+    const PersonCV = {
+        skills: [PersonSkill],
+        experience: [PersonExperience],
+        education: [PersonEducation],
+        generalInfo: PersonGeneralInfo
+    };
+
+    const PersonAuthorizedUser = {
+        userid: { type: String, required: true },
+        fromDate: { type: Date, required: true },
+        toDate: Date
+    };
+
     const Person = {
-        userid: { type: String, index: true },
-        email: { type: String, index: true },
+        userid: { type: String, index: true, required: true },
+        email: { type: String, index: true, required: true },
         system: System,
         settings: PersonSettings,
         person: {
             basic: PersonBasic,
-
-            cv: {
-                skills: [PersonSkill],
-                experience: [PersonExperience],
-                education: [PersonEducation],
-                generalInfo: PersonGeneralInfo
-            },
-
+            cv: PersonCV,
             library: [Attachment]
         },
 
-        authorizedUsers: [{
-            userid: String,
-            fromDate: Date,
-            toDate: Date
-        }]
+        authorizedUsers: [PersonAuthorizedUser]
     };
 
     const CompanyBasic = {
@@ -143,8 +145,8 @@
     };
 
     const Company = {
-        userid: { type: String, index: true },
-        email: { type: String, index: true },
+        userid: { type: String, index: true, required: true },
+        email: { type: String, index: true, required: true },
         updateVersion: mongoose.Schema.Types.Number,
         credits: mongoose.Schema.Types.Number,
         system: System,
@@ -161,8 +163,8 @@
     };
 
     const Message = {
-        fromUserid: { type: String, index: true },
-        toUserid: { type: String, index: true },
+        fromUserid: { type: String, index: true, required: true },
+        toUserid: { type: String, index: true, required: true },
         created: Date,
         wasRead: mongoose.Schema.Types.Boolean,
         wasRemoved: mongoose.Schema.Types.Boolean,
@@ -182,6 +184,10 @@
         purchase: String,
         transaction: String
     };
+
+    // TODO: sent emails
+
+    // TODO: login providers profile data
 
     module.exports = {
         getSchemas: function() {

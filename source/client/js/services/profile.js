@@ -74,6 +74,14 @@
             return profileData;
         };
 
+        self.hasErrors = function() {
+            return (profileData.errors !== undefined);
+        };
+
+        self.getErrors = function() {
+            return profileData.errors;
+        };
+
         self.reload = function(callback) {
             $http.get(AppConstants.PATHS.PRIVATE + userType.toLowerCase(),{}).then(function(resp) {
                 profileData = resp.data;
