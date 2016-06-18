@@ -28,6 +28,62 @@
 
     var cvcDatabase;
 
+    function loginOrCreateProfile(provider, accessToken, refreshToken, profile, done) {
+        // TODO: use profile properties: provider, id, displayName, name, emails, etc..
+        // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
+
+        // TODO: check if user email is already registered, if yes then deny registration
+        // $or:[{userid:profile.id}, {email:profile.email}]
+
+        // TODO: store the raw profile object as is in the database
+
+        // TODO: findOne using email and not profile.id
+        cvcDatabase.getDatamodels().Person.findOne({userid:profile.id}, function(err, savedProfile) {
+            if (err !== null) {
+                logger.warn(err);
+                done(err, profile);
+            } else if (savedProfile === null) {
+                var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
+
+                var settings = {
+                    recieveEmailNotifications: true,
+                    searchable: true
+                };
+
+                var person = {
+                    basic: {
+                        name: profile.displayName,
+                        profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
+                        email: profile.email,
+                        dateOfBirth: profile.birthday
+                        // TODO: fill in more information
+                    }
+                };
+
+                var newProfile = {
+                    userid: profile.id,
+                    email: profile.email,
+
+                    person: person,
+                    system: system
+                };
+
+                var newPerson = new cvcDatabase.getDatamodels().Person(newProfile);
+                newPerson.save(function(err) {
+                    if (err) {
+                        logger.error(err);
+                        done(err, profile);
+                    } else {
+                        logger.info('New Person: ' + person.name, profile);
+                        done(null, profile);
+                    }
+                });
+            } else {
+                done(null, profile);
+            }
+        });
+    }
+
     function verifyCredentials(username, password, done) {
         var user = null;
         var error = null; // new Error('message')
@@ -55,15 +111,13 @@
     function initGoogleAuthentication() {
         if (config.authentication.google.enabled) {
             logger.info('Init Google Authentication');
-
-            // TODO: configure passport
             passport.use(new passportGoogle.Strategy({
                 clientID: process.env.GOOGLE_APP_ID,
                 clientSecret: process.env.GOOGLE_APP_SECRET,
                 callbackURL: config.authentication.google.callbackURL,
                 profileFields: config.authentication.google.profileFields
             }, function(accessToken, refreshToken, profile, done) {
-                // TODO
+                loginOrCreateProfile(config.authentication.google.name, accessToken, refreshToken, profile, done);
             }));
         }
     }
@@ -71,80 +125,41 @@
     function initTwitterAuthentication() {
         if (config.authentication.twitter.enabled) {
             logger.info('Init Twitter Authentication');
-            // TODO: configure passport
+            passport.use(new passportTwitter.Strategy({
+                clientID: process.env.TWITTER_APP_ID,
+                clientSecret: process.env.TWITTER_APP_SECRET,
+                callbackURL: config.authentication.twitter.callbackURL,
+                profileFields: config.authentication.twitter.profileFields
+            }, function(accessToken, refreshToken, profile, done) {
+                loginOrCreateProfile(config.authentication.twitter.name, accessToken, refreshToken, profile, done);
+            }));
         }
     }
 
     function initLinkedInAuthentication() {
         if (config.authentication.linkedin.enabled) {
             logger.info('Init LinkedIn Authentication');
-            // TODO: configure passport
+            passport.use(new passportLinkedIn.Strategy({
+                clientID: process.env.LINKEDIN_APP_ID,
+                clientSecret: process.env.LINKEDIN_APP_SECRET,
+                callbackURL: config.authentication.linkedin.callbackURL,
+                profileFields: config.authentication.linkedin.profileFields
+            }, function(accessToken, refreshToken, profile, done) {
+                loginOrCreateProfile(config.authentication.linkedin.name, accessToken, refreshToken, profile, done);
+            }));
         }
     }
 
     function initFacebookAuthentication() {
         if (config.authentication.facebook.enabled) {
             logger.info('Init Facebook Authentication');
-
             passport.use(new passportFacebook.Strategy({
                 clientID: process.env.FACEBOOK_APP_ID,
                 clientSecret: process.env.FACEBOOK_APP_SECRET,
                 callbackURL: config.authentication.facebook.callbackURL,
                 profileFields: config.authentication.facebook.profileFields
             }, function(accessToken, refreshToken, profile, done) {
-                // TODO: use profile properties: provider, id, displayName, name, emails, etc..
-                // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
-
-                // TODO: check if user email is already registered, if yes then deny registration
-                // $or:[{userid:profile.id}, {email:profile.email}]
-
-                // TODO: store the facebook profile object as is in the database
-
-                // TODO: findOne using email and not profile.id
-                cvcDatabase.getDatamodels().Person.findOne({userid:profile.id}, function(err, savedProfile) {
-                    if (err !== null) {
-                        logger.warn(err);
-                        done(err, profile);
-                    } else if (savedProfile === null) {
-                        var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
-
-                        var settings = {
-                            recieveEmailNotifications: true,
-                            searchable: true
-                        };
-
-                        var person = {
-                            basic: {
-                                name: profile.displayName,
-                                profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
-                                email: profile.email,
-                                dateOfBirth: profile.birthday
-                                // TODO: fill in more information
-                            }
-                        };
-
-                        var newProfile = {
-                            userid: profile.id,
-                            email: profile.email,
-
-                            person: person,
-                            system: system
-                        };
-
-                        var newPerson = new cvcDatabase.getDatamodels().Person(newProfile);
-                        newPerson.save(function(err) {
-                            if (err) {
-                                logger.error(err);
-                                done(err, profile);
-                            } else {
-                                logger.info('New Person: ' + person.name, profile);
-                                done(null, profile);
-                            }
-                        });
-                    } else {
-                        done(null, profile);
-                    }
-                });
+                loginOrCreateProfile(config.authentication.facebook.name, accessToken, refreshToken, profile, done);
             }));
         }
     }
