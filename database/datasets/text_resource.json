@@ -52,6 +52,9 @@
                         "profile.languages": "Languages",
                         "profile.cv.generalInfo.language.empty_list": "No languages added.",
 
+                        "profile.library.empty_list": "No files added.",
+                        "profile.library.storage_usage": "Storage usage: {0}mb out of {1}mb",
+
                         "profile.cv.language.level0": "Basic",
                         "profile.cv.language.level1": "Good",
                         "profile.cv.language.level2": "Very good",

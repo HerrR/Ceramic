@@ -7,9 +7,9 @@
         .module('cvc')
         .controller('CvcPersonController', Controller);
 
-    Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants', 'ScreenMessageService', 'DatasetService'];
+    Controller.$inject = ['$scope', '$http', '$filter', 'ProfileService', 'AppConstants', 'ScreenMessageService', 'DatasetService'];
 
-    function Controller($scope, $http, ProfileService, AppConstants, ScreenMessageService, DatasetService) {
+    function Controller($scope, $http, $filter, ProfileService, AppConstants, ScreenMessageService, DatasetService) {
         $scope.MIN_DATE = "1900-01-01";
         $scope.MAX_DATE = new Date(); // TODO: at least 18 years old
 
@@ -168,7 +168,12 @@
             $scope.answerChanged();
         };
 
-        $scope.addLibrary = function() {
+        $scope.getStorageUsage = function() {
+            // TODO: calculate storage usage
+            return $filter('translate')('profile.library.storage_usage');
+        };
+
+        /*$scope.addLibrary = function() {
             addElement($scope.profile.person.library, function () {
                 return {
                     name: '',
@@ -177,12 +182,43 @@
             }, function(element) {
                 return element.name.trim() !== '';
             }, $scope.MAX_LIBRARY_COUNT);
-        };
+        };*/
 
         $scope.removeLibrary = function(id) {
-            // TODO: call remove attachment back-end
+            // TODO: call remove attachment back-end (simple DELETE rest call)
             $scope.profile.person.library.splice(id,1);
             $scope.answerChanged();
+        };
+
+        $scope.uploadFile = function (element) {
+            /*
+            var file = element.files[0];
+
+            $(element).wrap('<form>').closest('form').get(0).reset();
+            $(element).unwrap();
+
+            var formData = new FormData();
+            formData.append('file', file);
+
+            $http({
+                cache: false,
+                url: AppConstants.RESOURCE_PATH + 'attachment',
+                method: 'POST',
+                headers: {
+                    'Content-Type': undefined,
+                    'Cache-Control': 'no-cache'
+                },
+                data: formData,
+                transformRequest: function (data, headersGetterFunction) {
+                    return data;
+                }
+            })
+                .success(function (attachment) {
+                    // add attachment
+                })
+                .error(function (data, status) {
+                   // TODO: handle error
+                });*/
         };
     }
 

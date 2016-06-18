@@ -99,14 +99,14 @@
         "twitter": {
             "code": "e",
             "name": "TWITTER",
-            "enabled": true,
+            "enabled": false,
             "consumerKey": "",
             "consumerSecret": "fetch from process.env"
         },
         "linkedin": {
             "code": "f",
             "name": "LINKEDIN",
-            "enabled": true,
+            "enabled": false,
             "consumerKey": "",
             "callbackURL": ""
         }

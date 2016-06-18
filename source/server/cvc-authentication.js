@@ -54,7 +54,7 @@
                     basic: {
                         name: profile.displayName,
                         profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
-                        email: profile.email,
+                        email: profile.emails[0].value,
                         dateOfBirth: profile.birthday
                         // TODO: fill in more information
                     }
@@ -62,7 +62,7 @@
 
                 var newProfile = {
                     userid: profile.id,
-                    email: profile.email,
+                    email: profile.emails[0].value,
 
                     person: person,
                     system: system
@@ -72,6 +72,7 @@
                 newPerson.save(function(err) {
                     if (err) {
                         logger.error(err);
+                        logger.info('Profile', profile);
                         done(err, profile);
                     } else {
                         logger.info('New Person: ' + person.name, profile);
@@ -114,7 +115,7 @@
             passport.use(new passportGoogle.Strategy({
                 clientID: process.env.GOOGLE_APP_ID,
                 clientSecret: process.env.GOOGLE_APP_SECRET,
-                callbackURL: config.authentication.google.callbackURL,
+                returnURL: config.authentication.google.callbackURL,
                 profileFields: config.authentication.google.profileFields
             }, function(accessToken, refreshToken, profile, done) {
                 loginOrCreateProfile(config.authentication.google.name, accessToken, refreshToken, profile, done);
@@ -126,7 +127,7 @@
         if (config.authentication.twitter.enabled) {
             logger.info('Init Twitter Authentication');
             passport.use(new passportTwitter.Strategy({
-                clientID: process.env.TWITTER_APP_ID,
+                consumerKey: process.env.TWITTER_APP_ID,
                 clientSecret: process.env.TWITTER_APP_SECRET,
                 callbackURL: config.authentication.twitter.callbackURL,
                 profileFields: config.authentication.twitter.profileFields
