@@ -1,4 +1,5 @@
 /* global angular */
+/* global $ */
 
 (function() {
     'use strict';
@@ -190,35 +191,30 @@
             $scope.answerChanged();
         };
 
-        $scope.uploadFile = function (element) {
-            /*
-            var file = element.files[0];
+        $scope.uploadFiles = function(file, invalidFiles) {
+            // https://github.com/danialfarid/ng-file-upload
 
-            $(element).wrap('<form>').closest('form').get(0).reset();
-            $(element).unwrap();
+            // http://jsfiddle.net/danialfarid/0mz6ff9o/135/
 
-            var formData = new FormData();
-            formData.append('file', file);
-
-            $http({
-                cache: false,
-                url: AppConstants.RESOURCE_PATH + 'attachment',
-                method: 'POST',
-                headers: {
-                    'Content-Type': undefined,
-                    'Cache-Control': 'no-cache'
-                },
-                data: formData,
-                transformRequest: function (data, headersGetterFunction) {
-                    return data;
-                }
-            })
-                .success(function (attachment) {
-                    // add attachment
-                })
-                .error(function (data, status) {
-                   // TODO: handle error
-                });*/
+            if (file) {
+                $http({
+                    cache: false,
+                    url: AppConstants.PATHS.PRIVATE + 'upload',
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': undefined,
+                        'Cache-Control': 'no-cache'
+                    },
+                    data: file,
+                    transformRequest: function (data, headersGetterFunction) {
+                        return data;
+                    }
+                }).success(function(attachment) {
+                    // TODO: add attachment
+                }).error(function(data, status) {
+                    // TODO: handle error
+                });
+            }
         };
     }
 

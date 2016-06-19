@@ -14,7 +14,9 @@
     "use strict";
 
     const fs = require('fs');
+    const path = require('path');
     const nodemailer = require('nodemailer');
+    const uuid = require('node-uuid');
 
     var config;
     var logger;
@@ -64,6 +66,26 @@
 
                 logger.info('Message sent: ' + info.response);
             });
+        },
+
+        saveFileWithUUID: function(folder, data, callback) {
+            var id = uuid.v4();
+            while (fs.statSync(path,join(folder, id)).isFile()) {
+                id = uuid.v4();
+            }
+
+            fs.writeFile(path,join(folder, id), data, function(err) {
+                callback(id, err);
+            });
+        },
+
+        generateFileName: function(folder) {
+            var id = uuid.v4();
+            while (fs.statSync(path,join(folder, id)).isFile()) {
+                id = uuid.v4();
+            }
+
+            return id;
         }
     };
 })();

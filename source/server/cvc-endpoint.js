@@ -23,6 +23,7 @@
     const cvcDataset = require('./cvc-dataset');
     const cvcDatabase = require('./cvc-database');
     const cvcAuthentication = require('./cvc-authentication');
+    const cvcUtils = require('./cvc-utils');
 
     const app = express();
     
@@ -47,10 +48,11 @@
               // You can always pass an error if something goes wrong: 
               cb(new Error('I don\'t have a clue!'))
             */
+            logger.debug('fileFilter')
             cb(null, true);
         };
 
-        upload = multer(uploadProperties).any();
+        upload = multer(uploadProperties);
     }
 
     function initExpress() {
@@ -88,14 +90,33 @@
 
         // TODO: private/company
 
-        app.post('/private/upload', cvcAuthentication.ensureAuthenticated, function(req, res) {
-            upload(req, res, function(err) {
+        app.post('/private/upload', cvcAuthentication.ensureAuthenticated, upload.single('avatar'), function(req, res) {
+            logger.info('Uploading: ' + req.filename); 
+            cvcUtils.saveFileWithUUID(config.server.uploads.properties.dest, req.file, function(id, err) {
+                var attachment = {
+                    id: id,
+                    name: req.filename,
+                    type: '',
+                    checksum: '',
+                    link: 'private/download/' + id,
+                    size: file.length,
+                    added: new Date(),
+                    validContent: false
+                };
+
+                // TODO: save attachment "id" to profile
+                // TODO: handle error
+                
+                res.json(attachment);
+             });
+
+            /*upload(req, res, function(err) {
                 if (err) {
                     // TODO: handle error
                 } else {
                     // TODO: ok
                 }
-            });
+            });*/
 
             // TODO
             //console.log('file.length = ' + req.file.length, req.file);
@@ -131,12 +152,13 @@
 
         app.get('/private/download', cvcAuthentication.ensureAuthenticated, function(req, res) {
             // TODO: check that this user is allowed to download the file
-            // TODO: res.sendFile('test.png');
+
+            res.sendFile(path.join(config.server.uploads.properties.dest, req.params.id));
         });
 
         app.delete('/private/download', cvcAuthentication.ensureAuthenticated, function(req, res) {
-            // TODO: check that this user is allowed to download the file
-            // TODO: res.sendFile('test.png');
+            // TODO: check that this user is allowed to remove this file
+            // TODO: remove the file
         });
 
         app.get('/private/person', cvcAuthentication.ensureAuthenticated, function(req, res) {

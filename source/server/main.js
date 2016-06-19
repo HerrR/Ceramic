@@ -20,7 +20,6 @@
   const fs = require('fs');
   const https = require('https');
   const log4js = require('log4js');
-  const uuid = require('node-uuid');
   const chalk = require('chalk');
 
   const cvcEndpoint = require('./cvc-endpoint');
