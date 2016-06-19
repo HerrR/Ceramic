@@ -10,6 +10,7 @@
             'ngResource',
             'ngAnimate',
             'ngCookies',
+            'ngFileUpload',
             'ui.router',
             'pascalprecht.translate',
             'LocalStorageModule',

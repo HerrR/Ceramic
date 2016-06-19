@@ -99,6 +99,10 @@
 
   function initScheduledTasks() {
     // TODO: initalize scheduled tasks
+
+    // TODO: task 1 => send email notifications
+    // TODO: task 2 => remove all files that are marked for removal since 1 week
+    // TODO: task 3 => find new files to mark for removal
   }
 
   function initialize() {

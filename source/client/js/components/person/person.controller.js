@@ -8,21 +8,23 @@
         .module('cvc')
         .controller('CvcPersonController', Controller);
 
-    Controller.$inject = ['$scope', '$http', '$filter', 'ProfileService', 'AppConstants', 'ScreenMessageService', 'DatasetService'];
+    Controller.$inject = ['$scope', '$http', '$filter', '$timeout', 'ProfileService', 'AppConstants', 'ScreenMessageService', 'DatasetService', 'Upload'];
 
-    function Controller($scope, $http, $filter, ProfileService, AppConstants, ScreenMessageService, DatasetService) {
+    function Controller($scope, $http, $filter, $timeout, ProfileService, AppConstants, ScreenMessageService, DatasetService, Upload) {
         $scope.MIN_DATE = "1900-01-01";
         $scope.MAX_DATE = new Date(); // TODO: at least 18 years old
 
         $scope.MAX_EDUCATION_COUNT = 20;
         $scope.MAX_WORK_COUNT = 40;
         $scope.MAX_LANGUAGE_COUNT = 20;
-        $scope.MAX_LIBRARY_COUNT = 100;
+        $scope.MAX_LIBRARY_COUNT = 1;
 
         $scope.profile = ProfileService.getProfile();
         $scope.oldHashCode = computeHashCode($scope.profile);
         $scope.newHashCode = computeHashCode($scope.profile);
         $scope.valuesChanged = false;
+        $scope.latestUploadFile = null;
+        $scope.latestUploadFileError = null;
 
         DatasetService.getAsync(AppConstants.DATASETS.LANGUAGE_LEVELS, function(data) {
             $scope.languageLevelToText = data.list;
@@ -174,47 +176,42 @@
             return $filter('translate')('profile.library.storage_usage');
         };
 
-        /*$scope.addLibrary = function() {
-            addElement($scope.profile.person.library, function () {
-                return {
-                    name: '',
-                    added: new Date()
-                };
-            }, function(element) {
-                return element.name.trim() !== '';
-            }, $scope.MAX_LIBRARY_COUNT);
-        };*/
-
         $scope.removeLibrary = function(id) {
-            // TODO: call remove attachment back-end (simple DELETE rest call)
             $scope.profile.person.library.splice(id,1);
             $scope.answerChanged();
         };
 
         $scope.uploadFiles = function(file, invalidFiles) {
-            // https://github.com/danialfarid/ng-file-upload
+            $scope.latestUploadFile = file;
+            $scope.latestUploadFileError = invalidFiles && invalidFiles[0];
 
-            // http://jsfiddle.net/danialfarid/0mz6ff9o/135/
+            // TODO: do not allow more than $scope.MAX_LIBRARY_COUNT files
 
             if (file) {
-                $http({
-                    cache: false,
+                file.upload = Upload.upload({
                     url: AppConstants.PATHS.PRIVATE + 'upload',
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': undefined,
-                        'Cache-Control': 'no-cache'
-                    },
-                    data: file,
-                    transformRequest: function (data, headersGetterFunction) {
-                        return data;
+                    data: {file: file}
+                });
+
+                file.upload.then(function(attachment) {
+                    $timeout(function() {
+                        $scope.profile.person.library.push(attachment.data);
+                        $scope.oldHashCode = computeHashCode($scope.profile);
+                        $scope.newHashCode = computeHashCode($scope.profile);
+                    }); 
+                }, function(err) {
+                    if (err.status > 0) {
+                        $scope.latestUploadFile = null;
+                        $scope.latestUploadFileError = $filter('translate')(data.error);
                     }
-                }).success(function(attachment) {
-                    // TODO: add attachment
-                }).error(function(data, status) {
-                    // TODO: handle error
+                }, function(event) {
+                    file.progress = Math.min(100, parseInt(100.0 * event.loaded / event.total));
                 });
             }
+        };
+
+        $scope.getDownloadPath = function(attachment) {
+            return AppConstants.PATHS.PRIVATE + 'download/' + attachment.id;
         };
     }
 

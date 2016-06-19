@@ -35,6 +35,8 @@
         var uploadProperties = config.server.uploads.properties;
         
         uploadProperties.fileFilter = function(req, file, cb) {
+            // TODO: filter file formats
+
             /*
               // The function should call `cb` with a boolean 
               // to indicate if the file should be accepted 
@@ -48,7 +50,7 @@
               // You can always pass an error if something goes wrong: 
               cb(new Error('I don\'t have a clue!'))
             */
-            logger.debug('fileFilter')
+            
             cb(null, true);
         };
 
@@ -90,75 +92,53 @@
 
         // TODO: private/company
 
-        app.post('/private/upload', cvcAuthentication.ensureAuthenticated, upload.single('avatar'), function(req, res) {
-            logger.info('Uploading: ' + req.filename); 
-            cvcUtils.saveFileWithUUID(config.server.uploads.properties.dest, req.file, function(id, err) {
+        app.post('/private/upload', cvcAuthentication.ensureAuthenticated, upload.single('file'), function(req, res) {
+            logger.info('Uploaded: name=' + req.file.originalname + ' size=' + req.file.size);
+
+            if (req.file) {
                 var attachment = {
-                    id: id,
-                    name: req.filename,
-                    type: '',
+                    id: req.file.filename,
+                    name: req.file.originalname,
+                    mimetype: req.file.mimetype,
                     checksum: '',
-                    link: 'private/download/' + id,
-                    size: file.length,
+                    link: 'private/download/' + req.file.filename,
+                    size: req.file.size,
                     added: new Date(),
                     validContent: false
                 };
 
-                // TODO: save attachment "id" to profile
-                // TODO: handle error
-                
-                res.json(attachment);
-             });
-
-            /*upload(req, res, function(err) {
-                if (err) {
-                    // TODO: handle error
-                } else {
-                    // TODO: ok
-                }
-            });*/
-
-            // TODO
-            //console.log('file.length = ' + req.file.length, req.file);
-            //console.log('body = ', req.body);
-
-            /*
-            fieldname   Field name specified in the form    
-            originalname    Name of the file on the user's computer 
-            encoding    Encoding type of the file   
-            mimetype    Mime type of the file   
-            size    Size of the file in bytes   
-            destination The folder to which the file has been saved DiskStorage
-            filename    The name of the file within the destination DiskStorage
-            path    The full path to the uploaded file  DiskStorage
-            buffer  A Buffer of the entire file MemoryStorage
-            */
-
-            /*
-            https://www.npmjs.com/package/multer
-
-            var storage = multer.diskStorage({
-              destination: function (req, file, cb) {
-                cb(null, '/tmp/my-uploads')
-              },
-              filename: function (req, file, cb) {
-                cb(null, file.fieldname + '-' + Date.now())
-              }
-            })
-             
-            var upload = multer({ storage: storage })
-            */
+                cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, savedProfile) {
+                    if (err !== null) {
+                        logger.error(err);
+                        res.sendStatus(404);
+                        // TODO: delete file
+                    } else if (savedProfile === null) {
+                        logger.error('No data for person: ' + req.user.id);
+                        res.sendStatus(400);
+                        // TODO: delete file
+                    } else {
+                        savedProfile.person.library.push(attachment);
+                        savedProfile.save(function (err) {
+                            if (err !== null) {
+                                logger.warn('Failed toto add attachment to profile: ' + req.user.id + ', attachment=' + attachment.id + ', error: ' + err);
+                                res.sendStatus(400);
+                            } else {
+                                logger.info('Added attachment to profile: ' + req.user.id + ', attachment=' + attachment.id);
+                                res.json(attachment);
+                            }
+                        });
+                    }
+                });
+            } else {
+                logger.warn(err);
+                res.sendStatus(400);
+            }
         });
 
-        app.get('/private/download', cvcAuthentication.ensureAuthenticated, function(req, res) {
+        app.get('/private/download/:id', cvcAuthentication.ensureAuthenticated, function(req, res) {
             // TODO: check that this user is allowed to download the file
 
-            res.sendFile(path.join(config.server.uploads.properties.dest, req.params.id));
-        });
-
-        app.delete('/private/download', cvcAuthentication.ensureAuthenticated, function(req, res) {
-            // TODO: check that this user is allowed to remove this file
-            // TODO: remove the file
+            res.sendFile(path.join(__dirname, config.server.uploads.src, req.params.id));
         });
 
         app.get('/private/person', cvcAuthentication.ensureAuthenticated, function(req, res) {

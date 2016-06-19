@@ -29,7 +29,7 @@
     };
 
     const PersonSkill = {
-        type: String,
+        skilltype: String,
         level: mongoose.Schema.Types.Number
     };
 
@@ -40,15 +40,15 @@
         fromDate: Date,
         toDate: Date,
         responsibilities: [{
-            type: String,
+            resptype: String,
             amount: mongoose.Schema.Types.Number
         }]
     };
 
     const Attachment = {
-        id: String,
+        id: { type: String, required: true },
         name: String,
-        type: String,
+        mimetype: String,
         checksum: String,
         link: String,
         size: mongoose.Schema.Types.Number,
@@ -56,7 +56,6 @@
         validContent: mongoose.Schema.Types.Boolean,
         maliciousContent: mongoose.Schema.Types.Boolean,
         scanned: Date
-
     };
 
     const PersonSettings = {

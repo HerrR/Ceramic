@@ -48,7 +48,8 @@
                     "fileSize": 1048576
                 }
             },
-            "initialStorage": 1048576
+            "initialStorage": 1048576,
+            "src": "../../temp/uploads/"
         }
     },
 

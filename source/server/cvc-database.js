@@ -91,8 +91,11 @@
 
             if (dst.system.locked === undefined) {
                 if (dst.person !== undefined) {
+                    src.person.library = dst.person.library;
+                    
                     dst.settings = src.settings;
                     dst.person = src.person;
+
                 }
 
                 if (dst.company !== undefined) {

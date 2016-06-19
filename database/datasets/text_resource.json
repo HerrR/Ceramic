@@ -67,7 +67,7 @@
 
                         "profile.library.filename": "Filename",
                         "profile.library.addedDate": "Added",
-
+                        "error.library.maxSize": "File is to large, upload max size is {0}",
 
                         "profile.description": "Personal description",
 

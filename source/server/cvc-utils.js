@@ -69,19 +69,23 @@
         },
 
         saveFileWithUUID: function(folder, data, callback) {
-            var id = uuid.v4();
-            while (fs.statSync(path,join(folder, id)).isFile()) {
-                id = uuid.v4();
-            }
+            if (data) {
+                var id = uuid.v4();
+                while (fs.statSync(path.join(folder, id)).isFile()) {
+                    id = uuid.v4();
+                }
 
-            fs.writeFile(path,join(folder, id), data, function(err) {
-                callback(id, err);
-            });
+                fs.writeFile(path,join(folder, id), data, function(err) {
+                    callback(id, err);
+                });
+            } else {
+                callback(null, 'error.file.no_data');
+            }
         },
 
         generateFileName: function(folder) {
             var id = uuid.v4();
-            while (fs.statSync(path,join(folder, id)).isFile()) {
+            while (fs.statSync(path.join(folder, id)).isFile()) {
                 id = uuid.v4();
             }
 
