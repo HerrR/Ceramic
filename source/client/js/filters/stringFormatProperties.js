@@ -12,7 +12,7 @@
     // ex: 'The city of {town} in the year {year}', {'town':'Stockholm','year':2015} => 'The city of Stockholm in the year 2015'
     function StringFormatProperties($filter) {
         return function (str) {
-            if (!str || arguments.length <= 1) {
+            if (!str || arguments.length <= 1 && arguments[1] !== undefined) {
                 return str;
             }
 

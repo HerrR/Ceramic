@@ -12,7 +12,7 @@
     // ex: 'hello {0}, out {1}',['world','there'] => 'hello world, out there'
     function StringFormatArray($filter) {
         return function (str) {
-            if (!str || arguments.length <= 1) {
+            if (!str || arguments.length <= 1 && arguments[1] !== undefined) {
                 return str;
             }
 

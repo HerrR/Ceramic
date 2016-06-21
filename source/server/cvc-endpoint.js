@@ -35,6 +35,9 @@
         var uploadProperties = config.server.uploads.properties;
         
         uploadProperties.fileFilter = function(req, file, cb) {
+            // TODO: check if "req.user.id" has storage to upload the file
+
+
             // TODO: filter file formats
 
             /*
@@ -77,6 +80,10 @@
             res.json(cvcAuthentication.listEnabledStrategies());
         });
 
+        app.get('/public/storage_size', function(req, res) {
+            res.json({size: config.server.uploads.initialStorage});
+        });
+
         /*app.post('/public/user/register', function(req, res) {
             // TODO: register user
             // https://www.npmjs.com/package/bcrypt
@@ -111,11 +118,9 @@
                     if (err !== null) {
                         logger.error(err);
                         res.sendStatus(404);
-                        // TODO: delete file
                     } else if (savedProfile === null) {
                         logger.error('No data for person: ' + req.user.id);
                         res.sendStatus(400);
-                        // TODO: delete file
                     } else {
                         savedProfile.person.library.push(attachment);
                         savedProfile.save(function (err) {

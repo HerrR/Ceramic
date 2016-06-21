@@ -15,6 +15,13 @@
         var userid;
         var userType;
         var profileData;
+        var maxStorageSize;
+
+        $http.get(AppConstants.PATHS.PUBLIC + 'storage_size', {}).then(function(res) {
+            maxStorageSize = res.data.size;
+        }, function(err) {
+            maxStorageSize = 1024 * 1024;
+        });
 
         function toDate(d) {
             return d ? new Date(d.toString().substr(0,10)) : null;
@@ -80,6 +87,10 @@
 
         self.getErrors = function() {
             return profileData.errors;
+        };
+
+        self.getMaxStorageSize = function() {
+            return maxStorageSize;
         };
 
         self.reload = function(callback) {

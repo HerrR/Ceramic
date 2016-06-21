@@ -67,7 +67,8 @@
 
                         "profile.library.filename": "Filename",
                         "profile.library.addedDate": "Added",
-                        "error.library.maxSize": "File is to large, upload max size is {0}",
+                        "profile.library.toManyFiles": "You may not upload more than {0} files.",
+                        "error.library.maxSize": "File is to large, upload max size is {0}.",
 
                         "profile.description": "Personal description",
 

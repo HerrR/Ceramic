@@ -17,7 +17,7 @@
         $scope.MAX_EDUCATION_COUNT = 20;
         $scope.MAX_WORK_COUNT = 40;
         $scope.MAX_LANGUAGE_COUNT = 20;
-        $scope.MAX_LIBRARY_COUNT = 1;
+        $scope.MAX_LIBRARY_COUNT = 20;
 
         $scope.profile = ProfileService.getProfile();
         $scope.oldHashCode = computeHashCode($scope.profile);
@@ -99,7 +99,6 @@
             var filtered = [];
             var filterText = filter.toLowerCase();
             for (var country in $scope.countries) {
-                console.log('obj',$scope.countries[country]);
                 if ($scope.countries[country].display.toLowerCase().indexOf(filterText) === 0) {
                     filtered.push($scope.countries[country]);
                 }
@@ -172,8 +171,11 @@
         };
 
         $scope.getStorageUsage = function() {
-            // TODO: calculate storage usage
-            return $filter('translate')('profile.library.storage_usage');
+            var totalSize = 0;
+            for (var index = 0; index < $scope.profile.person.library.length; ++index) {
+                totalSize += $scope.profile.person.library[index].size;
+            }
+            return $filter('stringFormatArray')($filter('translate')('profile.library.storage_usage'), [toMegabytes(totalSize), toMegabytes(ProfileService.getMaxStorageSize())]);
         };
 
         $scope.removeLibrary = function(id) {
@@ -185,9 +187,9 @@
             $scope.latestUploadFile = file;
             $scope.latestUploadFileError = invalidFiles && invalidFiles[0];
 
-            // TODO: do not allow more than $scope.MAX_LIBRARY_COUNT files
-
-            if (file) {
+            if ($scope.profile.person.library.length + 1 >== $scope.MAX_LIBRARY_COUNT) {
+                $scope.latestUploadFileError = $filter('stringFormatArray')($filter('translate')('profile.library.toManyFiles'), [$scope.MAX_LIBRARY_COUNT]);
+            } else if (file) {
                 file.upload = Upload.upload({
                     url: AppConstants.PATHS.PRIVATE + 'upload',
                     data: {file: file}
@@ -212,6 +214,30 @@
 
         $scope.getDownloadPath = function(attachment) {
             return AppConstants.PATHS.PRIVATE + 'download/' + attachment.id;
+        };
+
+        $scope.getFileIcon = function(attachment) {
+            if (attachment.name.endsWith('.pdf')) {
+                return 'fa-file-pdf-o';
+            }
+
+            if (attachment.name.endsWith('.doc') || attachment.name.endsWith('.docx')) {
+                return 'fa-file-word-o';
+            }
+
+            if (attachment.name.endsWith('.zip')) {
+                return 'fa-file-zip-o';
+            }
+
+            if (attachment.name.endsWith('.png') || attachment.name.endsWith('.jpg')) {
+                return 'fa-file-image-o';
+            }
+
+            if (attachment.name.endsWith('.txt')) {
+                return 'fa-file-text-o';
+            }
+
+            return 'fa-file-o';
         };
     }
 
@@ -250,5 +276,9 @@
                 list.push(createCallback());
             }
         }
+    }
+
+    function toMegabytes(size) {
+        return (size / (1024.0 * 1024.0)).toFixed(2);
     }
 })();

@@ -19,7 +19,7 @@
                         </td>
 
                         <td>
-                            <a href="{{getDownloadPath(attachment)}}" >{{attachment.name}}</a>
+                            <a href="{{getDownloadPath(attachment)}}">{{attachment.name}}</a>
                         </td>
 
                         <td>
@@ -43,7 +43,7 @@
             </span>
             <span ng-if="latestUploadFile !== null && latestUploadFile.progress < 100.0">{{latestUploadFile.progress + '%'}}</span>
             <span ng-if="latestUploadFileError !== null && latestUploadFileError.$error === 'maxSize'">{{('error.library.maxSize' | translate) | stringFormatArray:[latestUploadFileError.$errorParam]}}</span>
-                
+            <span ng-if="latestUploadFileError !== null && (latestUploadFileError.$error === undefined || latestUploadFileError.$error === null)">{{latestUploadFileError}}</span>
         </md-list-item>
     </md-list>
 
