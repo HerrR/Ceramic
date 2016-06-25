@@ -15,15 +15,13 @@ var config = require('../main.conf'),
 var gulpSSH = new ssh({
   ignoreErrors: false,
   sshConfig: {
-    host: config.publish.url,
+    host: gutil.env.PUBLISH_URL,
     port: 22,
     username: gutil.env.PUBLISH_USER || 'root',
     passwod: gutil.env.PUBLISH_PASSWORD,
     privateKey: undefined //fs.readFileSync('/Users/zensh/.ssh/id_rsa')
   }
 });
-
-var config = 
 
 gulp.task('ssh:create', function() {
     return gulp.src(config.destination.files)

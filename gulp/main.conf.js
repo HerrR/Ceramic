@@ -113,7 +113,7 @@ module.exports = {
 
   destination: {
     pack_destination: 'C:/Users/Lukas/Dropbox/ProjectX/Technology/Builds',
-    files: 'dist/**/*',
+    files: ['dist/**/*','package.json'],
     base_dir: 'dist/',
     temp_folder: './temp/',
     all: ['dist/client/**/*','dist/server/**/*','temp/js/**/*.js'],
@@ -131,7 +131,6 @@ module.exports = {
   },
 
   publish: {
-    url: '192.168.0.140',
     path: '/root/'
   }
 };

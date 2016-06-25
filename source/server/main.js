@@ -1,18 +1,6 @@
 /* jshint node:true */
 /* jshint esversion: 6 */
 
-/**
- * Ceramic - Main Server Startup
-
- * Environment Variables
- * =====================
- * SESSION_KEY = express sesstion
- * FACEBOOK_APP_ID = facebook app id
- * FACEBOOK_APP_SECRET = facebook secret id
- * DB_USERNAME = mongodb user
- * DB_PASSWORD = mongodb password
- */
-
 (function () {
   "use strict";
 

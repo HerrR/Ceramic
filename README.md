@@ -15,7 +15,15 @@ TODO
 * **SSL** => TODO
 
 ##### Environment Variables
-TODO
+* **SESSION_KEY** = express sesstion
+* **FACEBOOK_APP_ID** = facebook app id
+* **FACEBOOK_APP_SECRET** = facebook secret id
+* **DB_USERNAME** = mongodb user
+* **DB_PASSWORD** = mongodb password
+
+* **PUBLISH_URL** = Gulp SSH deploy task, URL
+* **PUBLISH_USER** =  Gulp SSH deploy task, Username
+* **PUBLISH_PASSWORD** =  Gulp SSH deploy task, Passwrod
 
 ##### Develop
 TODO
