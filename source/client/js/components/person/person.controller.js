@@ -187,7 +187,7 @@
             $scope.latestUploadFile = file;
             $scope.latestUploadFileError = invalidFiles && invalidFiles[0];
 
-            if ($scope.profile.person.library.length + 1 >== $scope.MAX_LIBRARY_COUNT) {
+            if ($scope.profile.person.library.length + 1 >= $scope.MAX_LIBRARY_COUNT) {
                 $scope.latestUploadFileError = $filter('stringFormatArray')($filter('translate')('profile.library.toManyFiles'), [$scope.MAX_LIBRARY_COUNT]);
             } else if (file) {
                 file.upload = Upload.upload({

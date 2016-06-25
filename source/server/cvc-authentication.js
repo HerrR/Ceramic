@@ -29,6 +29,7 @@
     var cvcDatabase;
 
     function loginOrCreateProfile(provider, accessToken, refreshToken, profile, done) {
+
         // TODO: use profile properties: provider, id, displayName, name, emails, etc..
         // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
 
@@ -54,7 +55,7 @@
                     basic: {
                         name: profile.displayName,
                         profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
-                        email: profile.emails[0].value,
+                        email: profile.emails[0].value, // TODO: this may be undefined
                         dateOfBirth: profile.birthday
                         // TODO: fill in more information
                     }
