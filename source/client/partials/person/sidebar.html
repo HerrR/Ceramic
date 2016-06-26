@@ -31,7 +31,7 @@
         <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
             <label>{{'profile.country' | translate}}</label>
             <md-icon class="fa fa-globe fa-lg" aria-hidden="true" style="color:blue"></md-icon>
-            <input id="cvcPersonCountry" ng-change="answerChanged()" ng-model="profile.person.basic.country" type="search" name="country" autocomplete="off" spellcheck="false"/>
+            <input id="cvcPersonCountry" ng-change="answerChanged()" ng-model="profile.person.basic.country" type="text" name="country"/>
             <div ng-messages="person.name.$error">
                 <div ng-message="required">{{'error.required' | translate}}</div>
             </div>
@@ -42,7 +42,7 @@
         <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
             <label>{{'profile.city' | translate}}</label>
             <md-icon class="fa fa-map-signs fa-lg" aria-hidden="true" style="color:peru"></md-icon>
-            <input id="cvcPersonCity" ng-change="answerChanged()" ng-model="profile.person.basic.city" type="search" name="city" autocomplete="off" spellcheck="false"/>
+            <input id="cvcPersonCity" ng-change="answerChanged()" ng-model="profile.person.basic.city" type="text" name="city"/>
             <div ng-messages="person.name.$error">
                 <div ng-message="required">{{'error.required' | translate}}</div>
             </div>

@@ -25,6 +25,8 @@ TODO
 * **PUBLISH_USER** =  Gulp SSH deploy task, Username
 * **PUBLISH_PASSWORD** =  Gulp SSH deploy task, Passwrod
 
+* **SESSION_KEY** = ???
+
 ##### Develop
 TODO
 

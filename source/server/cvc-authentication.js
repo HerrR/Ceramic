@@ -55,7 +55,7 @@
                     basic: {
                         name: profile.displayName,
                         profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
-                        email: profile.emails[0].value, // TODO: this may be undefined
+                        email: profile.emails ? profile.emails[0].value : 'unknown', // TODO: this may be undefined
                         dateOfBirth: profile.birthday
                         // TODO: fill in more information
                     }
@@ -86,14 +86,14 @@
         });
     }
 
-    function verifyCredentials(username, password, done) {
-        var user = null;
+    function verifyCredentials(userid, password, done) {
+        var profile = null;
         var error = null; // new Error('message')
 
-        // TODO: verify username/password, use node crypto.pbkdf2
-        user = {userid:'test_user'};
+        // TODO: verify userid/password, use node crypto.pbkdf2
+        profile = {id:'10153728991941374'};
 
-        done(error, user);
+        done(error, profile);
     }
 
     function initLocalAuthentication() {
@@ -183,7 +183,7 @@
             saveUninitialized: false
         }));
 
-        app.use('/api', passport.authenticate('basic', {session: false}));
+        //app.use('/private', passport.authenticate('local', {session: false}));
         app.use(passport.initialize());
         app.use(passport.session());
 
@@ -191,7 +191,9 @@
             app.post('/auth/local/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/loginfailed' }));
         }
 
-        // TODO: http
+        if (config.authentication.http.enabled) {
+            app.post('/auth/http/login', passport.authenticate('basic', { successRedirect: '/', failureRedirect: '/loginfailed' }));
+        }
 
         if (config.authentication.google.enabled) {
             app.post('/auth/google/login', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));

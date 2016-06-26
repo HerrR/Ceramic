@@ -38,6 +38,14 @@
                                     <p ng-repeat="provider in loginProviders" ng-if="loginProviders && loginProviders.length > 0">
                                         <md-button id="{{provider}}SignIn" style="min-width: 95%" class="md-raised" ng-click="signInPerson(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
                                     </p>
+
+
+<form action="auth/local/login" method="post" ng-if="$location.path().toString().indexOf('localhost') !== -1">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Sign in">
+</form>
+
                                     <p ng-if="loginProviders.length === 0">
                                         <!-- TODO: display error message -->
                                     </p>
@@ -54,3 +62,13 @@
     </main>
 </md-content>
 <div style="min-height:13.2vh"></div>
+
+<!-- TODO: when using Local or HTTP login, we need a form input
+
+<form action="auth/http/login" method="post">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Sign in">
+</form>
+
+-->

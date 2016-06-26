@@ -75,7 +75,7 @@
         if (err !== null) {
             logger.error(err);
             res.sendStatus(404);
-        } else if (savedProfile === null) {
+        } else if (profile === null) {
             logger.error('No data for person: ' + req.user.id);
             res.sendStatus(400);
         } else {
@@ -98,6 +98,12 @@
         app.use(compression());
         app.use(express.static(path.join(__dirname,config.server.staticFiles)));
         app.use(ddos({
+            rules: [{
+                regexp: "^/public.*",
+                flags: "i",
+                maxWeight: 4,
+                queueSize: 4
+            }]
             // TODO: Configuration options
         }));
         app.use(function(err, req, res, next) {
@@ -174,7 +180,7 @@
             // TODO: check that this user is allowed to download the file
             
             cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, profile) {
-                icheckFindPerson(err, profile, req, res, function(savedProfile) {
+                checkFindPerson(err, profile, req, res, function(savedProfile) {
                     var attachment = findAttachment(savedProfile.person.library, req.params.id);
 
                     if (attachment !== undefined) {

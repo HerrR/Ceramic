@@ -61,12 +61,12 @@
         "local": {
             "code": "a",
             "name": "LOCAL",
-            "enabled": false
+            "enabled": true
         },
         "http": {
             "code": "b",
             "name": "HTTP",
-            "enabled": false
+            "enabled": true
         },
         "google": {
             "code": "c",
