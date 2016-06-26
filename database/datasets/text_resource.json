@@ -69,6 +69,7 @@
                         "profile.library.addedDate": "Added",
                         "profile.library.toManyFiles": "You may not upload more than {0} files.",
                         "error.library.maxSize": "File is to large, upload max size is {0}.",
+                        "error.library.fullStorage": "You storage capacity is full.",
 
                         "profile.description": "Personal description",
 

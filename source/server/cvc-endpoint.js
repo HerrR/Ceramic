@@ -60,6 +60,38 @@
         upload = multer(uploadProperties);
     }
 
+    function findAttachment(attachments, id) {
+        for (var index = 0; index < attachments.length; ++index) {
+            if (attachments[index].id === id) {
+                return attachments[index];
+            }
+        }
+
+        return undefined;
+    }
+
+
+    function checkFindPerson(err, profile, req, res, successCallback) {
+        if (err !== null) {
+            logger.error(err);
+            res.sendStatus(404);
+        } else if (savedProfile === null) {
+            logger.error('No data for person: ' + req.user.id);
+            res.sendStatus(400);
+        } else {
+            successCallback(profile);
+        }
+    }
+
+    function hasStorageCapacity(attachments, capacity) {
+        var total = 0;
+        for (var index = 0; index < attachments.length; ++index) {
+            total += attachments[index].size;
+        }
+
+        return (total <= capacity);
+    }
+
     function initExpress() {
         app.use(bodyParser.urlencoded({extended: true}));
         app.use(bodyParser.json({limit: config.server.dataSizeLimit}));
@@ -114,25 +146,23 @@
                     validContent: false
                 };
 
-                cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, savedProfile) {
-                    if (err !== null) {
-                        logger.error(err);
-                        res.sendStatus(404);
-                    } else if (savedProfile === null) {
-                        logger.error('No data for person: ' + req.user.id);
-                        res.sendStatus(400);
-                    } else {
-                        savedProfile.person.library.push(attachment);
-                        savedProfile.save(function (err) {
-                            if (err !== null) {
-                                logger.warn('Failed toto add attachment to profile: ' + req.user.id + ', attachment=' + attachment.id + ', error: ' + err);
-                                res.sendStatus(400);
-                            } else {
-                                logger.info('Added attachment to profile: ' + req.user.id + ', attachment=' + attachment.id);
-                                res.json(attachment);
-                            }
-                        });
-                    }
+                cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, profile) {
+                    checkFindPerson(err, profile, req, res, function(savedProfile) {
+                        if (hasStorageCapacity(savedProfile.person.library, config.server.uploads.initialStorage + attachment.size)) {
+                            savedProfile.person.library.push(attachment);
+                            savedProfile.save(function (err) {
+                                if (err !== null) {
+                                    logger.warn('Failed toto add attachment to profile: ' + req.user.id + ', attachment=' + attachment.id + ', error: ' + err);
+                                    res.sendStatus(400);
+                                } else {
+                                    logger.info('Added attachment to profile: ' + req.user.id + ', attachment=' + attachment.id);
+                                    res.json(attachment);
+                                }
+                            });
+                        } else {
+                            res.json({error: 'error.library.fullStorage'});
+                        }
+                    });
                 });
             } else {
                 logger.warn(err);
@@ -142,35 +172,32 @@
 
         app.get('/private/download/:id', cvcAuthentication.ensureAuthenticated, function(req, res) {
             // TODO: check that this user is allowed to download the file
+            
+            cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, profile) {
+                icheckFindPerson(err, profile, req, res, function(savedProfile) {
+                    var attachment = findAttachment(savedProfile.person.library, req.params.id);
 
-            res.sendFile(path.join(__dirname, config.server.uploads.src, req.params.id));
+                    if (attachment !== undefined) {
+                        res.download(path.join(__dirname, config.server.uploads.src, req.params.id), attachment.name);
+                    }
+                });
+            });
         });
 
         app.get('/private/person', cvcAuthentication.ensureAuthenticated, function(req, res) {
-            cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, savedProfile) {
-                if (err !== null) {
-                    logger.error(err);
-                    res.sendStatus(404);
-                } else if (savedProfile === null) {
-                    logger.error('No data for person: ' + req.user.id);
-                    res.sendStatus(400);
-                } else {
+            cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, profile) {
+                checkFindPerson(err, profile, req, res, function(savedProfile) {
                     logger.debug('Fetched Person: ' + savedProfile.person.name);
                     cvcDatabase.hideSecretProfileData(savedProfile);
                     res.json(savedProfile);
-                }
+                });
             });
         });
 
         app.post('/private/person', cvcAuthentication.ensureAuthenticated, function(req, res) {
             var newProfile = req.body;
-            cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, savedProfile) {
-                if (err !== null) {
-                    logger.warn(err);
-                    res.sendStatus(400);
-                } else {
-                    // TODO: validate that the fetched data has person data and not company
-
+            cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, profile) {
+                checkFindPerson(err, profile, req, res, function(savedProfile) {
                     cvcDatabase.mergeProfileData(savedProfile, newProfile);
                     savedProfile.save(function(err) {
                         if (err !== null) {
@@ -181,7 +208,7 @@
                             res.sendStatus(200);
                         }
                     });
-                }
+                });
             });
         });
     }
