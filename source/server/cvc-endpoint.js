@@ -70,14 +70,28 @@
         return undefined;
     }
 
+    function sendAttachment(config, req, res, library) {
+        var attachment = findAttachment(library, req.params.id);
 
-    function checkFindPerson(err, profile, req, res, successCallback) {
+        if (attachment !== undefined) {
+            res.download(path.join(__dirname, config.server.uploads.src, req.params.id), attachment.name);
+        } else {
+            res.sendStatus(400);
+        }
+    }
+
+
+    function checkFindPerson(err, profile, req, res, successCallback, notFoundCallback) {
         if (err !== null) {
             logger.error(err);
             res.sendStatus(404);
         } else if (profile === null) {
             logger.error('No data for person: ' + req.user.id);
-            res.sendStatus(400);
+            if (notFoundCallback) {
+                notFoundCallback(req, res);
+            } else {
+                res.sendStatus(400);
+            }
         } else {
             successCallback(profile);
         }
@@ -177,15 +191,24 @@
         });
 
         app.get('/private/download/:id', cvcAuthentication.ensureAuthenticated, function(req, res) {
-            // TODO: check that this user is allowed to download the file
-            
             cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, profile) {
                 checkFindPerson(err, profile, req, res, function(savedProfile) {
-                    var attachment = findAttachment(savedProfile.person.library, req.params.id);
+                    sendAttachment(config, req, res, savedProfile.person.library);
+                }, function(req, res) {
+                    var query = {
+                        'authorizedUsers.userid': req.user.id,
+                        'authorizedUsers.toDate': {$lte: new Date()},
+                        'person.library.id': req.params.id,
+                        'person.library.maliciousContent': false,
+                        'person.library.validContent': true,
+                        'person.library.scanned': {$ne: null}
+                    };
 
-                    if (attachment !== undefined) {
-                        res.download(path.join(__dirname, config.server.uploads.src, req.params.id), attachment.name);
-                    }
+                    cvcDatabase.getDatamodels().Person.findOne(query, function(err, profile) {
+                        checkFindPerson(err, profile, req, res, function(savedProfile) {
+                            sendAttachment(config, req, res, savedProfile.person.library);
+                        });
+                    });
                 });
             });
         });

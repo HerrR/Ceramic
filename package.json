@@ -8,7 +8,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "deploy": "gulp deploy",
+    "develop": "npm install && gulp developer"
   },
   "repository": {
     "type": "git",
