@@ -19,7 +19,7 @@ var gulpSSH = new ssh({
   sshConfig: {
     host: process.env.PUBLISH_URL,
     port: 22,
-    //privateKey: fs.readFileSync('~/.ssh/id_rsa'),
+    privateKey: fs.readFileSync(process.env.PUBLISH_IDRSA_PATH),
     username: process.env.PUBLISH_USER,
     passwod: process.env.PUBLISH_PASSWORD
   }
