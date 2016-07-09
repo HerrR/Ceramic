@@ -31,12 +31,12 @@ gulp.task('ssh:create', function() {
 });
 
 gulp.task('ssh:send', function() {
-    return gulp.src(config.destination.temp_folder + 'build.zip')
+    return gulp.src(config.destination.temp_folder + 'build*.zip')
         .pipe(gulpSSH.dest(config.publish.path));
 });
 
 gulp.task('ssh:clean', function() {
-    return gulp.src(config.destination.temp_folder + 'build.zip', {read: false})
+    return gulp.src(config.destination.temp_folder + 'build*.zip', {read: false})
         .pipe(plumber())
         .pipe(clean());
 });

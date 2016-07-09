@@ -23,6 +23,9 @@ before_script:
 script: 
   - gulp build
 
+after_script:
+  - gulp publish
+
 after_failure:
   - cat /home/travis/build/NathanWalker/angular2-seed-advanced/npm-debug.log
 
