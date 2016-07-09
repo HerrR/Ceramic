@@ -24,7 +24,10 @@ before_script:
 script: 
   - gulp build
 
-after_script:
+before_deploy:
+  - sudo apt-get install ssh2
+
+deploy:
   - gulp publish
 
 after_failure:
@@ -34,7 +37,7 @@ branches:
   only: master
 
 notifications:
-  email: true
+  email: false
   webhooks:
     on_success: change  # options: [always|never|change] default: always
     on_failure: always  # options: [always|never|change] default: always
