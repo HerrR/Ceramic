@@ -5,38 +5,40 @@
  */
 
 var config = require('../main.conf'),
+    fs = require('fs'),
+    npmpack = require('../../package.json'),
     gulp = require('gulp'),
-    gutil = require('gulp-util'),
     ssh = require('gulp-ssh'),
     zip = require('gulp-zip'),
-    plumber = require('gulp-ssh'),
+    plumber = require('gulp-plumber'),
+    runSequence = require('run-sequence'),
     clean = require('gulp-clean');
 
 var gulpSSH = new ssh({
   ignoreErrors: false,
   sshConfig: {
-    host: gutil.env.PUBLISH_URL,
+    host: process.env.PUBLISH_URL,
     port: 22,
-    username: gutil.env.PUBLISH_USER || 'root',
-    passwod: gutil.env.PUBLISH_PASSWORD,
-    privateKey: undefined //fs.readFileSync('/Users/zensh/.ssh/id_rsa')
+    //privateKey: fs.readFileSync('~/.ssh/id_rsa'),
+    username: process.env.PUBLISH_USER,
+    passwod: process.env.PUBLISH_PASSWORD
   }
 });
 
 gulp.task('ssh:create', function() {
     return gulp.src(config.destination.files)
         .pipe(plumber())
-        .pipe(zip('build.zip'))
-        .pipe(gulp.dest(config.destination.temp_folder));
+        .pipe(zip('build_v' + npmpack.version + '.zip'))
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('ssh:send', function() {
-    return gulp.src(config.destination.temp_folder + 'build*.zip')
+    return gulp.src('./build_v' + npmpack.version + '.zip')
         .pipe(gulpSSH.dest(config.publish.path));
 });
 
 gulp.task('ssh:clean', function() {
-    return gulp.src(config.destination.temp_folder + 'build*.zip', {read: false})
+    return gulp.src('./build_v' + npmpack.version + '.zip', {read: false})
         .pipe(plumber())
         .pipe(clean());
 });
