@@ -22,6 +22,20 @@
             doDialog(ev, 'partials/why.html');
         };
 
+        $scope.trustedSnippet = function (textKey) {
+            var filteredText = $filter('translate')(textKey);
+            return $sce.trustAsHtml(htmlUnescape(filteredText));
+        };
+
+        function htmlUnescape(value) {
+            return String(value)
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'")
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&amp;/g, '&');
+        }
+
         function doDialog(ev, template) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 

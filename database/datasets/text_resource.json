@@ -90,6 +90,10 @@
                         "message.cancel_success": "Nothing saved",
 
                         "about.title": "About us",
+                        "about.text": "About text",
+
+                        "why.title": "Why XXX",
+                        "why.text": "Why text",
 
                         "industry.i010": "Jordbruk, skogsbruk, fiske",
                         "industry.i020": "Utvinning mineral, gruvindustri",
