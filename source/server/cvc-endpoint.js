@@ -19,6 +19,7 @@
     const express = require('express');
     const bodyParser = require('body-parser');
     const compression = require('compression');
+    const helmet = require('helmet');
 
     const cvcDataset = require('./cvc-dataset');
     const cvcDatabase = require('./cvc-database');
@@ -111,6 +112,7 @@
         app.use(bodyParser.json({limit: config.server.dataSizeLimit}));
         app.use(compression());
         app.use(express.static(path.join(__dirname,config.server.staticFiles)));
+        app.use(helmet());
         app.use(ddos({
             rules: [{
                 regexp: "^/public.*",
