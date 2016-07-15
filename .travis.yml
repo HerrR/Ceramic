@@ -6,13 +6,13 @@ env:
   - CXX=g++-4.8
 
 addons:
-  ssh_known_hosts: 
-    - $PUBLISH_URL
+  ssh_known_hosts: $PUBLISH_URL
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+      - sshpas
 
 sudo: true
 
@@ -21,8 +21,12 @@ before_script:
 
 script: 
   - gulp build
+
+after_script:
   - gulp ssh:create
-  - scp build_v*.zip $PUBLISH_USER@$PUBLISH_URL:$PUBLISH_PATH
+
+after_success:
+  - sshpass -e scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -q build_v*.zip $PUBLISH_USER@$PUBLISH_URL:$PUBLISH_PATH
 
 after_failure:
   - cat /home/travis/Axodoss/Ceramic/npm-debug.log
