@@ -15,7 +15,7 @@ addons:
 
 sudo: true
 
-before_install:
+# before_install:
   
 
 before_script:
@@ -24,7 +24,7 @@ before_script:
 script: 
   - gulp build
 
-before_deploy:
+# before_deploy:
   # - apt-get install ssh2
 
 deploy:
