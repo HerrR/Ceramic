@@ -23,6 +23,7 @@ script:
   - gulp ssh:create
 
 after_success:
+  - ls build_v*.zip
   - scp -B -o BatchMode=yes -o ChallengeResponseAuthentication=no -o CheckHostIP=no -q build_v*.zip $PUBLISH_USER@$PUBLISH_URL:$PUBLISH_PATH
 
 after_failure:
