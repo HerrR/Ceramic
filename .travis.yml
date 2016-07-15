@@ -12,7 +12,6 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-      - openssh-client
 
 sudo: true
 
@@ -22,8 +21,6 @@ before_script:
 script: 
   - gulp build
   - gulp ssh:create
-
-deploy:
   - scp build_v*.zip $PUBLISH_USER@$PUBLISH_URL:$PUBLISH_PATH
 
 after_failure:
