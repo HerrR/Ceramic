@@ -24,6 +24,7 @@ TODO
 * **PUBLISH_URL** = Gulp SSH deploy task, URL
 * **PUBLISH_USER** =  Gulp SSH deploy task, Username
 * **PUBLISH_PASSWORD** =  Gulp SSH deploy task, Passwrod
+* **PUBLISH_PATH** = Path to the file should be put
 
 * **SESSION_KEY** = ???
 
