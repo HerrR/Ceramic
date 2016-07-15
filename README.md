@@ -30,6 +30,13 @@ TODO
 ##### Develop
 TODO
 
+To start the application run the following commands in separate windows:
+`start-mongo`
+`start-redis` (if not run as a service)
+`gulp watch`
+`gulp batch`
+`gulp serve`
+
 ##### Build
 TODO
 

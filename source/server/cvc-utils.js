@@ -31,6 +31,10 @@
             emailTransporter = nodemailer.createTransport(config.server.email.transporter);
         },
 
+        getUUID: function() {
+            return uuid.v4();
+        },
+
         /**
          * Reads file content and tries to parse it as a JSON file.
          */
