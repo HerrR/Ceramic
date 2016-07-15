@@ -6,7 +6,8 @@ env:
   - CXX=g++-4.8
 
 addons:
-  ssh_known_hosts: $PUBLISH_URL
+  ssh_known_hosts: 
+    - $PUBLISH_URL
   apt:
     sources:
       - ubuntu-toolchain-r-test
