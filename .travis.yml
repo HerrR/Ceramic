@@ -12,7 +12,6 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-      - sshpas
 
 sudo: true
 
@@ -26,7 +25,7 @@ after_script:
   - gulp ssh:create
 
 after_success:
-  - sshpass -e scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -q build_v*.zip $PUBLISH_USER@$PUBLISH_URL:$PUBLISH_PATH
+  - scp -B -o BatchMode=yes -o ChallengeResponseAuthentication=no -o CheckHostIP=no -q build_v*.zip $PUBLISH_USER@$PUBLISH_URL:$PUBLISH_PATH
 
 after_failure:
   - cat /home/travis/Axodoss/Ceramic/npm-debug.log
