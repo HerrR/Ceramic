@@ -25,10 +25,10 @@ script:
   - gulp build
 
 before_deploy:
-  - sudo apt-get install ssh2
+  # - apt-get install ssh2
 
 deploy:
-  - gulp publish
+  #- gulp publish
 
 after_failure:
   - cat /home/travis/build/NathanWalker/angular2-seed-advanced/npm-debug.log
