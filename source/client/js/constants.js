@@ -7,7 +7,9 @@
         .module('cvc')
         .constant('AppConstants', {
             COOKIES: {
-                LANGUAGE: 'cvc-language'
+                LANGUAGE: 'cvc-language',
+                USERTYPE: 'cvc-usertype',
+                LOGINTYPE: 'cvc-logintype'
             },
             PATHS: {
                 PUBLIC: 'public/',
@@ -34,6 +36,7 @@
                 ERROR: 'ERROR'
             },
             TEXT_KEYS: {
+                GENERAL_ERROR: 'error.general',
                 SIGN_IN_ERROR: '',
                 FETCH_PROFILE_ERROR: '',
                 SAVE_PROFILE_ERROR: '',

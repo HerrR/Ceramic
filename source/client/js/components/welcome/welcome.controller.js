@@ -8,26 +8,35 @@
         .module('cvc')
         .controller('CvcWelcomeController', Controller);
 
-    Controller.$inject = ['$scope', '$http', 'ProfileService', 'AppConstants'];
+    Controller.$inject = ['$scope', '$cookies', '$http', 'ProfileService', 'AppConstants', 'ScreenMessageService'];
 
-    function Controller($scope, $http, ProfileService, AppConstants) {
+    function Controller($scope, $cookies, $http, ProfileService, AppConstants, ScreenMessageService) {
         $scope.loginProviders = [];
 
-        ProfileService.signIn(AppConstants.USER_TYPES.PERSON); // TODO: the type must be stored locally or in the user token
+        console.log('USERTYPE',$cookies.get(AppConstants.COOKIES.USERTYPE));
+        ProfileService.signIn($cookies.get(AppConstants.COOKIES.USERTYPE) || AppConstants.USER_TYPES.PERSON);
 
         $http.get(AppConstants.PATHS.PUBLIC + 'loginstrategies', {}).then(function(res) {
             $scope.loginProviders = res.data;
-        }, function() {
+        }, function(err) {
             $scope.loginProviders = [];
-            // TODO: handle error
+            ScreenMessageService.error(AppConstants.TEXT_KEYS.GENERAL_ERROR);
         });
 
         $scope.signInPerson = function(type) {
+            $cookies.put(AppConstants.COOKIES.USERTYPE, AppConstants.USER_TYPES.PERSON, {expires: new Date("2047-12-09")});
+            $cookies.put(AppConstants.COOKIES.LOGINTYPE, type, {expires: new Date("2047-12-09")});
+
+            ProfileService.signIn(AppConstants.USER_TYPES.PERSON);
             window.location.href = AppConstants.PATHS.AUTHORIZED + type + '/login';
         };
 
         $scope.signInCompany = function(type) {
-            // TODO
+            $cookies.put(AppConstants.COOKIES.USERTYPE, AppConstants.USER_TYPES.COMPANY, {expires: new Date("2047-12-09")});
+            $cookies.put(AppConstants.COOKIES.LOGINTYPE, type, {expires: new Date("2047-12-09")});
+
+            ProfileService.signIn(AppConstants.USER_TYPES.COMPANY);
+            window.location.href = AppConstants.PATHS.AUTHORIZED + type + '/login';
         };
 
         $scope.hasSignedIn = function() {

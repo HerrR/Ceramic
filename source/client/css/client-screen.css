@@ -41,52 +41,102 @@ td {
     padding: 6px;
 }
 
-#facebookSignIn {
+#facebookSignInPerson {
     background-color: #3b5998;
     color: white;
 }
 
-#googleSignIn {
+#googleSignInPerson {
     background-color: #dd4b39;
     color: white;
 }
 
-#localSignIn {
+#localSignInPerson {
     background-color: #f4c20d;
     color: white;
 }
 
-#httpSignIn {
+#httpSignInPerson {
     background-color: #3cba54;
     color: white;
 }
 
-#linkedinSignIn {
+#linkedinSignInPerson {
     background-color: #007bb5;
     color: white;
 }
 
-#githubSignIn {
+#githubSignInPerson {
     background-color: #000000;
     color: white;
 }
 
-#twitterSignIn {
+#twitterSignInPerson {
     background-color: #55acee;
     color: white;
 }
 
-#youtubeSignIn {
+#youtubeSignInPerson {
     background-color: #bb0000;
     color: white;
 }
 
-#instagramSignIn {
+#instagramSignInPerson {
     background-color: #125688;
     color: white;
 }
 
-#whatsappSignIn {
+#whatsappSignInPerson {
+    background-color: #4dc247;
+    color: white;
+}
+
+#facebookSignInCompany {
+    background-color: #3b5998;
+    color: white;
+}
+
+#googleSignInCompany {
+    background-color: #dd4b39;
+    color: white;
+}
+
+#localSignInCompany {
+    background-color: #f4c20d;
+    color: white;
+}
+
+#httpSignInCompany {
+    background-color: #3cba54;
+    color: white;
+}
+
+#linkedinSignInCompany {
+    background-color: #007bb5;
+    color: white;
+}
+
+#githubSignInCompany {
+    background-color: #000000;
+    color: white;
+}
+
+#twitterSignInCompany {
+    background-color: #55acee;
+    color: white;
+}
+
+#youtubeSignInCompany {
+    background-color: #bb0000;
+    color: white;
+}
+
+#instagramSignInCompany {
+    background-color: #125688;
+    color: white;
+}
+
+#whatsappSignInCompany {
     background-color: #4dc247;
     color: white;
 }

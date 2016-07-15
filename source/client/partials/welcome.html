@@ -6,7 +6,7 @@
         <main class="md-padding" layout="row" layout-align="space-around start" flex>
             
             <div class="animated fadeInLeft" style="animation-delay: 0.6s">
-                <md-card id="cvcCompanyMainCard" class="cvc-welcome-company cvc-main-select-card" ng-click="signInCompany('')">
+                <md-card id="cvcCompanyMainCard" class="cvc-welcome-company cvc-main-select-card" onclick="$('#cvcCompanyMainCard').hide(); $('#cvcCompanyLoginCard').show();">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline"></span>
@@ -16,6 +16,26 @@
                         <p class="cvc-welcome-card-text">{{'home.company.description' | translate}}</p>
                     </md-card-content>
                 </md-card>
+
+                <div id="cvcCompanyLoginCard" class="animated flipInY" style="display: none">
+                    <md-card class="cvc-main-select-card" style="cursor: default;">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">
+                                    <p ng-repeat="provider in loginProviders" ng-if="loginProviders && loginProviders.length > 0">
+                                        <md-button analytics-on="click" analytics-event="signin_company_{{provider}}" id="{{provider}}SignInCompany" style="min-width: 95%" class="md-raised" ng-click="signInCompany(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
+                                    </p>
+                                    <p ng-if="loginProviders.length === 0">
+                                        <!-- TODO: display error message -->
+                                    </p>
+                                </span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <p class="cvc-welcome-card-text">{{'home.select_sign_in_method' | translate}}</p>
+                        </md-card-content>
+                    </md-card>
+                </div>
             </div>
 
             <div class="animated fadeInRight" style="animation-delay: 0.6s">
@@ -36,16 +56,8 @@
                             <md-card-title-text>
                                 <span class="md-headline">
                                     <p ng-repeat="provider in loginProviders" ng-if="loginProviders && loginProviders.length > 0">
-                                        <md-button analytics-on="click" analytics-event="signin_{{provider}}" id="{{provider}}SignIn" style="min-width: 95%" class="md-raised" ng-click="signInPerson(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
+                                        <md-button analytics-on="click" analytics-event="signin_person_{{provider}}" id="{{provider}}SignInPerson" style="min-width: 95%" class="md-raised" ng-click="signInPerson(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
                                     </p>
-
-
-<form action="auth/local/login" method="post" ng-if="$location.path().toString().indexOf('localhost') !== -1">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Sign in">
-</form>
-
                                     <p ng-if="loginProviders.length === 0">
                                         <!-- TODO: display error message -->
                                     </p>
@@ -60,15 +72,11 @@
             </div>
         </main>
     </main>
-</md-content>
-<div style="min-height:13.2vh"></div>
-
-<!-- TODO: when using Local or HTTP login, we need a form input
-
-<form action="auth/http/login" method="post">
+<!--<form action="auth/local/login" method="post" ng-if="$location.path().toString().indexOf('localhost') !== -1" style="max-width:300px">
     <input type="text" name="username" placeholder="Username">
     <input type="password" name="password" placeholder="Password">
     <input type="submit" value="Sign in">
-</form>
+</form>-->
+</md-content>
+<div style="min-height:13.2vh"></div>
 
--->

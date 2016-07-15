@@ -98,6 +98,22 @@
         }
     }
 
+    function checkFindCompany(err, profile, req, res, successCallback, notFoundCallback) {
+        if (err !== null) {
+            logger.error(err);
+            res.sendStatus(404);
+        } else if (profile === null) {
+            logger.error('No data for company: ' + req.user.id);
+            if (notFoundCallback) {
+                notFoundCallback(req, res);
+            } else {
+                res.sendStatus(400);
+            }
+        } else {
+            successCallback(profile);
+        }
+    }
+
     function hasStorageCapacity(attachments, capacity) {
         var total = 0;
         for (var index = 0; index < attachments.length; ++index) {
@@ -124,7 +140,7 @@
         }));
         app.use(function(err, req, res, next) {
             logger.error(err.stack);
-            res.status(500).send('');
+            res.status(500).send('The server has encounter an error. Please try again later.');
             next(err);
         });
     }
@@ -229,6 +245,34 @@
             var newProfile = req.body;
             cvcDatabase.getDatamodels().Person.findOne({userid:req.user.id}, function(err, profile) {
                 checkFindPerson(err, profile, req, res, function(savedProfile) {
+                    cvcDatabase.mergeProfileData(savedProfile, newProfile);
+                    savedProfile.save(function(err) {
+                        if (err !== null) {
+                            logger.warn('Failed to update profile: ' + req.user.id + ", error: " + err);
+                            res.sendStatus(400);
+                        } else {
+                            logger.info('Updated profile: ' + req.user.id + ' (' + savedProfile.system.updateVersion + ')');
+                            res.sendStatus(200);
+                        }
+                    });
+                });
+            });
+        });
+
+        app.get('/private/company', cvcAuthentication.ensureAuthenticated, function(req, res) {
+            cvcDatabase.getDatamodels().Company.findOne({userid:req.user.id}, function(err, profile) {
+                checkFindCompany(err, profile, req, res, function(savedProfile) {
+                    logger.debug('Fetched Company: ' + savedProfile.company.name);
+                    cvcDatabase.hideSecretProfileData(savedProfile);
+                    res.json(savedProfile);
+                });
+            });
+        });
+
+        app.post('/private/company', cvcAuthentication.ensureAuthenticated, function(req, res) {
+            var newProfile = req.body;
+            cvcDatabase.getDatamodels().Company.findOne({userid:req.user.id}, function(err, profile) {
+                checkFindCompany(err, profile, req, res, function(savedProfile) {
                     cvcDatabase.mergeProfileData(savedProfile, newProfile);
                     savedProfile.save(function(err) {
                         if (err !== null) {

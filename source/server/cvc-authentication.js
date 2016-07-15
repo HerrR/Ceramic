@@ -29,6 +29,7 @@
     var cvcDatabase;
 
     function loginOrCreateProfile(provider, accessToken, refreshToken, profile, done) {
+        var errorObject = null;
 
         // TODO: use profile properties: provider, id, displayName, name, emails, etc..
         // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
@@ -36,13 +37,13 @@
         // TODO: check if user email is already registered, if yes then deny registration
         // $or:[{userid:profile.id}, {email:profile.email}]
 
-        // TODO: store the raw profile object as is in the database
+        // TODO: store the raw 'profile' object as is in the database
 
         // TODO: findOne using email and not profile.id
         cvcDatabase.getDatamodels().Person.findOne({userid:profile.id}, function(err, savedProfile) {
             if (err !== null) {
                 logger.warn(err);
-                done(err, profile);
+                errorObject = err;
             } else if (savedProfile === null) {
                 var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
 
@@ -74,16 +75,44 @@
                     if (err) {
                         logger.error(err);
                         logger.info('Profile', profile);
-                        done(err, profile);
+                        errorObject = err;
                     } else {
                         logger.info('New Person: ' + person.name, profile);
-                        done(null, profile);
                     }
                 });
-            } else {
-                done(null, profile);
             }
         });
+
+        // TODO: findOne using email and not profile.id
+        cvcDatabase.getDatamodels().Company.findOne({userid:profile.id}, function(err, savedProfile) {
+            if (err !== null) {
+                logger.warn(err);
+                errorObject = err;
+            } else if (savedProfile === null) {
+                var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
+
+                // TODO: fetch general info
+
+                var newProfile = {
+                    userid: profile.id,
+                    email: profile.emails[0].value,
+                    system: system
+                };
+
+                var newPerson = new cvcDatabase.getDatamodels().Company(newProfile);
+                newPerson.save(function(err) {
+                    if (err) {
+                        logger.error(err);
+                        logger.info('Profile', profile);
+                        errorObject = err;
+                    } else {
+                        logger.info('New Company: ' + profile.displayName, profile);
+                    }
+                });
+            }
+        });
+
+        done(errorObject, profile);
     }
 
     function verifyCredentials(userid, password, done) {

@@ -22,7 +22,7 @@
         .run(Run);
 
     Run.$inject = ['$rootScope', '$cookies', '$translate','localStorageService', 'AppConstants'];
-    Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider', 'ChartJsProvider'];
+    Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider', 'ChartJsProvider', 'AnalyticsProvider'];
 
     function Run($rootScope, $cookies, $translate, localStorageService, AppConstants) {
         localStorageService.clearAll();
@@ -57,8 +57,10 @@
         });
     }
 
-    function Config($compileProvider, $mdThemingProvider, $mdDateLocaleProvider, ChartJsProvider) {
+    function Config($compileProvider, $mdThemingProvider, $mdDateLocaleProvider, ChartJsProvider, AnalyticsProvider) {
         $compileProvider.debugInfoEnabled(false);
+
+        AnalyticsProvider.setAccount('UA-36040237-3');
 
         $mdThemingProvider.theme('default')
             .primaryPalette('blue')

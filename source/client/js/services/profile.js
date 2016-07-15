@@ -8,7 +8,7 @@
         .module('cvc')
         .service('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$http','AppConstants', 'ScreenMessageService'];
+    ProfileService.$inject = ['$http', 'AppConstants', 'ScreenMessageService'];
 
     function ProfileService($http, AppConstants, ScreenMessageService) {
         var self = this;
@@ -51,10 +51,16 @@
             }
         }
 
-        self.signIn = function(serviceName) {
-            userType = serviceName;
-            self.reload(function(data,err) {
-                ScreenMessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
+        self.setUserType = function(_userType) {
+            userType = _userType;
+        };
+
+        self.signIn = function(_userType) {
+            userType = _userType;
+            self.reload(function(data, err) {
+                if (err) {
+                    ScreenMessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
+                }
             });
         };
 

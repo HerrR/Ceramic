@@ -4,6 +4,8 @@
             "en": {
                   "locale": "en",
                   "translations": {
+                        "error.general": "Error",
+
                         "page_title": "Title of the page",
                         "home.company.title": "Company",
                         "home.company.description": "Looking to employ?",
