@@ -23,7 +23,7 @@ script:
   - gulp publish
 
 after_failure:
-  - cat /home/travis/npm-debug.log
+  - cat /home/travis/Axodoss/Ceramic/npm-debug.log
 
 branches:
   only: master
