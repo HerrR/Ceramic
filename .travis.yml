@@ -15,23 +15,15 @@ addons:
 
 sudo: true
 
-# before_install:
-  
-
 before_script:
   - npm install -g gulp
 
 script: 
   - gulp build
-
-# before_deploy:
-  # - apt-get install ssh2
-
-deploy:
   - gulp publish
 
 after_failure:
-  - cat /home/travis/build/NathanWalker/angular2-seed-advanced/npm-debug.log
+  - cat /home/travis/npm-debug.log
 
 branches:
   only: master
@@ -47,7 +39,7 @@ env:
   global:
     # https://github.com/DefinitelyTyped/tsd#tsdrc
     # Token has no scope (read-only access to public information)
-    #- TSD_GITHUB_TOKEN=51b0c1347cfd8c2c90ba0f60db7898171cbb17c8
+    #- TSD_GITHUB_TOKEN=51b0c1347cfd8...
 
 cache:
   directories:
