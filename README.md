@@ -8,11 +8,11 @@ TODO
 
 ## How to build
 ##### Setup
-* **Node JS and NPM** => TODO
-* **MongoDB** => TODO
-* **Redis** => TODO
-* **Elastic Search** => TODO
-* **SSL** => TODO
+* **Node JS and NPM** => https://nodejs.org/
+* **MongoDB** => https://www.mongodb.com/
+* **Redis** => http://redis.io/
+* **Elastic Search** => https://www.elastic.co/
+* **SSL** => https://www.openssl.org/
 
 ##### Environment Variables
 * **SESSION_KEY** = express sesstion
