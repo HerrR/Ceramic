@@ -34,5 +34,5 @@ if [ -f "$BUILDS" ];
     mv $BUILDS $ARCHIEVE
     echo "$(date '+%y-%m-%d_%H-%M-%S'): Process complete" > /var/logs/deploy.log 2>&1
 else
-    echo "$(date '+%y-%m-%d_%H-%M-%S'): No new build found" > /var/logs/deploy.log 2>&1
+    # echo "$(date '+%y-%m-%d_%H-%M-%S'): No new build found" > /var/logs/deploy.log 2>&1
 fi
