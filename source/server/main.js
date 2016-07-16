@@ -12,7 +12,7 @@
 
   const cvcEndpoint = require('./cvc-endpoint');
 
-  const config = require(process.argv[2] || '../../config/dev.json');
+  const config = require(process.argv[2] || '../config.json');
   const numCPUs = os.cpus().length;
   const numClusters = config.server.clusters === 0 ? numCPUs : config.server.clusters;
 

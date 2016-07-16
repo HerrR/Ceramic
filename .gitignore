@@ -50,4 +50,6 @@ local.crt
 local.key
 env.sh
 
+build_v*.zip
+
 dump.rdb

@@ -20,7 +20,7 @@
 
   const cvcUtils = require('./cvc-utils');
 
-  const config = require(process.argv[2] || '../../config/dev.json');
+  const config = require(process.argv[2] || '../config.json');
 
   var logger;
   var datasets;

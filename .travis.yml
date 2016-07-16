@@ -25,7 +25,7 @@ script:
 
 after_success:
   - ls build_v*.zip
-  - sshpass -p $PUBLISH_PASSWORD scp -B -o BatchMode=yes -o ChallengeResponseAuthentication=no -o CheckHostIP=no -q build_v*.zip $PUBLISH_USER@$PUBLISH_URL:$PUBLISH_PATH
+  - sshpass -p $PUBLISH_PASSWORD scp -o ChallengeResponseAuthentication=no -o CheckHostIP=no -q build_v*.zip $PUBLISH_USER@$PUBLISH_URL:$PUBLISH_PATH
 
 after_failure:
   - cat /home/travis/Axodoss/Ceramic/npm-debug.log
