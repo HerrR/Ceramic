@@ -64,7 +64,7 @@
 
                 var newProfile = {
                     userid: profile.id,
-                    email: profile.emails[0].value,
+                    email: profile.emails ? profile.emails[0].value : 'unknown', // TODO: this may be undefined
 
                     person: person,
                     system: system
@@ -95,7 +95,7 @@
 
                 var newProfile = {
                     userid: profile.id,
-                    email: profile.emails[0].value,
+                    email: profile.emails ? profile.emails[0].value : 'unknown', // TODO: this may be undefined
                     system: system
                 };
 
