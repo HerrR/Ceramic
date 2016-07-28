@@ -18,4 +18,9 @@ gulp.task('resources:server', function () {
         .pipe(gulp.dest(config.destination.server.base_dir));
 });
 
+gulp.task('resources:settings', function () {
+    return gulp.src(config.settings.config.source)
+        .pipe(gulp.dest(config.settings.config.base_dir));
+});
+
 gulp.task('resources', ['resources:client','resources:server']);

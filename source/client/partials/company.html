@@ -1,17 +1,25 @@
 <div layout="row" class="cvc-transparent">
     <div flex="40" class="md-padding">
-        <div style="min-width: 400px; min-height: 400px; background-color: Chocolate; padding:10px">TODO: company profile info</div>
+        <div style="min-width: 400px; min-height: 400px; background-color: Chocolate; padding:10px">
+            <ng-include src="'partials/company/profile.html'"/>
+        </div>
     </div>
     <div flex="60" class="md-padding">
-        <div style="min-width: 400px; min-height: 400px; background-color: DarkGoldenRod; padding:10px">TODO: events and messages</div>
+        <div style="min-width: 400px; min-height: 400px; background-color: DarkGoldenRod; padding:10px">
+            <ng-include src="'partials/company/events.html'"/>
+        </div>
     </div>
     <div flex hide-sm hide-xs></div>
 </div>
 <div layout="column">
     <div class="md-padding" style="padding-bottom:0; padding-top:0">
-        <div style="min-height: 100px; background-color: DarkGreen; padding:10px">TODO: my search criterias</div>
+        <div style="min-height: 100px; background-color: DarkGreen; padding:10px">
+            <ng-include src="'partials/company/search_criteria.html'"/>
+        </div>
     </div>
     <div class="md-padding" style="padding-top:0">
-        <div style="min-height: 200px; background-color: DarkRed; padding:10px">TODO: my search results</div>
+        <div style="min-height: 200px; background-color: DarkRed; padding:10px">
+            <ng-include src="'partials/company/search_results.html'"/>
+        </div>
     </div>
 </div>

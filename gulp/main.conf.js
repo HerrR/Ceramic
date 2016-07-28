@@ -6,6 +6,10 @@ module.exports = {
     https: {
       keyFile: '../../local.key',
       certFile: '../../local.crt'
+    },
+    config: {
+      source: 'config.json',
+      base_dir: 'dist'
     }
   },
   conf: {

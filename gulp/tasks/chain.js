@@ -48,5 +48,5 @@ gulp.task('build', function(done) {
 
 // Full build process, development
 gulp.task('developer', function(done) {
-  runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'index:dev', 'serve:copy', done);
+  runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'resources:settings', 'index:dev', 'serve:copy', done);
 });
