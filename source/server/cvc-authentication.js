@@ -28,10 +28,69 @@
 
     var cvcDatabase;
 
+
+    // More info: https://developers.facebook.com/docs/graph-api/reference/user
+    function createPersonFromFacebookProfile(profile) {
+        var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
+
+        var settings = {
+            recieveEmailNotifications: true,
+            searchable: true
+        };
+
+        var person = {
+            basic: {
+                name: profile.displayName,
+                profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
+                email: profile.email,
+                dateOfBirth: profile.birthday // TODO: this is a fixed string MM/DD/YYYY
+
+                // profile.about or profile.bio
+                // profile.cover = cover photo
+                // profile.education = list<EducationExperience> https://developers.facebook.com/docs/graph-api/reference/education-experience/
+                // profile.hometown = https://developers.facebook.com/docs/graph-api/reference/page/
+                // profile.location = https://developers.facebook.com/docs/graph-api/reference/page/
+                // profile.languages = list<Experience> https://developers.facebook.com/docs/graph-api/reference/experience/
+                // work = list<WorkExperience> https://developers.facebook.com/docs/graph-api/reference/work-experience/
+
+                // TODO: fill in more information
+            }
+        };
+
+        var newProfile = {
+            userid: profile.id,
+            email: profile.email,
+
+            person: person,
+            system: system
+        };
+
+        return newProfile;
+    }
+
+    function createPersonFromProfile(provider, profile) {
+        if (provider === config.authentication.facebook.name) {
+            return createPersonFromFacebookProfile(profile);
+        }
+
+        // TODO: implement for other providers
+
+        return null;
+    }
+
+    function getEmailFromProfile(provider, profile) {
+        if (provider === config.authentication.facebook.name) {
+            return profile.email;
+        }
+
+        // TODO: implement for other providers
+
+        return null; // TODO: throw error
+    }
+
     function loginOrCreateProfile(provider, accessToken, refreshToken, profile, done) {
         var errorObject = null;
 
-        // TODO: use profile properties: provider, id, displayName, name, emails, etc..
         // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
 
         // TODO: check if user email is already registered, if yes then deny registration
@@ -39,37 +98,12 @@
 
         // TODO: store the raw 'profile' object as is in the database
 
-        // TODO: findOne using email and not profile.id
-        cvcDatabase.getDatamodels().Person.findOne({userid:profile.id}, function(err, savedProfile) {
+        cvcDatabase.getDatamodels().Person.findOne({email:getEmailFromProfile(provider, profile)}, function(err, savedProfile) {
             if (err !== null) {
                 logger.warn(err);
                 errorObject = err;
             } else if (savedProfile === null) {
-                var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
-
-                var settings = {
-                    recieveEmailNotifications: true,
-                    searchable: true
-                };
-
-                var person = {
-                    basic: {
-                        name: profile.displayName,
-                        profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
-                        email: profile.emails ? profile.emails[0].value : 'unknown', // TODO: this may be undefined
-                        dateOfBirth: profile.birthday
-                        // TODO: fill in more information
-                    }
-                };
-
-                var newProfile = {
-                    userid: profile.id,
-                    email: profile.emails ? profile.emails[0].value : 'unknown', // TODO: this may be undefined
-
-                    person: person,
-                    system: system
-                };
-
+                var newProfile = createPersonFromProfile(provider, profile);
                 var newPerson = new cvcDatabase.getDatamodels().Person(newProfile);
                 newPerson.save(function(err) {
                     if (err) {
@@ -95,12 +129,12 @@
 
                 var newProfile = {
                     userid: profile.id,
-                    email: profile.emails ? profile.emails[0].value : 'unknown', // TODO: this may be undefined
+                    email: profile.email,
                     system: system
                 };
 
-                var newPerson = new cvcDatabase.getDatamodels().Company(newProfile);
-                newPerson.save(function(err) {
+                var newCompany = new cvcDatabase.getDatamodels().Company(newProfile);
+                newCompany.save(function(err) {
                     if (err) {
                         logger.error(err);
                         logger.info('Profile', profile);
