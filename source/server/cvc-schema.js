@@ -36,9 +36,12 @@
     const PersonExperience = {
         company: String,
         industry: String,
+        profession: String,
         role: String,
+        description: String,
         fromDate: Date,
         toDate: Date,
+        keyCompetencies: [String],
         responsibilities: [{
             resptype: String,
             amount: mongoose.Schema.Types.Number
@@ -68,7 +71,8 @@
         degree: String,
         faculty: String,
         fromDate: Date,
-        toDate: Date
+        toDate: Date,
+        description: String
     };
 
     const PersonLanguage = {
@@ -80,7 +84,8 @@
         language: [PersonLanguage],
         personalDescription: String,
         interests: String,
-        otherMerits: String
+        otherMerits: String,
+        compensation: Number
     };
 
     const PersonBasic = {
@@ -93,9 +98,17 @@
         phone: String
     };
 
+    const PersonHighSchool = {
+        name: String,
+        fromDate: Date,
+        toDate: Date,
+        faculty: String
+    };
+
     const PersonCV = {
         skills: [PersonSkill],
         experience: [PersonExperience],
+        high_school: PersonHighSchool,
         education: [PersonEducation],
         generalInfo: PersonGeneralInfo
     };

@@ -41,6 +41,9 @@
                         "profile.cv.education.from": "From date",
                         "profile.cv.education.to": "To date",
                         "profile.cv.education.empty_list": "No education added.",
+                        "profile.cv.education.high_school": "High school",
+                        "profile.cv.education.higher_education": "University/College",
+                        "profile.cv.education.description": "Description",
 
                         "profile.cv.experience.company": "Company",
                         "profile.cv.experience.industry": "Industry",
@@ -48,11 +51,19 @@
                         "profile.cv.experience.from": "From date",
                         "profile.cv.experience.to": "To date",
                         "profile.cv.experience.empty_list": "No work experience added.",
+                        "profile.cv.experience.profession": "Profession",
+                        "profile.cv.experience.key_competencies": "Key Competencies",
+                        "profile.cv.experience.key_competencies.add": "Add more",
+                        "profile.cv.experience.key_competencies.delete_hint": "Press backspace to remove",
+                        "profile.cv.experience.key_competencies.delete": "Remove",
+                        "profile.cv.experience.description": "Description",
 
                         "profile.cv.generalInfo.language.name": "Language",
                         "profile.cv.generalInfo.language.level": "Skill level",
                         "profile.languages": "Languages",
                         "profile.cv.generalInfo.language.empty_list": "No languages added.",
+
+                        "profile.cv.generalInfo.compensation": "Minimum compensation ($/y)",
 
                         "profile.library.empty_list": "No files added.",
                         "profile.label.add_library": "Add file",

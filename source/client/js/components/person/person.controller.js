@@ -123,7 +123,8 @@
                     degree: '',
                     faculty: '',
                     fromDate: '',
-                    toDate: ''
+                    toDate: '',
+                    description: ''
                 };
             }, function(element) {
                 return element.school.trim() !== '';
@@ -141,8 +142,11 @@
                     company: '',
                     industry: '',
                     role: '',
+                    profession: '',
                     fromDate: '',
                     toDate: '',
+                    description: '',
+                    keyCompetencies: []
                 };
             }, function(element) {
                 return element.company.trim() !== '';

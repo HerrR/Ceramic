@@ -3,29 +3,58 @@
         <md-card class="cvc-container-border cvc-nobackground">
             <md-card-header>
                 <md-card-header-text>
-                    <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
-                        <label>{{'profile.cv.experience.company' | translate}}</label>
-                        <input type="text" ng-change="answerChanged()" ng-model="experience.company" maxlength="40" style="font-weight:bold; font-size:120%" required/>
-                    </md-input-container>
+                    <div layout="row" layout-xs="column">
+                        <md-input-container class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
+                            <label>{{'profile.cv.experience.company' | translate}}</label>
+                            <input type="text" ng-change="answerChanged()" ng-model="experience.company" maxlength="40" style="font-weight:bold; font-size:120%" required/>
+                        </md-input-container>
+                        <md-input-container flex="23" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0; font-size:80%">
+                            <label>{{'profile.cv.experience.from' | translate}}</label>
+                            <input type="date" ng-change="answerChanged()" ng-model="experience.fromDate"/>
+                        </md-input-container>
+                        <md-input-container flex="23" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0; font-size:80%">
+                            <label>{{'profile.cv.experience.to' | translate}}</label>
+                            <input type="date" ng-change="answerChanged()" ng-model="experience.toDate"/>
+                        </md-input-container>
+                    </div>
                     <md-card-subhead>
                         <div layout="row" layout-xs="column">
-                            <md-input-container flex="60" class="md-icon-float md-block" style="margin:0; padding:0">
+                            <md-input-container flex="60" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
+                                <label>{{'profile.cv.experience.industry' | translate}}</label>
+                                <input type="text" ng-change="answerChanged()" ng-model="experience.industry" maxlength="40"/>
+                            </md-input-container>
+
+                            <md-input-container flex="60" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
+                                <label>{{'profile.cv.experience.profession' | translate}}</label>
+                                <input type="text" ng-change="answerChanged()" ng-model="experience.profession" maxlength="40"/>
+                            </md-input-container>
+
+                            <md-input-container flex="60" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
                                 <label>{{'profile.cv.experience.role' | translate}}</label>
                                 <input type="text" ng-change="answerChanged()" ng-model="experience.role" maxlength="40"/>
                             </md-input-container>
-                            <md-input-container flex="23" class="md-icon-float md-block" style="margin:0; padding:0; font-size:80%">
-                                <label>{{'profile.cv.experience.from' | translate}}</label>
-                                <input type="date" ng-change="answerChanged()" ng-model="experience.fromDate"/>
-                            </md-input-container>
-                            <md-input-container flex="23" class="md-icon-float md-block" style="margin:0; padding:0; font-size:80%">
-                                <label>{{'profile.cv.experience.to' | translate}}</label>
-                                <input type="date" ng-change="answerChanged()" ng-model="experience.toDate"/>
-                            </md-input-container>
                         </div>
+                        <md-chips ng-model="experience.keyCompetencies" 
+                                  name="keyCompetencies"
+                                  readonly="false" 
+                                  md-removable="true" 
+                                  md-max-chips="3" 
+                                  placeholder="{{'profile.cv.experience.key_competencies' | translate}}" 
+                                  secondary-placeholder="{{'profile.cv.experience.key_competencies.add' | translate}}"
+                                  delete-hint="{{'profile.cv.experience.key_competencies.delete_hint' | translate}}"
+                                  delete-button-label="{{'profile.cv.experience.key_competencies.delete' | translate}}">
+                            <md-chip-template>
+                                <strong>{{$chip}}</strong>
+                            </md-chip-template>
+                        </md-chips>
                     </md-card-subhead>
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
+                <md-input-container class="md-icon-float md-block" style="margin:0; padding:0">
+                    <label>{{'profile.cv.experience.description' | translate}}</label>
+                    <textarea ng-change="answerChanged()" ng-model="experience.description" maxlength="1000"></textarea>
+                </md-input-container>
             </md-card-content>
             <md-card-actions layout="row" layout-align="center center">
                 <span>
