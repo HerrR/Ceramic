@@ -151,7 +151,20 @@
                         "profession.p190": "Socialt arbete",
                         "profession.p200": "Säkerhet",
                         "profession.p210": "Teknik",
-                        "profession.p220": "Transport och logistik"
+                        "profession.p220": "Transport och logistik",
+
+                        "education.faculty.economy": "Economy",
+                        "education.faculty.humanism": "Humanism",
+                        "education.faculty.law": "Law",
+                        "education.faculty.artistic": "Artistic",
+                        "education.faculty.science": "Science",
+                        "education.faculty.social": "Social",
+                        "education.faculty.history": "History",
+                        "education.faculty.philosophy": "Philosophy",
+                        "education.faculty.systems_science": "Systems Science",
+                        "education.faculty.technique": "Technique",
+                        "education.faculty.pedagogy": "Pedagogy",
+                        "education.faculty.theology": "Theology"
                   }
             },
           
@@ -277,7 +290,20 @@
                         "profession.p190": "Socialt arbete",
                         "profession.p200": "Säkerhet",
                         "profession.p210": "Teknik",
-                        "profession.p220": "Transport och logistik"
+                        "profession.p220": "Transport och logistik",
+
+                        "education.faculty.economy": "Economy",
+                        "education.faculty.humanism": "Humanism",
+                        "education.faculty.law": "Law",
+                        "education.faculty.artistic": "Artistic",
+                        "education.faculty.science": "Science",
+                        "education.faculty.social": "Social",
+                        "education.faculty.history": "History",
+                        "education.faculty.philosophy": "Philosophy",
+                        "education.faculty.systems_science": "Systems Science",
+                        "education.faculty.technique": "Technique",
+                        "education.faculty.pedagogy": "Pedagogy",
+                        "education.faculty.theology": "Theology"
                   }
             }
       }

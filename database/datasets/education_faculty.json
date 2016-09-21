@@ -83,18 +83,12 @@
 
             {
                 "id": "EF120",
-                "textKey": "education.faculty.technique",
-                "major": []
-            },
-
-            {
-                "id": "EF130",
                 "textKey": "education.faculty.pedagogy",
                 "major": []
             },
 
             {
-                "id": "EF140",
+                "id": "EF130",
                 "textKey": "education.faculty.theology",
                 "major": []
             }
