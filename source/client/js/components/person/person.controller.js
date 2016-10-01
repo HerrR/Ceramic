@@ -26,19 +26,31 @@
         $scope.latestUploadFile = null;
         $scope.latestUploadFileError = null;
 
-        DatasetService.getAsync(AppConstants.DATASETS.LANGUAGE_LEVELS, function(data) {
+        DatasetService.getAsync(AppConstants.DATASETS.LANGUAGE_LEVELS.NAME, function(data) {
             $scope.languageLevelToText = data.list;
         });
 
-        DatasetService.getAsync(AppConstants.DATASETS.DEGREE, function(data) {
+        DatasetService.getAsync(AppConstants.DATASETS.DEGREE.NAME, function(data) {
             $scope.degrees = data.list;
         });
 
-        DatasetService.getAsync(AppConstants.DATASETS.FACULTY, function(data) {
+        DatasetService.getAsync(AppConstants.DATASETS.FACULTY.NAME, function(data) {
             $scope.faculties = data.list;
         });
 
-        DatasetService.getAsync(AppConstants.DATASETS.COUNTRIES, function(data) {
+        DatasetService.getAsync(AppConstants.DATASETS.INDUSTRY.NAME, function(data) {
+            $scope.industries = data.list;
+        });
+
+        DatasetService.getAsync(AppConstants.DATASETS.PROFESSION.NAME, function(data) {
+            $scope.professions = data.list;
+        });
+
+        DatasetService.getAsync(AppConstants.DATASETS.ROLE.NAME, function(data) {
+            $scope.roles = data.list;
+        });
+
+        DatasetService.getAsync(AppConstants.DATASETS.COUNTRIES.NAME, function(data) {
             var items = [];
             for (var key in data) {
                 items.push({display: data[key]});

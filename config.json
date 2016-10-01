@@ -33,6 +33,8 @@
                 "./dist/server/languages.json",
                 "./dist/server/professions.json",
                 "./dist/server/specific_experience.json",
+                "./dist/server/roles.json",
+                "./dist/server/industry.json",
                 "./dist/server/text_resource.json"
             ],
             "watchEnabled": true,

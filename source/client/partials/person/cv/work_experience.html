@@ -19,19 +19,23 @@
                     </div>
                     <md-card-subhead>
                         <div layout="row" layout-xs="column">
-                            <md-input-container flex="60" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
-                                <label>{{'profile.cv.experience.industry' | translate}}</label>
-                                <input type="text" ng-change="answerChanged()" ng-model="experience.industry" maxlength="40"/>
+                            <md-input-container flex class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
+                                <md-select ng-change="answerChanged()" ng-model="experience.industry" placeholder="{{'profile.cv.experience.industry' | translate}}">
+                                    <md-option ng-value="industry.id" ng-repeat="industry in industries">{{industry.textKey | translate}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-xs="column" style="margin-top:20px">
+                            <md-input-container flex="50" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
+                                <md-select ng-change="answerChanged()" ng-model="experience.profession" placeholder="{{'profile.cv.experience.profession' | translate}}">
+                                    <md-option ng-value="profession.id" ng-repeat="profession in professions">{{profession.textKey | translate}}</md-option>
+                                </md-select>
                             </md-input-container>
 
-                            <md-input-container flex="60" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
-                                <label>{{'profile.cv.experience.profession' | translate}}</label>
-                                <input type="text" ng-change="answerChanged()" ng-model="experience.profession" maxlength="40"/>
-                            </md-input-container>
-
-                            <md-input-container flex="60" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
-                                <label>{{'profile.cv.experience.role' | translate}}</label>
-                                <input type="text" ng-change="answerChanged()" ng-model="experience.role" maxlength="40"/>
+                            <md-input-container flex="50" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
+                                <md-select ng-change="answerChanged()" ng-model="experience.role" placeholder="{{'profile.cv.experience.role' | translate}}">
+                                    <md-option ng-value="role.id" ng-repeat="role in roles">{{role.textKey | translate}}</md-option>
+                                </md-select>
                             </md-input-container>
                         </div>
                         <md-chips ng-model="experience.keyCompetencies" 

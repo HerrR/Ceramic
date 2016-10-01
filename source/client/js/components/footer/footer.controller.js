@@ -10,7 +10,7 @@
     Controller.$inject = ['$scope', '$http', '$cookies', '$rootScope', '$translate', 'AppConstants', 'DatasetService'];
 
     function Controller($scope, $http, $cookies, $rootScope, $translate, AppConstants, DatasetService) {
-        DatasetService.getAsync(AppConstants.DATASETS.TRANSLATION_LANGUAGES, function(data) {
+        DatasetService.getAsync(AppConstants.DATASETS.TRANSLATION_LANGUAGES.NAME, function(data) {
             $scope.translations = data;
         });
 

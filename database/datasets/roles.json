@@ -1,0 +1,8 @@
+{
+    "name": "roles",
+    "data": {
+        "list": [
+            {"id":"R010", "textKey":"role.r010", "description":"role.description.r010"}
+        ]
+    }
+}

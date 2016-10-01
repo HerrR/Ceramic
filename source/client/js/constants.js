@@ -18,12 +18,14 @@
                 AUTHORIZED: 'auth/'
             },
             DATASETS: {
-                TRANSLATION_LANGUAGES: 'TRANSLATION_LANGUAGES',
-                LANGUAGE_LEVELS: 'LANGUAGE_LEVELS',
-                COUNTRIES: 'COUNTRIES',
-                DEGREE: 'DEGREE',
-                FACULTY: 'FACULTY',
-                INDUSTRY: 'INDUSTRY'
+                TRANSLATION_LANGUAGES: { NAME: 'TRANSLATION_LANGUAGES', PATH: 'keys/translations'},
+                LANGUAGE_LEVELS: { NAME: 'LANGUAGE_LEVELS', PATH: 'language_level'},
+                COUNTRIES: { NAME: 'COUNTRIES', PATH: 'country'},
+                DEGREE: { NAME: 'DEGREE', PATH: 'education_level'},
+                FACULTY: { NAME: 'FACULTY', PATH: 'education_faculty'},
+                PROFESSION: { NAME: 'PROFESSION', PATH: 'professions'},
+                ROLE: { NAME: 'ROLE', PATH: 'roles'},
+                INDUSTRY: { NAME: 'INDUSTRY', PATH: 'industry'}
             },
             MESSAGE_LIFE: 2000,
             USER_TYPES: {
