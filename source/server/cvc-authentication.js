@@ -42,7 +42,7 @@
             basic: {
                 name: profile.displayName,
                 profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
-                email: profile.email,
+                email: profile.email || profile.emails[0].value,
                 dateOfBirth: profile.birthday // TODO: this is a fixed string MM/DD/YYYY
 
                 // profile.about or profile.bio
@@ -68,9 +68,33 @@
         return newProfile;
     }
 
+    function createCompanyFromFacebookProfile(profile) {
+        var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
+
+        // TODO: fetch general info
+
+        var newProfile = {
+            userid: profile.id,
+            email: profile.email || profile.emails[0].value,
+            system: system
+        };
+
+        return newProfile;
+    }
+
     function createPersonFromProfile(provider, profile) {
         if (provider === config.authentication.facebook.name) {
             return createPersonFromFacebookProfile(profile);
+        }
+
+        // TODO: implement for other providers
+
+        return null;
+    }
+
+    function createCompanyFromProfile(provider, profile) {
+        if (provider === config.authentication.facebook.name) {
+            return createCompanyFromFacebookProfile(profile);
         }
 
         // TODO: implement for other providers
@@ -123,16 +147,7 @@
                 logger.warn(err);
                 errorObject = err;
             } else if (savedProfile === null) {
-                var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
-
-                // TODO: fetch general info
-
-                var newProfile = {
-                    userid: profile.id,
-                    email: profile.email,
-                    system: system
-                };
-
+                var newProfile = createCompanyFromProfile(provider, profile);
                 var newCompany = new cvcDatabase.getDatamodels().Company(newProfile);
                 newCompany.save(function(err) {
                     if (err) {

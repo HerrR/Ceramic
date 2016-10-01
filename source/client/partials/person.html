@@ -8,7 +8,7 @@
 
         <md-content flex id="content" class="cvc-nobackground">
             <md-tabs md-dynamic-height md-border-bottom class="cvc-container-border">
-                <md-tab label="{{'profile.' + tab | translate}}" ng-repeat="tab in ['cv', 'library', 'settings']">
+                <md-tab label="{{'profile.' + tab | translate}}" ng-repeat="tab in ['dashboard', 'cv', 'library', 'settings']">
                     <ng-include src="getTabFile(tab)"/>
                 </md-tab>
             </md-tabs>
