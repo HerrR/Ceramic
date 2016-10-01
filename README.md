@@ -59,3 +59,6 @@ Branches use the following naming conventions:
 * `fix/{something}` => When you are fixing something broken in a feature
 * `try/{something}` => When you are trying out an idea and want feedback
 * `release/v.{major}.{minor}.{patch}` => When releasing a new version
+
+## Links
+* https://developers.facebook.com/

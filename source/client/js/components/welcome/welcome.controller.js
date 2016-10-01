@@ -1,5 +1,4 @@
 /* global angular */
-/* global window */
 
 (function() {
     'use strict';
@@ -13,8 +12,7 @@
     function Controller($scope, $cookies, $http, ProfileService, AppConstants, ScreenMessageService) {
         $scope.loginProviders = [];
 
-        console.log('USERTYPE',$cookies.get(AppConstants.COOKIES.USERTYPE));
-        ProfileService.signIn($cookies.get(AppConstants.COOKIES.USERTYPE) || AppConstants.USER_TYPES.PERSON);
+        ProfileService.signIn($cookies.get(AppConstants.COOKIES.USERTYPE), $cookies.get(AppConstants.COOKIES.LOGINTYPE), false);
 
         $http.get(AppConstants.PATHS.PUBLIC + 'loginstrategies', {}).then(function(res) {
             $scope.loginProviders = res.data;
@@ -24,19 +22,11 @@
         });
 
         $scope.signInPerson = function(type) {
-            $cookies.put(AppConstants.COOKIES.USERTYPE, AppConstants.USER_TYPES.PERSON, {expires: new Date("2047-12-09")});
-            $cookies.put(AppConstants.COOKIES.LOGINTYPE, type, {expires: new Date("2047-12-09")});
-
-            ProfileService.signIn(AppConstants.USER_TYPES.PERSON);
-            window.location.href = AppConstants.PATHS.AUTHORIZED + type + '/login';
+            ProfileService.signIn(AppConstants.USER_TYPES.PERSON, type, true);
         };
 
         $scope.signInCompany = function(type) {
-            $cookies.put(AppConstants.COOKIES.USERTYPE, AppConstants.USER_TYPES.COMPANY, {expires: new Date("2047-12-09")});
-            $cookies.put(AppConstants.COOKIES.LOGINTYPE, type, {expires: new Date("2047-12-09")});
-
-            ProfileService.signIn(AppConstants.USER_TYPES.COMPANY);
-            window.location.href = AppConstants.PATHS.AUTHORIZED + type + '/login';
+            ProfileService.signIn(AppConstants.USER_TYPES.COMPANY, type, true);
         };
 
         $scope.hasSignedIn = function() {
