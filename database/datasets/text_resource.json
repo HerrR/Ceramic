@@ -108,6 +108,9 @@
                         "why.title": "Why XXX",
                         "why.text": "Why text",
 
+                        "company.industry": "Industry",
+                        "company.name": "Company name",
+
                         "industry.i010": "Jordbruk, skogsbruk, fiske",
                         "industry.i020": "Utvinning mineral, gruvindustri",
                         "industry.i030": "Tillverkningsindustri",

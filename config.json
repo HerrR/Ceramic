@@ -35,6 +35,7 @@
                 "./dist/server/specific_experience.json",
                 "./dist/server/roles.json",
                 "./dist/server/industry.json",
+                "./dist/server/feature_toggle.json",
                 "./dist/server/text_resource.json"
             ],
             "watchEnabled": true,

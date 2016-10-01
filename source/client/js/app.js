@@ -21,10 +21,11 @@
         .config(Config)
         .run(Run);
 
-    Run.$inject = ['$rootScope', '$cookies', '$translate','localStorageService', 'AppConstants'];
+    Run.$inject = ['$rootScope', '$cookies', '$translate','localStorageService', 'AppConstants', 'FeatureToggleService'];
     Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider', 'ChartJsProvider'];
 
-    function Run($rootScope, $cookies, $translate, localStorageService, AppConstants) {
+    function Run($rootScope, $cookies, $translate, localStorageService, AppConstants, FeatureToggleService) {
+        FeatureToggleService.init();
         localStorageService.clearAll();
 
         var storedLanguage = $cookies.get(AppConstants.COOKIES.LANGUAGE);

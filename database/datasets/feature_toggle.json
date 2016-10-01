@@ -1,0 +1,8 @@
+{
+    "name": "feature_toggle",
+    "data": {
+        "list": [
+            {"name":"", "category": "","active":true}
+        ]
+    }
+}
