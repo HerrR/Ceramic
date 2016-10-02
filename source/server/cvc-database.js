@@ -43,6 +43,9 @@
             var dbPass = process.env.DB_PASSWORD || config.server.database.password;
             var dbUrl = config.server.database.url;
             dbUrl = dbUrl.replace('{username}',dbUser).replace('{password}',dbPass);
+
+            // TODO: bcrypt = require(bcrypt), SALT_WORK_FACTOR = 10;
+
             mongoose.connect(dbUrl);
         } catch (err) {
             logger.error('Failed to connect to database: ' + config.server.database.url);

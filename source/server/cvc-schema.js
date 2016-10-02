@@ -49,7 +49,7 @@
     };
 
     const Attachment = {
-        id: { type: String, required: true },
+        id: { type: String, required: true, index: { unique: true } },
         name: String,
         mimetype: String,
         checksum: String,
@@ -121,7 +121,7 @@
 
     const Person = {
         userid: { type: String, index: true, required: true },
-        email: { type: String, index: true, required: true },
+        email: { type: String, index: true, required: true, index: { unique: true } },
         system: System,
         settings: PersonSettings,
         person: {
@@ -158,7 +158,7 @@
 
     const Company = {
         userid: { type: String, index: true, required: true },
-        email: { type: String, index: true, required: true },
+        email: { type: String, index: true, required: true, index: { unique: true } },
         updateVersion: mongoose.Schema.Types.Number,
         credits: mongoose.Schema.Types.Number,
         system: System,
@@ -195,6 +195,12 @@
         method: String,
         purchase: String,
         transaction: String
+    };
+
+    // http://blog.mongodb.org/post/32866457221/password-authentication-with-mongoose-part-1
+    const Account = {
+        email: { type: String, index: true, required: true, index: { unique: true } },
+        password: { type: String, required: true }
     };
 
     // TODO: sent emails
