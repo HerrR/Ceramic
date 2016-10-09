@@ -1,7 +1,7 @@
-<md-content class="md-padding cvc-container-border">
+<md-content class="cvc-container-border cvc-transparent">
     <div felx="auto" flex>
-        <md-tabs md-dynamic-height md-border-bottom class="cvc-container-border">
-            <md-tab label="{{'profile.company.' + tab | translate}}" ng-repeat="tab in ['dashboard', 'messages', 'searches', 'company_info', 'settings']">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="{{'profile.company.' + tab | translate}}" ng-repeat="tab in ['dashboard', 'messages', 'searches', 'profiles', 'company_info', 'settings']">
                 <md-content class="md-padding cvc-nobackground">
                     <ng-include src="getTabFile(tab)"/>
                 </md-content>

@@ -19,6 +19,24 @@
             $scope.industries = data.list;
         });
 
+        $scope.newSearchCriteria = function() {
+            $scope.selectedSearchCriteria = {};
+        };
+
+        $scope.editSearchCriteria = function(searchCriteria) {
+            $scope.selectedSearchCriteria = searchCriteria;
+        };
+
+        $scope.cancelEditSearchCriteria = function() {
+            $scope.selectedSearchCriteria = undefined;
+        };
+
+        $scope.saveSelectedSearchCriteria = function() {
+            if ($scope.selectedSearchCriteria) {
+                // TODO: $scope.selectedSearchCriteria
+            }
+        };
+
         $scope.hasSignedIn = function() {
             return ($scope.profile !== null && $scope.profile !== undefined);
         };
