@@ -66,6 +66,15 @@
                 }
             });
         };
+
+        $scope.validate = function() {
+            // TODO: validate the form and return validation errors.
+            return [];
+        };
+
+        $scope.getTabFile = function(tab) {
+            return 'partials/company/tabs/' + tab + '.html';
+        };
     }
 
     function computeHashCode(object) {

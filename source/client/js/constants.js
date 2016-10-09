@@ -15,7 +15,8 @@
                 PUBLIC: 'public/',
                 PRIVATE: 'private/',
                 DATASETS: 'dataset/',
-                AUTHORIZED: 'auth/'
+                AUTHORIZED: 'auth/',
+                FEATURE_TOGGLE: 'feature_toggle.json'
             },
             DATASETS: {
                 TRANSLATION_LANGUAGES: { NAME: 'TRANSLATION_LANGUAGES', PATH: 'keys/translations'},
