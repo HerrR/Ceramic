@@ -20,7 +20,10 @@
         });
 
         $scope.newSearchCriteria = function() {
-            $scope.selectedSearchCriteria = {};
+            $scope.selectedSearchCriteria = {
+                education: {}
+                // TODO: add more parameters
+            };
         };
 
         $scope.editSearchCriteria = function(searchCriteria) {
@@ -35,6 +38,21 @@
             if ($scope.selectedSearchCriteria) {
                 // TODO: $scope.selectedSearchCriteria
             }
+        };
+
+        $scope.cancelSaveSearchCriteria = function() {
+            // TODO
+        };
+
+        $scope.isSelectedInCriteria = function(key, level) {
+            if ($scope.selectedSearchCriteria[key]) {
+                return ($scope.selectedSearchCriteria[key] === level);
+            }
+            return false;
+        };
+
+        $scope.selectInCriteria = function(key, level) {
+            $scope.selectedSearchCriteria[key] = level;
         };
 
         $scope.hasSignedIn = function() {

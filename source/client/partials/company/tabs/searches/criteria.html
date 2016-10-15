@@ -1,2 +1,80 @@
-TODO: criteria
-<md-button id="cvcCancelEditSearchCriteria" class="md-raised md-warn" ng-click="cancelEditSearchCriteria()"><i class="fa fa-chevron-left" aria-hidden="true"></i></md-button>
+<div flex="auto" style="margin-bottom: 10px">
+    <md-button id="cvcSaveEditSearchCriteria" class="md-raised md-primary" disabled ng-click="cancelSaveSearchCriteria()"><i class="fa fa-hdd-o" aria-hidden="true"></i> {{'profile.company.save_search_criteria' | translate}}</md-button>
+    <md-button id="cvcCancelEditSearchCriteria" class="md-raised md-warn" ng-click="cancelEditSearchCriteria()"><i class="fa fa-ban" aria-hidden="true"></i> {{'profile.company.cancel_new_search_criteria' | translate}}</md-button>
+</div>
+
+<div layout="row" layout-xs="column" layout-wrap>
+    <div felx="auto" flex>
+        <label><b>{{'profile.compnay.search.education_requirements' | translate}}</b></label>
+        <md-card class="cvc-container-border cvc-nobackground">
+            <md-card-content>
+                <div layout="column"> 
+                    <div layout="row" layout-align="start start" ng-repeat="key in ['high_school_level', 'bachelor_level', 'master_level']">
+                        <div flex="40">
+                            <div style="min-height: 36px; padding: 0 6px; margin: 6px 8px; line-height: 36px" >
+                                <label>{{('profile.company.search.education.' + key) | translate}}</label>
+                            </div>
+                        </div>
+                        <div flex="auto">
+                            <div layout="row" layout-align="space-between start">
+                                <div flex ng-repeat="level in ['must','should','advantage','not_required']">
+                                    <md-button class="{{isSelectedInCriteria(key,level) ? 'md-raised md-primary' : 'md-raised'}}" ng-click="selectInCriteria(key,level)">{{'profile.company.search.' + level | translate}}</md-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex></div>
+                    </div>
+
+                    <p>TODO: Faculty</p>
+                    <p>TODO: Major</p>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
+
+<div layout="row" layout-xs="column" layout-wrap style="margin-top:20px">
+    <div felx="auto" flex>
+        <label><b>{{'profile.compnay.search.work_experience_requirements' | translate}}</b></label>
+        <md-card class="cvc-container-border cvc-nobackground">
+            <md-card-content>
+                <div layout="column" layout-align="start">
+                    <div flex>TODO: Industry experience</div>
+                    <div flex>TODO: Profession experience</div>
+                    <div flex>TODO: Title/Position experience</div>
+                    <div flex>TODO: Key competencies</div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
+
+<div layout="row" layout-xs="column" layout-wrap style="margin-top:20px">
+    <div felx="auto" flex>
+        <label><b>{{'profile.compnay.search.general' | translate}}</b></label>
+        <md-card class="cvc-container-border cvc-nobackground">
+            <md-card-content>
+                <div layout="column" layout-align="start">
+                    <div flex>TODO: Language</div>
+                    <div flex>TODO: Softwares</div>
+                    <div flex>TODO: Keywords</div>
+                    <div flex>TODO: Compensation</div>
+                    <div flex>TODO: Place of employment</div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
+
+<div layout="row" layout-xs="column" layout-wrap style="margin-top:20px">
+    <div felx="auto" flex>
+        <label><b>{{'profile.compnay.search.query_summary' | translate}}</b></label>
+        <md-card class="cvc-container-border cvc-nobackground">
+            <md-card-content>
+                <div layout="column" layout-align="start">
+                    <div flex>TODO: Display candidate search query summary</div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

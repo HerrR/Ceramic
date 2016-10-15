@@ -8,8 +8,14 @@
 
         <md-content flex id="content" class="cvc-nobackground">
             <md-tabs md-dynamic-height md-border-bottom class="cvc-container-border">
-                <md-tab label="{{'profile.' + tab | translate}}" ng-repeat="tab in ['dashboard', 'cv', 'library', 'settings']">
-                    <ng-include src="getTabFile(tab)"/>
+                <md-tab ng-repeat="(tab, icon) in {'dashboard':'fa-bar-chart', 'cv':'fa-file-text', 'library':'fa-folder-open', 'settings':'fa-cog'}">
+                    <md-tab-label>
+                        <i class="fa fa-2x {{icon}}" aria-hidden="true"></i>
+                        <div>{{'profile.' + tab | translate}}</div>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <ng-include src="getTabFile(tab)"/>
+                    </md-tab-body>
                 </md-tab>
             </md-tabs>
         </md-content>

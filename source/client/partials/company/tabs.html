@@ -1,10 +1,16 @@
 <md-content class="cvc-container-border cvc-transparent">
     <div felx="auto" flex>
         <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="{{'profile.company.' + tab | translate}}" ng-repeat="tab in ['dashboard', 'messages', 'searches', 'profiles', 'company_info', 'settings']">
-                <md-content class="md-padding cvc-nobackground">
-                    <ng-include src="getTabFile(tab)"/>
-                </md-content>
+            <md-tab ng-repeat="(tab, icon) in {'dashboard':'fa-bar-chart', 'messages':'fa-bell', 'searches':'fa-binoculars', 'profiles':'fa-users', 'company_info':'fa-building', 'settings':'fa-cog'}">
+                <md-tab-label>
+                    <i class="fa fa-2x {{icon}}" aria-hidden="true"></i>
+                    <div>{{'profile.company.' + tab | translate}}</div>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="md-padding cvc-nobackground">
+                        <ng-include src="getTabFile(tab)"/>
+                    </md-content>
+                </md-tab-body>
             </md-tab>
         </md-tabs>
     </div>

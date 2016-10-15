@@ -141,9 +141,9 @@
 
     const CompanySearchProfile = {
         education: {
-            level: [{ requirement: String, type: String }],
-            faculty: [{ requirement: String, type: String }],
-            major: [{ requirement: String, type: String }]
+            high_school_level: [{ requirement: String, type: String }],
+            bachelor_level: [{ requirement: String, type: String }],
+            master_level: [{ requirement: String, type: String }]
         },
         experience: {
             industry: [{ requirement: String, type: String }],

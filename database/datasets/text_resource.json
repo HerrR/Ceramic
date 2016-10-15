@@ -108,6 +108,11 @@
                         "why.title": "Why XXX",
                         "why.text": "Why text",
 
+                        "profile.company.search.must": "Must",
+                        "profile.company.search.should": "Should",
+                        "profile.company.search.advantage": "Advantage",
+                        "profile.company.search.not_required": "Not required",
+
                         "company.industry": "Industry",
                         "company.name": "Company name",
 
