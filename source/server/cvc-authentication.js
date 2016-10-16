@@ -38,11 +38,15 @@
             searchable: true
         };
 
+        if (!profile.emails || !profile.emails[0].value) {
+            logger.error("No e-mail found", profile);
+        }
+
         var person = {
             basic: {
                 name: profile.displayName,
                 profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
-                email: profile.email || profile.emails[0].value,
+                email: profile.emails[0].value || 'no-email',
                 dateOfBirth: profile.birthday // TODO: this is a fixed string MM/DD/YYYY
 
                 // profile.about or profile.bio
@@ -59,7 +63,7 @@
 
         var newProfile = {
             userid: profile.id,
-            email: profile.email,
+            email: profile.emails[0].value,
 
             person: person,
             system: system
@@ -73,9 +77,13 @@
 
         // TODO: fetch general info
 
+        if (!profile.emails || !profile.emails[0].value) {
+            logger.error("No e-mail found", profile);
+        }
+
         var newProfile = {
             userid: profile.id,
-            email: profile.email || profile.emails[0].value,
+            email: profile.emails[0].value || 'no-email',
             system: system
         };
 
@@ -135,7 +143,7 @@
                         logger.info('Profile', profile);
                         errorObject = err;
                     } else {
-                        logger.info('New Person: ' + person.name, profile);
+                        logger.info('New Person: ' + profile.displayName, profile);
                     }
                 });
             }
