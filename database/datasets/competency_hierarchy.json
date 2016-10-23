@@ -1,0 +1,28 @@
+{
+    "name": "competency_hierarchy",
+    "data": {
+        "list": [
+            {
+                "id":"CH010", 
+                "textKey":"competency_hierachy.ch010", 
+                "description":"competency_hierachy.ch010.description",
+
+                "discipline": [
+                    {
+                        "id":"CH010.D10",
+                        "textKey":"competency_hierachy.ch010.d10", 
+                        "description":"competency_hierachy.ch010.d10.description",
+
+                        "role": [
+                            {
+                                "id":"CH010.D10.R10",
+                                "textKey":"competency_hierachy.ch010.d10.r10", 
+                                "description":"competency_hierachy.ch010.d10.r10.description"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

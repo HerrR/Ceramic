@@ -49,7 +49,7 @@
     };
 
     const Attachment = {
-        id: { type: String, required: true, index: { unique: true } },
+        id: { type: String, required: true, index: true },
         name: String,
         mimetype: String,
         checksum: String,
@@ -121,7 +121,7 @@
 
     const Person = {
         userid: { type: String, index: true, required: true },
-        email: { type: String, required: true, index: { unique: true } },
+        email: { type: String, index: true },
         system: System,
         settings: PersonSettings,
         person: {
@@ -158,7 +158,7 @@
 
     const Company = {
         userid: { type: String, index: true, required: true },
-        email: { type: String, required: true, index: { unique: true } },
+        email: { type: String, index: true },
         updateVersion: mongoose.Schema.Types.Number,
         credits: mongoose.Schema.Types.Number,
         system: System,

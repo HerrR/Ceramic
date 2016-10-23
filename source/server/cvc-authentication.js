@@ -38,15 +38,18 @@
             searchable: true
         };
 
+        var email = '';
         if (!profile.emails || !profile.emails[0].value) {
             logger.error("No e-mail found", profile);
+        } else {
+            email = profile.emails[0].value;
         }
 
         var person = {
             basic: {
                 name: profile.displayName,
                 profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
-                email: profile.emails[0].value || 'no-email',
+                email: email,
                 dateOfBirth: profile.birthday // TODO: this is a fixed string MM/DD/YYYY
 
                 // profile.about or profile.bio
@@ -63,7 +66,7 @@
 
         var newProfile = {
             userid: profile.id,
-            email: profile.emails[0].value,
+            email: email,
 
             person: person,
             system: system
@@ -77,13 +80,16 @@
 
         // TODO: fetch general info
 
+        var email = '';
         if (!profile.emails || !profile.emails[0].value) {
             logger.error("No e-mail found", profile);
+        } else {
+            email = profile.emails[0].value;
         }
 
         var newProfile = {
             userid: profile.id,
-            email: profile.emails[0].value || 'no-email',
+            email: email,
             system: system
         };
 
@@ -111,13 +117,35 @@
     }
 
     function getEmailFromProfile(provider, profile) {
+        var result = null;
+
         if (provider === config.authentication.facebook.name) {
-            return profile.email;
+            result = profile.emails ? profile.emails[0].value : profile.email;
         }
 
         // TODO: implement for other providers
 
-        return null; // TODO: throw error
+        if (result === undefined || result === null) {
+            // TODO: error
+        }
+
+        return result;
+    }
+
+    function getIdFromProfile(provider, profile) {
+        var result = null;
+
+        if (provider === config.authentication.facebook.name) {
+            result = profile.id;
+        }
+
+        // TODO: implement for other providers
+
+        if (result === undefined || result === null) {
+            // TODO: error
+        }
+
+        return result;
     }
 
     function loginOrCreateProfile(provider, accessToken, refreshToken, profile, done) {
@@ -130,7 +158,7 @@
 
         // TODO: store the raw 'profile' object as is in the database
 
-        cvcDatabase.getDatamodels().Person.findOne({email:getEmailFromProfile(provider, profile)}, function(err, savedProfile) {
+        cvcDatabase.getDatamodels().Person.findOne({userid:getIdFromProfile(provider, profile), system:{authenticationProvider:provider.toUpperCase()}}, function(err, savedProfile) {
             if (err !== null) {
                 logger.warn(err);
                 errorObject = err;
@@ -150,7 +178,7 @@
         });
 
         // TODO: findOne using email and not profile.id
-        cvcDatabase.getDatamodels().Company.findOne({userid:profile.id}, function(err, savedProfile) {
+        cvcDatabase.getDatamodels().Company.findOne({userid:getIdFromProfile(provider,profile), system:{authenticationProvider:provider.toUpperCase()}}, function(err, savedProfile) {
             if (err !== null) {
                 logger.warn(err);
                 errorObject = err;

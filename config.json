@@ -36,6 +36,7 @@
                 "./dist/server/roles.json",
                 "./dist/server/industry.json",
                 "./dist/server/feature_toggle.json",
+                "./dist/server/competency_hierarchy.json",
                 "./dist/server/text_resource.json"
             ],
             "watchEnabled": true,
@@ -90,7 +91,7 @@
                 "displayName", 
                 "name", 
                 "birthday", 
-                "email", 
+                "emails", 
                 "picture.type(large)",
                 "hometown",
                 "languages",
