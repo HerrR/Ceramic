@@ -1,28 +1,154 @@
 {
-    "name": "competency_hierarchy",
+    "name": "competency_hierachy",
     "data": {
-        "list": [
-            {
-                "id":"CH010", 
-                "textKey":"competency_hierachy.ch010", 
-                "description":"competency_hierachy.ch010.description",
+        "list": [{
+            "id": "DM010",
+            "textKey": "competency_hierachy.DM010",
+            "description": "competency_hierachy.DM010.description",
 
-                "discipline": [
-                    {
-                        "id":"CH010.D10",
-                        "textKey":"competency_hierachy.ch010.d10", 
-                        "description":"competency_hierachy.ch010.d10.description",
+            "discipline": [{
+                "id": "DM010.D010",
+                "textKey": "competency_hierachy.DM010.d010",
+                "description": "competency_hierachy.DM010.d010.description",
 
-                        "role": [
-                            {
-                                "id":"CH010.D10.R10",
-                                "textKey":"competency_hierachy.ch010.d10.r10", 
-                                "description":"competency_hierachy.ch010.d10.r10.description"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
+                "role": [{
+                    "id": "DM010.D010.R010",
+                    "textKey": "competency_hierachy.DM010.D010.R010",
+                    "description": "competency_hierachy.DM010.D010.R010.description",
+
+                    "key_competency": [{
+                        "id": "DM010.D010.R010.C010",
+                        "textKey": "competency_hierachy.DM010.D010.R010.C010",
+                        "description": "competency_hierachy.DM010.D010.R010.C010.description"
+                    }, {
+                        "id": "DM010.D010.R010.C020",
+                        "textKey": "competency_hierachy.DM010.d010.r010.c020",
+                        "description": "competency_hierachy.DM010.d010.r010.c020.description"
+                    }]
+                }, {
+                    "id": "DM010.D010.R020",
+                    "textKey": "competency_hierachy.DM010.D010.R020",
+                    "description": "competency_hierachy.DM010.D010.R020.description",
+
+                    "key_competency": [{
+                        "id": "DM010.D010.R020.C010",
+                        "textKey": "competency_hierachy.DM010.D010.R020.C010",
+                        "description": "competency_hierachy.DM010.D010.R020.C010.description"
+                    }, {
+                        "id": "DM010.D010.R020.C020",
+                        "textKey": "competency_hierachy.DM010.D010.R020.C020",
+                        "description": "competency_hierachy.DM010.D010.R020.C020.description"
+                    }]
+                }]
+            }, {
+                "id": "DM010.D020",
+                "textKey": "competency_hierachy.DM010.d020",
+                "description": "competency_hierachy.DM010.d020.description",
+
+                "role": [{
+                    "id": "DM010.D020.R010",
+                    "textKey": "competency_hierachy.DM010.D020.R010",
+                    "description": "competency_hierachy.DM010.D020.R010.description",
+
+                    "key_competency": [{
+                        "id": "DM010.D020.R010.C010",
+                        "textKey": "competency_hierachy.DM010.D020.R010.C010",
+                        "description": "competency_hierachy.DM010.D020.R010.C010.description"
+                    }, {
+                        "id": "DM010.D020.R010.C020",
+                        "textKey": "competency_hierachy.DM010.D020.R010.C020",
+                        "description": "competency_hierachy.DM010.D020.R010.C020.description"
+                    }]
+                }, {
+                    "id": "DM010.D020.R020",
+                    "textKey": "competency_hierachy.DM010.D020.R020",
+                    "description": "competency_hierachy.DM010.D020.R020.description",
+
+                    "key_competency": [{
+                        "id": "DM010.D020.R020.C010",
+                        "textKey": "competency_hierachy.DM010.D020.R020.C010",
+                        "description": "competency_hierachy.DM010.D020.R020.C010.description"
+                    }, {
+                        "id": "DM010.D020.R020.C020",
+                        "textKey": "competency_hierachy.DM010.D020.R020.C020",
+                        "description": "competency_hierachy.DM010.D020.R020.C020.description"
+                    }]
+                }]
+            }]
+        }, {
+            "id": "DM020",
+            "textKey": "competency_hierachy.DM020",
+            "description": "competency_hierachy.DM020.description",
+
+            "discipline": [{
+                "id": "DM020.D010",
+                "textKey": "competency_hierachy.DM020.d010",
+                "description": "competency_hierachy.DM020.d010.description",
+
+                "role": [{
+                    "id": "DM020.D010.R010",
+                    "textKey": "competency_hierachy.DM020.D010.R010",
+                    "description": "competency_hierachy.DM020.D010.R010.description",
+
+                    "key_competency": [{
+                        "id": "DM020.D010.R010.C010",
+                        "textKey": "competency_hierachy.DM020.D010.R010.C010",
+                        "description": "competency_hierachy.DM020.D010.R010.C010.description"
+                    }, {
+                        "id": "DM020.D010.R010.C020",
+                        "textKey": "competency_hierachy.DM020.d010.r010.c020",
+                        "description": "competency_hierachy.DM020.d010.r010.c020.description"
+                    }]
+                }, {
+                    "id": "DM020.D010.R020",
+                    "textKey": "competency_hierachy.DM020.D010.R020",
+                    "description": "competency_hierachy.DM020.D010.R020.description",
+
+                    "key_competency": [{
+                        "id": "DM020.D010.R020.C010",
+                        "textKey": "competency_hierachy.DM020.D010.R020.C010",
+                        "description": "competency_hierachy.DM020.D010.R020.C010.description"
+                    }, {
+                        "id": "DM020.D010.R020.C020",
+                        "textKey": "competency_hierachy.DM020.D010.R020.C020",
+                        "description": "competency_hierachy.DM020.D010.R020.C020.description"
+                    }]
+                }]
+            }, {
+                "id": "DM020.D020",
+                "textKey": "competency_hierachy.DM020.d020",
+                "description": "competency_hierachy.DM020.d020.description",
+
+                "role": [{
+                    "id": "DM020.D020.R010",
+                    "textKey": "competency_hierachy.DM020.D020.R010",
+                    "description": "competency_hierachy.DM020.D020.R010.description",
+
+                    "key_competency": [{
+                        "id": "DM020.D020.R010.C010",
+                        "textKey": "competency_hierachy.DM020.D020.R010.C010",
+                        "description": "competency_hierachy.DM020.D020.R010.C010.description"
+                    }, {
+                        "id": "DM020.D020.R010.C020",
+                        "textKey": "competency_hierachy.DM020.D020.R010.C020",
+                        "description": "competency_hierachy.DM020.D020.R010.C020.description"
+                    }]
+                }, {
+                    "id": "DM020.D020.R020",
+                    "textKey": "competency_hierachy.DM020.D020.R020",
+                    "description": "competency_hierachy.DM020.D020.R020.description",
+
+                    "key_competency": [{
+                        "id": "DM020.D020.R020.C010",
+                        "textKey": "competency_hierachy.DM020.D020.R020.C010",
+                        "description": "competency_hierachy.DM020.D020.R020.C010.description"
+                    }, {
+                        "id": "DM020.D020.R020.C020",
+                        "textKey": "competency_hierachy.DM020.D020.R020.C020",
+                        "description": "competency_hierachy.DM020.D020.R020.C020.description"
+                    }]
+                }]
+            }]
+        }]
     }
 }

@@ -121,7 +121,7 @@
 
     const Person = {
         userid: { type: String, index: true, required: true },
-        email: { type: String, index: true },
+        email: { type: String, index: true, required: false },
         system: System,
         settings: PersonSettings,
         person: {
@@ -158,7 +158,7 @@
 
     const Company = {
         userid: { type: String, index: true, required: true },
-        email: { type: String, index: true },
+        email: { type: String, index: true, required: false },
         updateVersion: mongoose.Schema.Types.Number,
         credits: mongoose.Schema.Types.Number,
         system: System,
@@ -188,7 +188,7 @@
     };
 
     const Receipt = {
-        userid: { type: String, index: true },
+        userid: { type: String, index: true, required: true },
         paymentDate: Date,
         amount: mongoose.Schema.Types.Number,
         currency: String,
@@ -199,7 +199,7 @@
 
     // http://blog.mongodb.org/post/32866457221/password-authentication-with-mongoose-part-1
     const Account = {
-        email: { type: String, required: true, index: { unique: true } },
+        email: { type: String, required: true, index: { unique: true, required: true } },
         password: { type: String, required: true }
     };
 

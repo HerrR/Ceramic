@@ -53,3 +53,5 @@ env.sh
 build_v*.zip
 
 dump.rdb
+
+*.exe

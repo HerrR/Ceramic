@@ -228,8 +228,8 @@
         if (config.authentication.google.enabled) {
             logger.info('Init Google Authentication');
             passport.use(new passportGoogle.Strategy({
-                clientID: process.env.GOOGLE_APP_ID,
-                clientSecret: process.env.GOOGLE_APP_SECRET,
+                clientID: process.env.GOOGLE_APP_ID || config.authentication.google.clientID,
+                clientSecret: process.env.GOOGLE_APP_SECRET || config.authentication.clientSecret,
                 returnURL: config.authentication.google.callbackURL,
                 profileFields: config.authentication.google.profileFields
             }, function(accessToken, refreshToken, profile, done) {
@@ -242,8 +242,8 @@
         if (config.authentication.twitter.enabled) {
             logger.info('Init Twitter Authentication');
             passport.use(new passportTwitter.Strategy({
-                consumerKey: process.env.TWITTER_APP_ID,
-                clientSecret: process.env.TWITTER_APP_SECRET,
+                consumerKey: process.env.TWITTER_APP_ID || config.authentication.twitter.consumerKey,
+                clientSecret: process.env.TWITTER_APP_SECRET || config.authentication.twitter.clientSecret,
                 callbackURL: config.authentication.twitter.callbackURL,
                 profileFields: config.authentication.twitter.profileFields
             }, function(accessToken, refreshToken, profile, done) {
@@ -256,8 +256,8 @@
         if (config.authentication.linkedin.enabled) {
             logger.info('Init LinkedIn Authentication');
             passport.use(new passportLinkedIn.Strategy({
-                clientID: process.env.LINKEDIN_APP_ID,
-                clientSecret: process.env.LINKEDIN_APP_SECRET,
+                clientID: process.env.LINKEDIN_APP_ID || config.authentication.linkedin.clientID,
+                clientSecret: process.env.LINKEDIN_APP_SECRET || config.authentication.linkedin.clientSecret,
                 callbackURL: config.authentication.linkedin.callbackURL,
                 profileFields: config.authentication.linkedin.profileFields
             }, function(accessToken, refreshToken, profile, done) {
@@ -270,8 +270,8 @@
         if (config.authentication.facebook.enabled) {
             logger.info('Init Facebook Authentication');
             passport.use(new passportFacebook.Strategy({
-                clientID: process.env.FACEBOOK_APP_ID,
-                clientSecret: process.env.FACEBOOK_APP_SECRET,
+                clientID: process.env.FACEBOOK_APP_ID || config.authentication.facebook.clientID,
+                clientSecret: process.env.FACEBOOK_APP_SECRET || config.authentication.facebook.clientSecret,
                 callbackURL: config.authentication.facebook.callbackURL,
                 profileFields: config.authentication.facebook.profileFields
             }, function(accessToken, refreshToken, profile, done) {

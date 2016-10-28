@@ -2,7 +2,7 @@
     "name": "language_level",
     "data": {
         "list": [
-            {"id": "LL10", "textKey": "profile.cv.language.level0", "descriptionTextKey":"profile.cv.language.level0.description"},
+            {"id": "LL10", "textKey": "profile.cv.language.level0"},
             {"id": "LL20", "textKey": "profile.cv.language.level1"},
             {"id": "LL30", "textKey": "profile.cv.language.level2"},
             {"id": "LL40", "textKey": "profile.cv.language.level3"},

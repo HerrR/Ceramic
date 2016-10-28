@@ -175,12 +175,12 @@
                         "education.faculty.theology": "Theology"
                   }
             },
-          
+
             "se": {
                   "locale": "se",
                   "translations": {
-						"error.general": "Fel",
-						
+                        "error.general": "Fel",
+
                         "page_title": "CV121 International",
                         "home.company.title": "CV121",
                         "home.company.description": "Arbetsgivarsidan",
@@ -216,10 +216,10 @@
                         "profile.cv.education.from": "Från datum",
                         "profile.cv.education.to": "Till datum",
                         "profile.cv.education.empty_list": "Ingen utbildning tillagd.",
-						"profile.cv.education.high_school": "Gymnasium",
+                        "profile.cv.education.high_school": "Gymnasium",
                         "profile.cv.education.higher_education": "Högskola/University",
                         "profile.cv.education.description": "Beskrivning",
-						
+
 
                         "profile.cv.experience.company": "Företag",
                         "profile.cv.experience.industry": "Industri",
@@ -233,7 +233,7 @@
                         "profile.cv.experience.key_competencies.delete_hint": "Tryck backspace för att ta bort",
                         "profile.cv.experience.key_competencies.delete": "Ta bort",
                         "profile.cv.experience.description": "Beskrivning",
-						
+
                         "profile.cv.generalInfo.language.name": "Språk",
                         "profile.cv.generalInfo.language.level": "Språknivå",
                         "profile.languages": "Språk",
