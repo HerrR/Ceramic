@@ -20,37 +20,49 @@
                     <md-card-subhead>
                         <div layout="row" layout-xs="column">
                             <md-input-container flex class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
-                                <md-select ng-change="answerChanged()" ng-model="experience.industry" placeholder="{{'profile.cv.experience.industry' | translate}}">
-                                    <md-option ng-value="industry.id" ng-repeat="industry in industries">{{industry.textKey | translate}}</md-option>
+                                <md-select ng-change="resetIndustry(experience); answerChanged()" ng-model="experience.industry" placeholder="{{'profile.cv.experience.industry' | translate}}">
+                                    <md-option ng-value="industry.id" ng-repeat="industry in competency_hierachy">{{industry.textKey | translate}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
                         <div layout="row" layout-xs="column" style="margin-top:20px">
                             <md-input-container flex="50" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
-                                <md-select ng-change="answerChanged()" ng-model="experience.profession" placeholder="{{'profile.cv.experience.profession' | translate}}">
-                                    <md-option ng-value="profession.id" ng-repeat="profession in professions">{{profession.textKey | translate}}</md-option>
+                                <md-select ng-change="resetDiscipline(experience);  answerChanged()" ng-disabled="!experience.industry" ng-model="experience.discipline" placeholder="{{'profile.cv.experience.discipline' | translate}}">
+                                    <md-option ng-value="discipline.id" ng-repeat="discipline in getDisciplines(experience)">{{discipline.textKey | translate}}</md-option>
                                 </md-select>
                             </md-input-container>
 
                             <md-input-container flex="50" class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0">
-                                <md-select ng-change="answerChanged()" ng-model="experience.role" placeholder="{{'profile.cv.experience.role' | translate}}">
-                                    <md-option ng-value="role.id" ng-repeat="role in roles">{{role.textKey | translate}}</md-option>
+                                <md-select ng-change="resetRole(experience);  answerChanged()" ng-disabled="!experience.discipline" ng-model="experience.role" placeholder="{{'profile.cv.experience.role' | translate}}">
+                                    <md-option ng-value="role.id" ng-repeat="role in getRoles(experience)">{{role.textKey | translate}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
-                        <md-chips ng-model="experience.keyCompetencies" 
+                        <!--<md-chips ng-model="experience.keyCompetencies" 
+                                  ng-change="answerChanged()" 
+                                  ng-disabled="!experience.role"
                                   name="keyCompetencies"
                                   readonly="false" 
                                   md-removable="true" 
                                   md-max-chips="3" 
+                                  md-require-match="true" 
                                   placeholder="{{'profile.cv.experience.key_competencies' | translate}}" 
                                   secondary-placeholder="{{'profile.cv.experience.key_competencies.add' | translate}}"
                                   delete-hint="{{'profile.cv.experience.key_competencies.delete_hint' | translate}}"
                                   delete-button-label="{{'profile.cv.experience.key_competencies.delete' | translate}}">
+                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getKeyCompetencies(experience)" md-item-text="item.textKey">
+                                <md-item-template>
+                                    <span md-highlight-text="searchText">{{item.textKey | translate}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    {{'not_found' | translate}}
+                                </md-not-found>
+                            </md-autocomplete>
                             <md-chip-template>
-                                <strong>{{$chip}}</strong>
+                                <strong>{{$chip.textKey | translate}}</strong>
                             </md-chip-template>
-                        </md-chips>
+                        </md-chips>-->
+
                     </md-card-subhead>
                 </md-card-header-text>
             </md-card-header>

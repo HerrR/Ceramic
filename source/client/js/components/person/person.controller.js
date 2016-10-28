@@ -46,8 +46,8 @@
             $scope.professions = data.list;
         });
 
-        DatasetService.getAsync(AppConstants.DATASETS.ROLE.NAME, function(data) {
-            $scope.roles = data.list;
+        DatasetService.getAsync(AppConstants.DATASETS.COMPETENCY_HIERACHY.NAME, function(data) {
+            $scope.competency_hierachy = data.list;
         });
 
         DatasetService.getAsync(AppConstants.DATASETS.COUNTRIES.NAME, function(data) {
@@ -58,6 +58,65 @@
 
             $scope.countries = items;
         });
+
+        $scope.resetIndustry = function(experience) {
+            experience.discipline = null;
+            experience.role = null;
+            experience.keyCompetencies = [];
+        };
+
+        $scope.resetDiscipline = function(experience) {
+            experience.role = null;
+            experience.keyCompetencies = [];
+        };
+
+        $scope.resetRole = function(experience) {
+            experience.keyCompetencies = [];
+        };
+
+        $scope.getDisciplines = function(experience) {
+            if ($scope.competency_hierachy) {
+                for (var key in $scope.competency_hierachy) {
+                    if ($scope.competency_hierachy[key].id === experience.industry) {
+                        return $scope.competency_hierachy[key].discipline;
+                    }
+                }
+            }
+
+            return undefined;
+        };
+
+        $scope.getRoles = function(experience) {
+            var disciplines = $scope.getDisciplines(experience);
+            
+            if (disciplines) {
+                for (var key in disciplines) {
+                    if (disciplines[key].id === experience.discipline) {
+                        return disciplines[key].role;
+                    }
+                }
+            }
+
+            return undefined;
+        };
+
+        $scope.getKeyCompetencies = function(experience) {
+            var roles = $scope.getRoles(experience);
+
+            if (roles) {
+                for (var key in roles) {
+                    if (roles[key].id === experience.role) {
+                        return roles[key].key_competency;
+                    }
+                }
+            }
+
+            return undefined
+        };
+
+        $scope.transformChip = function(chip) {
+            return chip.id;
+        };
 
         $scope.hasScreenMessage = function() {
             return ScreenMessageService.hasMessage();

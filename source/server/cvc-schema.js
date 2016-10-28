@@ -36,7 +36,7 @@
     const PersonExperience = {
         company: String,
         industry: String,
-        profession: String,
+        discipline: String,
         role: String,
         description: String,
         fromDate: Date,
