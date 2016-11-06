@@ -1,0 +1,67 @@
+{
+    "name": "education_high_school_major",
+    "data": {
+        "list": [{
+            "id": "EHSM010",
+            "textKey": "education_high_school_major",
+            "major": [{
+                "id": "EHSM010.economy",
+                "textKey": "education_high_school_major.EHSM010.economy"
+            }, {
+                "id": "EHSM010.science",
+                "textKey": "education_high_school_major.EHSM010.science"
+            }, {
+                "id": "EHSM010.humanoria",
+                "textKey": "education_high_school_major.EHSM010.humanoria"
+            }, {
+                "id": "EHSM010.building_and_construction",
+                "textKey": "education_high_school_major.EHSM010.building_and_construction"
+            }, {
+                "id": "EHSM010.childcare",
+                "textKey": "education_high_school_major.EHSM010.childcare"
+            }, {
+                "id": "EHSM010.electricity_and_energy",
+                "textKey": "education_high_school_major.EHSM010.electricity_and_energy"
+            }, {
+                "id": "EHSM010.aesthetics",
+                "textKey": "education_high_school_major.EHSM010.aesthetics"
+            }, {
+                "id": "EHSM010.vehicle_and_transportation",
+                "textKey": "education_high_school_major.EHSM010.vehicle_and_transportation"
+            }, {
+                "id": "EHSM010.trade_and_administration",
+                "textKey": "education_high_school_major.EHSM010.trade_and_administration"
+            }, {
+                "id": "EHSM010.hotel_and_tourism",
+                "textKey": "education_high_school_major.EHSM010.hotel_and_tourism"
+            }, {
+                "id": "EHSM010.craftsmanship",
+                "textKey": "education_high_school_major.EHSM010.craftsmanship"
+            }, {
+                "id": "EHSM010.industrial_engineering",
+                "textKey": "education_high_school_major.EHSM010.industrial_engineering"
+            }, {
+                "id": "EHSM010.natural_resource",
+                "textKey": "education_high_school_major.EHSM010.natural_resource"
+            }, {
+                "id": "EHSM010.restauran",
+                "textKey": "education_high_school_major.EHSM010.restauran"
+            }, {
+                "id": "EHSM010.technology_and_engineering",
+                "textKey": "education_high_school_major.EHSM010.technology_and_engineering"
+            }, {
+                "id": "EHSM010.plumbing_and_caretaking",
+                "textKey": "education_high_school_major.EHSM010.plumbing_and_caretaking"
+            }, {
+                "id": "EHSM010.social_science",
+                "textKey": "education_high_school_major.EHSM010.social_science"
+            }, {
+                "id": "EHSM010.healthcare",
+                "textKey": "education_high_school_major.EHSM010.healthcare"
+            }, {
+                "id": "EHSM010.international_baccallaureate",
+                "textKey": "education_high_school_major.EHSM010.international_baccallaureate"
+            }]
+        }]
+    }
+}

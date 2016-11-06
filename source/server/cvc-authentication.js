@@ -40,7 +40,7 @@
 
         var email = '';
         if (!profile.emails || !profile.emails[0].value) {
-            logger.error("No e-mail found", profile);
+            logger.error('No e-mail found', {id:profile.id, displayName:profile.displayName});
         } else {
             email = profile.emails[0].value;
         }
@@ -65,7 +65,7 @@
         };
 
         var newProfile = {
-            userid: profile.id,
+            userid: getIdFromProfile(config.authentication.facebook.name,profile),
             email: email,
 
             person: person,
@@ -82,13 +82,13 @@
 
         var email = '';
         if (!profile.emails || !profile.emails[0].value) {
-            logger.error("No e-mail found", profile);
+            logger.error('No e-mail found', {id:profile.id, displayName:profile.displayName});
         } else {
             email = profile.emails[0].value;
         }
 
         var newProfile = {
-            userid: profile.id,
+            userid: getIdFromProfile(config.authentication.facebook.name,profile),
             email: email,
             system: system
         };
@@ -132,10 +132,14 @@
         return result;
     }
 
+    function createIdFromProviderAndId(provider, id) {
+        return provider.toUpperCase() + '_' + id.toString();
+    }
+
     function getIdFromProfile(provider, profile) {
         var result = null;
 
-        if (provider === config.authentication.facebook.name) {
+        if (provider.toUpperCase() === config.authentication.facebook.name.toUpperCase()) {
             result = profile.id;
         }
 
@@ -145,7 +149,7 @@
             // TODO: error
         }
 
-        return result;
+        return createIdFromProviderAndId(provider,result);
     }
 
     function loginOrCreateProfile(provider, accessToken, refreshToken, profile, done) {
@@ -153,12 +157,12 @@
 
         // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
 
-        // TODO: check if user email is already registered, if yes then deny registration
-        // $or:[{userid:profile.id}, {email:profile.email}]
-
         // TODO: store the raw 'profile' object as is in the database
 
-        cvcDatabase.getDatamodels().Person.findOne({userid:getIdFromProfile(provider, profile), system:{authenticationProvider:provider.toUpperCase()}}, function(err, savedProfile) {
+        var searchCriteria = {userid:getIdFromProfile(provider, profile)};
+        logger.info('Searching for:', searchCriteria);
+
+        cvcDatabase.getDatamodels().Person.findOne(searchCriteria, function(err, savedProfile) {
             if (err !== null) {
                 logger.warn(err);
                 errorObject = err;
@@ -168,17 +172,16 @@
                 newPerson.save(function(err) {
                     if (err) {
                         logger.error(err);
-                        logger.info('Profile', profile);
                         errorObject = err;
                     } else {
-                        logger.info('New Person: ' + profile.displayName, profile);
+                        logger.info('New Person: ' + getIdFromProfile(provider, profile));
                     }
                 });
             }
         });
 
         // TODO: findOne using email and not profile.id
-        cvcDatabase.getDatamodels().Company.findOne({userid:getIdFromProfile(provider,profile), system:{authenticationProvider:provider.toUpperCase()}}, function(err, savedProfile) {
+        cvcDatabase.getDatamodels().Company.findOne(searchCriteria, function(err, savedProfile) {
             if (err !== null) {
                 logger.warn(err);
                 errorObject = err;
@@ -188,10 +191,9 @@
                 newCompany.save(function(err) {
                     if (err) {
                         logger.error(err);
-                        logger.info('Profile', profile);
                         errorObject = err;
                     } else {
-                        logger.info('New Company: ' + profile.displayName, profile);
+                        logger.info('New Company: ' + getIdFromProfile(provider, profile));
                     }
                 });
             }
@@ -345,7 +347,7 @@
 
     function initPassport() {
         passport.serializeUser(function(user, done) {
-            done(null, user.id);
+            done(null, createIdFromProviderAndId(user.provider,user.id));
         });
 
         passport.deserializeUser(function(userid, done) {

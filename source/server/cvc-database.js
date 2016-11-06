@@ -130,7 +130,7 @@
                 note: '',
                 visible: true,
                 schemaVersion: PERSON_SCHEMA_VERSION,
-                authenticationProvider: authenticationProvider,
+                authenticationProvider: authenticationProvider.toUpperCase(),
                 updateVersion: 0
             };
         }

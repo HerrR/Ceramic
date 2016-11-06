@@ -8,8 +8,8 @@
 
             "discipline": [{
                 "id": "DM010.D010",
-                "textKey": "competency_hierachy.DM010.d010",
-                "description": "competency_hierachy.DM010.d010.description",
+                "textKey": "competency_hierachy.DM010.D010",
+                "description": "competency_hierachy.DM010.D010.description",
 
                 "role": [{
                     "id": "DM010.D010.R010",
@@ -22,8 +22,8 @@
                         "description": "competency_hierachy.DM010.D010.R010.C010.description"
                     }, {
                         "id": "DM010.D010.R010.C020",
-                        "textKey": "competency_hierachy.DM010.d010.r010.c020",
-                        "description": "competency_hierachy.DM010.d010.r010.c020.description"
+                        "textKey": "competency_hierachy.DM010.D010.R010.c020",
+                        "description": "competency_hierachy.DM010.D010.R010.c020.description"
                     }]
                 }, {
                     "id": "DM010.D010.R020",
@@ -42,8 +42,8 @@
                 }]
             }, {
                 "id": "DM010.D020",
-                "textKey": "competency_hierachy.DM010.d020",
-                "description": "competency_hierachy.DM010.d020.description",
+                "textKey": "competency_hierachy.DM010.D020",
+                "description": "competency_hierachy.DM010.D020.description",
 
                 "role": [{
                     "id": "DM010.D020.R010",
@@ -82,8 +82,8 @@
 
             "discipline": [{
                 "id": "DM020.D010",
-                "textKey": "competency_hierachy.DM020.d010",
-                "description": "competency_hierachy.DM020.d010.description",
+                "textKey": "competency_hierachy.DM020.D010",
+                "description": "competency_hierachy.DM020.D010.description",
 
                 "role": [{
                     "id": "DM020.D010.R010",
@@ -96,8 +96,8 @@
                         "description": "competency_hierachy.DM020.D010.R010.C010.description"
                     }, {
                         "id": "DM020.D010.R010.C020",
-                        "textKey": "competency_hierachy.DM020.d010.r010.c020",
-                        "description": "competency_hierachy.DM020.d010.r010.c020.description"
+                        "textKey": "competency_hierachy.DM020.D010.R010.C020",
+                        "description": "competency_hierachy.DM020.D010.R010.C020.description"
                     }]
                 }, {
                     "id": "DM020.D010.R020",
@@ -116,8 +116,8 @@
                 }]
             }, {
                 "id": "DM020.D020",
-                "textKey": "competency_hierachy.DM020.d020",
-                "description": "competency_hierachy.DM020.d020.description",
+                "textKey": "competency_hierachy.DM020.D020",
+                "description": "competency_hierachy.DM020.D020.description",
 
                 "role": [{
                     "id": "DM020.D020.R010",

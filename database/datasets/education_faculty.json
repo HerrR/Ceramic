@@ -1,95 +1,117 @@
 {
     "name": "education_faculty",
     "data": {
-        "list": [
-            {
+        "list": [{
                 "id": "EF010",
-                "textKey": "education.faculty.economy",
-                "major": [
-                    {"id": "EM010", "textKey": "education.major.ef010.financing"},
-                    {"id": "EM020", "textKey": "education.major.ef010.audit"},
-                    {"id": "EM030", "textKey": "education.major.ef010.financial_management"},
-                    {"id": "EM040", "textKey": "education.major.ef010.marketing"},
-                    {"id": "EM050", "textKey": "education.major.ef010.management"},
-                    {"id": "EM060", "textKey": "education.major.ef010.finance_and_it"},
-                    {"id": "EM070", "textKey": "education.major.ef010.communication"},
-                    {"id": "EM080", "textKey": "education.major.ef010.economic_history"},
-                    {"id": "EM090", "textKey": "education.major.ef010.economics"},
-                    {"id": "EM100", "textKey": "education.major.ef010.accounting"},
-                    {"id": "EM110", "textKey": "education.major.ef010.financial"},
-                    {"id": "EM120", "textKey": "education.major.ef010.entrepreneurship"}
-                ]
+                "textKey": "education.faculty.EF010.business_administration",
+                "major": [{
+                    "id": "EFM010.economy",
+                    "textKey": "education_faculty.EFM010.economy"
+                }, {
+                    "id": "EFM010.audit",
+                    "textKey": "education_faculty.EFM010.audit"
+                }, {
+                    "id": "EFM010.financial_management",
+                    "textKey": "education_faculty.EFM010.financial_management"
+                }, {
+                    "id": "EFM010.marketing",
+                    "textKey": "education_faculty.EFM010.marketing"
+                }, {
+                    "id": "EFM010.management",
+                    "textKey": "education_faculty.EFM010.management"
+                }, {
+                    "id": "EFM010.finance_and_it",
+                    "textKey": "education_faculty.EFM010.finance_and_it"
+                }, {
+                    "id": "EFM010.communication",
+                    "textKey": "education_faculty.EFM010.communication"
+                }, {
+                    "id": "EFM010.economic_history",
+                    "textKey": "education_faculty.EFM010.economic_history"
+                }, {
+                    "id": "EFM010.economics",
+                    "textKey": "education_faculty.EFM010.economics"
+                }, {
+                    "id": "EFM010.accounting",
+                    "textKey": "education_faculty.EFM010.accounting"
+                }, {
+                    "id": "EFM010.financial",
+                    "textKey": "education_faculty.EFM010.financial"
+                }, {
+                    "id": "EFM010.entrepreneurship",
+                    "textKey": "education_faculty.EFM010.entrepreneurship"
+                }]
             },
 
             {
                 "id": "EF020",
-                "textKey": "education.faculty.humanism",
+                "textKey": "education.faculty.EF020.humanism",
                 "major": []
             },
 
             {
                 "id": "EF030",
-                "textKey": "education.faculty.law",
+                "textKey": "education.faculty.EF030.law",
                 "major": []
             },
 
             {
                 "id": "EF040",
-                "textKey": "education.faculty.medicine",
+                "textKey": "education.faculty.EF040.medicine",
                 "major": []
             },
 
             {
                 "id": "EF050",
-                "textKey": "education.faculty.artistic",
+                "textKey": "education.faculty.EF050.artistic",
                 "major": []
             },
 
             {
                 "id": "EF060",
-                "textKey": "education.faculty.science",
+                "textKey": "education.faculty.EF060.science",
                 "major": []
             },
 
             {
                 "id": "EF070",
-                "textKey": "education.faculty.social",
+                "textKey": "education.faculty.EF070.social",
                 "major": []
             },
 
             {
                 "id": "EF080",
-                "textKey": "education.faculty.history",
+                "textKey": "education.faculty.EF080.history",
                 "major": []
             },
 
             {
                 "id": "EF090",
-                "textKey": "education.faculty.philosophy",
+                "textKey": "education.faculty.EF090.philosophy",
                 "major": []
             },
 
             {
                 "id": "EF100",
-                "textKey": "education.faculty.systems_science",
+                "textKey": "education.faculty.EF100.systems_science",
                 "major": []
             },
 
             {
                 "id": "EF110",
-                "textKey": "education.faculty.technique",
+                "textKey": "education.faculty.EF110.technology",
                 "major": []
             },
 
             {
                 "id": "EF120",
-                "textKey": "education.faculty.pedagogy",
+                "textKey": "education.faculty.EF120.pedagogy",
                 "major": []
             },
 
             {
                 "id": "EF130",
-                "textKey": "education.faculty.theology",
+                "textKey": "education.faculty.EF130.theology",
                 "major": []
             }
         ]
