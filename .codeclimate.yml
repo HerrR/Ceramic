@@ -1,2 +1,19 @@
-duplication:
-  enabled: false
+engines:
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths:
+    - "**.css"
+    - "**.js"
+    - "**.html"
+    - "**.json"
+exclude_paths: []
