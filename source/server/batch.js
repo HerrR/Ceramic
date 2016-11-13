@@ -7,20 +7,20 @@
  * @author Lukas Heise
  */
 
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
+const redis = require("redis");
+const log4js = require('log4js');
+const watch = require('node-watch');
+const schedule = require('node-schedule');
+
+const cvcUtils = require('./cvc-utils');
+
+const config = require(process.argv[2] || '../config.json');
+
 (function () {
   "use strict";
-
-  const fs = require('fs');
-  const path = require('path');
-  const chalk = require('chalk');
-  const redis = require("redis");
-  const log4js = require('log4js');
-  const watch = require('node-watch');
-  const schedule = require('node-schedule');
-
-  const cvcUtils = require('./cvc-utils');
-
-  const config = require(process.argv[2] || '../config.json');
 
   var logger;
   var datasets;

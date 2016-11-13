@@ -10,20 +10,20 @@
  * @author Lukas Heise
  */
 
+const mongoose = require('mongoose');
+
+const cvcSchema = require('./cvc-schema');
+
+const schemaPerson = cvcSchema.getSchemas().person;
+const schemaCompany = cvcSchema.getSchemas().company;
+const schemaAdmin = cvcSchema.getSchemas().admin;
+const schemaMessage = cvcSchema.getSchemas().message;
+const schemaReceipt = cvcSchema.getSchemas().receipt;
+
 (function () {
     "use strict";
     
     const PERSON_SCHEMA_VERSION = 1;
-
-    const mongoose = require('mongoose');
-
-    const cvcSchema = require('./cvc-schema');
-
-    const schemaPerson = cvcSchema.getSchemas().person;
-    const schemaCompany = cvcSchema.getSchemas().company;
-    const schemaAdmin = cvcSchema.getSchemas().admin;
-    const schemaMessage = cvcSchema.getSchemas().message;
-    const schemaReceipt = cvcSchema.getSchemas().receipt;
 
     var config;
     var logger;

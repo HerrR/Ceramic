@@ -51,6 +51,7 @@
         });
 
         DatasetService.getAsync(AppConstants.DATASETS.EDUCATION_HIGH_SCHOOL_MAJOR.NAME, function(data) {
+            console.log('major',data.list);
             $scope.education_high_school_major = data.list;
         });
 

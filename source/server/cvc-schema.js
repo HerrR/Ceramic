@@ -10,10 +10,10 @@
  * @author Lukas Heise
  */
 
+const mongoose = require('mongoose');
+
 (function () {
     "use strict";
-
-    const mongoose = require('mongoose');
 
     const System = {
         created: Date,

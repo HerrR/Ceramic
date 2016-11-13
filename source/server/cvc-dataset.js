@@ -10,16 +10,16 @@
  * @author Lukas Heise
  */
 
+const path = require('path');
+const redis = require("redis");
+const watch = require('node-watch');
+const bluebird = require('bluebird');
+const loadashObject = require('lodash/fp/object');
+
+const cvcUtils = require('./cvc-utils');
+
 (function () {
     "use strict";
-
-    const path = require('path');
-    const redis = require("redis");
-    const watch = require('node-watch');
-    const bluebird = require('bluebird');
-    const loadashObject = require('lodash/fp/object');
-
-    const cvcUtils = require('./cvc-utils');
 
     const MAX_FILTER_ELEMENTS = 10;
 

@@ -2,6 +2,9 @@
 ![](https://travis-ci.org/Axodoss/Ceramic.svg)
 ![](https://david-dm.org/Axodoss/Ceramic.svg)
 [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/Axodoss/ceramic)
+[![Code Climate](https://codeclimate.com/github/Axodoss/Ceramic/badges/gpa.svg)](https://codeclimate.com/github/Axodoss/Ceramic)
+[![Test Coverage](https://codeclimate.com/github/Axodoss/Ceramic/badges/coverage.svg)](https://codeclimate.com/github/Axodoss/Ceramic/coverage)
+[![Issue Count](https://codeclimate.com/github/Axodoss/Ceramic/badges/issue_count.svg)](https://codeclimate.com/github/Axodoss/Ceramic)
 
 ## Description
 TODO

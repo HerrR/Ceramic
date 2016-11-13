@@ -10,10 +10,10 @@
  * @author Lukas Heise
  */
 
+const elasticsearch = require('elasticsearch');
+
 (function () {
     "use strict";
-
-    const elasticsearch = require('elasticsearch');
 
     /*
     var client = new elasticsearch.Client({

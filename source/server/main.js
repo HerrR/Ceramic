@@ -1,18 +1,19 @@
 /* jshint node:true */
 /* jshint esversion: 6 */
 
+const os = require('os');
+const fs = require('fs');
+const https = require('https');
+const log4js = require('log4js');
+const chalk = require('chalk');
+
+const cvcEndpoint = require('./cvc-endpoint');
+
+const config = require(process.argv[2] || '../config.json');
+
 (function () {
   "use strict";
 
-  const os = require('os');
-  const fs = require('fs');
-  const https = require('https');
-  const log4js = require('log4js');
-  const chalk = require('chalk');
-
-  const cvcEndpoint = require('./cvc-endpoint');
-
-  const config = require(process.argv[2] || '../config.json');
   const numCPUs = os.cpus().length;
   const numClusters = config.server.clusters === 0 ? numCPUs : config.server.clusters;
 

@@ -37,6 +37,8 @@
                 "./dist/server/industry.json",
                 "./dist/server/feature_toggle.json",
                 "./dist/server/competency_hierarchy.json",
+                "./dist/server/education_high_school_major.json",
+                "./dist/server/currencies.json",
                 "./dist/server/text_resource.json"
             ],
             "watchEnabled": true,

@@ -10,13 +10,13 @@
  * @author Lukas Heise
  */
 
+const fs = require('fs');
+const path = require('path');
+const nodemailer = require('nodemailer');
+const uuid = require('node-uuid');
+
 (function () {
     "use strict";
-
-    const fs = require('fs');
-    const path = require('path');
-    const nodemailer = require('nodemailer');
-    const uuid = require('node-uuid');
 
     var config;
     var logger;

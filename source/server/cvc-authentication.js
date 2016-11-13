@@ -10,18 +10,18 @@
  * @author Lukas Heise
  */
 
+const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
+const passport = require('passport');
+const passportHttp = require('passport-http');
+const passportLocal = require('passport-local');
+const passportGoogle = require('passport-google');
+const passportFacebook = require('passport-facebook');
+const passportTwitter = require('passport-twitter');
+const passportLinkedIn = require('passport-linkedin');
+
 (function () {
     "use strict";
-
-    const cookieParser = require('cookie-parser');
-    const expressSession = require('express-session');
-    const passport = require('passport');
-    const passportHttp = require('passport-http');
-    const passportLocal = require('passport-local');
-    const passportGoogle = require('passport-google');
-    const passportFacebook = require('passport-facebook');
-    const passportTwitter = require('passport-twitter');
-    const passportLinkedIn = require('passport-linkedin');
 
     var config;
     var logger;

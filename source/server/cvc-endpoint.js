@@ -10,21 +10,21 @@
  * @author Lukas Heise
  */
 
+const path = require('path');
+const ddos = require("ddos-express");
+const multer  = require('multer');
+const express = require('express');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const helmet = require('helmet');
+
+const cvcDataset = require('./cvc-dataset');
+const cvcDatabase = require('./cvc-database');
+const cvcAuthentication = require('./cvc-authentication');
+const cvcUtils = require('./cvc-utils');
+
 (function () {
     "use strict";
-
-    const path = require('path');
-    const ddos = require("ddos-express");
-    const multer  = require('multer');
-    const express = require('express');
-    const bodyParser = require('body-parser');
-    const compression = require('compression');
-    const helmet = require('helmet');
-
-    const cvcDataset = require('./cvc-dataset');
-    const cvcDatabase = require('./cvc-database');
-    const cvcAuthentication = require('./cvc-authentication');
-    const cvcUtils = require('./cvc-utils');
 
     const app = express();
     
