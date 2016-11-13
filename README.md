@@ -42,7 +42,8 @@ To start the application run the following commands in separate windows:
 `gulp serve`
 
 ##### Build
-TODO
+'gulp deploy' = Full build process including git tag and version bump, production
+'gulp build' = Full build process, for continues integration
 
 ##### Test
 TODO
@@ -51,7 +52,7 @@ TODO
 TODO
 
 ## Data and functions exposed
-TODO
+None
 
 ## Branches
 All changes should be developed in a new branch created from the `master` branch.
