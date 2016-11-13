@@ -50,6 +50,10 @@
             $scope.competency_hierachy = data.list;
         });
 
+        DatasetService.getAsync(AppConstants.DATASETS.EDUCATION_HIGH_SCHOOL_MAJOR.NAME, function(data) {
+            $scope.education_high_school_major = data.list;
+        });
+
         DatasetService.getAsync(AppConstants.DATASETS.COUNTRIES.NAME, function(data) {
             var items = [];
             for (var key in data) {

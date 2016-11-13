@@ -27,6 +27,7 @@
                 PROFESSION: { NAME: 'PROFESSION', PATH: 'professions'},
                 ROLE: { NAME: 'ROLE', PATH: 'roles'},
                 COMPETENCY_HIERACHY: { NAME: 'COMPETENCY_HIERACHY', PATH: 'competency_hierachy'},
+                EDUCATION_HIGH_SCHOOL_MAJOR: { NAME: 'EDUCATION_HIGH_SCHOOL_MAJOR', PATH: 'education_high_school_major'},
                 INDUSTRY: { NAME: 'INDUSTRY', PATH: 'industry'}
             },
             MESSAGE_LIFE: 2000,

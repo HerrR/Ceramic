@@ -22,7 +22,7 @@
 
                         <md-input-container class="md-icon-float md-block" style="margin:0; padding:0 20px 0 0; min-width:250px">
                             <md-select ng-change="answerChanged()" ng-model="profile.person.cv.high_school.faculty" placeholder="{{'profile.cv.education.faculty' | translate}}">
-                                <md-option ng-value="faculty.id" ng-repeat="faculty in faculties">{{faculty.textKey | translate}}</md-option>
+                                <md-option ng-value="faculty.id" ng-repeat="faculty in education_high_school_major">{{faculty.textKey | translate}}</md-option>
                             </md-select>
                         </md-input-container>
                     </div>

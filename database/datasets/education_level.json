@@ -1,11 +1,15 @@
 {
     "name": "education_level",
     "data": {
-        "list": [
-            {"id": "EL10", "textKey": "education.level.high_school"},
-            {"id": "EL20", "textKey": "education.level.bachelor"},
-            {"id": "EL30", "textKey": "education.level.master"},
-            {"id": "EL40", "textKey": "education.level.phd"}
-        ]
+        "list": [{
+            "id": "EL20",
+            "textKey": "education.level.degree_bachelor"
+        }, {
+            "id": "EL30",
+            "textKey": "education.level.degree_master"
+        }, {
+            "id": "EL40",
+            "textKey": "education.level.degree_phd"
+        }]
     }
 }

@@ -159,7 +159,6 @@
                         "profession.p190": "Craftsmanship",
                         "profession.p200": "General management",
 
-                        "education.level.degree_high_school": "High School",
                         "education.level.degree_bachelor": "Bachelor",
                         "education.level.degree_master": "Master",
                         "education.level.degree_phd": "PHD",
@@ -458,7 +457,6 @@
                         "profession.p190": "Hantverk",
                         "profession.p200": "Företags- och verksamhetsledning",
 
-                        "education.level.degree_high_school": "Gymnasium",
                         "education.level.degree_bachelor": "Kandidat",
                         "education.level.degree_master": "Master",
                         "education.level.degree_phd": "Doktorsexamen",

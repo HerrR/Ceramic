@@ -1,0 +1,9 @@
+{
+    "name": "currency",
+    "data": {
+        "CRY_EUR": "EUR",
+        "CRY_GBP": "GBP",
+        "CRY_SEK": "SEK",
+        "CRY_USD": "USD"
+    }
+}
