@@ -129,7 +129,7 @@
 
         $scope.answerChanged = function() {
             $scope.newHashCode = computeHashCode($scope.profile);
-            $scope.valuesChanged = ($scope.newHashCode != $scope.oldHashCode);
+            $scope.valuesChanged = ($scope.newHashCode !== $scope.oldHashCode);
         };
 
         $scope.save = function() {
