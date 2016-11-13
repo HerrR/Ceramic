@@ -303,40 +303,24 @@ const passportLinkedIn = require('passport-linkedin');
         app.use(passport.initialize());
         app.use(passport.session());
 
-        if (config.authentication.local.enabled) {
-            app.post('/auth/local/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/loginfailed' }));
-        }
+        var methods = [
+            { enabled: config.authentication.local.enabled, name: 'local', type:'local', callback: null },
+            { enabled: config.authentication.http.enabled, name: 'http', type:'basic', callback: null },
+            { enabled: config.authentication.google.enabled, name: 'google', type:'google', callback: function(req, res) { res.redirect('/'); } },
+            { enabled: config.authentication.facebook.enabled, name: 'facebook', type:'facebook', callback: function(req, res) { res.redirect('/'); } },
+            { enabled: config.authentication.twitter.enabled, name: 'twitter', type:'twitter', callback: function(req, res) { res.redirect('/'); } },
+            { enabled: config.authentication.linkedin.enabled, name: 'linkedin', type:'linkedin', callback: function(req, res) { res.redirect('/'); } }
+        ];
 
-        if (config.authentication.http.enabled) {
-            app.post('/auth/http/login', passport.authenticate('basic', { successRedirect: '/', failureRedirect: '/loginfailed' }));
-        }
+        for (var i = 0; i < methods.length; ++i) {
+            var method = methods[i];
 
-        if (config.authentication.google.enabled) {
-            app.post('/auth/google/login', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/loginfailed' }));
-            app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function(req, res) {
-                res.redirect('/');
-            });
-        }
-
-        if (config.authentication.facebook.enabled) {
-            app.get('/auth/facebook/login', passport.authenticate('facebook', { authType: 'rerequest' }));
-            app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }), function(req, res) {
-                res.redirect('/');
-            });
-        }
-
-        if (config.authentication.twitter.enabled) {
-            app.post('/public/twitter/login', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/loginfailed' }));
-            app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }), function(req, res) {
-                res.redirect('/');
-            });
-        }
-
-        if (config.authentication.linkedin.enabled) {
-            app.post('/public/linkedin/login', passport.authenticate('linkedin', { successRedirect: '/', failureRedirect: '/loginfailed' }));
-            app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/' }), function(req, res) {
-                res.redirect('/');
-            });
+            if (method.enabled) {
+                app.post('/auth/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
+                if (method.callback !== null) {
+                    app.get('/auth/' + method.name + '/callback', passport.authenticate(method.type, { failureRedirect: '/' }),method.callback);
+                }
+            }
         }
 
         app.get('/auth/logout', function(req, res) {
