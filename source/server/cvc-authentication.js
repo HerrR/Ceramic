@@ -28,6 +28,16 @@ const passportLinkedIn = require('passport-linkedin');
 
     var cvcDatabase;
 
+    function getEmailFromFacebookProfile(profile) {
+        var email = '';
+        if (!profile.emails || !profile.emails[0].value) {
+            logger.error('No e-mail found', {id:profile.id, displayName:profile.displayName});
+        } else {
+            email = profile.emails[0].value;
+        }
+
+        return email;
+    }
 
     // More info: https://developers.facebook.com/docs/graph-api/reference/user
     function createPersonFromFacebookProfile(profile) {
@@ -38,12 +48,7 @@ const passportLinkedIn = require('passport-linkedin');
             searchable: true
         };
 
-        var email = '';
-        if (!profile.emails || !profile.emails[0].value) {
-            logger.error('No e-mail found', {id:profile.id, displayName:profile.displayName});
-        } else {
-            email = profile.emails[0].value;
-        }
+        var email = getEmailFromFacebookProfile(profile);
 
         var person = {
             basic: {
@@ -80,12 +85,7 @@ const passportLinkedIn = require('passport-linkedin');
 
         // TODO: fetch general info
 
-        var email = '';
-        if (!profile.emails || !profile.emails[0].value) {
-            logger.error('No e-mail found', {id:profile.id, displayName:profile.displayName});
-        } else {
-            email = profile.emails[0].value;
-        }
+        var email = getEmailFromFacebookProfile(profile);
 
         var newProfile = {
             userid: getIdFromProfile(config.authentication.facebook.name,profile),

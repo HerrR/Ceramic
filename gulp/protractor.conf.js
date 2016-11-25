@@ -1,4 +1,5 @@
 var ScreenShotReporter = require('protractor-screenshot-reporter');
+var testdata = require('../source/test/e2e/testData/testdata.json');
 
 exports.config = {
   seleniumServerJar: 'selenium-server-standalone-2.47.1.jar',
@@ -9,7 +10,7 @@ exports.config = {
       },
   baseUrl: 'http://localhost:9020/index.html',
   jasmineNodeOpts: {defaultTimeoutInterval: 1200000},
-  params: require('../source/test/e2e/testData/testdata.json'),
+  params: testdata,
   multiCapabilities: [{
     browserName: 'chrome',
     'chromeOptions': {
