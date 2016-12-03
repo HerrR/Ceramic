@@ -1,4 +1,4 @@
-<md-card class="cvc-container-border cvc-nobackground" style="max-width: 800px">
+<!-- <md-card class="cvc-container-border cvc-nobackground" style="max-width: 800px">
     <md-card-header>
         <md-card-header-text>
             <div layout-align-xs="column" layout="row" layout-align="start">
@@ -22,4 +22,5 @@
             <textarea ng-change="answerChanged()" ng-model="profile.company.basic.description" maxlength="1000"></textarea>
         </md-input-container>
     </md-card-content>
-</md-card>
+</md-card> -->
+<formly-form ng-if="companyInfoForm" model="viewModel" fields="companyInfoForm"></formly-form>

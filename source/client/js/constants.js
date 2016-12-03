@@ -28,7 +28,9 @@
                 ROLE: { NAME: 'ROLE', PATH: 'roles'},
                 COMPETENCY_HIERACHY: { NAME: 'COMPETENCY_HIERACHY', PATH: 'competency_hierachy'},
                 EDUCATION_HIGH_SCHOOL_MAJOR: { NAME: 'EDUCATION_HIGH_SCHOOL_MAJOR', PATH: 'education_high_school_major'},
-                INDUSTRY: { NAME: 'INDUSTRY', PATH: 'industry'}
+                INDUSTRY: { NAME: 'INDUSTRY', PATH: 'industry'},
+                COMPANY_FORMS: { NAME: 'COMPANY_FORMS', PATH: 'company_forms'},
+                PERSON_FORMS: { NAME: 'PERSON_FORMS', PATH: 'person_forms'}
             },
             MESSAGE_LIFE: 2000,
             USER_TYPES: {

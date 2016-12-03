@@ -16,13 +16,15 @@
             'LocalStorageModule',
             'angulartics',
             'angulartics.google.analytics',
-            'chart.js'
+            // 'chart.js',
+            'formlyMaterial'
             ])
         .config(Config)
         .run(Run);
 
     Run.$inject = ['$rootScope', '$cookies', '$translate','localStorageService', 'AppConstants', 'FeatureToggleService'];
-    Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider', 'ChartJsProvider'];
+    // Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider', 'ChartJsProvider'];
+    Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider'];
 
     function Run($rootScope, $cookies, $translate, localStorageService, AppConstants, FeatureToggleService) {
         FeatureToggleService.init();
@@ -58,7 +60,7 @@
         });
     }
 
-    function Config($compileProvider, $mdThemingProvider, $mdDateLocaleProvider, ChartJsProvider) {
+    function Config($compileProvider, $mdThemingProvider, $mdDateLocaleProvider) {
         $compileProvider.debugInfoEnabled(false);
 
         //AnalyticsProvider.setAccount('UA-36040237-3');

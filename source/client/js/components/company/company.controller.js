@@ -7,16 +7,36 @@
         .module('cvc')
         .controller('CvcCompanyController', Controller);
 
-    Controller.$inject = ['$scope', 'ProfileService', 'ScreenMessageService', 'DatasetService', 'AppConstants'];
+    Controller.$inject = ['$scope', '$filter', 'ProfileService', 'ScreenMessageService', 'DatasetService', 'AppConstants', 'UtilityService'];
 
-    function Controller($scope, ProfileService, ScreenMessageService, DatasetService, AppConstants) {
+    function Controller($scope, $filter, ProfileService, ScreenMessageService, DatasetService, AppConstants, UtilityService) {
+        $scope.viewModel = {};
+
         $scope.profile = ProfileService.getProfile();
-        $scope.oldHashCode = computeHashCode($scope.profile);
-        $scope.newHashCode = computeHashCode($scope.profile);
+        $scope.oldHashCode = UtilityService.computeHashCode($scope.profile);
+        $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
         $scope.valuesChanged = false;
+
+         DatasetService.getAsync(AppConstants.DATASETS.COMPANY_FORMS.NAME, function(data) {
+            $scope.companyInfoForm = data['info'];
+        });
+
+        $scope.viewModel.profile = ProfileService.getProfile();
+        $scope.viewModel.answerChanged = function() {
+            $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
+            $scope.valuesChanged = ($scope.newHashCode !== $scope.oldHashCode);
+        };
 
         DatasetService.getAsync(AppConstants.DATASETS.INDUSTRY.NAME, function(data) {
             $scope.industries = data.list;
+            $scope.viewModel.industries = [];
+
+            for (var i = 0; i < data.list.length; ++i) {
+                $scope.viewModel.industries.push({
+                    id: data.list[i].id,
+                    textKey: $filter('translate')(data.list[i].textKey)
+                });
+            }
         });
 
         $scope.newSearchCriteria = function() {
@@ -69,7 +89,7 @@
         };
 
         $scope.answerChanged = function() {
-            $scope.newHashCode = computeHashCode($scope.profile);
+            $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
             $scope.valuesChanged = ($scope.newHashCode !== $scope.oldHashCode);
         };
 
@@ -80,8 +100,8 @@
                 ProfileService.save(function(data, err) {
                     if (err === null) {
                         $scope.profile = data;
-                        $scope.oldHashCode = computeHashCode($scope.profile);
-                        $scope.newHashCode = computeHashCode($scope.profile);
+                        $scope.oldHashCode = UtilityService.computeHashCode($scope.profile);
+                        $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
                         $scope.valuesChanged = false;
                         ScreenMessageService.info('message.saved_success');
                     }
@@ -95,8 +115,8 @@
             ProfileService.reload(function (data, err) {
                 if (err === null) {
                     $scope.profile = data;
-                    $scope.oldHashCode = computeHashCode($scope.profile);
-                    $scope.newHashCode = computeHashCode($scope.profile);
+                    $scope.oldHashCode = UtilityService.computeHashCode($scope.profile);
+                    $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
                     $scope.valuesChanged = false;
                     ScreenMessageService.info('message.cancel_success');
                 }
@@ -111,26 +131,5 @@
         $scope.getTabFile = function(tab) {
             return 'partials/company/tabs/' + tab + '.html';
         };
-    }
-
-    function computeHashCode(object) {
-        if (object === null || object === undefined) {
-            return '';
-        }
-
-        var data = JSON.stringify(object);
-        var hash = 0, i, chr, len;
-
-        if (data.length === 0) {
-            return hash;
-        }
-
-        for (i = 0, len = data.length; i < len; i++) {
-            chr = data.charCodeAt(i);
-            hash = ((hash << 5) - hash) + chr;
-            hash |= 0; // Convert to 32bit integer
-        }
-
-        return hash;
     }
 })();

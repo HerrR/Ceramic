@@ -39,7 +39,9 @@
                 "./dist/server/competency_hierarchy.json",
                 "./dist/server/education_high_school_major.json",
                 "./dist/server/currencies.json",
-                "./dist/server/text_resource.json"
+                "./dist/server/text_resource.json",
+                "./dist/server/company_forms.json",
+                "./dist/server/person_forms.json"
             ],
             "watchEnabled": true,
             "datasetCacheLifeTime": 7200000

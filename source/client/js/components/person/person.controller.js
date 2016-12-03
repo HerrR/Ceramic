@@ -8,9 +8,9 @@
         .module('cvc')
         .controller('CvcPersonController', Controller);
 
-    Controller.$inject = ['$scope', '$http', '$filter', '$timeout', 'ProfileService', 'AppConstants', 'ScreenMessageService', 'DatasetService', 'Upload'];
+    Controller.$inject = ['$scope', '$http', '$filter', '$timeout', 'ProfileService', 'AppConstants', 'ScreenMessageService', 'DatasetService', 'Upload', 'UtilityService'];
 
-    function Controller($scope, $http, $filter, $timeout, ProfileService, AppConstants, ScreenMessageService, DatasetService, Upload) {
+    function Controller($scope, $http, $filter, $timeout, ProfileService, AppConstants, ScreenMessageService, DatasetService, Upload, UtilityService) {
         $scope.MIN_DATE = "1900-01-01";
         $scope.MAX_DATE = new Date(); // TODO: at least 18 years old
 
@@ -20,8 +20,8 @@
         $scope.MAX_LIBRARY_COUNT = 20;
 
         $scope.profile = ProfileService.getProfile();
-        $scope.oldHashCode = computeHashCode($scope.profile);
-        $scope.newHashCode = computeHashCode($scope.profile);
+        $scope.oldHashCode = UtilityService.computeHashCode($scope.profile);
+        $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
         $scope.valuesChanged = false;
         $scope.latestUploadFile = null;
         $scope.latestUploadFileError = null;
@@ -128,7 +128,7 @@
         };
 
         $scope.answerChanged = function() {
-            $scope.newHashCode = computeHashCode($scope.profile);
+            $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
             $scope.valuesChanged = ($scope.newHashCode !== $scope.oldHashCode);
         };
 
@@ -139,8 +139,8 @@
                 ProfileService.save(function(data, err) {
                     if (err === null) {
                         $scope.profile = data;
-                        $scope.oldHashCode = computeHashCode($scope.profile);
-                        $scope.newHashCode = computeHashCode($scope.profile);
+                        $scope.oldHashCode = UtilityService.computeHashCode($scope.profile);
+                        $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
                         $scope.valuesChanged = false;
                         ScreenMessageService.info('message.saved_success');
                     }
@@ -154,8 +154,8 @@
             ProfileService.reload(function (data, err) {
                 if (err === null) {
                     $scope.profile = data;
-                    $scope.oldHashCode = computeHashCode($scope.profile);
-                    $scope.newHashCode = computeHashCode($scope.profile);
+                    $scope.oldHashCode = UtilityService.computeHashCode($scope.profile);
+                    $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
                     $scope.valuesChanged = false;
                     ScreenMessageService.info('message.cancel_success');
                 }
@@ -278,8 +278,8 @@
                 file.upload.then(function(attachment) {
                     $timeout(function() {
                         $scope.profile.person.library.push(attachment.data);
-                        $scope.oldHashCode = computeHashCode($scope.profile);
-                        $scope.newHashCode = computeHashCode($scope.profile);
+                        $scope.oldHashCode = UtilityService.computeHashCode($scope.profile);
+                        $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
                     }); 
                 }, function(err) {
                     if (err.status > 0) {
@@ -319,27 +319,6 @@
 
             return 'fa-file-o';
         };
-    }
-
-    function computeHashCode(object) {
-        if (object === null || object === undefined) {
-            return '';
-        }
-
-        var data = JSON.stringify(object);
-        var hash = 0, i, chr, len;
-
-        if (data.length === 0) {
-            return hash;
-        }
-
-        for (i = 0, len = data.length; i < len; i++) {
-            chr = data.charCodeAt(i);
-            hash = ((hash << 5) - hash) + chr;
-            hash |= 0; // Convert to 32bit integer
-        }
-
-        return hash;
     }
 
     function addElement(list, createCallback, isNotEmptyCallback, maxElements) {

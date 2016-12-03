@@ -1,0 +1,51 @@
+{
+    "name": "company_forms",
+    "data": {
+        "info": [
+            {
+                "key": "profile.company.basic.name",
+                "type": "input",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "type": "text",
+                    "required": true,
+                    "label": ""
+                },
+                "expressionProperties": {
+                    "templateOptions.label": "'company.name' | translate"
+                }
+            },
+            {
+                "key": "profile.company.basic.industry",
+                "type": "select",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "multiple": false,
+                    "required": true,
+                    "labelProp": "textKey",
+                    "valueProp": "id",
+                    "label": "",
+                    "options": []
+                },
+                "expressionProperties": {
+                    "templateOptions.options": "model.industries",
+                    "templateOptions.label": "'company.industry' | translate"
+                }
+            },
+            {
+                "key": "profile.company.basic.description",
+                "type": "textarea",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "required": true,
+                    "type": "text",
+                    "label": "",
+                    "rows": 5
+                },
+                "expressionProperties": {
+                    "templateOptions.label": "'company.description' | translate"
+                }
+            }
+        ]
+    }
+}

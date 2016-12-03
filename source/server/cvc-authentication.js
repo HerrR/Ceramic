@@ -304,21 +304,25 @@ const passportLinkedIn = require('passport-linkedin');
         app.use(passport.session());
 
         var methods = [
-            { enabled: config.authentication.local.enabled, name: 'local', type:'local', callback: null },
-            { enabled: config.authentication.http.enabled, name: 'http', type:'basic', callback: null },
-            { enabled: config.authentication.google.enabled, name: 'google', type:'google', callback: function(req, res) { res.redirect('/'); } },
-            { enabled: config.authentication.facebook.enabled, name: 'facebook', type:'facebook', callback: function(req, res) { res.redirect('/'); } },
-            { enabled: config.authentication.twitter.enabled, name: 'twitter', type:'twitter', callback: function(req, res) { res.redirect('/'); } },
-            { enabled: config.authentication.linkedin.enabled, name: 'linkedin', type:'linkedin', callback: function(req, res) { res.redirect('/'); } }
+            { post: true, enabled: config.authentication.local.enabled, name: 'local', type:'local', callback: null },
+            { post: true, enabled: config.authentication.http.enabled, name: 'http', type:'basic', callback: null },
+            { post: true, enabled: config.authentication.google.enabled, name: 'google', type:'google', callback: function(req, res) { res.redirect('/'); } },
+            { post: false, enabled: config.authentication.facebook.enabled, name: 'facebook', type:'facebook', callback: function(req, res) { res.redirect('/'); } },
+            { post: true, enabled: config.authentication.twitter.enabled, name: 'twitter', type:'twitter', callback: function(req, res) { res.redirect('/'); } },
+            { post: true, enabled: config.authentication.linkedin.enabled, name: 'linkedin', type:'linkedin', callback: function(req, res) { res.redirect('/'); } }
         ];
 
         for (var i = 0; i < methods.length; ++i) {
             var method = methods[i];
 
             if (method.enabled) {
-                app.post('/auth/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
+                if (method.post) {
+                    app.post('/public/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
+                } else {
+                    app.get('/auth/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
+                }
                 if (method.callback !== null) {
-                    app.get('/auth/' + method.name + '/callback', passport.authenticate(method.type, { failureRedirect: '/' }),method.callback);
+                    app.get('/auth/' + method.name + '/callback', passport.authenticate(method.type, { failureRedirect: '/' }), method.callback);
                 }
             }
         }
