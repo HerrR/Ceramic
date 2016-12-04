@@ -11,6 +11,8 @@
     Controller.$inject = ['$scope', '$http', '$filter', '$timeout', 'ProfileService', 'AppConstants', 'ScreenMessageService', 'DatasetService', 'Upload', 'UtilityService'];
 
     function Controller($scope, $http, $filter, $timeout, ProfileService, AppConstants, ScreenMessageService, DatasetService, Upload, UtilityService) {
+        $scope.viewModel = {};
+
         $scope.MIN_DATE = "1900-01-01";
         $scope.MAX_DATE = new Date(); // TODO: at least 18 years old
 
@@ -25,6 +27,12 @@
         $scope.valuesChanged = false;
         $scope.latestUploadFile = null;
         $scope.latestUploadFileError = null;
+
+        $scope.viewModel.profile = ProfileService.getProfile();
+        $scope.viewModel.answerChanged = function() {
+            $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
+            $scope.valuesChanged = ($scope.newHashCode !== $scope.oldHashCode);
+        };
 
         DatasetService.getAsync(AppConstants.DATASETS.LANGUAGE_LEVELS.NAME, function(data) {
             $scope.languageLevelToText = data.list;
@@ -51,7 +59,6 @@
         });
 
         DatasetService.getAsync(AppConstants.DATASETS.EDUCATION_HIGH_SCHOOL_MAJOR.NAME, function(data) {
-            console.log('major',data.list);
             $scope.education_high_school_major = data.list;
         });
 
@@ -62,6 +69,10 @@
             }
 
             $scope.countries = items;
+        });
+
+        DatasetService.getAsync(AppConstants.DATASETS.PERSON_FORMS.NAME, function(data) {
+            $scope.personBasicForm = data['basic'];
         });
 
         $scope.resetIndustry = function(experience) {

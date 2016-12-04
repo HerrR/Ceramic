@@ -17,7 +17,7 @@
         $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
         $scope.valuesChanged = false;
 
-         DatasetService.getAsync(AppConstants.DATASETS.COMPANY_FORMS.NAME, function(data) {
+        DatasetService.getAsync(AppConstants.DATASETS.COMPANY_FORMS.NAME, function(data) {
             $scope.companyInfoForm = data['info'];
         });
 

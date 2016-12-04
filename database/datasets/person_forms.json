@@ -1,6 +1,95 @@
 {
     "name": "person_forms",
     "data": {
-        
+        "basic": [
+            {
+                "key": "profile.person.basic.name",
+                "type": "input",
+                "name": "full-name",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "type": "text",
+                    "required": true,
+                    "label": "",
+                    "maxlength":30
+                },
+                "expressionProperties": {
+                    "templateOptions.label": "'profile.username' | translate"
+                }
+            },
+            {
+                "key": "profile.person.basic.dateOfBirth",
+                "type": "datepicker",
+                "name":"birthday",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "required": true,
+                    "label": ""
+                },
+                "expressionProperties": {
+                    "templateOptions.label": "'profile.date_of_birth' | translate"
+                }
+            },
+            {
+                "key": "profile.person.basic.country",
+                "type": "input",
+                "name":"country",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "type": "text",
+                    "required": true,
+                    "label": "",
+                    "maxlength":30
+                },
+                "expressionProperties": {
+                    "templateOptions.label": "'profile.country' | translate"
+                }
+            },
+            {
+                "key": "profile.person.basic.city",
+                "type": "input",
+                "name":"city",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "type": "text",
+                    "required": true,
+                    "label": "",
+                    "maxlength":30
+                },
+                "expressionProperties": {
+                    "templateOptions.label": "'profile.city' | translate"
+                }
+            },
+            {
+                "key": "profile.person.basic.email",
+                "type": "input",
+                "name":"email",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "type": "email",
+                    "required": true,
+                    "label": "",
+                    "maxlength":30
+                },
+                "expressionProperties": {
+                    "templateOptions.label": "'profile.email' | translate"
+                }
+            },
+            {
+                "key": "profile.person.basic.phone",
+                "type": "input",
+                "name":"phone",
+                "templateOptions": {
+                    "onChange": "model.answerChanged()",
+                    "type": "text",
+                    "required": true,
+                    "label": "",
+                    "maxlength":20
+                },
+                "expressionProperties": {
+                    "templateOptions.label": "'profile.phone' | translate"
+                }
+            }
+        ]
     }
 }

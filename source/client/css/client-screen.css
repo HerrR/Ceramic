@@ -12,8 +12,18 @@ md-sidenav.md-closed.md-locked-open-add-active {
     display: none !important;
 }
 
+/*
 .md-datepicker-input-container {
     margin-left: 0 !important;
+}*/
+
+md-datepicker.md-default-theme, md-datepicker {
+    background: transparent;
+}
+
+.md-datepicker-input-container {
+    background-color: transparent;
+    margin: 18px 0;
 }
 
 body {

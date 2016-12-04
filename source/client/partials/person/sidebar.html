@@ -6,6 +6,18 @@
     </md-list-item>
 
     <md-list-item>
+        <formly-form ng-if="personBasicForm" model="viewModel" fields="personBasicForm"></formly-form>
+    </md-list-item>
+</md-list>
+
+<!-- <md-list class="cvc-container-border">
+    <md-list-item>
+        <div style="text-align:center; min-width: 100%;">
+            <img class="cvc-profile-picture" src="{{profile.person.basic.profilePicture}}"/>
+        </div>
+    </md-list-item>
+
+    <md-list-item>
         <md-input-container class="md-icon-float md-block" style="margin-bottom: 0">
             <label>{{'profile.username' | translate}}</label>
             <md-icon class="fa fa-user fa-lg" aria-hidden="true" style="color:DodgerBlue"></md-icon>
@@ -70,9 +82,9 @@
             </div>
         </md-input-container>
     </md-list-item>
-</md-list>
+</md-list> -->
 
-<script>
+<!-- <script>
     var placesCountryAutocomplete = places({
         useDeviceLocation: true,
         container: document.querySelector('#cvcPersonCountry'),
@@ -85,4 +97,4 @@
         countries: [$('#cvcPersonCountry').val()],
         type: 'city'
     });
-</script>
+</script> -->
