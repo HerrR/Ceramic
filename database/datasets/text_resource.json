@@ -1,605 +1,651 @@
 {
-      "name": "translations",
-      "data": {
-            "en": {
-                  "locale": "en",
-                  "translations": {
-                        "error.general": "Error",
-
-                        "page_title": "CV121 International",
-                        "home.company.title": "CV121",
-                        "home.company.description": "Employer Pages",
-                        "home.user.title": "User",
-                        "home.user.description": "Employee Pages",
-                        "home.select_user_or_company": "Career Direct Connect",
-                        "home.subtitle": "The Premier Peer-2-Peer recruitment facilitator",
-                        "home.select_sign_in_method": "Select login method",
-                        "home.sign_in_using": "Sign in using",
-
-                        "label.selectLanguage": "Select language:",
-
-                        "profile.generate_pdf": "Get PDF",
-                        "profile.save": "save",
-                        "profile.cancel": "cancel",
-                        "profile.username": "Full name",
-                        "profile.date_of_birth": "Date of birth",
-                        "profile.searchable": "Make profile searchable?",
-                        "profile.recieveEmailNotifications": "Receive email notifications?",
-
-                        "profile.country": "Country",
-                        "profile.city": "City",
-                        "profile.email": "Email",
-                        "profile.phone_number": "Phone Number",
-
-                        "profile.label.add_education": "Add Education",
-                        "profile.label.add_work": "Add Work Experience",
-                        "profile.label.add_language": "Add Language",
-
-                        "profile.cv.education.name": "Name",
-                        "profile.cv.education.degree": "Degree",
-                        "profile.cv.education.faculty": "Faculty",
-                        "profile.cv.education.from": "From date",
-                        "profile.cv.education.to": "To date",
-                        "profile.cv.education.empty_list": "No education added.",
-                        "profile.cv.education.high_school": "High school",
-                        "profile.cv.education.higher_education": "University/College",
-                        "profile.cv.education.description": "Description",
-
-                        "profile.cv.experience.company": "Company",
-                        "profile.cv.experience.industry": "Industry",
-                        "profile.cv.experience.role": "Role",
-                        "profile.cv.experience.from": "From date",
-                        "profile.cv.experience.to": "To date",
-                        "profile.cv.experience.empty_list": "No work experience added.",
-                        "profile.cv.experience.profession": "Profession",
-                        "profile.cv.experience.key_competencies": "Key Competencies",
-                        "profile.cv.experience.key_competencies.add": "Add more",
-                        "profile.cv.experience.key_competencies.delete_hint": "Press backspace to remove",
-                        "profile.cv.experience.key_competencies.delete": "Remove",
-                        "profile.cv.experience.description": "Description",
-
-                        "profile.cv.generalInfo.language.name": "Language",
-                        "profile.cv.generalInfo.language.level": "Skill level",
-                        "profile.languages": "Languages",
-                        "profile.cv.generalInfo.language.empty_list": "No languages added.",
-
-                        "profile.cv.generalInfo.compensation": "Minimum compensation ($/y)",
-
-                        "profile.library.empty_list": "No files added.",
-                        "profile.label.add_library": "Add file",
-                        "profile.library.storage_usage": "Storage usage: {0}mb out of {1}mb",
-
-                        "profile.cv.language.level0": "Basic",
-                        "profile.cv.language.level1": "Good",
-                        "profile.cv.language.level2": "Very good",
-                        "profile.cv.language.level3": "Excellent",
-                        "profile.cv.language.level4": "Fluent",
-                        "profile.cv.language.level5": "Native",
-
-                        "profile.label.remove": "Remove",
-
-                        "profile.library.filename": "Filename",
-                        "profile.library.addedDate": "Added",
-                        "profile.library.toManyFiles": "You may not upload more than {0} files.",
-                        "error.library.maxSize": "File is to large, upload max size is {0}.",
-                        "error.library.fullStorage": "You storage capacity is full.",
-
-                        "profile.description": "Personal description",
-
-                        "profile.dashboard": "Dashboard",
-                        "profile.cv": "CV",
-                        "profile.library": "Library",
-                        "profile.settings": "Settings",
-
-                        "profile.basic": "Basic",
-                        "profile.education": "Education",
-                        "profile.work_experience": "Work Experience",
-                        "profile.general_info": "General Information",
-
-                        "error.get_profile": "Failed to fetch profile info",
-                        "error.required": "This is required.",
-
-                        "message.saved_success": "Profile saved",
-                        "message.cancel_success": "Nothing saved",
-
-                        "about.title": "About us",
-                        "about.text": "About us text ...",
-
-                        "why.title": "Why CV121",
-                        "why.text": "Why CV121 text ...",
-
-                        "profile.company.search.must": "Must",
-                        "profile.company.search.should": "Should",
-                        "profile.company.search.advantage": "Advantage",
-                        "profile.company.search.not_required": "Not required",
-
-                        "company.industry": "Industry",
-                        "company.name": "Company name",
-
-                        "industry.i010": "Jordbruk, skogsbruk, fiske",
-                        "industry.i020": "Utvinning mineral, gruvindustri",
-                        "industry.i030": "Tillverkningsindustri",
-                        "industry.i040": "Försörjning av el, gas, värme, kyla",
-                        "industry.i050": "Vattenförsörjning, avloppsrening, avfallshantering, sanering",
-                        "industry.i060": "Byggverksamhet",
-                        "industry.i070": "Handel och reparation av motorfordon",
-                        "industry.i080": "Transport, logistik och magasinering",
-                        "industry.i090": "Hotell och restaurang",
-                        "industry.i100": "Informations- och kommunikationsverksamhet",
-                        "industry.i110": "Finans och försäkringsverksamhet",
-                        "industry.i120": "Fastighetsverksamhet",
-                        "industry.i130": "Verksamhet inom juridik, ekonomi, vetenskap och teknik",
-                        "industry.i140": "Uthyrning, fastighetstjänster, resetjänster",
-                        "industry.i150": "Offentlig förvaltning och försvar",
-                        "industry.i160": "Utbildning",
-                        "industry.i170": "Vård, omsorg och sociala tjänster",
-                        "industry.i180": "Kultur, nöje, fritid",
-                        "industry.i190": "Annan serviceverksamhet",
-                        "industry.i200": "Verksamhet vid internationella org., ambassader o dyl.",
-                        "industry.i210": "Ej relevant",
-
-                        "profession.p010": "Administration",
-                        "profession.p020": "Building and construction",
-                        "profession.p030": "IT and Communication",
-                        "profession.p040": "Finance, economics and legal",
-                        "profession.p050": "Wellness, fitness and personal care",
-                        "profession.p060": "Healthcare",
-                        "profession.p070": "Hotel and restaurant services",
-                        "profession.p080": "Industry and manufacturing activities",
-                        "profession.p090": "Installation, operations and maintenance activities",
-                        "profession.p100": "Art, recreational and entertainment services",
-                        "profession.p110": "Sales, marketing, media and advertising",
-                        "profession.p120": "Sustainability and environmental",
-                        "profession.p130": "Science",
-                        "profession.p140": "Education and pedagogy",
-                        "profession.p150": "Social work",
-                        "profession.p160": "Security",
-                        "profession.p170": "Engineering",
-                        "profession.p180": "Transportation and logistics",
-                        "profession.p190": "Craftsmanship",
-                        "profession.p200": "General management",
-
-                        "education.level.degree_bachelor": "Bachelor",
-                        "education.level.degree_master": "Master",
-                        "education.level.degree_phd": "PHD",
-
-                        "education_high_school_major.EHSM010.economy": "Economy",
-                        "education_high_school_major.EHSM010.science": "Science",
-                        "education_high_school_major.EHSM010.humanoria": "Humanoria",
-                        "education_high_school_major.EHSM010.building_and_construction": "Building and construction",
-                        "education_high_school_major.EHSM010.childcare": "Childcare",
-                        "education_high_school_major.EHSM010.electricity_and_energy": "Electricity and energy",
-                        "education_high_school_major.EHSM010.aesthetics": "Aesthetics",
-                        "education_high_school_major.EHSM010.vehicle_and_transportation": "Vehicle and transportation",
-                        "education_high_school_major.EHSM010.trade_and_administration": "Trade and admnistration",
-                        "education_high_school_major.EHSM010.hotel_and_tourism": "Hotel and tourism",
-                        "education_high_school_major.EHSM010.craftsmanship": "Craftsmanship",
-                        "education_high_school_major.EHSM010.industrial_engineering": "Industrial engineering",
-                        "education_high_school_major.EHSM010.natural_resource": "Natural resource",
-                        "education_high_school_major.EHSM010.restaurant": "Restaurant",
-                        "education_high_school_major.EHSM010.technology_and_engineering": "Technology and engineering",
-                        "education_high_school_major.EHSM010.plumbing_and_caretaking": "Plumbing and caretaking",
-                        "education_high_school_major.EHSM010.social_science": "Social science",
-                        "education_high_school_major.EHSM010.healthcare": "Healthcare",
-                        "education_high_school_major.EHSM010.international_baccallaureate": "International Baccallaureate",
-
-                        "education.faculty.EF010.business_administration": "Business Adminstration",
-                        "education_faculty.EFM010.financing": "Financing",
-                        "education_faculty.EFM010.auditing": "Auditing",
-                        "education_faculty.EFM010.financials": "Financials",
-                        "education_faculty.EFM010.marketing": "Marketing",
-                        "education_faculty.EFM010.management": "Management",
-                        "education_faculty.EFM010.finance_and_it": "Finance and IT",
-                        "education_faculty.EFM010.communication": "Communication",
-                        "education_faculty.EFM010.economic_history": "Economic history",
-                        "education_faculty.EFM010.economics": "Economics",
-                        "education_faculty.EFM010.accounting": "Accounting",
-                        "education_faculty.EFM010.finance": "Finance",
-                        "education_faculty.EFM010.entrepreneurship": "Entrepreneurship",
-
-
-                        "education.faculty.EF020.humanism": "Humanism",
-                        "education_faculty.EFM020.ethics_and_moral": "Ethics and Moral",
-                        "education_faculty.EFM020.international_relations": "International relations",
-
-
-                        "education.faculty.EF030.law": "Law",
-                        "education_faculty.EFM030.litigation": "Litigation",
-                        "education_faculty.EFM030.criminal_law": "Criminal Law",
-
-
-                        "education.faculty.EF040.medicine": "Medicine",
-                        "education_faculty.EFM040.surgery": "Surgery",
-                        "education_faculty.EFM040.orthopedics": "Orthopedics",
-
-
-                        "education.faculty.EF050.artistic": "Artistic",
-                        "education_faculty.EFM050.film_production": "Film production",
-                        "education_faculty.EFM050.interior_design": "Interior Design",
-
-
-                        "education.faculty.EF060.science": "Science",
-                        "education_faculty.EFM060.chemistry": "Chemistry",
-                        "education_faculty.EFM060.physics": "Physics",
-
-
-                        "education.faculty.EF070.social": "Social",
-                        "education_faculty.EFM070.social_work": "Social Work",
-                        "education_faculty.EFM070.psychotherapy": "Psychotherapy",
-
-
-                        "education.faculty.EF080.history": "History",
-                        "education_faculty.EFM080.archeology": "Archeology",
-                        "education_faculty.EFM080.history_of_religion": "History of religion",
-
-
-                        "education.faculty.EF090.philosophy": "Philosophy",
-                        "education_faculty.EFM090.practical_philosophy": "Practical philosophy",
-                        "education_faculty.EFM090.theoretical_philosophy": "Theoretical philosophy",
-
-
-                        "education.faculty.EF100.systems_science": "Systems Science",
-                        "education_faculty.EFM100.system_development": "System Development",
-                        "education_faculty.EFM100.project_management": "Project Management",
-
-
-                        "education.faculty.EF110.technology": "Technology",
-                        "education_faculty.EFM110.telecommunications": "Telecommunications",
-                        "education_faculty.EFM110.construction_engineering": "Construction Engineering",
-
-
-                        "education.faculty.EF120.pedagogy": "Pedagogy",
-                        "education_faculty.EFM120.pre-school": "Pre-school",
-                        "education_faculty.EFM120.leadership_traininig": "Leadership training",
-
-
-                        "education.faculty.EF130.theology": "Theology",
-                        "education_faculty.EFM130.protestant_preast": "Protestant preast",
-                        "education_faculty.EFM130.catholic_preast": "Catholic preast",
-
-                        "competency_hierachy.DM010": "IT and Communication",
-
-                        "competency_hierachy.DM010.D010": "Network (IT)",
-                        "competency_hierachy.DM010.D010.R010": "Network Architect",
-                        "competency_hierachy.DM010.D010.R010.C010": "Network Architecture",
-                        "competency_hierachy.DM010.D010.R010.C020": "Network Protocols",
-
-                        "competency_hierachy.DM010.D010.R020": "Network Security Officer",
-                        "competency_hierachy.DM010.D010.R020.C010": "Network Security",
-                        "competency_hierachy.DM010.D010.R020.C020": "Network Topology",
-
-                        "competency_hierachy.DM010.D020": "Software Engineering (IT)",
-                        "competency_hierachy.DM010.D020.R010": "Software Developer",
-                        "competency_hierachy.DM010.D020.R010.C010": "Software Development",
-                        "competency_hierachy.DM010.D020.R010.C020": "Software Design",
-
-                        "competency_hierachy.DM010.D020.R020": "Project Manager",
-                        "competency_hierachy.DM010.D020.R020.C010": "Project Management",
-                        "competency_hierachy.DM010.D020.R020.C020": "Project Planning",
-
-
-
-                        "competency_hierachy.DM020": "Finance, Economics and Legal",
-
-                        "competency_hierachy.DM020.D010": "Accounting (FEL)",
-                        "competency_hierachy.DM020.D010.R010": "Accounts Assistant",
-                        "competency_hierachy.DM020.D010.R010.C010": "Receivables",
-                        "competency_hierachy.DM020.D010.R010.C020": "Payables",
-
-                        "competency_hierachy.DM020.D010.R020": "Accountant",
-                        "competency_hierachy.DM020.D010.R020.C010": "Receivables",
-                        "competency_hierachy.DM020.D010.R020.C020": "Payables",
-
-                        "competency_hierachy.DM020.D020": "Auditing (FEL)",
-                        "competency_hierachy.DM020.D020.R010": "Auditor",
-                        "competency_hierachy.DM020.D020.R010.C010": "Tax",
-                        "competency_hierachy.DM020.D020.R010.C020": "IFRS",
-
-                        "competency_hierachy.DM020.D020.R020": "Internal auditor",
-                        "competency_hierachy.DM020.D020.R020.C010": "Code of Conduct",
-                        "competency_hierachy.DM020.D020.R020.C020": "Internal Controlsystems"
-                  }
-            },
-
-            "se": {
-                  "locale": "se",
-                  "translations": {
-                        "error.general": "Fel",
-
-                        "page_title": "CV121 International",
-                        "home.company.title": "CV121",
-                        "home.company.description": "Arbetsgivarsidan",
-                        "home.user.title": "Användare",
-                        "home.user.description": "Arbetssökarsidan",
-                        "home.select_user_or_company": "Direkta Karriärnätverket",
-                        "home.subtitle": "Den främsta person-till-person rekryterings",
-                        "home.select_sign_in_method": "Välj inloggningsmetod",
-                        "home.sign_in_using": "Logga in med hjälp av",
-
-                        "label.selectLanguage": "Välj språk:",
-
-                        "profile.generate_pdf": "Hämta PDF",
-                        "profile.save": "spara",
-                        "profile.cancel": "avbryt",
-                        "profile.username": "Fullstänigt namn",
-                        "profile.date_of_birth": "Födelsedatum",
-                        "profile.searchable": "Gör din profil sökbar?",
-                        "profile.recieveEmailNotifications": "Tillåt mailmeddelanden?",
-
-                        "profile.country": "Land",
-                        "profile.city": "Stad",
-                        "profile.email": "e-Post",
-                        "profile.phone_number": "Telefonnummer",
-
-                        "profile.label.add_education": "Lägg till utbildning",
-                        "profile.label.add_work": "Lägg till arbetslivserfarenhet",
-                        "profile.label.add_language": "Lägg till språk",
-
-                        "profile.cv.education.name": "Namn",
-                        "profile.cv.education.degree": "Examen",
-                        "profile.cv.education.faculty": "Fakultet",
-                        "profile.cv.education.from": "Från datum",
-                        "profile.cv.education.to": "Till datum",
-                        "profile.cv.education.empty_list": "Ingen utbildning tillagd.",
-                        "profile.cv.education.high_school": "Gymnasium",
-                        "profile.cv.education.higher_education": "Högskola/Universitet",
-                        "profile.cv.education.description": "Beskrivning",
-
-
-                        "profile.cv.experience.company": "Företag",
-                        "profile.cv.experience.industry": "Industri",
-                        "profile.cv.experience.role": "Roll",
-                        "profile.cv.experience.from": "Från datum",
-                        "profile.cv.experience.to": "Till datum",
-                        "profile.cv.experience.empty_list": "Ingen arbetslivserfarenhet tillagd.",
-                        "profile.cv.experience.profession": "Profession",
-                        "profile.cv.experience.key_competencies": "Nyckelkunskaper",
-                        "profile.cv.experience.key_competencies.add": "Lägg till",
-                        "profile.cv.experience.key_competencies.delete_hint": "Tryck backspace för att ta bort",
-                        "profile.cv.experience.key_competencies.delete": "Ta bort",
-                        "profile.cv.experience.description": "Beskrivning",
-
-                        "profile.cv.generalInfo.language.name": "Språk",
-                        "profile.cv.generalInfo.language.level": "Språknivå",
-                        "profile.languages": "Språk",
-                        "profile.cv.generalInfo.language.empty_list": "Inget språk tillgd.",
-
-                        "profile.cv.generalInfo.compensation": "Minimum ersättning ($/y)",
-
-                        "profile.library.empty_list": "INga filer adderade.",
-                        "profile.label.add_library": "Lägg till fil",
-                        "profile.library.storage_usage": "Använt utrymme: {0}MB av {1}MB",
-
-                        "profile.cv.language.level0": "Grundläggande",
-                        "profile.cv.language.level1": "Bra",
-                        "profile.cv.language.level2": "Mycket bra",
-                        "profile.cv.language.level3": "Utmärkt",
-                        "profile.cv.language.level4": "Flytande",
-                        "profile.cv.language.level5": "Modersmål",
-
-                        "profile.label.remove": "Ta bort",
-
-                        "profile.library.filename": "Filnamn",
-                        "profile.library.addedDate": "Adderad",
-                        "profile.library.toManyFiles": "Du kan inte ladda up mer än {0} filer.",
-                        "error.library.maxSize": "Filen är för stor, max storlek är {0}.",
-                        "error.library.fullStorage": "Ditt utrymme är fullt.",
-
-                        "profile.description": "Personlig beskrivning",
-
-                        "profile.dashboard": "Dashboard",
-                        "profile.cv": "CV",
-                        "profile.library": "Bibliotek",
-                        "profile.settings": "Inställningar",
-
-                        "profile.basic": "Grundläggande",
-                        "profile.education": "Utbildning",
-                        "profile.work_experience": "Arbetslivserfarenhet",
-                        "profile.general_info": "Allmän Information",
-
-                        "error.get_profile": "Gick inte att hämta profilinformation",
-                        "error.required": "Detta är ett krav.",
-
-                        "message.saved_success": "Profil sparad",
-                        "message.cancel_success": "Inget sparat",
-
-                        "about.title": "Om oss",
-                        "about.text": "Om oss text ...",
-
-                        "why.title": "Varför CV121",
-                        "why.text": "Varför CV121 text ...",
-
-                        "profile.company.search.must": "Måste",
-                        "profile.company.search.should": "Bör",
-                        "profile.company.search.advantage": "Fördel",
-                        "profile.company.search.not_required": "Inget krav",
-
-                        "industry.i010": "Jordbruk, skogsbruk, fiske",
-                        "industry.i020": "Utvinning mineral, gruvindustri",
-                        "industry.i030": "Tillverkningsindustri",
-                        "industry.i040": "Försörjning av el, gas, värme, kyla",
-                        "industry.i050": "Vattenförsörjning, avloppsrening, avfallshantering, sanering",
-                        "industry.i060": "Byggverksamhet",
-                        "industry.i070": "Handel och reparation av motorfordon",
-                        "industry.i080": "Transport, logistik och magasinering",
-                        "industry.i090": "Hotell och restaurang",
-                        "industry.i100": "Informations- och kommunikationsverksamhet",
-                        "industry.i110": "Finans och försäkringsverksamhet",
-                        "industry.i120": "Fastighetsverksamhet",
-                        "industry.i130": "Verksamhet inom juridik, ekonomi, vetenskap och teknik",
-                        "industry.i140": "Uthyrning, fastighetstjänster, resetjänster",
-                        "industry.i150": "Offentlig förvaltning och försvar",
-                        "industry.i160": "Utbildning",
-                        "industry.i170": "Vård, omsorg och sociala tjänster",
-                        "industry.i180": "Kultur, nöje, fritid",
-                        "industry.i190": "Annan serviceverksamhet",
-                        "industry.i200": "Verksamhet vid internationella org., ambassader o dyl.",
-                        "industry.i210": "Ej relevant",
-
-                        "profession.p010": "Administration",
-                        "profession.p020": "Bygg och anläggning",
-                        "profession.p030": "IT och kommunikation",
-                        "profession.p040": "Ekonomi och juridik",
-                        "profession.p050": "Frisk och kroppsvård",
-                        "profession.p060": "Hälso- och sjukvård",
-                        "profession.p070": "Hotell och restaurang",
-                        "profession.p080": "Industri och tillverkning",
-                        "profession.p090": "Installation, drift och underhåll",
-                        "profession.p100": "Nöje, kultur och fritid",
-                        "profession.p110": "Försäljning, marknadsföring, reklam och media",
-                        "profession.p120": "Mijövård och hälsoskydd",
-                        "profession.p130": "Naturvetenskap",
-                        "profession.p140": "Pedagogi",
-                        "profession.p150": "Socialt arbete",
-                        "profession.p160": "Säkerhet",
-                        "profession.p170": "Teknik",
-                        "profession.p180": "Transport och logistik",
-                        "profession.p190": "Hantverk",
-                        "profession.p200": "Företags- och verksamhetsledning",
-
-                        "education.level.degree_bachelor": "Kandidat",
-                        "education.level.degree_master": "Master",
-                        "education.level.degree_phd": "Doktorsexamen",
-
-                        "education_high_school_major.EHSM010.economy": "Ekonomi",
-                        "education_high_school_major.EHSM010.science": "Naturveteskap",
-                        "education_high_school_major.EHSM010.humanoria": "Humanism",
-                        "education_high_school_major.EHSM010.building_and_construction": "Bygg och anläggning",
-                        "education_high_school_major.EHSM010.childcare": "Barn och fritid",
-                        "education_high_school_major.EHSM010.electricity_and_energy": "El och energi",
-                        "education_high_school_major.EHSM010.aesthetics": "Estetik",
-                        "education_high_school_major.EHSM010.vehicle_and_transportation": "Fordon och transport",
-                        "education_high_school_major.EHSM010.trade_and_administration": "Handel och administration",
-                        "education_high_school_major.EHSM010.hotel_and_tourism": "Hotell och turism",
-                        "education_high_school_major.EHSM010.craftsmanship": "Hantverk",
-                        "education_high_school_major.EHSM010.industrial_engineering": "Industriteknik",
-                        "education_high_school_major.EHSM010.natural_resource": "Naturbruk",
-                        "education_high_school_major.EHSM010.restaurant": "Restaurang och livsmedel",
-                        "education_high_school_major.EHSM010.technology_and_engineering": "Teknik",
-                        "education_high_school_major.EHSM010.plumbing_and_caretaking": "VVS och fastighet",
-                        "education_high_school_major.EHSM010.social_science": "Samhällsvetenskap",
-                        "education_high_school_major.EHSM010.healthcare": "Vård och omsorg",
-                        "education_high_school_major.EHSM010.international_baccallaureate": "International Baccallaureate",
-
-                        "education.faculty.EF010.business_administration": "Ekonomi",
-
-                        "education_faculty.EFM010.economy": "Finansiering",
-                        "education_faculty.EFM010.audit": "Revision",
-                        "education_faculty.EFM010.financial_management": "Ekonomistyrning",
-                        "education_faculty.EFM010.marketing": "Marknadsföring",
-                        "education_faculty.EFM010.management": "Management",
-                        "education_faculty.EFM010.finance_and_it": "Ekonomi och IT",
-                        "education_faculty.EFM010.communication": "Kommunikation",
-                        "education_faculty.EFM010.economic_history": "Ekonomisk historia",
-                        "education_faculty.EFM010.economics": "Nationalekonomi",
-                        "education_faculty.EFM010.accounting": "Redovisning",
-                        "education_faculty.EFM010.financial": "Finans",
-                        "education_faculty.EFM010.entrepreneurship": "Entreprenörskap",
-
-
-                        "education.faculty.EF020.humanism": "Humanism",
-                        "education_faculty.EFM020.ethics_and_moral": "Etik och moral",
-                        "education_faculty.EFM020.internationa_relations": "Internationella relationer",
-
-
-                        "education.faculty.EF030.law": "Juridik",
-                        "education_faculty.EFM030.litigation": "Processrätt",
-                        "education_faculty.EFM030.criminal_law": "Straffrätt",
-
-
-                        "education.faculty.EF040.medicine": "Medicin",
-                        "education_faculty.EFM040.surgery": "Kirurgi",
-                        "education_faculty.EFM040.orthopedics": "Ortopedi",
-
-
-                        "education.faculty.EF050.artistic": "Konstnärlig",
-                        "education_faculty.EFM050.film_production": "Filmproduktion",
-                        "education_faculty.EFM050.interior_design": "Inredning",
-
-
-                        "education.faculty.EF060.science": "Naturvetenskap",
-                        "education_faculty.EFM060.chemistry": "Kemi",
-                        "education_faculty.EFM060.physics": "Fysik",
-
-
-                        "education.faculty.EF070.social": "Social",
-                        "education_faculty.EFM070.social_work": "Socionom",
-                        "education_faculty.EFM070.psychotherapy": "Psykoterapi",
-
-
-                        "education.faculty.EF080.history": "Historia",
-                        "education_faculty.EFM080.archeology": "Arkeologi",
-                        "education_faculty.EFM080.history_of_religion": "Religionshistoria",
-
-
-                        "education.faculty.EF090.philosophy": "Filosofi",
-                        "education_faculty.EFM090.practical_philosophy": "Praktisk filosofi",
-                        "education_faculty.EFM090.theoretical_philosophy": "Teoretisk filosofi",
-
-
-                        "education.faculty.EF100.systems_science": "Systemvetenskap",
-                        "education_faculty.EFM100.system_development": "Systemutveckling",
-                        "education_faculty.EFM100.YYY": "Projektledning",
-
-
-                        "education.faculty.EF110.engineering": "Teknik",
-                        "education_faculty.EFM110.telecommunicatons": "telekommunikation",
-                        "education_faculty.EFM110.construction_engineering": "bygg och anläggning",
-
-
-                        "education.faculty.EF120.pedagogy": "Pedagogi",
-                        "education_faculty.EFM120.pre_school": "förskollärare",
-                        "education_faculty.EFM120.leadership_training": "ledarskapsutbildare",
-
-
-                        "education.faculty.EF130.theology": "Teologi",
-                        "education_faculty.EFM130.protestant_preast": "Präst i svenska kyrkan",
-                        "education_faculty.EFM130.catholic_preast": "Präst i katolska kyrkan",
-
-
-                        "competency_hierachy.DM010": "IT & Kommunikation",
-
-                        "competency_hierachy.DM010.D010": "Nätverk (IT)",
-                        "competency_hierachy.DM010.D010.R010": "Nätverks Arkitekt",
-                        "competency_hierachy.DM010.D010.R010.C010": "Network Architecture",
-                        "competency_hierachy.DM010.D010.R010.C020": "Network Protocols",
-
-                        "competency_hierachy.DM010.D010.R020": "Network Security Officer",
-                        "competency_hierachy.DM010.D010.R020.C010": "Network Security",
-                        "competency_hierachy.DM010.D010.R020.C020": "Network Topology",
-
-                        "competency_hierachy.DM010.D020": "Software Engineering (IT)",
-                        "competency_hierachy.DM010.D020.R010": "Software Developer",
-                        "competency_hierachy.DM010.D020.R010.C010": "Software Development",
-                        "competency_hierachy.DM010.D020.R010.C020": "Software Design",
-
-                        "competency_hierachy.DM010.D020.R020": "Project Manager",
-                        "competency_hierachy.DM010.D020.R020.C010": "Project Management",
-                        "competency_hierachy.DM010.D020.R020.C020": "Project Planning",
-
-
-
-                        "competency_hierachy.DM020": "Finance, Economics and Legal",
-
-                        "competency_hierachy.DM020.D010": "Accounting (FEL)",
-                        "competency_hierachy.DM020.D010.R010": "Accounts Assistant",
-                        "competency_hierachy.DM020.D010.R010.C010": "Receivables",
-                        "competency_hierachy.DM020.D010.R010.C020": "Payables",
-
-                        "competency_hierachy.DM020.D010.R020": "Accountant",
-                        "competency_hierachy.DM020.D010.R020.C010": "Receivables",
-                        "competency_hierachy.DM020.D010.R020.C020": "Payables",
-
-                        "competency_hierachy.DM020.D020": "Auditing (FEL)",
-                        "competency_hierachy.DM020.D020.R010": "Auditor",
-                        "competency_hierachy.DM020.D020.R010.C010": "Tax",
-                        "competency_hierachy.DM020.D020.R010.C020": "IFRS",
-
-                        "competency_hierachy.DM020.D020.R020": "Internal auditor",
-                        "competency_hierachy.DM020.D020.R020.C010": "Code of Conduct",
-                        "competency_hierachy.DM020.D020.R020.C020": "Internal Controlsystems"
-
-                  }
-            }
-      }
+	"name": "translations",
+	"data": {
+		"en": {
+			"locale": "en",
+			"translations": {
+				"error.general": "Error",
+
+				"page_title": "CV121 International",
+				"home.company.title": "CV121",
+				"home.company.description": "Employer Pages",
+				"home.user.title": "User",
+				"home.user.description": "Employee Pages",
+				"home.select_user_or_company": "Career Direct Connect",
+				"home.subtitle": "The Premier Peer-2-Peer recruitment facilitator",
+				"home.select_sign_in_method": "Select login method",
+				"home.sign_in_using": "Sign in using",
+
+				"label.selectLanguage": "Select language:",
+
+				"profile.generate_pdf": "Get PDF",
+				"profile.save": "save",
+				"profile.cancel": "cancel",
+				"profile.username": "Full name",
+				"profile.date_of_birth": "Date of birth",
+				"profile.searchable": "Make profile searchable?",
+				"profile.recieveEmailNotifications": "Receive email notifications?",
+
+				"profile.country": "Country",
+				"profile.city": "City",
+				"profile.email": "Email",
+				"profile.phone_number": "Phone Number",
+
+				"profile.label.add_education": "Add Education",
+				"profile.label.add_work": "Add Work Experience",
+				"profile.label.add_language": "Add Language",
+
+				"profile.cv.education.name": "Name",
+				"profile.cv.education.degree": "Degree",
+				"profile.cv.education.faculty": "Faculty",
+				"profile.cv.education.from": "From date",
+				"profile.cv.education.to": "To date",
+				"profile.cv.education.empty_list": "No education added.",
+				"profile.cv.education.high_school": "High school",
+				"profile.cv.education.higher_education": "University/College",
+				"profile.cv.education.description": "Description",
+
+				"profile.cv.experience.company": "Company",
+				"profile.cv.experience.industry": "Industry",
+				"profile.cv.experience.role": "Role",
+				"profile.cv.experience.from": "From date",
+				"profile.cv.experience.to": "To date",
+				"profile.cv.experience.empty_list": "No work experience added.",
+				"profile.cv.experience.profession": "Profession",
+				"profile.cv.experience.key_competencies": "Key Competencies",
+				"profile.cv.experience.key_competencies.add": "Add more",
+				"profile.cv.experience.key_competencies.delete_hint": "Press backspace to remove",
+				"profile.cv.experience.key_competencies.delete": "Remove",
+				"profile.cv.experience.description": "Description",
+
+				"profile.cv.generalInfo.language.name": "Language",
+				"profile.cv.generalInfo.language.level": "Skill level",
+				"profile.languages": "Languages",
+				"profile.cv.generalInfo.language.empty_list": "No languages added.",
+
+				"profile.cv.generalInfo.compensation": "Minimum compensation ($/y)",
+
+				"profile.library.empty_list": "No files added.",
+				"profile.label.add_library": "Add file",
+				"profile.library.storage_usage": "Storage usage: {0}mb out of {1}mb",
+
+				"profile.cv.language.level0": "Basic",
+				"profile.cv.language.level1": "Good",
+				"profile.cv.language.level2": "Very good",
+				"profile.cv.language.level3": "Excellent",
+				"profile.cv.language.level4": "Fluent",
+				"profile.cv.language.level5": "Native",
+
+				"profile.label.remove": "Remove",
+
+				"profile.library.filename": "Filename",
+				"profile.library.addedDate": "Added",
+				"profile.library.toManyFiles": "You may not upload more than {0} files.",
+				"error.library.maxSize": "File is to large, upload max size is {0}.",
+				"error.library.fullStorage": "You storage capacity is full.",
+
+				"profile.description": "Personal description",
+
+				"profile.dashboard": "Dashboard",
+				"profile.cv": "CV",
+				"profile.library": "Library",
+				"profile.settings": "Settings",
+
+				"profile.basic": "Basic",
+				"profile.education": "Education",
+				"profile.work_experience": "Work Experience",
+				"profile.general_info": "General Information",
+
+				"error.get_profile": "Failed to fetch profile info",
+				"error.required": "This is required.",
+
+				"message.saved_success": "Profile saved",
+				"message.cancel_success": "Nothing saved",
+
+				"about.title": "About us",
+				"about.text": "About us text ...",
+
+				"why.title": "Why CV121",
+				"why.text": "Why CV121 text ...",
+
+				"profile.company.search.must": "Must",
+				"profile.company.search.should": "Should",
+				"profile.company.search.advantage": "Advantage",
+				"profile.company.search.not_required": "Not required",
+				"profile.company.dashboard": "Dashboard",
+				"profile.company.messages": "Messages",
+				"profile.company.searches": "Searches",
+				"profile.company.profiles": "Profiles",
+				"profile.company.company_info": "Company Info",
+				"profile.company.receipts": "Receipts",
+				"profile.company.settings": "Settings",
+
+				"profile.company.new_search_criteria": "New Search Criteria",
+				"profile.company.save_search_criteria": "Save Search Criteria",
+				"profile.company.cancel_new_search_criteria": "Cancel Search Criteria",
+
+				"profile.company.search.education_requirements": "Education Requirements",
+				"profile.company.search.education.high_school_level": "High School",
+				"profile.company.search.education.bachelor_level": "Bachelors Degree",
+				"profile.company.search.education.master_level": "Masters Degree",
+
+				"profile.company.search.work_experience_requirements": "Work Experience",
+
+				"profile.company.search.general": "General Experience",
+
+				"profile.company.search.query_summary": "Query Summary",
+
+				"company.industry": "Industry",
+				"company.name": "Company name",
+
+				"industry.i010": "Jordbruk, skogsbruk, fiske",
+				"industry.i020": "Utvinning mineral, gruvindustri",
+				"industry.i030": "Tillverkningsindustri",
+				"industry.i040": "Försörjning av el, gas, värme, kyla",
+				"industry.i050": "Vattenförsörjning, avloppsrening, avfallshantering, sanering",
+				"industry.i060": "Byggverksamhet",
+				"industry.i070": "Handel och reparation av motorfordon",
+				"industry.i080": "Transport, logistik och magasinering",
+				"industry.i090": "Hotell och restaurang",
+				"industry.i100": "Informations- och kommunikationsverksamhet",
+				"industry.i110": "Finans och försäkringsverksamhet",
+				"industry.i120": "Fastighetsverksamhet",
+				"industry.i130": "Verksamhet inom juridik, ekonomi, vetenskap och teknik",
+				"industry.i140": "Uthyrning, fastighetstjänster, resetjänster",
+				"industry.i150": "Offentlig förvaltning och försvar",
+				"industry.i160": "Utbildning",
+				"industry.i170": "Vård, omsorg och sociala tjänster",
+				"industry.i180": "Kultur, nöje, fritid",
+				"industry.i190": "Annan serviceverksamhet",
+				"industry.i200": "Verksamhet vid internationella org., ambassader o dyl.",
+				"industry.i210": "Ej relevant",
+
+				"profession.p010": "Administration",
+				"profession.p020": "Building and construction",
+				"profession.p030": "IT and Communication",
+				"profession.p040": "Finance, economics and legal",
+				"profession.p050": "Wellness, fitness and personal care",
+				"profession.p060": "Healthcare",
+				"profession.p070": "Hotel and restaurant services",
+				"profession.p080": "Industry and manufacturing activities",
+				"profession.p090": "Installation, operations and maintenance activities",
+				"profession.p100": "Art, recreational and entertainment services",
+				"profession.p110": "Sales, marketing, media and advertising",
+				"profession.p120": "Sustainability and environmental",
+				"profession.p130": "Science",
+				"profession.p140": "Education and pedagogy",
+				"profession.p150": "Social work",
+				"profession.p160": "Security",
+				"profession.p170": "Engineering",
+				"profession.p180": "Transportation and logistics",
+				"profession.p190": "Craftsmanship",
+				"profession.p200": "General management",
+
+				"education.level.degree_bachelor": "Bachelor",
+				"education.level.degree_master": "Master",
+				"education.level.degree_phd": "PHD",
+
+				"education_high_school_major.EHSM010.economy": "Economy",
+				"education_high_school_major.EHSM010.science": "Science",
+				"education_high_school_major.EHSM010.humanoria": "Humanoria",
+				"education_high_school_major.EHSM010.building_and_construction": "Building and construction",
+				"education_high_school_major.EHSM010.childcare": "Childcare",
+				"education_high_school_major.EHSM010.electricity_and_energy": "Electricity and energy",
+				"education_high_school_major.EHSM010.aesthetics": "Aesthetics",
+				"education_high_school_major.EHSM010.vehicle_and_transportation": "Vehicle and transportation",
+				"education_high_school_major.EHSM010.trade_and_administration": "Trade and admnistration",
+				"education_high_school_major.EHSM010.hotel_and_tourism": "Hotel and tourism",
+				"education_high_school_major.EHSM010.craftsmanship": "Craftsmanship",
+				"education_high_school_major.EHSM010.industrial_engineering": "Industrial engineering",
+				"education_high_school_major.EHSM010.natural_resource": "Natural resource",
+				"education_high_school_major.EHSM010.restaurant": "Restaurant",
+				"education_high_school_major.EHSM010.technology_and_engineering": "Technology and engineering",
+				"education_high_school_major.EHSM010.plumbing_and_caretaking": "Plumbing and caretaking",
+				"education_high_school_major.EHSM010.social_science": "Social science",
+				"education_high_school_major.EHSM010.healthcare": "Healthcare",
+				"education_high_school_major.EHSM010.international_baccallaureate": "International Baccallaureate",
+
+				"education.faculty.EF010.business_administration": "Business Adminstration",
+				"education_faculty.EFM010.financing": "Financing",
+				"education_faculty.EFM010.auditing": "Auditing",
+				"education_faculty.EFM010.financials": "Financials",
+				"education_faculty.EFM010.marketing": "Marketing",
+				"education_faculty.EFM010.management": "Management",
+				"education_faculty.EFM010.finance_and_it": "Finance and IT",
+				"education_faculty.EFM010.communication": "Communication",
+				"education_faculty.EFM010.economic_history": "Economic history",
+				"education_faculty.EFM010.economics": "Economics",
+				"education_faculty.EFM010.accounting": "Accounting",
+				"education_faculty.EFM010.finance": "Finance",
+				"education_faculty.EFM010.entrepreneurship": "Entrepreneurship",
+
+
+				"education.faculty.EF020.humanism": "Humanism",
+				"education_faculty.EFM020.ethics_and_moral": "Ethics and Moral",
+				"education_faculty.EFM020.international_relations": "International relations",
+
+
+				"education.faculty.EF030.law": "Law",
+				"education_faculty.EFM030.litigation": "Litigation",
+				"education_faculty.EFM030.criminal_law": "Criminal Law",
+
+
+				"education.faculty.EF040.medicine": "Medicine",
+				"education_faculty.EFM040.surgery": "Surgery",
+				"education_faculty.EFM040.orthopedics": "Orthopedics",
+
+
+				"education.faculty.EF050.artistic": "Artistic",
+				"education_faculty.EFM050.film_production": "Film production",
+				"education_faculty.EFM050.interior_design": "Interior Design",
+
+
+				"education.faculty.EF060.science": "Science",
+				"education_faculty.EFM060.chemistry": "Chemistry",
+				"education_faculty.EFM060.physics": "Physics",
+
+
+				"education.faculty.EF070.social": "Social",
+				"education_faculty.EFM070.social_work": "Social Work",
+				"education_faculty.EFM070.psychotherapy": "Psychotherapy",
+
+
+				"education.faculty.EF080.history": "History",
+				"education_faculty.EFM080.archeology": "Archeology",
+				"education_faculty.EFM080.history_of_religion": "History of religion",
+
+
+				"education.faculty.EF090.philosophy": "Philosophy",
+				"education_faculty.EFM090.practical_philosophy": "Practical philosophy",
+				"education_faculty.EFM090.theoretical_philosophy": "Theoretical philosophy",
+
+
+				"education.faculty.EF100.systems_science": "Systems Science",
+				"education_faculty.EFM100.system_development": "System Development",
+				"education_faculty.EFM100.project_management": "Project Management",
+
+
+				"education.faculty.EF110.technology": "Technology",
+				"education_faculty.EFM110.telecommunications": "Telecommunications",
+				"education_faculty.EFM110.construction_engineering": "Construction Engineering",
+
+
+				"education.faculty.EF120.pedagogy": "Pedagogy",
+				"education_faculty.EFM120.pre-school": "Pre-school",
+				"education_faculty.EFM120.leadership_traininig": "Leadership training",
+
+
+				"education.faculty.EF130.theology": "Theology",
+				"education_faculty.EFM130.protestant_preast": "Protestant preast",
+				"education_faculty.EFM130.catholic_preast": "Catholic preast",
+
+				"competency_hierachy.DM010": "IT and Communication",
+
+				"competency_hierachy.DM010.D010": "Network (IT)",
+				"competency_hierachy.DM010.D010.R010": "Network Architect",
+				"competency_hierachy.DM010.D010.R010.C010": "Network Architecture",
+				"competency_hierachy.DM010.D010.R010.C020": "Network Protocols",
+
+				"competency_hierachy.DM010.D010.R020": "Network Security Officer",
+				"competency_hierachy.DM010.D010.R020.C010": "Network Security",
+				"competency_hierachy.DM010.D010.R020.C020": "Network Topology",
+
+				"competency_hierachy.DM010.D020": "Software Engineering (IT)",
+				"competency_hierachy.DM010.D020.R010": "Software Developer",
+				"competency_hierachy.DM010.D020.R010.C010": "Software Development",
+				"competency_hierachy.DM010.D020.R010.C020": "Software Design",
+
+				"competency_hierachy.DM010.D020.R020": "Project Manager",
+				"competency_hierachy.DM010.D020.R020.C010": "Project Management",
+				"competency_hierachy.DM010.D020.R020.C020": "Project Planning",
+
+
+
+				"competency_hierachy.DM020": "Finance, Economics and Legal",
+
+				"competency_hierachy.DM020.D010": "Accounting (FEL)",
+				"competency_hierachy.DM020.D010.R010": "Accounts Assistant",
+				"competency_hierachy.DM020.D010.R010.C010": "Receivables",
+				"competency_hierachy.DM020.D010.R010.C020": "Payables",
+
+				"competency_hierachy.DM020.D010.R020": "Accountant",
+				"competency_hierachy.DM020.D010.R020.C010": "Receivables",
+				"competency_hierachy.DM020.D010.R020.C020": "Payables",
+
+				"competency_hierachy.DM020.D020": "Auditing (FEL)",
+				"competency_hierachy.DM020.D020.R010": "Auditor",
+				"competency_hierachy.DM020.D020.R010.C010": "Tax",
+				"competency_hierachy.DM020.D020.R010.C020": "IFRS",
+
+				"competency_hierachy.DM020.D020.R020": "Internal auditor",
+				"competency_hierachy.DM020.D020.R020.C010": "Code of Conduct",
+				"competency_hierachy.DM020.D020.R020.C020": "Internal Controlsystems"
+			}
+		},
+
+		"se": {
+			"locale": "se",
+			"translations": {
+				"error.general": "Fel",
+
+				"page_title": "CV121 International",
+				"home.company.title": "CV121",
+				"home.company.description": "Arbetsgivarsidan",
+				"home.user.title": "Användare",
+				"home.user.description": "Arbetssökarsidan",
+				"home.select_user_or_company": "Direkta Karriärnätverket",
+				"home.subtitle": "Den främsta person-till-person rekryterings",
+				"home.select_sign_in_method": "Välj inloggningsmetod",
+				"home.sign_in_using": "Logga in med hjälp av",
+
+				"label.selectLanguage": "Välj språk:",
+
+				"profile.generate_pdf": "Hämta PDF",
+				"profile.save": "spara",
+				"profile.cancel": "avbryt",
+				"profile.username": "Fullstänigt namn",
+				"profile.date_of_birth": "Födelsedatum",
+				"profile.searchable": "Gör din profil sökbar?",
+				"profile.recieveEmailNotifications": "Tillåt mailmeddelanden?",
+
+				"profile.country": "Land",
+				"profile.city": "Stad",
+				"profile.email": "e-Post",
+				"profile.phone_number": "Telefonnummer",
+
+				"profile.label.add_education": "Lägg till utbildning",
+				"profile.label.add_work": "Lägg till arbetslivserfarenhet",
+				"profile.label.add_language": "Lägg till språk",
+
+				"profile.cv.education.name": "Namn",
+				"profile.cv.education.degree": "Examen",
+				"profile.cv.education.faculty": "Fakultet",
+				"profile.cv.education.from": "Från datum",
+				"profile.cv.education.to": "Till datum",
+				"profile.cv.education.empty_list": "Ingen utbildning tillagd.",
+				"profile.cv.education.high_school": "Gymnasium",
+				"profile.cv.education.higher_education": "Högskola/Universitet",
+				"profile.cv.education.description": "Beskrivning",
+
+
+				"profile.cv.experience.company": "Företag",
+				"profile.cv.experience.industry": "Industri",
+				"profile.cv.experience.role": "Roll",
+				"profile.cv.experience.from": "Från datum",
+				"profile.cv.experience.to": "Till datum",
+				"profile.cv.experience.empty_list": "Ingen arbetslivserfarenhet tillagd.",
+				"profile.cv.experience.profession": "Profession",
+				"profile.cv.experience.key_competencies": "Nyckelkunskaper",
+				"profile.cv.experience.key_competencies.add": "Lägg till",
+				"profile.cv.experience.key_competencies.delete_hint": "Tryck backspace för att ta bort",
+				"profile.cv.experience.key_competencies.delete": "Ta bort",
+				"profile.cv.experience.description": "Beskrivning",
+
+				"profile.cv.generalInfo.language.name": "Språk",
+				"profile.cv.generalInfo.language.level": "Språknivå",
+				"profile.languages": "Språk",
+				"profile.cv.generalInfo.language.empty_list": "Inget språk tillgd.",
+
+				"profile.cv.generalInfo.compensation": "Minimum ersättning ($/y)",
+
+				"profile.library.empty_list": "INga filer adderade.",
+				"profile.label.add_library": "Lägg till fil",
+				"profile.library.storage_usage": "Använt utrymme: {0}MB av {1}MB",
+
+				"profile.cv.language.level0": "Grundläggande",
+				"profile.cv.language.level1": "Bra",
+				"profile.cv.language.level2": "Mycket bra",
+				"profile.cv.language.level3": "Utmärkt",
+				"profile.cv.language.level4": "Flytande",
+				"profile.cv.language.level5": "Modersmål",
+
+				"profile.label.remove": "Ta bort",
+
+				"profile.library.filename": "Filnamn",
+				"profile.library.addedDate": "Adderad",
+				"profile.library.toManyFiles": "Du kan inte ladda up mer än {0} filer.",
+				"error.library.maxSize": "Filen är för stor, max storlek är {0}.",
+				"error.library.fullStorage": "Ditt utrymme är fullt.",
+
+				"profile.description": "Personlig beskrivning",
+
+				"profile.dashboard": "Dashboard",
+				"profile.cv": "CV",
+				"profile.library": "Bibliotek",
+				"profile.settings": "Inställningar",
+
+				"profile.basic": "Grundläggande",
+				"profile.education": "Utbildning",
+				"profile.work_experience": "Arbetslivserfarenhet",
+				"profile.general_info": "Allmän Information",
+
+				"error.get_profile": "Gick inte att hämta profilinformation",
+				"error.required": "Detta är ett krav.",
+
+				"message.saved_success": "Profil sparad",
+				"message.cancel_success": "Inget sparat",
+
+				"about.title": "Om oss",
+				"about.text": "Om oss text ...",
+
+				"why.title": "Varför CV121",
+				"why.text": "Varför CV121 text ...",
+
+				"profile.company.search.must": "Måste",
+				"profile.company.search.should": "Bör",
+				"profile.company.search.advantage": "Fördel",
+				"profile.company.search.not_required": "Inget krav",
+				"profile.company.dashboard": "Dashboard",
+				"profile.company.messages": "Meddelanden",
+				"profile.company.searches": "Sökningar",
+				"profile.company.profiles": "Profiler",
+				"profile.company.company_info": "Företagsinformation",
+				"profile.company.receipts": "Kvitton",
+				"profile.company.settings": "Inställningar",
+
+				"profile.company.new_search_criteria": "Nytt sökvillkor",
+				"profile.company.save_search_criteria": "Spara sökvillkor",
+				"profile.company.cancel_new_search_criteria": "Avbryt sökvillkor",
+
+
+				"profile.company.search.education_requirements": "Utbildningskrav",
+				"profile.company.search.education.high_school_level": "Gymnasium",
+				"profile.company.search.education.bachelor_level": "Kandidatexamen",
+				"profile.company.search.education.master_level": "Magisterexamen",
+
+				"profile.company.search.work_experience_requirements": "Arbetslivserfarenhet",
+
+				"profile.company.search.general": "Allmän Kunskap",
+
+				"profile.company.search.query_summary": "Söksammanställning",
+
+
+				"industry.i010": "Jordbruk, skogsbruk, fiske",
+				"industry.i020": "Utvinning mineral, gruvindustri",
+				"industry.i030": "Tillverkningsindustri",
+				"industry.i040": "Försörjning av el, gas, värme, kyla",
+				"industry.i050": "Vattenförsörjning, avloppsrening, avfallshantering, sanering",
+				"industry.i060": "Byggverksamhet",
+				"industry.i070": "Handel och reparation av motorfordon",
+				"industry.i080": "Transport, logistik och magasinering",
+				"industry.i090": "Hotell och restaurang",
+				"industry.i100": "Informations- och kommunikationsverksamhet",
+				"industry.i110": "Finans och försäkringsverksamhet",
+				"industry.i120": "Fastighetsverksamhet",
+				"industry.i130": "Verksamhet inom juridik, ekonomi, vetenskap och teknik",
+				"industry.i140": "Uthyrning, fastighetstjänster, resetjänster",
+				"industry.i150": "Offentlig förvaltning och försvar",
+				"industry.i160": "Utbildning",
+				"industry.i170": "Vård, omsorg och sociala tjänster",
+				"industry.i180": "Kultur, nöje, fritid",
+				"industry.i190": "Annan serviceverksamhet",
+				"industry.i200": "Verksamhet vid internationella org., ambassader o dyl.",
+				"industry.i210": "Ej relevant",
+
+				"profession.p010": "Administration",
+				"profession.p020": "Bygg och anläggning",
+				"profession.p030": "IT och kommunikation",
+				"profession.p040": "Ekonomi och juridik",
+				"profession.p050": "Frisk och kroppsvård",
+				"profession.p060": "Hälso- och sjukvård",
+				"profession.p070": "Hotell och restaurang",
+				"profession.p080": "Industri och tillverkning",
+				"profession.p090": "Installation, drift och underhåll",
+				"profession.p100": "Nöje, kultur och fritid",
+				"profession.p110": "Försäljning, marknadsföring, reklam och media",
+				"profession.p120": "Mijövård och hälsoskydd",
+				"profession.p130": "Naturvetenskap",
+				"profession.p140": "Pedagogi",
+				"profession.p150": "Socialt arbete",
+				"profession.p160": "Säkerhet",
+				"profession.p170": "Teknik",
+				"profession.p180": "Transport och logistik",
+				"profession.p190": "Hantverk",
+				"profession.p200": "Företags- och verksamhetsledning",
+
+				"education.level.degree_bachelor": "Kandidat",
+				"education.level.degree_master": "Master",
+				"education.level.degree_phd": "Doktorsexamen",
+
+				"education_high_school_major.EHSM010.economy": "Ekonomi",
+				"education_high_school_major.EHSM010.science": "Naturveteskap",
+				"education_high_school_major.EHSM010.humanoria": "Humanism",
+				"education_high_school_major.EHSM010.building_and_construction": "Bygg och anläggning",
+				"education_high_school_major.EHSM010.childcare": "Barn och fritid",
+				"education_high_school_major.EHSM010.electricity_and_energy": "El och energi",
+				"education_high_school_major.EHSM010.aesthetics": "Estetik",
+				"education_high_school_major.EHSM010.vehicle_and_transportation": "Fordon och transport",
+				"education_high_school_major.EHSM010.trade_and_administration": "Handel och administration",
+				"education_high_school_major.EHSM010.hotel_and_tourism": "Hotell och turism",
+				"education_high_school_major.EHSM010.craftsmanship": "Hantverk",
+				"education_high_school_major.EHSM010.industrial_engineering": "Industriteknik",
+				"education_high_school_major.EHSM010.natural_resource": "Naturbruk",
+				"education_high_school_major.EHSM010.restaurant": "Restaurang och livsmedel",
+				"education_high_school_major.EHSM010.technology_and_engineering": "Teknik",
+				"education_high_school_major.EHSM010.plumbing_and_caretaking": "VVS och fastighet",
+				"education_high_school_major.EHSM010.social_science": "Samhällsvetenskap",
+				"education_high_school_major.EHSM010.healthcare": "Vård och omsorg",
+				"education_high_school_major.EHSM010.international_baccallaureate": "International Baccallaureate",
+
+				"education.faculty.EF010.business_administration": "Ekonomi",
+
+				"education_faculty.EFM010.economy": "Finansiering",
+				"education_faculty.EFM010.audit": "Revision",
+				"education_faculty.EFM010.financial_management": "Ekonomistyrning",
+				"education_faculty.EFM010.marketing": "Marknadsföring",
+				"education_faculty.EFM010.management": "Management",
+				"education_faculty.EFM010.finance_and_it": "Ekonomi och IT",
+				"education_faculty.EFM010.communication": "Kommunikation",
+				"education_faculty.EFM010.economic_history": "Ekonomisk historia",
+				"education_faculty.EFM010.economics": "Nationalekonomi",
+				"education_faculty.EFM010.accounting": "Redovisning",
+				"education_faculty.EFM010.financial": "Finans",
+				"education_faculty.EFM010.entrepreneurship": "Entreprenörskap",
+
+
+				"education.faculty.EF020.humanism": "Humanism",
+				"education_faculty.EFM020.ethics_and_moral": "Etik och moral",
+				"education_faculty.EFM020.internationa_relations": "Internationella relationer",
+
+
+				"education.faculty.EF030.law": "Juridik",
+				"education_faculty.EFM030.litigation": "Processrätt",
+				"education_faculty.EFM030.criminal_law": "Straffrätt",
+
+
+				"education.faculty.EF040.medicine": "Medicin",
+				"education_faculty.EFM040.surgery": "Kirurgi",
+				"education_faculty.EFM040.orthopedics": "Ortopedi",
+
+
+				"education.faculty.EF050.artistic": "Konstnärlig",
+				"education_faculty.EFM050.film_production": "Filmproduktion",
+				"education_faculty.EFM050.interior_design": "Inredning",
+
+
+				"education.faculty.EF060.science": "Naturvetenskap",
+				"education_faculty.EFM060.chemistry": "Kemi",
+				"education_faculty.EFM060.physics": "Fysik",
+
+
+				"education.faculty.EF070.social": "Social",
+				"education_faculty.EFM070.social_work": "Socionom",
+				"education_faculty.EFM070.psychotherapy": "Psykoterapi",
+
+
+				"education.faculty.EF080.history": "Historia",
+				"education_faculty.EFM080.archeology": "Arkeologi",
+				"education_faculty.EFM080.history_of_religion": "Religionshistoria",
+
+
+				"education.faculty.EF090.philosophy": "Filosofi",
+				"education_faculty.EFM090.practical_philosophy": "Praktisk filosofi",
+				"education_faculty.EFM090.theoretical_philosophy": "Teoretisk filosofi",
+
+
+				"education.faculty.EF100.systems_science": "Systemvetenskap",
+				"education_faculty.EFM100.system_development": "Systemutveckling",
+				"education_faculty.EFM100.YYY": "Projektledning",
+
+
+				"education.faculty.EF110.engineering": "Teknik",
+				"education_faculty.EFM110.telecommunicatons": "telekommunikation",
+				"education_faculty.EFM110.construction_engineering": "bygg och anläggning",
+
+
+				"education.faculty.EF120.pedagogy": "Pedagogi",
+				"education_faculty.EFM120.pre_school": "förskollärare",
+				"education_faculty.EFM120.leadership_training": "ledarskapsutbildare",
+
+
+				"education.faculty.EF130.theology": "Teologi",
+				"education_faculty.EFM130.protestant_preast": "Präst i svenska kyrkan",
+				"education_faculty.EFM130.catholic_preast": "Präst i katolska kyrkan",
+
+
+				"competency_hierachy.DM010": "IT & Kommunikation",
+
+				"competency_hierachy.DM010.D010": "Nätverk (IT)",
+				"competency_hierachy.DM010.D010.R010": "Nätverks Arkitekt",
+				"competency_hierachy.DM010.D010.R010.C010": "Network Architecture",
+				"competency_hierachy.DM010.D010.R010.C020": "Network Protocols",
+
+				"competency_hierachy.DM010.D010.R020": "Network Security Officer",
+				"competency_hierachy.DM010.D010.R020.C010": "Network Security",
+				"competency_hierachy.DM010.D010.R020.C020": "Network Topology",
+
+				"competency_hierachy.DM010.D020": "Software Engineering (IT)",
+				"competency_hierachy.DM010.D020.R010": "Software Developer",
+				"competency_hierachy.DM010.D020.R010.C010": "Software Development",
+				"competency_hierachy.DM010.D020.R010.C020": "Software Design",
+
+				"competency_hierachy.DM010.D020.R020": "Project Manager",
+				"competency_hierachy.DM010.D020.R020.C010": "Project Management",
+				"competency_hierachy.DM010.D020.R020.C020": "Project Planning",
+
+
+
+				"competency_hierachy.DM020": "Finance, Economics and Legal",
+
+				"competency_hierachy.DM020.D010": "Accounting (FEL)",
+				"competency_hierachy.DM020.D010.R010": "Accounts Assistant",
+				"competency_hierachy.DM020.D010.R010.C010": "Receivables",
+				"competency_hierachy.DM020.D010.R010.C020": "Payables",
+
+				"competency_hierachy.DM020.D010.R020": "Accountant",
+				"competency_hierachy.DM020.D010.R020.C010": "Receivables",
+				"competency_hierachy.DM020.D010.R020.C020": "Payables",
+
+				"competency_hierachy.DM020.D020": "Auditing (FEL)",
+				"competency_hierachy.DM020.D020.R010": "Auditor",
+				"competency_hierachy.DM020.D020.R010.C010": "Tax",
+				"competency_hierachy.DM020.D020.R010.C020": "IFRS",
+
+				"competency_hierachy.DM020.D020.R020": "Internal auditor",
+				"competency_hierachy.DM020.D020.R020.C010": "Code of Conduct",
+				"competency_hierachy.DM020.D020.R020.C020": "Internal Controlsystems"
+
+			}
+		}
+	}
 }
