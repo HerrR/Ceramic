@@ -50,7 +50,6 @@ const uuid = require('node-uuid');
             return defaultValue;
         },
 
-
         /**
          * Sends an email.
          */
@@ -68,16 +67,15 @@ const uuid = require('node-uuid');
                     return logger.error(error);
                 }
 
+                // TODO: log this to the database
+
                 logger.info('Message sent: ' + info.response);
             });
         },
 
         saveFileWithUUID: function(folder, data, callback) {
             if (data) {
-                var id = uuid.v4();
-                while (fs.statSync(path.join(folder, id)).isFile()) {
-                    id = uuid.v4();
-                }
+                var id = this.generateFileName(folder);
 
                 fs.writeFile(path,join(folder, id), data, function(err) {
                     callback(id, err);
@@ -88,9 +86,9 @@ const uuid = require('node-uuid');
         },
 
         generateFileName: function(folder) {
-            var id = uuid.v4();
+            var id = this.getUUID();
             while (fs.statSync(path.join(folder, id)).isFile()) {
-                id = uuid.v4();
+                id = this.getUUID();
             }
 
             return id;

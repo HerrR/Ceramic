@@ -16,16 +16,16 @@ const mongoose = require('mongoose');
     "use strict";
 
     const System = {
-        created: Date,
+        created: Date, // TODO: required
         locked: Date,
         deleted: Date,
         updated: Date,
         note: String,
-        emailAuthenticated: mongoose.Schema.Types.Boolean,
-        visible: mongoose.Schema.Types.Boolean,
-        schemaVersion: mongoose.Schema.Types.Number,
-        updateVersion: mongoose.Schema.Types.Number,
-        authenticationProvider: String
+        emailAuthenticated: mongoose.Schema.Types.Boolean, // TODO: required
+        visible: mongoose.Schema.Types.Boolean, // TODO: required
+        schemaVersion: mongoose.Schema.Types.Number, // TODO: required
+        updateVersion: mongoose.Schema.Types.Number, // TODO: required
+        authenticationProvider: String // TODO: required
     };
 
     const PersonSkill = {
@@ -50,12 +50,12 @@ const mongoose = require('mongoose');
 
     const Attachment = {
         id: String, // TODO: unique, index
-        name: String,
-        mimetype: String,
+        name: String, // TODO: required
+        mimetype: String, // TODO: required
         checksum: String,
-        link: String,
-        size: mongoose.Schema.Types.Number,
-        added: Date,
+        link: String, // TODO: required
+        size: mongoose.Schema.Types.Number, // TODO: required
+        added: Date, // TODO: required
         validContent: mongoose.Schema.Types.Boolean,
         maliciousContent: mongoose.Schema.Types.Boolean,
         scanned: Date
@@ -116,7 +116,7 @@ const mongoose = require('mongoose');
     const PersonAuthorizedUser = {
         userid: { type: String, required: true },
         fromDate: { type: Date, required: true },
-        toDate: Date
+        toDate: Date // can be null, no end date
     };
 
     const Person = {
@@ -139,6 +139,9 @@ const mongoose = require('mongoose');
         industry: String
     };
 
+    /**
+     * Search criteria
+     */
     const CompanySearchProfile = {
         education: {
             high_school_level: [{ requirement: String, type: String }],
@@ -159,8 +162,8 @@ const mongoose = require('mongoose');
     const Company = {
         userid: { type: String, index: true, required: true, unique: true },
         email: { type: String, index: true, required: false },
-        updateVersion: mongoose.Schema.Types.Number,
-        credits: mongoose.Schema.Types.Number,
+        updateVersion: { type: mongoose.Schema.Types.Number }, // TODO: required
+        credits: { type: mongoose.Schema.Types.Number }, // TODO: required
         system: System,
         company: {
             basic: CompanyBasic,
@@ -169,32 +172,32 @@ const mongoose = require('mongoose');
     };
 
     const Admin = {
-        userid: String,
-        level: mongoose.Schema.Types.Number,
-        start: Date
+        userid: { type: String, required: true },
+        level: { type: mongoose.Schema.Types.Number, required: true },
+        start: { type: Date, required: true }
     };
 
     const Message = {
         fromUserid: { type: String, index: true, required: true },
         toUserid: { type: String, index: true, required: true },
-        created: Date,
-        wasRead: mongoose.Schema.Types.Boolean,
-        wasRemoved: mongoose.Schema.Types.Boolean,
-        wasReplied: mongoose.Schema.Types.Boolean,
-        wasNotified: mongoose.Schema.Types.Boolean,
-        wasReported: mongoose.Schema.Types.Boolean,
-        subject: String,
-        message: String
+        created: { type: Date, required: true },
+        wasRead: { type: mongoose.Schema.Types.Boolean, required: true },
+        wasRemoved: { type: mongoose.Schema.Types.Boolean, required: true },
+        wasReplied: { type: mongoose.Schema.Types.Boolean, required: true },
+        wasNotified: { type: mongoose.Schema.Types.Boolean, required: true },
+        wasReported: { type: mongoose.Schema.Types.Boolean, required: true },
+        subject: { type: String, required: true },
+        message: { type: String, required: true }
     };
 
     const Receipt = {
         userid: { type: String, index: true, required: true },
-        paymentDate: Date,
-        amount: mongoose.Schema.Types.Number,
-        currency: String,
-        method: String,
-        purchase: String,
-        transaction: String
+        paymentDate: { type: Date, required: true },
+        amount: { type: mongoose.Schema.Types.Number, required: true },
+        currency: { type: String, required: true },
+        method: { type: String, required: true },
+        purchase: { type: String, required: true },
+        transaction: { type: String, required: true }
     };
 
     // http://blog.mongodb.org/post/32866457221/password-authentication-with-mongoose-part-1
@@ -203,9 +206,17 @@ const mongoose = require('mongoose');
         password: { type: String, required: true }
     };
 
-    // TODO: sent emails
+    const SentEmail = {
+        from: { type: String, required: true },
+        to: { type: String, required: true },
+        created: { type: Date, required: true }
+    };
 
-    // TODO: login providers profile data
+    const RawProfile = {
+        provider: { type: String, required: true },
+        created: { type: Date, required: true },
+        data: { type: String, required: true }
+    };
 
     module.exports = {
         getSchemas: function() {

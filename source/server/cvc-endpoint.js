@@ -81,7 +81,7 @@ const cvcUtils = require('./cvc-utils');
         }
     }
 
-
+    // TODO: same as checkFindCompany
     function checkFindPerson(err, profile, req, res, successCallback, notFoundCallback) {
         if (err !== null) {
             logger.error(err);
@@ -98,6 +98,7 @@ const cvcUtils = require('./cvc-utils');
         }
     }
 
+    // TODO: same as checkFindPerson
     function checkFindCompany(err, profile, req, res, successCallback, notFoundCallback) {
         if (err !== null) {
             logger.error(err);
@@ -114,6 +115,9 @@ const cvcUtils = require('./cvc-utils');
         }
     }
 
+    /**
+     * Determine if the is enough storage in the library.
+     */
     function hasStorageCapacity(attachments, capacity) {
         var total = 0;
         for (var index = 0; index < attachments.length; ++index) {

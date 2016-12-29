@@ -185,46 +185,6 @@ const cvcUtils = require('./cvc-utils');
 
         close: function() {
             cacheClient.quit();
-        },
-
-        isCountry: function(country) {
-            // TODO
-            return true;
-        },
-
-        isCity: function(country, city) {
-            // TODO
-            return true;
-        },
-
-        isSkillLevel: function(level) {
-            // TODO
-            return true;
-        },
-
-        isIndustry: function(industry) {
-            // TODO
-            return true;
-        },
-
-        isRole: function(role) {
-            // TODO
-            return true;
-        },
-
-        isSchoolDegree: function(schoolDegree) {
-            // TODO
-            return true;
-        },
-
-        isSchoolFaculty: function(schoolFaculty) {
-            // TODO
-            return true;
-        },
-
-        isLanguage: function(language) {
-            // TODO
-            return true;
         }
     };
 })();
