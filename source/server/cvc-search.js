@@ -25,4 +25,7 @@ const elasticsearch = require('elasticsearch');
     https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html
     https://www.elastic.co/
     */
+
+    // TODO: implement search services
+
 })();

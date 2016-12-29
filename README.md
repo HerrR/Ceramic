@@ -32,11 +32,9 @@ TODO
 * **SESSION_KEY** = ???
 
 ##### Develop
-TODO
-
 To start the application run the following commands in separate windows:
-`start-mongo`
-`start-redis` (if not run as a service)
+`start-mongo` (if not already running as a service)
+`start-redis` (if not already running as a service)
 `gulp watch`
 `gulp batch`
 `gulp serve`
@@ -46,7 +44,7 @@ To start the application run the following commands in separate windows:
 'gulp build' = Full build process, for continues integration
 
 ##### Test
-TODO
+No tests have been added at this time
 
 ## How to deploy
 TODO

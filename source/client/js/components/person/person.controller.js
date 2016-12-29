@@ -127,7 +127,7 @@
                 }
             }
 
-            return undefined
+            return undefined;
         };
 
         $scope.transformChip = function(chip) {

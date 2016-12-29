@@ -112,7 +112,6 @@ const schemaReceipt = cvcSchema.getSchemas().receipt;
         },
 
         validateProfile: function(profile) {
-            // TODO: clamp texts like name etc..
             // TODO: do not save if there are validation errors, return error message?
             return profile;
         },

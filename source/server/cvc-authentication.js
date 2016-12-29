@@ -48,7 +48,7 @@ const passportLinkedIn = require('passport-linkedin');
             searchable: true
         };
 
-        var email = getEmailFromFacebookProfile(profile);
+        var email = getEmailFromFacebookProfile(profile); // TODO: we have one "register" e-mail and one "visible" e-mail, ...?
 
         var person = {
             basic: {
@@ -116,7 +116,11 @@ const passportLinkedIn = require('passport-linkedin');
         return null;
     }
 
-    function getEmailFromProfile(provider, profile) {
+    /**
+     * Fetches the e-mail from the profile.
+     * The "profile" object has the structure that the "provicer" returns.
+     */
+    /*function getEmailFromProfile(provider, profile) {
         var result = null;
 
         if (provider === config.authentication.facebook.name) {
@@ -130,12 +134,19 @@ const passportLinkedIn = require('passport-linkedin');
         }
 
         return result;
-    }
+    }*/
 
+    /**
+     * Concatinates provider name and id, ex: FACEBOOK_123456767
+     */
     function createIdFromProviderAndId(provider, id) {
         return provider.toUpperCase() + '_' + id.toString();
     }
 
+    /**
+     * Fetches the Id from the profile to uniquely identify the user.
+     * The "profile" object has the structure that the "provicer" returns.
+     */
     function getIdFromProfile(provider, profile) {
         var result = null;
 
@@ -152,10 +163,13 @@ const passportLinkedIn = require('passport-linkedin');
         return createIdFromProviderAndId(provider,result);
     }
 
+    /**
+     * Login the user if profile exists or create a profile and then login the user.
+     */
     function loginOrCreateProfile(provider, accessToken, refreshToken, profile, done) {
         var errorObject = null;
 
-        // picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
+        // TODO: picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
 
         // TODO: store the raw 'profile' object as is in the database
 
@@ -180,7 +194,6 @@ const passportLinkedIn = require('passport-linkedin');
             }
         });
 
-        // TODO: findOne using email and not profile.id
         cvcDatabase.getDatamodels().Company.findOne(searchCriteria, function(err, savedProfile) {
             if (err !== null) {
                 logger.warn(err);
@@ -282,7 +295,17 @@ const passportLinkedIn = require('passport-linkedin');
         }
     }
 
+    /*function initAuthentication(strategyConfig, mainConfig) {
+        if (mainConfig.enabled) {
+            passport.use(new passportLinkedIn.Strategy(strategyConfig, function(accessToken, refreshToken, profile, done) {
+                loginOrCreateProfile(mainConfig.name, accessToken, refreshToken, profile, done);
+            }));
+        }
+    }*/
+
     function initPassportAuthentications() {
+        // TODO: use general init authentication function
+
         initLocalAuthentication();
         initHttpAuthentication();
         initFacebookAuthentication();
