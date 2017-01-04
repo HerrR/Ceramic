@@ -132,6 +132,16 @@ const schemaReceipt = cvcSchema.getSchemas().receipt;
                 authenticationProvider: authenticationProvider.toUpperCase(),
                 updateVersion: 0
             };
+        },
+
+        /**
+         * 0 = disconnected
+         * 1 = connected
+         * 2 = connecting
+         * 3 = disconnecting
+         */
+        getReadyState: function() {
+            return mongoose.connection.readyState;
         }
     };
 })();

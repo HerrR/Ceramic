@@ -12,7 +12,13 @@
     "clean": "gulp clean",
     "build": "gulp build",
     "deploy": "gulp deploy",
-    "develop": "npm install && gulp developer"
+    "develop": "npm install && gulp developer",
+
+    "security-check": "retire && nsp check",
+    "start-mongodb": "mongod --dbpath ./temp/database/",
+    "start-redis": "redis-server",
+
+    "fill-database": "./source/tools/dev/cvc-devtool.js -c ../../../config.json -f ./source/tools/dev/testdata.json"
   },
   "repository": {
     "type": "git",
@@ -93,6 +99,7 @@
     "bluebird": "^3.4.0",
     "body-parser": "^1.15.0",
     "chalk": "^1.1.3",
+    "commander": "^2.9.0",
     "compression": "^1.6.1",
     "cookie-parser": "^1.4.1",
     "ddos-express": "^0.1.5",
