@@ -1,19 +1,64 @@
 {
-    "system": [
-
+    "person": [
+        {
+            "userid": "LOCAL_1234567890",
+            "email": "",
+            "authorizedUsers": [],
+            "person": {
+                "library": [
+                ],
+                "cv": {
+                    "generalInfo": {
+                        "language": []
+                    },
+                    "education": [],
+                    "experience": [],
+                    "skills": []
+                },
+                "basic": {
+                    "name": "Lukas",
+                    "profilePicture": "https://scontent.xx.fbcdn.net/v/t1.0-1/230336_10150173276826374_3445103_n.jpg?oh=c2b8325a27befe69c0ffd9049c0d7499&oe=58CA6780",
+                    "email": "email@gmail.com",
+                    "country": "",
+                    "city": "",
+                    "dateOfBirth": "2001-11-03T00:00:00.000Z",
+                    "phone": ""
+                }
+            },
+            "system": {
+                "created": "2016-11-06T04:05:37.103Z",
+                "updated": "2016-12-29T07:50:45.145Z",
+                "note": "",
+                "visible": true,
+                "schemaVersion": 1,
+                "authenticationProvider": "LOCAL",
+                "updateVersion": 7
+            }
+        }
     ],
 
-    "person": [
-
-    ], 
-
     "company": [
-
-    ], 
+        {
+            "userid": "LOCAL_1234567890",
+            "email": "",
+            "company": {
+                "searchProfile": []
+            },
+            "system": {
+                "created": "2016-11-06T04:02:16.463Z",
+                "updated": "2016-11-06T04:02:16.463Z",
+                "note": "",
+                "visible": true,
+                "schemaVersion": 1,
+                "authenticationProvider": "LOCAL",
+                "updateVersion": 0
+            }
+        }
+    ],
 
     "admin": [
 
-    ], 
+    ],
 
     "message": [
 
