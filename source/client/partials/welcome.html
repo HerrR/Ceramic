@@ -25,6 +25,9 @@
                                     <p ng-repeat="provider in loginProviders" ng-if="loginProviders && loginProviders.length > 0">
                                         <md-button analytics-on="click" analytics-event="signin_company_{{provider}}" id="{{provider}}SignInCompany" style="min-width: 95%" class="md-raised" ng-click="signInCompany(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
                                     </p>
+                                    <div ng-if="$location.path().toString().indexOf('localhost') !== -1">
+                                        <input type="button" ng-click="signInCompanyUsingUsernamePassword('LOCAL')" value="Developer sign in">
+                                    </div>
                                     <p ng-if="loginProviders.length === 0">
                                         <!-- TODO: display error message -->
                                     </p>
@@ -58,6 +61,9 @@
                                     <p ng-repeat="provider in loginProviders" ng-if="loginProviders && loginProviders.length > 0">
                                         <md-button analytics-on="click" analytics-event="signin_person_{{provider}}" id="{{provider}}SignInPerson" style="min-width: 95%" class="md-raised" ng-click="signInPerson(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
                                     </p>
+                                    <div ng-if="$location.path().toString().indexOf('localhost') !== -1">
+                                        <input type="button" ng-click="signInPersonUsingUsernamePassword('LOCAL')" value="Developer sign in">
+                                    </div>
                                     <p ng-if="loginProviders.length === 0">
                                         <!-- TODO: display error message -->
                                     </p>
@@ -72,11 +78,6 @@
             </div>
         </main>
     </main>
-<!--<form action="auth/local/login" method="post" ng-if="$location.path().toString().indexOf('localhost') !== -1" style="max-width:300px">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Sign in">
-</form>-->
 </md-content>
 <div style="min-height:13.2vh"></div>
 
