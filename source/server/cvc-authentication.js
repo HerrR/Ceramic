@@ -220,7 +220,7 @@ const passportLinkedIn = require('passport-linkedin');
         var error = null; // new Error('message')
 
         // TODO: verify userid/password, use node crypto.pbkdf2
-        profile = {id:'10153728991941374'};
+        profile = {id:'1234567890'};
 
         done(error, profile);
     }
@@ -340,7 +340,7 @@ const passportLinkedIn = require('passport-linkedin');
 
             if (method.enabled) {
                 if (method.post) {
-                    app.post('/public/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
+                    app.post('/auth/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
                 } else {
                     app.get('/auth/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
                 }

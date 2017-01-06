@@ -10,6 +10,7 @@
  */
 
 const program = require('commander');
+const async = require('async-kit');
 const log4js = require('log4js');
 const chalk = require('chalk');
 const fs = require('fs');
@@ -18,8 +19,6 @@ const cvcDatabase = require('../../server/cvc-database');
 
 (function () {
   'use strict';
-
-  var pendingTasks = 0;
 
   const logger = {
     info: function(text) {
@@ -39,6 +38,87 @@ const cvcDatabase = require('../../server/cvc-database');
     return JSON.parse(fs.readFileSync(filepath));
   }
 
+  function fillDatabase() {
+    if (program.fill) {
+      console.log(chalk.cyan('Executing function Fill (' + program.fill + ')...'));
+      const data = readJsonFileSync(program.fill);
+
+      if (cvcDatabase.getReadyState() === 1) {
+        if (data.person && data.person.length > 0) {
+          for (var i = 0; i < data.person.length; ++i) {
+            const object = data.person[i];
+            var newObject = new cvcDatabase.getDatamodels().Person(object);
+            newObject.save(function(err) {
+              if (err) {
+                logger.error(err);
+              } else {
+                console.log(chalk.green('New Person: ' + object.userid));
+              }
+            });
+          }
+        }
+
+        if (data.company && data.company.length > 0) {
+          for (var i = 0; i < data.company.length; ++i) {
+            const object = data.company[i];
+            var newObject = new cvcDatabase.getDatamodels().Company(object);
+            newObject.save(function(err) {
+              if (err) {
+                logger.error(err);
+              } else {
+                console.log(chalk.green('New Company: ' + object.userid));
+              }
+            });
+          }
+        }
+
+        if (data.admin && data.admin.length > 0) {
+          for (var i = 0; i < data.admin.length; ++i) {
+            const object = data.admin[i];
+            var newObject = new cvcDatabase.getDatamodels().Admin(object);
+            newObject.save(function(err) {
+              if (err) {
+                logger.error(err);
+              } else {
+                console.log(chalk.green('New Admin: ' + object.userid));
+              }
+            });
+          }
+        }
+
+        if (data.message && data.message.length > 0) {
+          for (var i = 0; i < data.message.length; ++i) {
+            const object = data.message[i];
+            var newObject = new cvcDatabase.getDatamodels().Message(object);
+            newObject.save(function(err) {
+              if (err) {
+                logger.error(err);
+              } else {
+                console.log(chalk.green('New Message: ' + object.fromUserid));
+              }
+            });
+          }
+        }
+
+        if (data.receipt && data.receipt.length > 0) {
+          for (var i = 0; i < data.receipt.length; ++i) {
+            const object = data.receipt[i];
+            var newObject = new cvcDatabase.getDatamodels().Receipt(object);
+            newObject.save(function(err) {
+              if (err) {
+                logger.error('Failed to save Receipt: ' + JSON.stringify(object));
+              } else {
+                console.log(chalk.green('New Receipt: ' + object.userid));
+              }
+            });
+          }
+        }
+      } else {
+        logger.error('Failed to connect to MongoDB');
+      }
+    }
+  }
+
   program
     .version('CV121 Devtool v1.0.0')
     .option('-c, --config [configfile]','Specify config file to load')
@@ -51,112 +131,36 @@ const cvcDatabase = require('../../server/cvc-database');
       const config = require(program.config);
 
       console.log(chalk.yellow('Initializing database...'));
-      cvcDatabase.init(config,logger);
+      cvcDatabase.init(config,logger, function() {
+        async.series([
+          fillDatabase()
+        ])
+        .exec(function(error, result) {
+          if (error) {
+            logger.error(error);
+          }
+        });
+      });
     }
 
-    if (program.fill) {
-      console.log(chalk.cyan('Executing function Fill...'));
-      const data = readJsonFileSync(program.fill);
+    function exitHandler(options, err) {
+      if (options.cleanup) {
+        console.log(chalk.green('All commands executed, shutting down...'));
+        cvcDatabase.close();
+      }
 
-      /*const startTime = new Date().getTime();
-      while (cvcDatabase.getReadyState() != 1) {
-        const newTime = new Date().getTime();
-        if (newTime - startTime > 5000) {
-          break;
-        }
-      }*/
+      if (err) {
+        console.log(chalk.red(err.stack));
+        logger.error(err.stack);
+      }
 
-      if (cvcDatabase.getReadyState() === 1) {
-        if (data.person && data.person.length > 0) {
-          for (var i = 0; i < data.person.length; ++i) {
-            pendingTasks++;
-            var newObject = new cvcDatabase.getDatamodels().Person(data.person[i]);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error('Failed to save Person: ' + JSON.stringify(data.person[i]));
-              } else {
-                console.log(chalk.green('New Person: ' + data.person[i].userid));
-              }
-              pendingTasks--;
-            });
-          }
-        }
-
-        if (data.company && data.company.length > 0) {
-          for (var i = 0; i < data.company.length; ++i) {
-            pendingTasks++;
-            var newObject = new cvcDatabase.getDatamodels().Company(data.company[i]);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error('Failed to save Company: ' + JSON.stringify(data.company[i]));
-              } else {
-                console.log(chalk.green('New Company: ' + data.company[i].userid));
-              }
-              pendingTasks--;
-            });
-          }
-        }
-
-        if (data.admin && data.admin.length > 0) {
-          for (var i = 0; i < data.admin.length; ++i) {
-            pendingTasks++;
-            var newObject = new cvcDatabase.getDatamodels().Admin(data.admin[i]);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error('Failed to save Admin: ' + JSON.stringify(data.admin[i]));
-              } else {
-                console.log(chalk.green('New Admin: ' + data.admin[i].userid));
-              }
-              pendingTasks--;
-            });
-          }
-        }
-
-        if (data.message && data.message.length > 0) {
-          for (var i = 0; i < data.message.length; ++i) {
-            pendingTasks++;
-            var newObject = new cvcDatabase.getDatamodels().Message(data.message[i]);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error('Failed to save Message: ' + JSON.stringify(data.message[i]));
-              } else {
-                console.log(chalk.green('New Message: ' + data.message[i].userid));
-              }
-              pendingTasks--;
-            });
-          }
-        }
-
-        if (data.receipt && data.receipt.length > 0) {
-          for (var i = 0; i < data.receipt.length; ++i) {
-            pendingTasks++;
-            var newObject = new cvcDatabase.getDatamodels().Receipt(data.receipt[i]);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error('Failed to save Receipt: ' + JSON.stringify(data.receipt[i]));
-              } else {
-                console.log(chalk.green('New Receipt: ' + data.receipt[i].userid));
-              }
-              pendingTasks--;
-            });
-          }
-        }
-      } else {
-        logger.error('Failed to connect to MongoDB');
+      if (options.exit) {
+        process.exit();
       }
     }
 
-    while (pendingTasks > 0) {
-      for (var i = 10; i > 0; --i) {
-        const startTime = new Date().getTime();
-        while (new Date().getTime() - startTime < 1000 && pendingTasks > 0) {}
-        if (pendingTasks === 0) {
-          break;
-        }
-        console.log(chalk.grey('Waiting for tasks to complete: number of tasks left is ' + pendingTasks + ', waiting up to ' + i + ' more seconds.'));
-      }
-    }
-
-    console.log(chalk.green('All commands executed, shutting down...'));
-    process.exit();
+    process.stdin.resume();
+    process.on('exit', exitHandler.bind(null, {cleanup:true}));
+    process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+    process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 }());

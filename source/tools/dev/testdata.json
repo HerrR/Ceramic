@@ -21,13 +21,13 @@
                     "email": "email@gmail.com",
                     "country": "",
                     "city": "",
-                    "dateOfBirth": "2001-11-03T00:00:00.000Z",
+                    "dateOfBirth": 1004745600000,
                     "phone": ""
                 }
             },
             "system": {
-                "created": "2016-11-06T04:05:37.103Z",
-                "updated": "2016-12-29T07:50:45.145Z",
+                "created": 1004745600000,
+                "updated": 1004745600000,
                 "note": "",
                 "visible": true,
                 "schemaVersion": 1,
@@ -45,8 +45,8 @@
                 "searchProfile": []
             },
             "system": {
-                "created": "2016-11-06T04:02:16.463Z",
-                "updated": "2016-11-06T04:02:16.463Z",
+                "created": 1004745600000,
+                "updated": 1004745600000,
                 "note": "",
                 "visible": true,
                 "schemaVersion": 1,

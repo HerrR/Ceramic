@@ -13,11 +13,9 @@
     "build": "gulp build",
     "deploy": "gulp deploy",
     "develop": "npm install && gulp developer",
-
     "security-check": "retire && nsp check",
     "start-mongodb": "mongod --dbpath ./temp/database/",
     "start-redis": "redis-server",
-
     "fill-database": "./source/tools/dev/cvc-devtool.js -c ../../../config.json -f ./source/tools/dev/testdata.json"
   },
   "repository": {
@@ -96,6 +94,7 @@
     "webpack": "^1.13.0"
   },
   "dependencies": {
+    "async-kit": "^2.2.3",
     "bluebird": "^3.4.0",
     "body-parser": "^1.15.0",
     "chalk": "^1.1.3",
