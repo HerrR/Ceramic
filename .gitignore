@@ -55,3 +55,5 @@ build_v*.zip
 dump.rdb
 
 *.exe
+
+todo.html
