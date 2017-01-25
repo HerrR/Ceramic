@@ -55,7 +55,7 @@
             userType = _userType;
         };
 
-        self.signIn = function(_userType, serviceType, changeURL) {
+        self.signIn = function(_userType, serviceType, changeURL, username, password) {
             if (_userType && serviceType) {
                 userType = _userType;
 
@@ -66,11 +66,25 @@
                     window.location.href = AppConstants.PATHS.AUTHORIZED + serviceType + '/login';
                 }
 
-                self.reload(function(data, err) {
-                    if (err) {
-                        ScreenMessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
-                    }
-                });
+                if (changeURL === false && username && password) {
+                    $http.post(AppConstants.PATHS.AUTHORIZED + serviceType + '/login',{username: username, password: password}).then(function(resp) {
+                        self.reload(function(data, err) {
+                            if (err) {
+                                ScreenMessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
+                            }
+                        });
+                    }, function(err) {
+                        ScreenMessageService.error(AppConstants.TEXT_KEYS.FETCH_PROFILE_ERROR);
+                    });
+                }
+
+                if (changeURL === false) {
+                    self.reload(function(data, err) {
+                        if (err) {
+                            ScreenMessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
+                        }
+                    });
+                }
             }
         };
 

@@ -148,9 +148,12 @@ const passportLinkedIn = require('passport-linkedin');
      * The "profile" object has the structure that the "provicer" returns.
      */
     function getIdFromProfile(provider, profile) {
+        const upperCaseProvider = provider ? provider.toUpperCase() : null;
         var result = null;
 
-        if (provider.toUpperCase() === config.authentication.facebook.name.toUpperCase()) {
+        if (upperCaseProvider === config.authentication.facebook.name.toUpperCase()) {
+            result = profile.id;
+        } else {
             result = profile.id;
         }
 
@@ -220,7 +223,8 @@ const passportLinkedIn = require('passport-linkedin');
         var error = null; // new Error('message')
 
         // TODO: verify userid/password, use node crypto.pbkdf2
-        profile = {id:'10153728991941374'};
+        profile = {provider: config.authentication.local.name, id: userid};
+        // NOTE: we do not create a profile here, it should exist
 
         done(error, profile);
     }
@@ -326,7 +330,7 @@ const passportLinkedIn = require('passport-linkedin');
         app.use(passport.initialize());
         app.use(passport.session());
 
-        var methods = [
+        const methods = [
             { post: true, enabled: config.authentication.local.enabled, name: 'local', type:'local', callback: null },
             { post: true, enabled: config.authentication.http.enabled, name: 'http', type:'basic', callback: null },
             { post: true, enabled: config.authentication.google.enabled, name: 'google', type:'google', callback: function(req, res) { res.redirect('/'); } },
@@ -336,11 +340,11 @@ const passportLinkedIn = require('passport-linkedin');
         ];
 
         for (var i = 0; i < methods.length; ++i) {
-            var method = methods[i];
+            const method = methods[i];
 
             if (method.enabled) {
                 if (method.post) {
-                    app.post('/public/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
+                    app.post('/auth/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
                 } else {
                     app.get('/auth/' + method.name + '/login', passport.authenticate(method.type, { successRedirect: '/', failureRedirect: '/loginfailed' }));
                 }

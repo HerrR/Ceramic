@@ -69,7 +69,55 @@ This is a first draft of how to setup the developer environment. The intention a
 - More modules can be found in the NPM repository at https://www.npmjs.com/.
 - If you are running NPM behind a proxy server then you may have to [configure NPM when running behind a proxy](https://jjasonclark.com/how-to-setup-node-behind-web-proxy/).
 
-#### Step 4: Setup environment variables
+#### Step 4: Generate SSH key
+- At this point the application has been configured to run only behind a secure network, even when running the system locally. This may change in the future as we will have more time to setup a more user friendly developer environment.
+- In order to run the application using SSL you need to generate two files: `local.key` and `local.crt`. These files should be located in the root of the source code folder.
+- To generate the files you have make sure that OpenSSL (or similar tool) is installed on your computer. You can download OpenSSL from https://www.openssl.org/.
+- Execute the following command to generate the required files: `openssl req -x509 -nodes -days 365 -newkey rsa:1024 -out local.crt -keyout local.key` (you may fiddle with the parameters if you like, for instance the encryption does not have to be 1024 bit long).
+
+#### Step 5: Install MongoDB
+- In the repository root directory create the following folders: `temp/database`
+- The database used for the application is [MongoDB](https://en.wikipedia.org/wiki/MongoDB) which is a document-oriented database.
+- Download and install the latest version of MongoDB from https://www.mongodb.com/.
+- After installation you should be able to execute the following command: `mongod --version`
+
+#### Step 6: Install Redis
+- [Redis](https://en.wikipedia.org/wiki/Redis) is a fast access, in-memory key value store which we use to store datasets.
+- Download and install the latest version of Redis from https://redis.io/.
+- Windows users may install Redis via [Chocolatey](https://chocolatey.org/). Here is a link to [Redis in the Chocolatey repository](https://chocolatey.org/packages/redis-64).
+
+#### Step 7: Install Elasticsearch
+- [Elasticsearch](https://en.wikipedia.org/wiki/Elasticsearch) is the search engine that is planned to be used in our system. It has not been implemented yet so this step may be ignored for now.
+- Elasticsearch can be downloaded from https://www.elastic.co/.
+
+#### Step 8: Setup authentication
+- At this time, setting up authentication when developing the application is very cumbersome.
+- The simplest way is to use Facebook as the login provider, for this to work you need to set the environment variables `FACEBOOK_APP_ID` and `FACEBOOK_APP_SECRET`. The `FACEBOOK_APP_ID` is `1739265906354328`. `FACEBOOK_APP_SECRET` is a secret key and can't be added in this document.
+
+#### Step 9: Running the application
+To start the application run the following commands in separate windows from the source code root folder:
+
+- `start-mongo` (if not already running as a service, this will start MongoDB)
+- `start-redis` (if not already running as a service, this will start Redis)
+- `gulp watch` (this will build the application and begin watching files for changes and rebuild the system if any source file is updated)
+- `gulp batch` (this will start the batch application)
+- `gulp serve` (this will start the back-end (main) application)
+
+#### Step 10: Filling the database with testdata
+- Goto the folder `source/tools/dev` in the project
+- Execute the following command: `node cvc-devtool.js -c ../../../config.json -f testdata.json`
+
+#### Step 11: Open the application
+- The application should now be available at [https://localhost:9010/#/](https://localhost:9010/#/)
+
+#### Other useful tools
+- [ConEmu](https://conemu.github.io/) (Windows) or [iTerm2](http://iterm2.com/) (MacOS) 
+- [Atom](https://atom.io/)
+- [Sublime Text](http://www.sublimetext.com/)
+- [Mongotron](http://mongotron.io/#/)
+- [JSONLint](http://jsonlint.com/)
+
+#### Environment variables
 ##### Runtime environment
 * **SESSION_KEY** = Express API session (not required, loads from config when developing)
 * **FACEBOOK_APP_ID** = Facebook app id (required when using Facebook as the authentication provider)
@@ -82,41 +130,3 @@ This is a first draft of how to setup the developer environment. The intention a
 * **PUBLISH_USER** = Target server user name (not required when developing)
 * **PUBLISH_PASSWORD** = Target server password (not required when developing)
 * **PUBLISH_PATH** = Path to where the build should be put in the target server (not required when developing)
-
-#### Step 5: Generate SSH key
-- At this point the application has been configured to run only behind a secure network, even when running the system locally. This may change in the future as we will have more time to setup a more user friendly developer environment.
-- In order to run the application using SSL you need to generate two files: `local.key` and `local.crt`. These files should be located in the root of the source code folder.
-- To generate the files you have make sure that OpenSSL (or similar tool) is installed on your computer. You can download OpenSSL from https://www.openssl.org/.
-- Execute the following command to generate the required files: `openssl req -x509 -nodes -days 365 -newkey rsa:1024 -out local.crt -keyout local.key` (you may fiddle with the parameters if you like, for instance the encryption does not have to be 1024 bit long).
-
-#### Step 6: Install MongoDB
-- The database used for the application is [MongoDB](https://en.wikipedia.org/wiki/MongoDB) which is a document-oriented database.
-- Download and install the latest version of MongoDB from https://www.mongodb.com/.
-
-#### Step 7: Install Redis
-- [Redis](https://en.wikipedia.org/wiki/Redis) is a fast access, in-memory key value store which we use to store datasets.
-- Download and install the latest version of Redis from https://redis.io/.
-
-#### Step 8: Install Elasticsearch
-- [Elasticsearch](https://en.wikipedia.org/wiki/Elasticsearch) is the search engine that is planned to be used in our system. It has not been implemented yet so this step may be ignored for now.
-- Elasticsearch can be downloaded from https://www.elastic.co/.
-
-#### Step 9: Setup authentication
-- At this time, setting up authentication when developing the application is very cumbersome.
-- The simplest way is to use Facebook as the login provider, for this to work you need to set the environment variables `FACEBOOK_APP_ID` and `FACEBOOK_APP_SECRET`. The `FACEBOOK_APP_ID` is `1739265906354328`. `FACEBOOK_APP_SECRET` is a secret key and can't be added in this document.
-
-#### Step 10: Running the application
-To start the application run the following commands in separate windows from the source code root folder:
-
-- `start-mongo` (if not already running as a service, this will start MongoDB)
-- `start-redis` (if not already running as a service, this will start Redis)
-- `gulp watch` (this will build the application and begin watching files for changes and rebuild the system if any source file is updated)
-- `gulp batch` (this will start the batch application)
-- `gulp serve` (this will start the back-end (main) application)
-
-#### Other useful tools
-- [ConEmu](https://conemu.github.io/) (Windows) or [iTerm2](http://iterm2.com/) (MacOS) 
-- [Atom](https://atom.io/)
-- [Sublime Text](http://www.sublimetext.com/)
-- [Mongotron](http://mongotron.io/#/)
-- [JSONLint](http://jsonlint.com/)

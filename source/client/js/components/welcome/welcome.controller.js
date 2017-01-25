@@ -29,6 +29,14 @@
             ProfileService.signIn(AppConstants.USER_TYPES.COMPANY, type, true);
         };
 
+        $scope.signInPersonUsingUsernamePassword = function(type) {
+            ProfileService.signIn(AppConstants.USER_TYPES.PERSON, type, false, '1234567890','1234567890');
+        };
+
+        $scope.signInCompanyUsingUsernamePassword = function(type) {
+            ProfileService.signIn(AppConstants.USER_TYPES.COMPANY, type, false, '1234567890','1234567890');
+        };
+
         $scope.hasSignedIn = function() {
             return ProfileService.hasSignedIn();
         };

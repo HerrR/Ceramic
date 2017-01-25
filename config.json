@@ -74,12 +74,12 @@
         "http": {
             "code": "b",
             "name": "HTTP",
-            "enabled": true
+            "enabled": false
         },
         "google": {
             "code": "c",
             "name": "GOOGLE",
-            "enabled": true,
+            "enabled": false,
             "consumerKey": "",
             "consumerSecret": "",
             "callbackURL": "https://localhost:9010/auth/google/callback",

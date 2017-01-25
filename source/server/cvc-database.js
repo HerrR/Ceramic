@@ -46,6 +46,7 @@ const schemaReceipt = cvcSchema.getSchemas().receipt;
 
             // TODO: bcrypt = require(bcrypt), SALT_WORK_FACTOR = 10;
 
+            logger.info('Trying to connect to MongoDB');
             mongoose.connect(dbUrl);
         } catch (err) {
             logger.error('Failed to connect to database: ' + config.server.database.url);
@@ -54,7 +55,7 @@ const schemaReceipt = cvcSchema.getSchemas().receipt;
     }
 
     module.exports = {
-        init: function(_config, _logger) {
+        init: function(_config, _logger, callback) {
             config = _config;
             logger = _logger;
 
@@ -67,9 +68,13 @@ const schemaReceipt = cvcSchema.getSchemas().receipt;
                 datamodels.Admin = mongoose.model('Admin', new mongoose.Schema(schemaAdmin));
                 datamodels.Message = mongoose.model('Message', new mongoose.Schema(schemaMessage));
                 datamodels.Receipt = mongoose.model('Receipt', new mongoose.Schema(schemaReceipt));
+
+                if (callback) {
+                    callback();
+                }
             });
 
-            connectToDatabase();
+            connectToDatabase(callback);
         },
 
         close: function() {
@@ -141,7 +146,7 @@ const schemaReceipt = cvcSchema.getSchemas().receipt;
          * 3 = disconnecting
          */
         getReadyState: function() {
-            return mongoose.connection.readyState;
+            return database.readyState;
         }
     };
 })();
