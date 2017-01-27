@@ -31,12 +31,12 @@ const config = require(process.argv[2] || '../config.json');
   function reloadDataset(filename) {
     logger.info('Loading: ' + filename);
 
-    var newCache = cvcUtils.readJsonFileSync(filename, undefined, false);
+    const newCache = cvcUtils.readJsonFileSync(filename, undefined, false);
     if (newCache && newCache.name && newCache.data) {
       logger.info('Loaded: ' + filename);
 
-      var name = newCache.name;
-      var data = newCache.data;
+      const name = newCache.name;
+      const data = newCache.data;
 
       logger.info('Update Cache: ' + name);
       cacheClient.set(name, JSON.stringify(data), redis.print);

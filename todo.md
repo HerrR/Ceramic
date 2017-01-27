@@ -42,11 +42,12 @@
 - [ ] Statistics
 - [ ] Check file content against hash database for illegal content and report users
 - [ ] Library file folder partition
+- [ ] More const
 
 
 ### Environment
 - [X] ~~[Code analysis](https://codeclimate.com/github/Axodoss/Ceramic)~~
-- [ ] Add Gulp support for [Sass](http://sass-lang.com/) &#x1F53A;
+- [X] Add Gulp support for [Sass](http://sass-lang.com/) &#x1F53A;
 - [ ] Add [Swagger](https://github.com/swagger-api/swagger-node) &#x1F53A;
 - [ ] Server documentation
 - [ ] [CircleCI](https://circleci.com/)

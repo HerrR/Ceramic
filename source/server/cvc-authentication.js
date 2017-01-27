@@ -41,16 +41,16 @@ const passportLinkedIn = require('passport-linkedin');
 
     // More info: https://developers.facebook.com/docs/graph-api/reference/user
     function createPersonFromFacebookProfile(profile) {
-        var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
+        const system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
 
-        var settings = {
+        const settings = {
             recieveEmailNotifications: true,
             searchable: true
         };
 
-        var email = getEmailFromFacebookProfile(profile); // TODO: we have one "register" e-mail and one "visible" e-mail, ...?
+        const email = getEmailFromFacebookProfile(profile); // TODO: we have one "register" e-mail and one "visible" e-mail, ...?
 
-        var person = {
+        const person = {
             basic: {
                 name: profile.displayName,
                 profilePicture: (profile.photos ? profile.photos[0].value : config.server.defaultProfilePicture),
@@ -69,7 +69,7 @@ const passportLinkedIn = require('passport-linkedin');
             }
         };
 
-        var newProfile = {
+        const newProfile = {
             userid: getIdFromProfile(config.authentication.facebook.name,profile),
             email: email,
 
@@ -81,13 +81,13 @@ const passportLinkedIn = require('passport-linkedin');
     }
 
     function createCompanyFromFacebookProfile(profile) {
-        var system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
+        const system = cvcDatabase.createSystemObject(config.authentication.facebook.name);
 
         // TODO: fetch general info
 
-        var email = getEmailFromFacebookProfile(profile);
+        const email = getEmailFromFacebookProfile(profile);
 
-        var newProfile = {
+        const newProfile = {
             userid: getIdFromProfile(config.authentication.facebook.name,profile),
             email: email,
             system: system
@@ -421,6 +421,5 @@ const passportLinkedIn = require('passport-linkedin');
                 res.sendStatus(403);
             }
         }
-
     };
 })();

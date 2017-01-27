@@ -39,8 +39,8 @@ module.exports = {
   node: {
     main: 'main.js',
     batch: 'batch.js',
-    source: './source/server/**/*.js',
-    lint_exlude: [],
+    source: ['./source/server/**/*.js', './source/server/**/*.yml'],
+    lint_exlude: ['./source/server/**/*.yml'],
     config: '',
     exec: ''
   },
