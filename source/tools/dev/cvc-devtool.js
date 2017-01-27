@@ -31,11 +31,91 @@ const cvcDatabase = require('../../server/cvc-database');
 
     error: function(text) {
       console.log(chalk.red('Error: ' + text));
-    },
+    }
   };
 
   function readJsonFileSync(filepath) {
     return JSON.parse(fs.readFileSync(filepath));
+  }
+
+  function createPersons(data) {
+    if (data.person && data.person.length > 0) {
+      for (let personIndex = 0; personIndex < data.person.length; ++personIndex) {
+        const object = data.person[personIndex];
+        var newPerson = new cvcDatabase.getDatamodels().Person(object);
+        newPerson.save(function(err) {
+          if (err) {
+            logger.error(err);
+          } else {
+            console.log(chalk.green('New Person: ' + object.userid));
+          }
+        });
+      }
+    }
+  }
+
+  function createCompanies(data) {
+    if (data.company && data.company.length > 0) {
+      for (let companyIndex = 0; companyIndex < data.company.length; ++companyIndex) {
+        const object = data.company[companyIndex];
+        var newCompany = new cvcDatabase.getDatamodels().Company(object);
+        newCompany.save(function(err) {
+          if (err) {
+            logger.error(err);
+          } else {
+            console.log(chalk.green('New Company: ' + object.userid));
+          }
+        });
+      }
+    }
+  }
+
+  function createAdmins(data) {
+    if (data.admin && data.admin.length > 0) {
+      for (let adminIndex = 0; adminIndex < data.admin.length; ++adminIndex) {
+        const object = data.admin[adminIndex];
+        var newAdmin = new cvcDatabase.getDatamodels().Admin(object);
+        newAdmin.save(function(err) {
+          if (err) {
+            logger.error(err);
+          } else {
+            console.log(chalk.green('New Admin: ' + object.userid));
+          }
+        });
+      }
+    }
+  }
+
+  function createMessages(data) {
+    if (data.message && data.message.length > 0) {
+      for (let messageIndex = 0; messageIndex < data.message.length; ++messageIndex) {
+        const object = data.message[messageIndex];
+        var newMessage = new cvcDatabase.getDatamodels().Message(object);
+        newMessage.save(function(err) {
+          if (err) {
+            logger.error(err);
+          } else {
+            console.log(chalk.green('New Message: ' + object.fromUserid));
+          }
+        });
+      }
+    }
+  }
+
+  function createReceipts(data) {
+    if (data.receipt && data.receipt.length > 0) {
+      for (let receiptIndex = 0; receiptIndex < data.receipt.length; ++receiptIndex) {
+        const object = data.receipt[receiptIndex];
+        var newReceipt = new cvcDatabase.getDatamodels().Receipt(object);
+        newReceipt.save(function(err) {
+          if (err) {
+            logger.error('Failed to save Receipt: ' + JSON.stringify(object));
+          } else {
+            console.log(chalk.green('New Receipt: ' + object.userid));
+          }
+        });
+      }
+    }
   }
 
   function fillDatabase() {
@@ -44,75 +124,11 @@ const cvcDatabase = require('../../server/cvc-database');
       const data = readJsonFileSync(program.fill);
 
       if (cvcDatabase.getReadyState() === 1) {
-        if (data.person && data.person.length > 0) {
-          for (var i = 0; i < data.person.length; ++i) {
-            const object = data.person[i];
-            var newObject = new cvcDatabase.getDatamodels().Person(object);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error(err);
-              } else {
-                console.log(chalk.green('New Person: ' + object.userid));
-              }
-            });
-          }
-        }
-
-        if (data.company && data.company.length > 0) {
-          for (var i = 0; i < data.company.length; ++i) {
-            const object = data.company[i];
-            var newObject = new cvcDatabase.getDatamodels().Company(object);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error(err);
-              } else {
-                console.log(chalk.green('New Company: ' + object.userid));
-              }
-            });
-          }
-        }
-
-        if (data.admin && data.admin.length > 0) {
-          for (var i = 0; i < data.admin.length; ++i) {
-            const object = data.admin[i];
-            var newObject = new cvcDatabase.getDatamodels().Admin(object);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error(err);
-              } else {
-                console.log(chalk.green('New Admin: ' + object.userid));
-              }
-            });
-          }
-        }
-
-        if (data.message && data.message.length > 0) {
-          for (var i = 0; i < data.message.length; ++i) {
-            const object = data.message[i];
-            var newObject = new cvcDatabase.getDatamodels().Message(object);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error(err);
-              } else {
-                console.log(chalk.green('New Message: ' + object.fromUserid));
-              }
-            });
-          }
-        }
-
-        if (data.receipt && data.receipt.length > 0) {
-          for (var i = 0; i < data.receipt.length; ++i) {
-            const object = data.receipt[i];
-            var newObject = new cvcDatabase.getDatamodels().Receipt(object);
-            newObject.save(function(err) {
-              if (err) {
-                logger.error('Failed to save Receipt: ' + JSON.stringify(object));
-              } else {
-                console.log(chalk.green('New Receipt: ' + object.userid));
-              }
-            });
-          }
-        }
+        createPersons(data);
+        createCompanies(data);
+        createAdmins(data);
+        createMessages(data);
+        createReceipts(data);
       } else {
         logger.error('Failed to connect to MongoDB');
       }

@@ -1,3 +1,6 @@
+
+const path = require('path');
+
 module.exports = {
   stats: [
     './source/**/*.js'
@@ -20,7 +23,7 @@ module.exports = {
   test: {
     unit: {
       source: './source/test/unit/**/*.spec.js',
-      karma: __dirname + '/karma.conf.js',
+      karma: path.join(__dirname,'/karma.conf.js'),
       lint_exlude: []
     },
     e2e: {
@@ -140,7 +143,7 @@ module.exports = {
     all: ['dist/client/**/*','dist/server/**/*','temp/js/**/*.js'],
     server: {
       base_dir: 'dist/server/',
-      js: ['dist/server/**/*.js'],
+      js: ['dist/server/**/*.js']
     },
     client: {
       base_dir: 'dist/client/',

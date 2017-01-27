@@ -23,8 +23,10 @@
             while (oldStr !== str && safeCounter++ < 20) {
                 oldStr = str;
                 for (var value in jsonObject) {
-                    var reg = new RegExp('\\{' + value + '\\}', 'gm');
-                    str = str.replace(reg, $filter('translate')(jsonObject[value]));
+                    if (jsonObject.hasOwnProperty(value)) {
+                        var reg = new RegExp('\\{' + value + '\\}', 'gm');
+                        str = str.replace(reg, $filter('translate')(jsonObject[value]));
+                    }
                 }
             }
 

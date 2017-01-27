@@ -15,7 +15,9 @@
         var datasets = {};
 
         for (var key in AppConstants.DATASETS) {
-            datasets[AppConstants.DATASETS[key].NAME] = { path: AppConstants.DATASETS[key].PATH, callbacks: [], data: null };
+            if (AppConstants.DATASETS.hasOwnProperty(key)) {
+                datasets[AppConstants.DATASETS[key].NAME] = { path: AppConstants.DATASETS[key].PATH, callbacks: [], data: null };
+            }
         }
 
         // TODO: fetch all datasets that can be stored locally
