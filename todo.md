@@ -23,6 +23,7 @@
 
 ### Server
 - [X] ~~Tool to fill database with test data~~
+- [X] More const
 - [ ] Search module
 - [ ] Search indexing
 - [ ] Search permutation index generator
@@ -42,15 +43,14 @@
 - [ ] Statistics
 - [ ] Check file content against hash database for illegal content and report users
 - [ ] Library file folder partition
-- [ ] More const
 
 
 ### Environment
 - [X] ~~[Code analysis](https://codeclimate.com/github/Axodoss/Ceramic)~~
 - [X] Add Gulp support for [Sass](http://sass-lang.com/) &#x1F53A;
+- [X] [CircleCI](https://circleci.com/)
 - [ ] Add [Swagger](https://github.com/swagger-api/swagger-node) &#x1F53A;
 - [ ] Server documentation
-- [ ] [CircleCI](https://circleci.com/)
 - [ ] Redirect HTTP to HTTPS
 - [ ] Database backup and restore
 - [ ] [Docker](https://www.docker.com/) container
@@ -62,4 +62,3 @@
 - [ ] [Load tests](http://gatling.io/#/)
 - [ ] Remove Bower
 - [ ] Compile dependencies using [WebPack](https://webpack.github.io/)
-
