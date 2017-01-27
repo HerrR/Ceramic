@@ -33,6 +33,12 @@ gulp.task('clean:css', function() {
         .pipe(clean());
 });
 
+gulp.task('clean:sass', function() {
+    return gulp.src(config.destination.client.sass, {read: false})
+        .pipe(plumber())
+        .pipe(clean());
+});
+
 gulp.task('clean:server:js', function() {
     return gulp.src(config.destination.server.js, {read: false})
         .pipe(plumber())

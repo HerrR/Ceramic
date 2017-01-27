@@ -70,25 +70,37 @@ module.exports = {
 
   css: {
     source: './source/client/css/**/*.css',
-    generated: 'dist/client/client*.min.css',
+    generated: 'dist/client/css*.min.css',
+    compatibility: 'ie8',
+    lint_exlude: ['./bower_components/angular-material/angular-material.css'],
     screen: {
       source: [
         //'./bower_components/angular-material/angular-material.css',
         //'./bower_components/font-awesome/css/font-awesome.css',
         //'./bower_components/flag-icon-css/css/flag-icon-css.css',
-        './source/client/css/client-screen.css'
+        './source/client/css/css-screen.css'
       ],
-      destination_name: 'client-screen.min.css'
-    },
-    lint_exlude: ['./bower_components/angular-material/angular-material.css'],
-    compatibility: 'ie8'
+      destination_name: 'css-screen.min.css'
+    }
+  },
+
+  sass: {
+    source: './source/client/sass/**/*.sass',
+    generated: 'dist/client/sass*.min.css',
+    lint_exlude: [],
+    screen: {
+      source: [
+        './source/client/sass/sass-screen.sass'
+      ],
+      destination_name: 'sass-screen.min.css'
+    }
   },
 
   html: {
     source: './source/client/**/*.html',
     lint_exlude: [],
     main: './source/client/index.html',
-    inject: ['./dist/client/dependency*.min.js', './dist/client/client*.min.js', './dist/client/client*.min.css'],
+    inject: ['./dist/client/dependency*.min.js', './dist/client/client*.min.js', './dist/client/css*.min.css','./dist/client/sass*.min.css'],
     angular: {
       source: './source/client/partials/**/*.html',
       module_name: 'cvc',
@@ -131,7 +143,8 @@ module.exports = {
       js: ['dist/client/**/*.js','temp/js/**/*.js','dist/client/**/*.map'],
       scripts: ['dist/client/client*.js','temp/js/**/*.js','dist/client/client*.map'],
       dependency: ['dist/client/dependency*.js','dist/client/dependency*.map'],
-      css: 'dist/client/**/*.css'
+      css: 'dist/client/**/css*.css',
+      sass: 'dist/client/**/sass*.css'
     }
   },
 
