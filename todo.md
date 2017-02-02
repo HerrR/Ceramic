@@ -23,13 +23,13 @@
 
 ### Server
 - [X] ~~Tool to fill database with test data~~
-- [X] More const
+- [X] ~~More const~~
 - [ ] Search module
 - [ ] Search indexing
 - [ ] Search permutation index generator
 - [ ] Elasticsearch with MongoDB integration
-- [ ] Send messages
-- [ ] Recieve messages
+- [ ] Send messages &#x1F53A;
+- [ ] Recieve messages &#x1F53A;
 - [ ] Upload profile picture
 - [ ] Import profile data from Facebook
 - [ ] Import profile data from Google
@@ -47,8 +47,8 @@
 
 ### Environment
 - [X] ~~[Code analysis](https://codeclimate.com/github/Axodoss/Ceramic)~~
-- [X] Add Gulp support for [Sass](http://sass-lang.com/) &#x1F53A;
-- [X] [CircleCI](https://circleci.com/)
+- [X] ~~Add Gulp support for [Sass](http://sass-lang.com/)~~
+- [X] ~~[CircleCI](https://circleci.com/)~~
 - [ ] Add [Swagger](https://github.com/swagger-api/swagger-node) &#x1F53A;
 - [ ] Server documentation
 - [ ] Redirect HTTP to HTTPS
