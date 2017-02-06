@@ -1,4 +1,10 @@
-<div layout="row" layout-xs="column" layout-wrap>
+<h4>{{'profile.cv.education.high_school' | translate}} </h4>
+<education-card></education-card>
+
+<h4>{{'profile.cv.education.higher_education' | translate}}</h4>
+<education-card></education-card>
+<button class="cvc-button centered"><i class="fa fa-plus" aria-hidden="true"></i> Lägg till utbildning</button>
+<!--<div layout="row" layout-xs="column" layout-wrap>
     <div felx="auto" flex>
         <label><b>{{'profile.cv.education.high_school' | translate}}</b></label>
         <md-card class="cvc-container-border cvc-nobackground">
@@ -88,4 +94,4 @@
 
 <p ng-if="!profile.person.cv.education || profile.person.cv.education.length === 0">
     {{'profile.cv.education.empty_list' | translate}}
-</p>
+</p>-->

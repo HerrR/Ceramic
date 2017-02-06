@@ -1,0 +1,83 @@
+<md-content id="cvcWelcome" class="md-padding cvc-transparent" layout-align-lg="column" layout="row" layout-align="center center">
+    <main class="md-padding" layout="column" layout-align="center center" flex>
+        <h1 class="animated fadeIn cvc-title-color cvc-welcome-text cvc-welcome-title-delay">{{'home.select_user_or_company' | translate}}</h1>
+        <label class="animated fadeIn cvc-subtitle cvc-welcome-title-delay">{{'home.subtitle' | translate}}</label>
+        
+        <main class="md-padding" layout="row" layout-align="space-around start" flex>
+            
+            <div class="animated fadeInLeft" style="animation-delay: 0.6s">
+                <md-card id="cvcCompanyMainCard" class="cvc-welcome-company cvc-main-select-card" onclick="$('#cvcCompanyMainCard').hide(); $('#cvcCompanyLoginCard').show();">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline"></span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p class="cvc-welcome-card-text">{{'home.company.description' | translate}}</p>
+                    </md-card-content>
+                </md-card>
+
+                <div id="cvcCompanyLoginCard" class="animated flipInY" style="display: none">
+                    <md-card class="cvc-main-select-card" style="cursor: default;">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">
+                                    <p ng-repeat="provider in loginProviders" ng-if="loginProviders && loginProviders.length > 0">
+                                        <md-button analytics-on="click" analytics-event="signin_company_{{provider}}" id="{{provider}}SignInCompany" style="min-width: 95%" class="md-raised" ng-click="signInCompany(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
+                                    </p>
+                                    <div ng-if="$location.path().toString().indexOf('localhost') !== -1">
+                                        <input type="button" ng-click="signInCompanyUsingUsernamePassword('LOCAL')" value="Developer sign in">
+                                    </div>
+                                    <p ng-if="loginProviders.length === 0">
+                                        <!-- TODO: display error message -->
+                                    </p>
+                                </span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <p class="cvc-welcome-card-text">{{'home.select_sign_in_method' | translate}}</p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
+
+            <div class="animated fadeInRight" style="animation-delay: 0.6s">
+                <md-card id="cvcPersonMainCard" class="cvc-welcome-person cvc-main-select-card" onclick="$('#cvcPersonMainCard').hide(); $('#cvcPersonLoginCard').show();">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline"></span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p class="cvc-welcome-card-text">{{'home.user.description' | translate}}</p>
+                    </md-card-content>
+                </md-card>
+
+                <div id="cvcPersonLoginCard" class="animated flipInY" style="display: none">
+                    <md-card class="cvc-main-select-card" style="cursor: default;">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">
+                                    <p ng-repeat="provider in loginProviders" ng-if="loginProviders && loginProviders.length > 0">
+                                        <md-button analytics-on="click" analytics-event="signin_person_{{provider}}" id="{{provider}}SignInPerson" style="min-width: 95%" class="md-raised" ng-click="signInPerson(provider)"><i ng-class="getProviderCSS(provider)" aria-hidden="true"></i> {{'home.sign_in_using' | translate}} {{provider}}</md-button>
+                                    </p>
+                                    <div ng-if="$location.path().toString().indexOf('localhost') !== -1">
+                                        <input type="button" ng-click="signInPersonUsingUsernamePassword('LOCAL')" value="Developer sign in">
+                                    </div>
+                                    <p ng-if="loginProviders.length === 0">
+                                        <!-- TODO: display error message -->
+                                    </p>
+                                </span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <p class="cvc-welcome-card-text">{{'home.select_sign_in_method' | translate}}</p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
+        </main>
+    </main>
+</md-content>
+<div style="min-height:13.2vh"></div>
+

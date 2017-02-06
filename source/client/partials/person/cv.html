@@ -1,4 +1,4 @@
-<md-content class="md-padding cvc-nobackground">
+<!--<md-content class="md-padding cvc-nobackground">
     <md-list>
         <md-list-item style="padding-bottom: 32px">
             <label style="width: 100%"><b><i class="fa fa-graduation-cap" aria-hidden="true"></i> {{'profile.education' | translate}}</b>
@@ -40,4 +40,26 @@
             </label>
         </md-list-item>
     </md-list>
-</md-content>
+</md-content>-->
+<div class="cvHeader">
+    <h1>Mitt CV</h1>
+    <div class="savePdf">
+        <i class="fa fa-2x fa-file-pdf-o" aria-hidden="true"></i> Spara som PDF
+    </div>
+</div>
+<div class="cvWrapper">
+    <h2><i class="fa fa-graduation-cap" aria-hidden="true"></i> {{'profile.education' | translate}}</h2>
+    <div>
+        <ng-include src="'partials/person/cv/education.html'"/>
+    </div>
+
+    <h2><i class="fa fa-building" aria-hidden="true"></i> {{'profile.work_experience' | translate}}</h2>
+    <div>
+        <ng-include src="'partials/person/cv/work_experience.html'"/>
+    </div>
+
+    <h2><i class="fa fa-user" aria-hidden="true"></i> {{'profile.general_info' | translate}}</h2>
+    <div>
+        <ng-include src="'partials/person/cv/general_info.html'"/>
+    </div>
+</div>

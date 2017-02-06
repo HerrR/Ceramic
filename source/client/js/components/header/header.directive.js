@@ -12,7 +12,7 @@
             restrict: 'E',
             scope: {
             },
-            templateUrl: 'partials/header.html',
+            templateUrl: 'partials/common/header.html',
             controller: 'CvcHeaderController'
         };
     }

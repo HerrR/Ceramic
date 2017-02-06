@@ -1,14 +1,38 @@
-<md-list class="cvc-container-border">
-    <md-list-item>
-        <div style="text-align:center; min-width: 100%;">
-            <img class="cvc-profile-picture" src="{{profile.person.basic.profilePicture}}"/>
+<div class="sidebar" ng-class="{ hidden: hideSidebar() }" flex>
+    <div class="profilePicContainer">
+        <img class="cvc-profile-picture" src="{{profile.person.basic.profilePicture}}"/>
+    </div>
+    <div class="personInfo">
+        <div class="info">
+            <label for="name">Namn</label>
+            <input type="text" ng-model="profile.person.basic.name" id="name">
         </div>
-    </md-list-item>
+        <div class="info">
+            <label for="country">Land</label>
+            <input type="text" ng-model="profile.person.basic.country" id="country">
+        </div>
+        <div class="info">
+            <label for="city">Stad</label>
+            <input type="text" ng-model="profile.person.basic.city" id="city">
+        </div>
+        <div class="info">
+            <label for="email">E-Post</label>
+            <input type="text" ng-model="profile.person.basic.email" id="email">
+        </div>
+        <div class="info">
+            <label for="phone">Telefon</label>
+            <input type="text" ng-model="profile.person.basic.phone" id="phone">
+        </div>
+        <md-input-container>
+    </div>
+</div>
+    
+    <!--</md-list-item>-->
 
-    <md-list-item>
+    <!--<md-list-item>
         <formly-form ng-if="personBasicForm" model="viewModel" fields="personBasicForm"></formly-form>
-    </md-list-item>
-</md-list>
+    </md-list-item>-->
+
 
 <!-- <md-list class="cvc-container-border">
     <md-list-item>

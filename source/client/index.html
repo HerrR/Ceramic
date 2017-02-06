@@ -26,7 +26,14 @@
         <!-- endinject -->
     </head>
 
-    <body layout="column" ng-cloak ui-view>
+    <body ng-cloak>
+        <div class="page-wrap">
+            <cvc-header></cvc-header>
+            <div ui-view></div>
+        </div>
+        <cvc-footer></cvc-footer>
+        <!--<ng-include src="'partials/home.html'"></ng-include>-->
+        
         <script>
             window.fbAsyncInit = function() { FB.init({appId: '1739265906354328', xfbml: true, version: 'v2.6'}); };
             (function(d, s, id){ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));

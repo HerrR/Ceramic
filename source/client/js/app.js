@@ -22,11 +22,11 @@
         .config(Config)
         .run(Run);
 
-    Run.$inject = ['$rootScope', '$cookies', '$translate','localStorageService', 'AppConstants', 'FeatureToggleService'];
+    Run.$inject = ['$rootScope', '$cookies', '$translate', '$state', 'localStorageService', 'AppConstants', 'FeatureToggleService', 'ProfileService'];
     // Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider', 'ChartJsProvider'];
     Config.$inject = ['$compileProvider','$mdThemingProvider', '$mdDateLocaleProvider'];
 
-    function Run($rootScope, $cookies, $translate, localStorageService, AppConstants, FeatureToggleService) {
+    function Run($rootScope, $cookies, $translate, $state ,localStorageService, AppConstants, FeatureToggleService, ProfileService) {
         FeatureToggleService.init();
         localStorageService.clearAll();
 
@@ -54,6 +54,29 @@
         }
 
         $rootScope.locale = transformedLanguage;
+
+        $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+            if(toState.redirectTo){
+                event.preventDefault();
+                $state.go(toState.redirectTo, toParams, {location: 'replace'});
+                return;
+            };
+
+            if(toState.restrictAccessTo){
+                if(!ProfileService.hasSignedIn()){
+                    event.preventDefault();
+                    $state.go('home');
+                    return;
+                }
+
+                if(toState.restrictAccessTo.indexOf(ProfileService.getUserType()) === -1){
+                    event.preventDefault();
+                    $state.go(AppConstants.DEFAULT_ROUTES[ProfileService.getUserType()]);
+                    return;
+                }
+            }
+        });
+
 
         $translate.use(transformedLanguage).then(function () {
             // translation changed callback

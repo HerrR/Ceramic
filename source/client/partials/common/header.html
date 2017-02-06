@@ -1,0 +1,22 @@
+<md-toolbar class="md-medium-tall cvc-header" layout="row" md-whiteframe="4">
+    <div id="logoContainer">
+        <img src="Logotype.png" alt="Logotype" ui-sref="home">
+    </div>
+    <div id="navBurgerContainer">
+        <div id="navBurger" ng-class="{open: menuOpen}" ng-click="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="menuContainer" ng-class="{open: menuOpen}" layout="row" flex>
+        <div ng-repeat="(tabName, tabInfo) in menuOptions()" ng-click="closeMenu()" ui-sref="{{tabInfo.state}}" ui-sref-active="activeTab" class="menuItem">
+            <i class="fa fa-2x {{tabInfo.icon}}" aria-hidden="true"></i>
+            <div>{{ tabName | translate}}</div>
+        </div>
+        <div ng-click="signOut()" ng-if="isLoggedIn()" class="menuItem">
+            <i class="fa fa-2x fa-sign-out"></i>
+            <div>{{ 'profile.logout' | translate}}</div>
+        </div>
+    </div>
+</md-toolbar>

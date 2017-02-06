@@ -90,6 +90,7 @@
 				"profile.cv": "CV",
 				"profile.library": "Library",
 				"profile.settings": "Settings",
+				"profile.logout": "Log out",
 
 				"profile.basic": "Basic",
 				"profile.education": "Education",
@@ -411,10 +412,11 @@
 
 				"profile.description": "Personlig beskrivning",
 
-				"profile.dashboard": "Dashboard",
+				"profile.dashboard": "Översikt",
 				"profile.cv": "CV",
 				"profile.library": "Bibliotek",
 				"profile.settings": "Inställningar",
+				"profile.logout": "Logga ut",
 
 				"profile.basic": "Grundläggande",
 				"profile.education": "Utbildning",

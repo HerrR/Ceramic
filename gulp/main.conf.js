@@ -88,12 +88,12 @@ module.exports = {
   },
 
   sass: {
-    source: './source/client/sass/**/*.sass',
+    source: './source/client/sass/**/*.scss',
     generated: 'dist/client/sass*.min.css',
     lint_exlude: [],
     screen: {
       source: [
-        './source/client/sass/sass-screen.sass'
+        './source/client/sass/sass-screen.scss'
       ],
       destination_name: 'sass-screen.min.css'
     }

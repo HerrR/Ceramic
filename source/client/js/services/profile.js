@@ -8,9 +8,9 @@
         .module('cvc')
         .service('ProfileService', ProfileService);
 
-    ProfileService.$inject = ['$http', '$cookies', 'AppConstants', 'ScreenMessageService'];
+    ProfileService.$inject = ['$http', '$cookies', '$state', 'AppConstants', 'ScreenMessageService'];
 
-    function ProfileService($http, $cookies, AppConstants, ScreenMessageService) {
+    function ProfileService($http, $cookies, $state, AppConstants, ScreenMessageService) {
         var self = this;
         var userid;
         var userType;
@@ -51,11 +51,17 @@
             }
         }
 
+        self.getUserType = function(){
+            return userType;
+        };
+
         self.setUserType = function(_userType) {
             userType = _userType;
         };
 
         self.signIn = function(_userType, serviceType, changeURL, username, password) {
+            // console.log(_userType, serviceType, changeURL);
+            // console.log($cookies.getAll());
             if (_userType && serviceType) {
                 userType = _userType;
 
@@ -71,6 +77,8 @@
                         self.reload(function(data, err) {
                             if (err) {
                                 ScreenMessageService.error(AppConstants.TEXT_KEYS.SIGN_IN_ERROR);
+                            } else {
+                                $state.go(AppConstants.DEFAULT_ROUTES[userType]);
                             }
                         });
                     }, function(err) {
@@ -94,7 +102,8 @@
             profileData = undefined;
             $cookies.remove(AppConstants.COOKIES.USERTYPE);
             $cookies.remove(AppConstants.COOKIES.LOGINTYPE);
-            window.location.href = AppConstants.PATHS.AUTHORIZED + 'logout';
+            window.location.reload();
+            // window.location.href = AppConstants.PATHS.AUTHORIZED + 'logout';
         };
 
         self.hasSignedIn = function() {

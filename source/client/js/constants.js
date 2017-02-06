@@ -37,6 +37,10 @@
                 COMPANY: 'COMPANY',
                 PERSON: 'PERSON'
             },
+            DEFAULT_ROUTES: {
+                COMPANY: 'company.dashboard',
+                PERSON: 'person.dashboard'
+            },
             MESSAGE_TYPE: {
                 INFO: 'INFO',
                 WARN: 'WARN',
