@@ -24,12 +24,14 @@
 ### Server
 - [X] ~~Tool to fill database with test data~~
 - [X] ~~More const~~
-- [ ] Search module
+- [ ] [Test data](http://www.generatedata.com/) generator &#x1F53A;
+- [ ] Performance tests &#x1F53A;
+- [ ] Search module &#x1F53A;
+- [ ] Search permutation index generator &#x1F53A;
 - [ ] Search indexing
-- [ ] Search permutation index generator
 - [ ] Elasticsearch with MongoDB integration
-- [ ] Send messages &#x1F53A;
-- [ ] Recieve messages &#x1F53A;
+- [ ] Send messages
+- [ ] Recieve messages
 - [ ] Upload profile picture
 - [ ] Import profile data from Facebook
 - [ ] Import profile data from Google
@@ -49,7 +51,8 @@
 - [X] ~~[Code analysis](https://codeclimate.com/github/Axodoss/Ceramic)~~
 - [X] ~~Add Gulp support for [Sass](http://sass-lang.com/)~~
 - [X] ~~[CircleCI](https://circleci.com/)~~
-- [ ] Add [Swagger](https://github.com/swagger-api/swagger-node) &#x1F53A;
+- [X] Remove Bower
+- [ ] Add [Swagger](https://github.com/swagger-api/swagger-node)
 - [ ] Server documentation
 - [ ] Redirect HTTP to HTTPS
 - [ ] Database backup and restore
@@ -60,5 +63,4 @@
 - [ ] [Monitoring](https://www.pingdom.com/?utm_source=adroll&utm_medium=web&utm_campaign=static)
 - [ ] [BrowserSync](https://www.browsersync.io/) ([https://github.com/gulpjs/gulp/blob/master/docs/recipes/server-with-livereload-and-css-injection.md](docs))
 - [ ] [Load tests](http://gatling.io/#/)
-- [ ] Remove Bower
 - [ ] Compile dependencies using [WebPack](https://webpack.github.io/)
