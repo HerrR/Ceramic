@@ -1,0 +1,14 @@
+<div class="card general">
+    <div class="card-header">
+        <h2>Computer Skills</h2>
+        <div class="editButtons">
+            <i class="fa fa-pencil" ng-if="!editMode" ng-click="edit()" aria-hidden="true"></i>
+            <i class="fa fa-times" ng-if="!editMode" ng-click="ondelete()" aria-hidden="true"></i>
+            <i class="fa fa-floppy-o" ng-if="editMode" ng-click="save()" aria-hidden="true"></i>
+            <i class="fa fa-ban" ng-if="editMode" ng-click="cancel()" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="card-content">
+        Card content
+    </div>
+</div>

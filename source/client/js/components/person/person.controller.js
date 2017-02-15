@@ -22,6 +22,8 @@
         $scope.MAX_LIBRARY_COUNT = 20;
 
         $scope.profile = ProfileService.getProfile();
+        console.log("$scope.profile", $scope.profile);
+
         $scope.oldHashCode = UtilityService.computeHashCode($scope.profile);
         $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
         $scope.valuesChanged = false;
@@ -29,6 +31,7 @@
         $scope.latestUploadFileError = null;
 
         $scope.viewModel.profile = ProfileService.getProfile();
+        console.log("$scope.viewModel", $scope.viewModel);
         $scope.viewModel.answerChanged = function() {
             $scope.newHashCode = UtilityService.computeHashCode($scope.profile);
             $scope.valuesChanged = ($scope.newHashCode !== $scope.oldHashCode);

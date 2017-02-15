@@ -1,0 +1,103 @@
+<div class="card work">
+    <div class="card-header">
+        <h2 ng-if="!editMode">{{ experiencedata.company }} - {{ experiencedata.role.textKey | translate }}</h2>
+        <div class="editButtons" ng-if="!editMode">
+            <i class="fa fa-pencil" ng-click="edit()" aria-hidden="true"></i>
+            <i class="fa fa-times" ng-click="delete()" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="card-content" ng-if="!editMode">
+        <div layout="row" layout-xs="column">
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.experience.industry' | translate }} </div>
+                <div><b>{{ experiencedata.industry.textKey | translate }}</b></div>
+            </div>
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.experience.profession' | translate }} </div>
+                <div><b>{{ experiencedata.discipline.textKey | translate }}</b></div>
+            </div>
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.experience.from' | translate }} </div>
+                <div><b>{{ experiencedata.fromDate | date }}</b></div>
+            </div>
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.experience.to' | translate }} </div>
+                <div><b>{{ experiencedata.toDate | date }}</b></div>
+            </div>
+        </div>
+        <div layout="row">
+            <div class="card-item description" flex>
+                <div class="label">{{'profile.cv.experience.description' | translate}}</div>
+                <div>{{ experiencedata.description }}</div>
+            </div>
+        </div>
+
+        <!-- TODO: Responsibilities & Key Competencies-->
+    </div>
+
+    <form name="editExperienceForm" class="card-content" ng-if="editMode" ng-submit="save()">
+        <div layout="row" layout-xs="column">
+            <md-input-container flex>
+                <label>{{'profile.cv.experience.company' | translate}}</label>
+                <input type="text" ng-model="tempData.company" required>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>{{ 'profile.cv.experience.industry' | translate }}</label>
+                <md-select ng-model="tempData.industry" placeholder="Industry" ng-change="resetDiscipline()">
+                    <md-option ng-repeat="c in competenceHierarchy" ng-value="c">
+                        {{ c.textKey | translate }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+
+        <div layout="row" layout-xs="column">
+            <md-input-container flex>
+                <label>{{ 'profile.cv.experience.discipline' | translate }}</label>
+                <md-select ng-model="tempData.discipline" placeholder="Discipline" ng-change="resetRole()">
+                    <md-option ng-repeat="d in disciplines()" ng-value="d">
+                        {{ d.textKey | translate }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>{{ 'profile.cv.experience.role' | translate }}</label>
+                <md-select ng-model="tempData.role" placeholder="Role" ng-change="mjao()">
+                    <md-option ng-repeat="r in roles()" ng-value="r">
+                        {{ r.textKey | translate }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+
+        <div layout="row" layout-xs="column">
+            <md-input-container flex>
+                <label>{{'profile.cv.experience.from' | translate}}</label>
+                <input type="date" ng-model="tempData.fromDate" required>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>{{'profile.cv.experience.to' | translate}}</label>
+                <input type="date" ng-model="tempData.toDate" required>
+            </md-input-container>
+        </div>
+        
+        <div layout="row">
+            <md-input-container flex>
+                <label>{{'profile.cv.experience.description' | translate}}</label>
+                <textarea ng-model="tempData.description" required>
+            </md-input-container>
+        </div>
+        
+        <div layout="row">
+            <button type="submit" class="cvc-button" ng-disabled="editExperienceForm.$invalid || tempDataHasNulls()" flex>
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ 'profile.save' | translate | capitalize }}
+            </button>
+            <button class="cvc-button" ng-click="cancel()" flex>
+                <i class="fa fa-ban" aria-hidden="true"></i> {{ 'profile.cancel' | translate | capitalize }}
+            </button>
+        </div>
+    </form>
+</div>

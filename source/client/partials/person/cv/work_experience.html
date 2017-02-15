@@ -1,4 +1,12 @@
-<div layout="row" layout-xs="column" layout-wrap>
+<work-card 
+    ng-repeat="exp in cvData.experience" 
+    experiencedata="exp" 
+    onsave="saveExperience($index, data)" 
+    ondelete="removeExperience($index)"
+    ></work-card>
+<button class="cvc-button centered" ng-click="addExperience()"><i class="fa fa-plus" aria-hidden="true"></i> {{ 'profile.label.add_work' | translate }}</button>
+
+<!--<div layout="row" layout-xs="column" layout-wrap>
     <div felx="auto" style="width:48%; margin:10px" ng-repeat="experience in profile.person.cv.experience">
         <md-card class="cvc-container-border cvc-nobackground">
             <md-card-header>
@@ -38,31 +46,6 @@
                                 </md-select>
                             </md-input-container>
                         </div>
-                        <!--<md-chips ng-model="experience.keyCompetencies" 
-                                  ng-change="answerChanged()" 
-                                  ng-disabled="!experience.role"
-                                  name="keyCompetencies"
-                                  readonly="false" 
-                                  md-removable="true" 
-                                  md-max-chips="3" 
-                                  md-require-match="true" 
-                                  placeholder="{{'profile.cv.experience.key_competencies' | translate}}" 
-                                  secondary-placeholder="{{'profile.cv.experience.key_competencies.add' | translate}}"
-                                  delete-hint="{{'profile.cv.experience.key_competencies.delete_hint' | translate}}"
-                                  delete-button-label="{{'profile.cv.experience.key_competencies.delete' | translate}}">
-                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getKeyCompetencies(experience)" md-item-text="item.textKey">
-                                <md-item-template>
-                                    <span md-highlight-text="searchText">{{item.textKey | translate}}</span>
-                                </md-item-template>
-                                <md-not-found>
-                                    {{'not_found' | translate}}
-                                </md-not-found>
-                            </md-autocomplete>
-                            <md-chip-template>
-                                <strong>{{$chip.textKey | translate}}</strong>
-                            </md-chip-template>
-                        </md-chips>-->
-
                     </md-card-subhead>
                 </md-card-header-text>
             </md-card-header>
@@ -86,4 +69,4 @@
 
 <p ng-if="!profile.person.cv.experience || profile.person.cv.experience.length === 0">
     {{'profile.cv.experience.empty_list' | translate}}
-</p>
+</p>-->

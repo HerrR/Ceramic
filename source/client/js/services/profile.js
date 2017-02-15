@@ -42,6 +42,10 @@
                         profile.person.cv.experience[experienceId].toDate = toDate(profile.person.cv.experience[experienceId].toDate);
                     }
 
+                    // if(profile.person.cv.high_school === undefined){
+                    //     profile.person.cv.high_school = angular.copy(AppConstants.CV_OBJECTS.EDUCATION_OBJECT);
+                    // }
+
                     // TODO
                 }
 

@@ -6,7 +6,7 @@
 			"translations": {
 				"error.general": "Error",
 
-				"page_title": "CV121 International",
+				"page_title": "CV121",
 				"home.company.title": "CV121",
 				"home.company.description": "Employer Pages",
 				"home.user.title": "User",
@@ -18,6 +18,14 @@
 
 				"label.selectLanguage": "Select language:",
 
+				"dialog.education.delete_row.title": "Remove this education card?",
+				"dialog.education.delete_row.text_content": "The education card will be removed from your CV.",
+				"dialog.experience.delete_row.title": "Remove this experience card?",
+				"dialog.experience.delete_row.text_content": "The experience card will be removed from your CV.",
+				"dialog.ok": "Yes, remove it",
+				"dialog.cancel": "No, cancel",
+
+				"profile.my_cv": "My CV",
 				"profile.generate_pdf": "Get PDF",
 				"profile.save": "save",
 				"profile.cancel": "cancel",
@@ -36,6 +44,7 @@
 				"profile.label.add_language": "Add Language",
 
 				"profile.cv.education.name": "Name",
+				"profile.cv.education.school": "School",
 				"profile.cv.education.degree": "Degree",
 				"profile.cv.education.faculty": "Faculty",
 				"profile.cv.education.from": "From date",
@@ -47,11 +56,12 @@
 
 				"profile.cv.experience.company": "Company",
 				"profile.cv.experience.industry": "Industry",
+				"profile.cv.experience.profession": "Area of profession",
+				"profile.cv.experience.discipline": "Main discipline",
 				"profile.cv.experience.role": "Role",
 				"profile.cv.experience.from": "From date",
 				"profile.cv.experience.to": "To date",
 				"profile.cv.experience.empty_list": "No work experience added.",
-				"profile.cv.experience.profession": "Profession",
 				"profile.cv.experience.key_competencies": "Key Competencies",
 				"profile.cv.experience.key_competencies.add": "Add more",
 				"profile.cv.experience.key_competencies.delete_hint": "Press backspace to remove",
@@ -96,6 +106,7 @@
 				"profile.education": "Education",
 				"profile.work_experience": "Work Experience",
 				"profile.general_info": "General Information",
+				"profile.general.compensation":"Compensation",
 
 				"error.get_profile": "Failed to fetch profile info",
 				"error.required": "This is required.",
@@ -331,7 +342,7 @@
 			"translations": {
 				"error.general": "Fel",
 
-				"page_title": "CV121 International",
+				"page_title": "CV121",
 				"home.company.title": "CV121",
 				"home.company.description": "Arbetsgivarsidan",
 				"home.user.title": "Användare",
@@ -343,6 +354,14 @@
 
 				"label.selectLanguage": "Välj språk:",
 
+				"dialog.education.delete_row.title": "Ta bort denna utbildning?",
+				"dialog.education.delete_row.text_content": "Den valda utbildningen kommer att tas bort från ditt CV.",
+				"dialog.experience.delete_row.title": "Ta bort denna arbetslivserfarenhet?",
+				"dialog.experience.delete_row.text_content": "Den valda arbetslivserfarenheten kommer att tas bort från ditt CV.",
+				"dialog.ok": "Ja, ta bort",
+				"dialog.cancel": "Nej, avbryt",
+
+				"profile.my_cv": "Mitt CV",
 				"profile.generate_pdf": "Hämta PDF",
 				"profile.save": "spara",
 				"profile.cancel": "avbryt",
@@ -361,6 +380,7 @@
 				"profile.label.add_language": "Lägg till språk",
 
 				"profile.cv.education.name": "Namn",
+				"profile.cv.education.school": "Skola",
 				"profile.cv.education.degree": "Examen",
 				"profile.cv.education.faculty": "Fakultet",
 				"profile.cv.education.from": "Från datum",
@@ -373,11 +393,12 @@
 
 				"profile.cv.experience.company": "Företag",
 				"profile.cv.experience.industry": "Industri",
+				"profile.cv.experience.profession": "Yrkesområde",
+				"profile.cv.experience.discipline": "Yrkesinriktning",
 				"profile.cv.experience.role": "Roll",
 				"profile.cv.experience.from": "Från datum",
 				"profile.cv.experience.to": "Till datum",
 				"profile.cv.experience.empty_list": "Ingen arbetslivserfarenhet tillagd.",
-				"profile.cv.experience.profession": "Profession",
 				"profile.cv.experience.key_competencies": "Nyckelkunskaper",
 				"profile.cv.experience.key_competencies.add": "Lägg till",
 				"profile.cv.experience.key_competencies.delete_hint": "Tryck backspace för att ta bort",
@@ -422,6 +443,7 @@
 				"profile.education": "Utbildning",
 				"profile.work_experience": "Arbetslivserfarenhet",
 				"profile.general_info": "Allmän Information",
+				"profile.general.compensation":"Kompensation",
 
 				"error.get_profile": "Gick inte att hämta profilinformation",
 				"error.required": "Detta är ett krav.",

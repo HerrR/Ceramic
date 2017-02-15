@@ -20,6 +20,15 @@ html, body {
   }
 }
 
+/* md-select fix for font not supporting '\25BC' */ 
+.md-select-icon {
+  font-family: sans-serif;
+}
+
+.padding {
+    padding:20px;
+}
+
 #contentWrapper {
     width:90%;
     margin:20px auto;
@@ -53,19 +62,21 @@ html, body {
     }
 }
 
-.sidebar {
-    .personInfo {
-        .info {
-            margin: 10px auto;
-            input {
-                width: 100%;
-                font-weight:bold;
-                border: none;
-                text-align:center;
-                &#name {
-                    font-size:1.2em;
-                }
-            }
+.sidebar .personInfo .info {
+    margin: 25px auto;
+    
+    label {
+        color: $gray-medium;
+        font-size:0.9em;
+    }
+
+    input {
+        width: 100%;
+        font-weight:bold;
+        border: none;
+        text-align:center;
+        &#name {
+            font-size:1.2em;
         }
     }
 }
@@ -148,6 +159,7 @@ ng-form.formly {
 .card {
     width:100%;
     background-color:white;
+    margin-bottom:20px;
     @include boxShadow();
 
     &.work .card-header{
@@ -158,8 +170,32 @@ ng-form.formly {
         background-color: $educationCardColor;
     }
 
+    &.general {
+        &#languages {
+            margin-right:1%;
+            width:49%;
+            display: inline-block;
+        }
+
+        &#compensation {
+            margin-left:1%;
+            width:49%;
+            display: inline-block;
+        }
+
+        &#languages, &#compensation {
+            @media #{$mobileCssQuery}{
+                display: block;
+                width:100%;
+                margin-left:0;
+                margin-right:0;
+            }
+        }
+    }
+
     .card-header {
         background-color: $generalCardColor;
+        min-height:19px;
         color:white;
         padding:10px 25px;
         display: flex;
@@ -177,6 +213,21 @@ ng-form.formly {
 
     .card-content {
         padding:20px;
+        .card-item {
+            margin-top:10px;
+            margin-bottom:10px;
+            text-align:center;
+            &.description {
+                text-align:left;
+            }
+            .label {
+                color: $gray-medium;
+            }
+        }
+
+        .description {
+            margin-top:20px;
+        }
     }
 }
 
@@ -185,7 +236,7 @@ ng-form.formly {
         cursor:pointer;
         color:#c4c4c4;
         margin:0 2px;
-        transition:color 0.3s;
+        // transition:color 0.3s;
     }
 
     .fa-times:hover {
@@ -195,6 +246,17 @@ ng-form.formly {
     .fa-pencil:hover{
         color:#e1a535;
     }
+
+    .fa-ban:hover {
+        color:$gray-medium;
+    }
+
+    .fa-floppy-o:hover{
+        color:#009900;
+    }
+
+//     fa-floppy-o
+// fa-ba
 }
 
 .cvc-button {

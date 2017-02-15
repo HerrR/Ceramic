@@ -1,4 +1,7 @@
 $backgroundColor: #f7f7f7;
+$gray-dark: #212121;
+$gray-medium: #aaa;
+$gray-light: #e0e0e0;
 $headerColor: #212121;
 $footerColor: #212121;
 $menuItemColor: #38de7e;
@@ -8,7 +11,7 @@ $workCardColor: #245b3b;
 $generalCardColor: #3a245b; 
 
 $headerHeight: 150px;
-$footerHeight: 150px;
+$footerHeight: 80px;
 
 $mobileCssQuery: "all and (max-width: 680px)";
 $mobileCssQuery-landscape: "all and (max-width:680px) and (orientation:landscape)";

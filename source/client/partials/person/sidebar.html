@@ -4,26 +4,29 @@
     </div>
     <div class="personInfo">
         <div class="info">
-            <label for="name">Namn</label>
+            <label for="name">{{ 'profile.username' | translate }}</label>
             <input type="text" ng-model="profile.person.basic.name" id="name">
         </div>
         <div class="info">
-            <label for="country">Land</label>
-            <input type="text" ng-model="profile.person.basic.country" id="country">
+            <label for="dateOfBirth">{{ 'profile.date_of_birth' | translate }}</label>
+            <input type="date" ng-model="profile.person.basic.dateOfBirth" id="dateOfBirth">
         </div>
         <div class="info">
-            <label for="city">Stad</label>
+            <label for="city">{{ 'profile.city' | translate }}</label>
             <input type="text" ng-model="profile.person.basic.city" id="city">
         </div>
         <div class="info">
-            <label for="email">E-Post</label>
+            <label for="country">{{ 'profile.country' | translate }}</label>
+            <input type="text" ng-model="profile.person.basic.country" id="country">
+        </div>
+        <div class="info">
+            <label for="email">{{ 'profile.email' | translate }}</label>
             <input type="text" ng-model="profile.person.basic.email" id="email">
         </div>
         <div class="info">
-            <label for="phone">Telefon</label>
+            <label for="phone">{{ 'profile.phone_number' | translate }}</label>
             <input type="text" ng-model="profile.person.basic.phone" id="phone">
         </div>
-        <md-input-container>
     </div>
 </div>
     

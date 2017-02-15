@@ -6,6 +6,37 @@
     angular
         .module('cvc')
         .constant('AppConstants', {
+            CV_OBJECTS: {
+                EDUCATION_OBJECT: {
+                    school: null,
+                    program: null,
+                    fromDate: new Date(),
+                    toDate: new Date(),
+                    description: null
+                },
+                WORK_OBJECT: {
+                    company: null,
+                    industry: null,
+                    discipline: null,
+                    role: null,
+                    description: null,
+                    fromDate: new Date(),
+                    toDate: new Date(),
+                    keyCompetencies: [],
+                    responsibilities: []
+                }
+                // WORK_OBJECT: {
+                //     company: null,
+                //     industry: null,
+                //     discipline: null,
+                //     role: null,
+                //     description: null,
+                //     fromDate: new Date(),
+                //     toDate: new Date(),
+                //     keyCompetencies: [],
+                //     responsibilities: []
+                // }
+            },
             COOKIES: {
                 LANGUAGE: 'cvc-language',
                 USERTYPE: 'cvc-usertype',

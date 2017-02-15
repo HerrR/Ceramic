@@ -1,9 +1,22 @@
 <h4>{{'profile.cv.education.high_school' | translate}} </h4>
-<education-card></education-card>
+<education-card
+    type="high_school"
+    educationdata="cvData.high_school"
+    onsave="updateHighschool(data)"
+    ondelete="clearHighschool()"></education-card>
 
 <h4>{{'profile.cv.education.higher_education' | translate}}</h4>
-<education-card></education-card>
-<button class="cvc-button centered"><i class="fa fa-plus" aria-hidden="true"></i> Lägg till utbildning</button>
+<education-card 
+    ng-repeat="highEd in cvData.education"
+    type="university"
+    educationdata="highEd"
+    onsave="saveEducation($index, data)"
+    ondelete="removeEducation($index)"></education-card>
+
+<button class="cvc-button centered" ng-click="addEducation()">
+    <i class="fa fa-plus" aria-hidden="true"></i> {{ 'profile.label.add_education' | translate }}
+</button>
+
 <!--<div layout="row" layout-xs="column" layout-wrap>
     <div felx="auto" flex>
         <label><b>{{'profile.cv.education.high_school' | translate}}</b></label>

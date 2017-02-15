@@ -5,15 +5,15 @@
 
     angular
         .module('cvc')
-        .directive('educationCard', Directive);
+        .directive('computerSkillsCard', Directive);
 
     function Directive() {
         return {
             restrict: 'E',
             scope: {
             },
-            templateUrl: 'partials/person/cv/cards/education_card.html',
-            controller: 'CvCardController'
+            templateUrl: 'partials/person/cv/cards/computer_skills.html',
+            controller: 'ComputerSkillsCardController'
         };
     }
 })();

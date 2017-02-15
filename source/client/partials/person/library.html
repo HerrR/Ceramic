@@ -2,7 +2,7 @@
     <md-list>
         <md-list-item>
             <div class="cvc-container-border" ng-if="profile.person.library && profile.person.library.length > 0">
-                <table style="width:700px; text-align:left;">
+                <table>
                     <tr>
                         <th style="max-width:50px"></th>
                         <th style="max-width:450px">{{'profile.library.filename' | translate}}</th>
@@ -33,12 +33,12 @@
                 <p>{{'profile.library.empty_list' | translate}}</p>
             </div>
 
-            <span class="fileinput-button cvc-button fa-stack" style="padding-top:16px; width:50px; height:50px;">
+            <span class="fileinput-button fa-stack" style="padding-top:16px; width:50px; height:50px;">
                 <md-tooltip md-direction="left" style="font-size:100%">
                     {{'profile.label.add_library' | translate}}
                 </md-tooltip>
-                <i class="fa fa-plus cvc-add-button-1 fa-stack-1x" aria-hidden="true"></i>
-                <i class="fa fa-plus-circle cvc-add-button-2 fa-stack-2x" aria-hidden="true"></i>
+                <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
+                <i class="fa fa-plus-circle fa-stack-2x" aria-hidden="true"></i>
                 <input type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept=".pdf,images/*" ngf-max-size="1MB">
             </span>
             <span ng-if="latestUploadFile !== null && latestUploadFile.progress < 100.0">{{latestUploadFile.progress + '%'}}</span>
