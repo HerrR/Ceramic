@@ -1,6 +1,6 @@
 <div class="card work">
     <div class="card-header">
-        <h2 ng-if="!editMode">{{ experiencedata.company }} - {{ experiencedata.role.textKey | translate }}</h2>
+        <h2 ng-if="!editMode">{{ experiencedata.company }} - {{ getTextKey('role') | translate}}</h2>
         <div class="editButtons" ng-if="!editMode">
             <i class="fa fa-pencil" ng-click="edit()" aria-hidden="true"></i>
             <i class="fa fa-times" ng-click="delete()" aria-hidden="true"></i>
@@ -10,11 +10,16 @@
         <div layout="row" layout-xs="column">
             <div class="card-item" flex>
                 <div class="label"> {{ 'profile.cv.experience.industry' | translate }} </div>
-                <div><b>{{ experiencedata.industry.textKey | translate }}</b></div>
+                <div><b>{{ getTextKey('industry') | translate}}</b></div>
             </div>
+
             <div class="card-item" flex>
                 <div class="label"> {{ 'profile.cv.experience.profession' | translate }} </div>
-                <div><b>{{ experiencedata.discipline.textKey | translate }}</b></div>
+                <div><b>{{ getTextKey('profession') | translate}}</b></div>
+            </div>
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.experience.discipline' | translate }} </div>
+                <div><b>{{ getTextKey('discipline') | translate}}</b></div>
             </div>
             <div class="card-item" flex>
                 <div class="label"> {{ 'profile.cv.experience.from' | translate }} </div>
@@ -36,16 +41,45 @@
     </div>
 
     <form name="editExperienceForm" class="card-content" ng-if="editMode" ng-submit="save()">
+        <!--<div layout="row" layout-xs="column">
+            <div flex>
+                Industry: {{ getTextKey('industry') | translate}}
+            </div>
+            <div flex>
+                Profession: {{ getTextKey('profession') | translate }}
+            </div>
+            <div flex>
+                Discipline: {{ getTextKey('discipline') | translate }}
+            </div>
+            <div flex>
+                Role: {{ getTextKey('role') | translate }}
+            </div>
+        </div>-->
+
         <div layout="row" layout-xs="column">
+            <!--COMPANY -->
             <md-input-container flex>
                 <label>{{'profile.cv.experience.company' | translate}}</label>
                 <input type="text" ng-model="tempData.company" required>
             </md-input-container>
+        </div>
 
+        <div layout="row" layout-xs="column">
+            <!-- INDUSTRY -->
             <md-input-container flex>
                 <label>{{ 'profile.cv.experience.industry' | translate }}</label>
-                <md-select ng-model="tempData.industry" placeholder="Industry" ng-change="resetDiscipline()">
-                    <md-option ng-repeat="c in competenceHierarchy" ng-value="c">
+                <md-select ng-model="tempData.industry" placeholder="{{ 'profile.cv.experience.industry' | translate }}">
+                    <md-option ng-repeat="i in industries" ng-value="i.id">
+                        {{ i.textKey | translate }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <!-- PROFESSION -->
+            <md-input-container flex>
+                <label>{{ 'profile.cv.experience.profession' | translate }}</label>
+                <md-select ng-model="tempData.profession" placeholder="{{ 'profile.cv.experience.profession' | translate }}" ng-change="resetDiscipline()">
+                    <md-option ng-repeat="c in competenceHierarchy" ng-value="c.id">
                         {{ c.textKey | translate }}
                     </md-option>
                 </md-select>
@@ -53,19 +87,21 @@
         </div>
 
         <div layout="row" layout-xs="column">
+            <!-- DISCIPLINE -->
             <md-input-container flex>
                 <label>{{ 'profile.cv.experience.discipline' | translate }}</label>
-                <md-select ng-model="tempData.discipline" placeholder="Discipline" ng-change="resetRole()">
-                    <md-option ng-repeat="d in disciplines()" ng-value="d">
+                <md-select ng-model="tempData.discipline" placeholder="{{ 'profile.cv.experience.discipline' | translate }}" ng-change="resetRole()">
+                    <md-option ng-repeat="d in disciplines()" ng-value="d.id">
                         {{ d.textKey | translate }}
                     </md-option>
                 </md-select>
             </md-input-container>
 
+            <!-- ROLE -->
             <md-input-container flex>
                 <label>{{ 'profile.cv.experience.role' | translate }}</label>
-                <md-select ng-model="tempData.role" placeholder="Role" ng-change="mjao()">
-                    <md-option ng-repeat="r in roles()" ng-value="r">
+                <md-select ng-model="tempData.role" placeholder="{{ 'profile.cv.experience.role' | translate }}">
+                    <md-option ng-repeat="r in roles()" ng-value="r.id">
                         {{ r.textKey | translate }}
                     </md-option>
                 </md-select>

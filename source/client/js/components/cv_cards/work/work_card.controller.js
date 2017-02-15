@@ -14,32 +14,17 @@
         $scope.selectedIndustry = undefined;
 
         DatasetService.getAsync(AppConstants.DATASETS.INDUSTRY.NAME, function(data) {
-            // console.log("industries", data.list);
-            // $scope.industries = data.list;
-        });
-
-        DatasetService.getAsync(AppConstants.DATASETS.PROFESSION.NAME, function(data) {
-            // console.log("professions", data.list);
-            $scope.professions = data.list;
+            $scope.industries = data.list;
         });
 
         DatasetService.getAsync(AppConstants.DATASETS.COMPETENCY_HIERACHY.NAME, function(data) {
-            // console.log("competence hierarchy", data.list);
-            // competenceHierarchy == industries
-            // $scope.industries = data.list;
-            console.log(data.list);
             $scope.competenceHierarchy = data.list;
         });
 
-        DatasetService.getAsync(AppConstants.DATASETS.ROLE.NAME, function(data) {
-            // console.log("Roles", data.list);
-            $scope.roles = data.list;
-        });
-
         $scope.disciplines = function(){
-            if($scope.tempData.industry){
+            if($scope.tempData.profession){
                 for(var i = 0; i < $scope.competenceHierarchy.length; i++){
-                    if($scope.competenceHierarchy[i].id === $scope.tempData.industry.id){
+                    if($scope.competenceHierarchy[i].id === $scope.tempData.profession){
                         return $scope.competenceHierarchy[i].discipline;
                     }
                 }
@@ -51,13 +36,63 @@
             if($scope.tempData.discipline){
                 var disciplines = $scope.disciplines();
                 for(var i = 0; i < disciplines.length ; i++ ){
-                    if(disciplines[i].id === $scope.tempData.discipline.id){
+                    if(disciplines[i].id === $scope.tempData.discipline){
                         return disciplines[i].role;
                     }
                 }
             }
 
             return undefined;
+        }
+
+        $scope.getTextKey = function(field){
+            if(!$scope.experiencedata[field]){
+                return;
+            }
+
+            if(field === "industry"){
+                for(var i = 0; i < $scope.industries.length ; i++ ){
+                    if($scope.industries[i].id === $scope.experiencedata.industry){
+                        return $scope.industries[i].textKey;
+                    }
+                }
+            }
+
+            if(field === "profession"){
+                for(var i = 0; i < $scope.competenceHierarchy.length; i++){
+                    if($scope.competenceHierarchy[i].id === $scope.experiencedata.profession){
+                        return $scope.competenceHierarchy[i].textKey;
+                    }
+                }
+            }
+
+            if(field === "discipline"){
+                for(var i = 0; i < $scope.competenceHierarchy.length; i++){
+                    if($scope.competenceHierarchy[i].id === $scope.experiencedata.profession){
+                        for(var j = 0; j < $scope.competenceHierarchy[i].discipline.length; j++){
+                            if($scope.competenceHierarchy[i].discipline[j].id === $scope.experiencedata.discipline){
+                                return $scope.competenceHierarchy[i].discipline[j].textKey;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(field === "role"){
+                for(var i = 0; i < $scope.competenceHierarchy.length; i++){
+                    if($scope.competenceHierarchy[i].id === $scope.experiencedata.profession){
+                        for(var j = 0; j < $scope.competenceHierarchy[i].discipline.length; j++){
+                            if($scope.competenceHierarchy[i].discipline[j].id === $scope.experiencedata.discipline){
+                                for(var k = 0; k < $scope.competenceHierarchy[i].discipline[j].role.length; k++){
+                                    if($scope.competenceHierarchy[i].discipline[j].role[k].id === $scope.experiencedata.role){
+                                        return $scope.competenceHierarchy[i].discipline[j].role[k].textKey;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         $scope.resetIndustry = function(){
@@ -72,11 +107,6 @@
 
         $scope.resetRole = function(){
             $scope.tempData.role = null;
-        }
-
-
-        $scope.mjao = function(){
-            console.log($scope.tempData);
         }
         
         $scope.toggleEditMode = function(){

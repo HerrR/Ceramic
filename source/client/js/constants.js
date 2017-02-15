@@ -17,6 +17,7 @@
                 WORK_OBJECT: {
                     company: null,
                     industry: null,
+                    profession: null,
                     discipline: null,
                     role: null,
                     description: null,

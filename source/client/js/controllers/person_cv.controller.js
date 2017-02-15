@@ -76,7 +76,7 @@
 
             for(var index in $scope.cvData.experience){
                 if(!hasNullValues($scope.cvData.experience[index])){
-                    $scope.profile.person.cv.experience.push($scope.cvData.education[index]);
+                    $scope.profile.person.cv.experience.push($scope.cvData.experience[index]);
                 }
             }
 
