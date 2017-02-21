@@ -19,6 +19,7 @@
 - [ ] Employer: Receipts
 - [ ] Employer: Settings
 - [ ] Employer: Add Funds / Payment / Purchase
+- [ ] [Google Places](https://developers.google.com/places/)
 
 
 ### Server
