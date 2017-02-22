@@ -1,3 +1,6 @@
+
+const path = require('path');
+
 module.exports = {
   stats: [
     './source/**/*.js'
@@ -20,7 +23,7 @@ module.exports = {
   test: {
     unit: {
       source: './source/test/unit/**/*.spec.js',
-      karma: __dirname + '/karma.conf.js',
+      karma: path.join(__dirname,'/karma.conf.js'),
       lint_exlude: []
     },
     e2e: {
@@ -39,8 +42,8 @@ module.exports = {
   node: {
     main: 'main.js',
     batch: 'batch.js',
-    source: './source/server/**/*.js',
-    lint_exlude: [],
+    source: ['./source/server/**/*.js', './source/server/**/*.yml'],
+    lint_exlude: ['./source/server/**/*.yml'],
     config: '',
     exec: ''
   },
@@ -70,25 +73,37 @@ module.exports = {
 
   css: {
     source: './source/client/css/**/*.css',
-    generated: 'dist/client/client*.min.css',
+    generated: 'dist/client/css*.min.css',
+    compatibility: 'ie8',
+    lint_exlude: ['./bower_components/angular-material/angular-material.css'],
     screen: {
       source: [
         //'./bower_components/angular-material/angular-material.css',
         //'./bower_components/font-awesome/css/font-awesome.css',
         //'./bower_components/flag-icon-css/css/flag-icon-css.css',
-        './source/client/css/client-screen.css'
+        './source/client/css/css-screen.css'
       ],
-      destination_name: 'client-screen.min.css'
-    },
-    lint_exlude: ['./bower_components/angular-material/angular-material.css'],
-    compatibility: 'ie8'
+      destination_name: 'css-screen.min.css'
+    }
+  },
+
+  sass: {
+    source: './source/client/sass/**/*.sass',
+    generated: 'dist/client/sass*.min.css',
+    lint_exlude: [],
+    screen: {
+      source: [
+        './source/client/sass/sass-screen.sass'
+      ],
+      destination_name: 'sass-screen.min.css'
+    }
   },
 
   html: {
     source: './source/client/**/*.html',
     lint_exlude: [],
     main: './source/client/index.html',
-    inject: ['./dist/client/dependency*.min.js', './dist/client/client*.min.js', './dist/client/client*.min.css'],
+    inject: ['./dist/client/dependency*.min.js', './dist/client/client*.min.js', './dist/client/css*.min.css','./dist/client/sass*.min.css'],
     angular: {
       source: './source/client/partials/**/*.html',
       module_name: 'cvc',
@@ -117,21 +132,26 @@ module.exports = {
 
   destination: {
     pack_destination: 'C:/Users/Lukas/Dropbox/ProjectX/Technology/Builds',
-    files: ['dist/**/*','package.json','scripts/*.sh'],
+    files: [
+      'dist/**/*',
+      'package.json',
+      'scripts/*.sh'
+    ],
     exclude: ['server/*.crt','server/*.key'],
     base_dir: 'dist/',
     temp_folder: './temp/',
     all: ['dist/client/**/*','dist/server/**/*','temp/js/**/*.js'],
     server: {
       base_dir: 'dist/server/',
-      js: ['dist/server/**/*.js'],
+      js: ['dist/server/**/*.js']
     },
     client: {
       base_dir: 'dist/client/',
       js: ['dist/client/**/*.js','temp/js/**/*.js','dist/client/**/*.map'],
       scripts: ['dist/client/client*.js','temp/js/**/*.js','dist/client/client*.map'],
       dependency: ['dist/client/dependency*.js','dist/client/dependency*.map'],
-      css: 'dist/client/**/*.css'
+      css: 'dist/client/**/css*.css',
+      sass: 'dist/client/**/sass*.css'
     }
   },
 

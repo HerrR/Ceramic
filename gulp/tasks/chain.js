@@ -26,8 +26,8 @@ gulp.task('chain:dependency', function(done) {
 });
 
 // Recreate styles
-gulp.task('chain:css', function(done) {
-  runSequence('clean:css', 'lint:css', 'css', done);
+gulp.task('chain:style', function(done) {
+  runSequence('clean:css', 'clean:sass', 'lint:css', 'lint:sass', 'css', 'sass', done);
 });
 
 // Runs all tests, unit and e2e
@@ -37,16 +37,16 @@ gulp.task('chain:test', function(done) {
 
 // Full build process, production
 gulp.task('deploy', function(done) {
-  runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'index:dist', 'serve:copy', 'pack', 'git:tag', 'bump:patch', 'stats', done);
+  runSequence('clean', 'lint', 'html2js', 'css', 'sass', 'scripts', 'dependency', 'resources', 'index:dist', 'serve:copy', 'pack', 'git:tag', 'bump:patch', 'stats', done);
 });
 
 // Full build process, for continues integration
 // TODO: add tasks: 'test', 'e2e'
 gulp.task('build', function(done) {
-  runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'index:dist', 'serve:copy', 'stats', done);
+  runSequence('clean', 'lint', 'html2js', 'css', 'sass', 'scripts', 'dependency', 'resources', 'index:dist', 'serve:copy', 'stats', done);
 });
 
 // Full build process, development
 gulp.task('developer', function(done) {
-  runSequence('clean', 'lint', 'html2js', 'css', 'scripts', 'dependency', 'resources', 'resources:settings', 'index:dev', 'serve:copy', done);
+  runSequence('clean', 'lint', 'html2js', 'css', 'sass', 'scripts', 'dependency', 'resources', 'resources:settings', 'index:dev', 'serve:copy', done);
 });

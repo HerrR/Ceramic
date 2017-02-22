@@ -30,6 +30,12 @@ gulp.task('livereload:css', function() {
     .pipe(livereload());
 });
 
+gulp.task('livereload:sass', function() {
+  return gulp.src(config.sass.generated)
+    .pipe(plumber())
+    .pipe(livereload());
+});
+
 gulp.task('livereload:html', function() {
   return gulp.src(config.html.source)
     .pipe(plumber())
@@ -56,6 +62,10 @@ gulp.task('watch:dependency', function(done) {
 
 gulp.task('watch:css', function(done) {
   runSequence('lint:css', 'clean:css', 'css', 'index:dev', 'livereload:css', done);
+});
+
+gulp.task('watch:sass', function(done) {
+  runSequence('lint:sass', 'clean:sass', 'sass', 'index:dev', 'livereload:sass', done);
 });
 
 gulp.task('watch:html', function(done) {
@@ -85,6 +95,7 @@ gulp.task('watch', function(done) {
   gulp.watch(config.test.unit.source, ['lint:unit', 'test']);
   gulp.watch(config.js.client.dependency.source, ['watch:dependency']);
   gulp.watch(config.css.source, ['watch:css']);
+  gulp.watch(config.sass.source, ['watch:sass']);
   gulp.watch(config.html.source, ['watch:html']);
   gulp.watch(config.gulp.source, ['lint:config']);
 

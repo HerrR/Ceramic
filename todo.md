@@ -19,13 +19,17 @@
 - [ ] Employer: Receipts
 - [ ] Employer: Settings
 - [ ] Employer: Add Funds / Payment / Purchase
+- [ ] [Google Places](https://developers.google.com/places/)
 
 
 ### Server
 - [X] ~~Tool to fill database with test data~~
-- [ ] Search module
+- [X] ~~More const~~
+- [ ] [Test data](http://www.generatedata.com/) generator &#x1F53A;
+- [ ] Performance tests &#x1F53A;
+- [ ] Search module &#x1F53A;
+- [ ] Search permutation index generator &#x1F53A;
 - [ ] Search indexing
-- [ ] Search permutation index generator
 - [ ] Elasticsearch with MongoDB integration
 - [ ] Send messages
 - [ ] Recieve messages
@@ -46,10 +50,11 @@
 
 ### Environment
 - [X] ~~[Code analysis](https://codeclimate.com/github/Axodoss/Ceramic)~~
-- [ ] Add Gulp support for [Sass](http://sass-lang.com/) &#x1F53A;
-- [ ] Add [Swagger](https://github.com/swagger-api/swagger-node) &#x1F53A;
+- [X] ~~Add Gulp support for [Sass](http://sass-lang.com/)~~
+- [X] ~~[CircleCI](https://circleci.com/)~~
+- [X] Remove Bower
+- [ ] Add [Swagger](https://github.com/swagger-api/swagger-node)
 - [ ] Server documentation
-- [ ] [CircleCI](https://circleci.com/)
 - [ ] Redirect HTTP to HTTPS
 - [ ] Database backup and restore
 - [ ] [Docker](https://www.docker.com/) container
@@ -59,6 +64,4 @@
 - [ ] [Monitoring](https://www.pingdom.com/?utm_source=adroll&utm_medium=web&utm_campaign=static)
 - [ ] [BrowserSync](https://www.browsersync.io/) ([https://github.com/gulpjs/gulp/blob/master/docs/recipes/server-with-livereload-and-css-injection.md](docs))
 - [ ] [Load tests](http://gatling.io/#/)
-- [ ] Remove Bower
 - [ ] Compile dependencies using [WebPack](https://webpack.github.io/)
-

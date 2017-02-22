@@ -1,0 +1,503 @@
+/*
+md-sidenav, 
+md-sidenav.md-locked-open, 
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 260px !important;
+    width: 85vw !important;
+    max-width: 260px !important;
+}
+*/
+
+.md-datepicker-button {
+    display: none !important;
+}
+
+/*
+.md-datepicker-input-container {
+    margin-left: 0 !important;
+}*/
+
+md-datepicker.md-default-theme, md-datepicker {
+    background: transparent;
+}
+
+.md-datepicker-input-container {
+    background-color: transparent;
+    margin: 18px 0;
+}
+
+body {
+    background-color: #bbb;
+    font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+p {
+    font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+table, th, td {
+    border: 0 none;
+    border-collapse: collapse;
+}
+
+th {
+    color: #0B3861;
+    border-bottom:3px solid #34a034;
+    padding: 6px;
+}
+
+td {
+    padding: 6px;
+}
+
+#facebookSignInPerson {
+    background-color: #3b5998;
+    color: white;
+}
+
+#googleSignInPerson {
+    background-color: #dd4b39;
+    color: white;
+}
+
+#localSignInPerson {
+    background-color: #f4c20d;
+    color: white;
+}
+
+#httpSignInPerson {
+    background-color: #3cba54;
+    color: white;
+}
+
+#linkedinSignInPerson {
+    background-color: #007bb5;
+    color: white;
+}
+
+#githubSignInPerson {
+    background-color: #000000;
+    color: white;
+}
+
+#twitterSignInPerson {
+    background-color: #55acee;
+    color: white;
+}
+
+#youtubeSignInPerson {
+    background-color: #bb0000;
+    color: white;
+}
+
+#instagramSignInPerson {
+    background-color: #125688;
+    color: white;
+}
+
+#whatsappSignInPerson {
+    background-color: #4dc247;
+    color: white;
+}
+
+#facebookSignInCompany {
+    background-color: #3b5998;
+    color: white;
+}
+
+#googleSignInCompany {
+    background-color: #dd4b39;
+    color: white;
+}
+
+#localSignInCompany {
+    background-color: #f4c20d;
+    color: white;
+}
+
+#httpSignInCompany {
+    background-color: #3cba54;
+    color: white;
+}
+
+#linkedinSignInCompany {
+    background-color: #007bb5;
+    color: white;
+}
+
+#githubSignInCompany {
+    background-color: #000000;
+    color: white;
+}
+
+#twitterSignInCompany {
+    background-color: #55acee;
+    color: white;
+}
+
+#youtubeSignInCompany {
+    background-color: #bb0000;
+    color: white;
+}
+
+#instagramSignInCompany {
+    background-color: #125688;
+    color: white;
+}
+
+#whatsappSignInCompany {
+    background-color: #4dc247;
+    color: white;
+}
+
+#cvcWelcome {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.cvc-font {
+    font: normal normal normal 16px/18px 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.cvc-main-color {
+    color: #34a034;
+}
+
+.cvc-nobackground {
+    background-color: transparent;
+}
+
+.cvc-background {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,cccccc+100;Gren+3D */
+    background: rgb(238,238,238); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+}
+
+.cvc-header {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e6f0a3+0,d2e638+40,c3d825+70,dbf043+100 */
+    background: rgb(230,240,163); /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  rgba(230,240,163,1) 0%, rgba(210,230,56,1) 40%, rgba(195,216,37,1) 70%, rgba(219,240,67,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  rgba(230,240,163,1) 0%,rgba(210,230,56,1) 40%,rgba(195,216,37,1) 70%,rgba(219,240,67,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  rgba(230,240,163,1) 0%,rgba(210,230,56,1) 40%,rgba(195,216,37,1) 70%,rgba(219,240,67,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6f0a3', endColorstr='#dbf043',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.cvc-card {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f8ffe8+0,e3f5ab+33,b7df2d+100;Green+3D+%234 */
+    background: rgb(248,255,232); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(248,255,232,1) 0%, rgba(227,245,171,1) 33%, rgba(183,223,45,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#b7df2d',GradientType=0 ); /* IE6-9 */
+}
+
+.cvc-title-color {
+    /*color: rgb(0,110,46);*/
+    color: #FCE700;
+}
+
+.cvc-header-title-color {
+    color: #0B3861;
+}
+
+.cvc-page-title {
+    padding-left: 30px;
+    font-weight: bold;
+}
+
+.cvc-transparent {
+    background-color: rgba(0,0,0,0);
+}
+
+.cvc-welcome-card-text {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.cvc-welcome-company {
+    background-image: url('logo-company.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.cvc-welcome-person {
+    background-image: url('logo-person.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.cvc-welcome-title-delay {
+    animation-delay: 1.4s;
+}
+
+.cvc-footer {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b6e026+0,abdc28+100;Green+Flat */
+    background: rgba(0,0,0,0.5);
+    opacity: 0.7;
+
+    /*position: fixed;*/
+    bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    font-size: 80%;
+    width: 100%;
+
+    z-index: 0;
+}
+
+.cvc-main-select-card {
+    cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+
+    border-radius: 6px;
+    background-color: rgba(219,240,67,0.75);
+    box-shadow: none;
+
+    min-width: 400px;
+    min-height: 460px;
+
+    font-family: 'Calibri';
+    color: #202020;
+    font-size: 170%;
+    font-weight: bold;
+    text-align: center;
+    /*text-shadow: 0 0 1px yellow;*/
+}
+
+.cvc-main-select-card:hover {
+    -o-transform: scale(1.05,1.05);
+    -moz-transform: scale(1.05,1.05);
+    -ms-transform: scale(1.05,1.05);
+    -webkit-transform: scale(1.05,1.05);
+    transform: scale(1.05,1.05);
+
+    box-shadow: 0 0 20px yellow;
+}
+
+.cvc-profile-username {
+    font-weight: bold;
+    border-style: none;
+    border-radius: 2px;
+    padding: 4px;
+}
+
+.cvc-profile-username:hover {
+    -webkit-box-shadow: 0 0 6px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 6px -1px rgba(0,0,0,0.75);
+    box-shadow: 0 0 6px -1px rgba(0,0,0,0.75);
+}
+
+.cvc-full-width {
+    min-width: 100%;
+    max-width: 100%;   
+}
+
+.cvc-padding-lmd {
+    padding-left: 10px;
+}
+
+.cvc-padding-rxs {
+    padding-right: 5px;
+}
+
+.cvc-padding-tbmd {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.cvc-profile-name {
+    font-weight: bold;
+    font-size: 200%;
+}
+
+.cvc-menubar {
+    background-color: transparent;
+}
+
+.cvc-profile-card-header {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.cvc-screen-message {
+    position: fixed;
+    text-align: center;
+    z-index: 1000;
+    margin: 0.5em;
+    padding: 0.5em;
+    font-size: 150%;
+    font-weight: bold;
+    border-radius: 0.25em;
+}
+
+.cvc-screen-message-info {
+    background-color: #18DE46;
+    box-shadow: 0 0 1em #0F992F;
+}
+
+.cvc-screen-message-warn {
+    background-color: #E3E01B;
+    box-shadow: 0 0 1em #C9A606;
+}
+
+.cvc-screen-message-error {
+    background-color: #C90606;
+    box-shadow: 0 0 1em #992D0F;
+}
+
+.cvc-welcome-background {
+    background-image: url('bg-main.jpg');
+    background-size: cover;
+    /*background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;*/
+
+    /*min-height: 100vh;
+    max-width: 100vw;*/
+}
+
+.cvc-welcome-text {
+    font-size: 320%;
+    text-shadow: 0 0 2px #34a034;
+    cursor: default;
+}
+
+.cvc-container-border {
+    border: solid 1px;
+    margin: 8px;
+    border-color: #A0A0A0;
+    border-radius: 3px;
+    padding: 8px;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(45deg,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    -webkit-box-shadow: 2px 2px 2px -1px rgba(100,100,100,0.85);
+    -moz-box-shadow: 2px 2px 2px -1px rgba(100,100,100,0.85);
+    box-shadow: 2px 2px 2px -1px rgba(100,100,0,100.85);
+}
+
+.cvc-profile-picture {
+    border: solid 1px;
+    border-color: #A0A0A0;
+    min-width: 80%;
+    max-width: 80%;
+    min-height: auto;
+    border-radius: 50%;
+
+    -webkit-box-shadow: 2px 2px 2px -1px rgba(100,100,100,0.85);
+    -moz-box-shadow: 2px 2px 2px -1px rgba(100,100,100,0.85);
+    box-shadow: 2px 2px 2px -1px rgba(100,100,0,100.85);
+}
+
+.cvc-subtitle {
+    position: relative;
+    bottom: 16px;
+    color: white;
+}
+
+.twitter-share-button {
+    position: relative;
+    height: 20px;
+    padding: 3px 8px 3px 6px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    background-color: #1b95e0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font: normal normal normal 12px/18px 'Helvetica Neue',Arial,sans-serif;
+}
+
+.twitter-share-button:hover {
+    background-color: #1DA1F2;
+}
+
+.cvc-flag {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    width: 30px;
+    height: auto;
+    text-decoration: none;
+}
+
+.cvc-flag:hover {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #FFCCAA;
+    cursor: pointer;
+}
+
+.cvc-flag-selected {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #88FFAA;
+    text-decoration: none;
+}
+
+.cvc-language-select {
+    text-decoration: none;
+    border-style: none;
+    text-shadow: 0 0 0 black;
+}
+
+.cvc-add-button-1 {
+    color: white;
+}
+
+.cvc-add-button-2 {
+    color: green;
+}
+
+.cvc-button:active,
+.cvc-button:focus,
+.cvc-button.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+
+md-pagination-wrapper, md-tabs-canvas {
+  height: 72px;
+}

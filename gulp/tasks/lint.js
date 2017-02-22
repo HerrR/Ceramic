@@ -8,6 +8,7 @@
   gulp = require('gulp'),
   jshint = require('gulp-jshint'),
   csslint = require('gulp-csslint'),
+  sassLint = require('gulp-sass-lint'),
   htmlhint = require("gulp-htmlhint"),
   gulpIgnore = require('gulp-ignore'),
   jsonlint = require("gulp-jsonlint");
@@ -61,6 +62,14 @@ gulp.task('lint:css', function() {
     .pipe(csslint.reporter());
 });
 
+gulp.task('lint:sass', function() {
+  return gulp.src(config.sass.source)
+    .pipe(gulpIgnore.exclude(config.sass.lint_exclude))
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError());
+});
+
 gulp.task('lint:html', function() {
   return gulp.src(config.html.source)
     .pipe(gulpIgnore.exclude(config.html.lint_exclude))
@@ -78,4 +87,4 @@ gulp.task('lint:json', function() {
 });
 
 gulp.task('lint:tests', ['lint:unit', 'lint:e2e']);
-gulp.task('lint', ['lint:json', 'lint:js', 'lint:node', 'lint:tests', 'lint:config', 'lint:gulp', 'lint:css', 'lint:html']);
+gulp.task('lint', ['lint:json', 'lint:js', 'lint:node', 'lint:tests', 'lint:config', 'lint:gulp', 'lint:css', 'lint:sass', 'lint:html']);

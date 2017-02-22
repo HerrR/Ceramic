@@ -1,6 +1,22 @@
 {
     "server": {
         "port": 9010,
+        "swagger": {
+            "enabled": false,
+            "config": {
+                "apiVersion": "1.0",
+                "swaggerVersion": "1.0",
+                "swaggerURL": "/swagger",
+                "swaggerJSON": "/api-docs.json",
+                "swaggerUI": "./public/swagger/",
+                "basePath": "http://localhost:9010",
+                "info": {
+                "title": "CV121 API",
+                    "description": "CV121 endpoints"
+                },
+                "apis": ["./dist/server/api.js", "./dist/server/api.yml"]
+            }
+        },
         "staticFiles": "/../client/",
         "dataSizeLimit": "400kb",
         "sessionSecretKey": "secret_session_key",

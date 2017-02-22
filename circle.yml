@@ -1,0 +1,15 @@
+dependencies:
+  override:
+    - npm install --dev
+
+compile:
+  override:
+    - npm build
+  post:
+    - npm pack
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - ./deploy_staging.sh

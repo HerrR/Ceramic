@@ -39,8 +39,8 @@ const schemaReceipt = cvcSchema.getSchemas().receipt;
 
     function connectToDatabase() {
         try {
-            var dbUser = process.env.DB_USERNAME || config.server.database.username;
-            var dbPass = process.env.DB_PASSWORD || config.server.database.password;
+            const dbUser = process.env.DB_USERNAME || config.server.database.username;
+            const dbPass = process.env.DB_PASSWORD || config.server.database.password;
             var dbUrl = config.server.database.url;
             dbUrl = dbUrl.replace('{username}',dbUser).replace('{password}',dbPass);
 

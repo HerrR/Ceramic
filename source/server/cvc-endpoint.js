@@ -17,6 +17,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const helmet = require('helmet');
+const swagger = require('swagger-express');
 
 const cvcDataset = require('./cvc-dataset');
 const cvcDatabase = require('./cvc-database');
@@ -72,7 +73,7 @@ const cvcUtils = require('./cvc-utils');
     }
 
     function sendAttachment(config, req, res, library) {
-        var attachment = findAttachment(library, req.params.id);
+        const attachment = findAttachment(library, req.params.id);
 
         if (attachment !== undefined) {
             res.download(path.join(__dirname, config.server.uploads.src, req.params.id), attachment.name);
@@ -142,6 +143,13 @@ const cvcUtils = require('./cvc-utils');
             }]
             // TODO: Configuration options
         }));
+
+        if (config.server.swagger && config.server.swagger.enabled) {
+            app.use(swagger.init(app, Object.assign(
+                config.server.swagger.config, {
+                middleware: function(req, res) {}
+            })));
+        }
         app.use(function(err, req, res, next) {
             logger.error(err.stack);
             res.status(500).send('The server has encounter an error. Please try again later.');
@@ -177,7 +185,7 @@ const cvcUtils = require('./cvc-utils');
             logger.info('Uploaded: name=' + req.file.originalname + ' size=' + req.file.size);
 
             if (req.file) {
-                var attachment = {
+                const attachment = {
                     id: req.file.filename,
                     name: req.file.originalname,
                     mimetype: req.file.mimetype,
@@ -217,7 +225,7 @@ const cvcUtils = require('./cvc-utils');
                 checkFindPerson(err, profile, req, res, function(savedProfile) {
                     sendAttachment(config, req, res, savedProfile.person.library);
                 }, function(req, res) {
-                    var query = {
+                    const query = {
                         'authorizedUsers.userid': req.user.id,
                         'authorizedUsers.toDate': {$lte: new Date()},
                         'person.library.id': req.params.id,
