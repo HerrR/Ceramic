@@ -159,10 +159,6 @@ const dataSpecificExperience = require('../../../database/datasets/specific_expe
     }
   }
 
-  function fillDatabase() {
-    if (program.fill) {
-      console.log(chalk.cyan('Executing function Fill (' + program.fill + ')...'));
-      const data = readJsonFileSync(program.fill);
   function createPersons(data) {
     if (data.person && data.person.length > 0) {
       for (let personIndex = 0; personIndex < data.person.length; ++personIndex) {
