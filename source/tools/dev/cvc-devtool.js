@@ -140,7 +140,7 @@ const dataSpecificExperience = require('../../../database/datasets/specific_expe
             library: [],
             cv: CV,
             basic: {
-              name: randomData(dataUser.names),
+              name: randomData(dataUser.firstNames) + ' ' + randomData(dataUser.lastNames),
               profilePicture: randomData(dataUser.profilePictures),
               email: userid + '@test.com',
               country: randomData(dataUser.countries),
