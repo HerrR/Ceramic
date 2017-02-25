@@ -50,6 +50,10 @@ const dataSpecificExperience = require('../../../database/datasets/specific_expe
     return JSON.parse(fs.readFileSync(filepath));
   }
 
+  function randomNumber(min, max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+  }
+
   function randomData(dataArray) {
     const count = dataArray ? dataArray.length : 0;
 
@@ -57,7 +61,76 @@ const dataSpecificExperience = require('../../../database/datasets/specific_expe
       return '';
     }
 
+    if (count == 1) {
+      return dataArray[0];
+    }
+
     return dataArray[Math.floor(Math.random()*(count+1))];
+  }
+
+  function randomDateOfBirth() {
+    // TODO
+    return 0;
+  }
+
+  function randomLanguages() {
+    // TODO: name (string), level (number)
+    return [];
+  }
+
+  function randomText() {
+    const count = randomNumber(10,20);
+    var text = dataUser.words[randomNumber(0,dataUser.words.length)];;
+    for (var i = 0; i < count; i++) {
+      text += ' ' + dataUser.words[randomNumber(0,dataUser.words.length)];
+    }
+    return text;
+  }
+
+  function randomHighSchool(dateOfBirth) {
+    // TODO
+    //name: String,
+    //fromDate: Date,
+    //toDate: Date,
+    //faculty: String
+    return {};
+  }
+
+  function randomEducation(dateOfBirth,highSchool) {
+    const count = randomNumber(0,4);
+    
+    // TODO
+
+    //school: String,
+    //degree: String,
+    //faculty: String,
+    //fromDate: Date,
+    //toDate: Date,
+    //description: String
+
+    return [];
+  }
+
+  function randomExperience(dateOfBirth,highSchool,education) {
+    const count = randomNumber(0,8);
+
+    // TODO
+
+    //company: String,
+    //profession: String,
+    //industry: String,
+    //discipline: String,
+    //role: String,
+    //description: String,
+    //fromDate: Date,
+    //toDate: Date,
+    //keyCompetencies: [String],
+    //responsibilities: [{
+    //  resptype: String,
+    //  amount: mongoose.Schema.Types.Number
+    //}]
+
+    return [];
   }
 
   function generateData() {
@@ -67,60 +140,30 @@ const dataSpecificExperience = require('../../../database/datasets/specific_expe
       var persons = [];
 
       for (var i = 0; i < program.generate; i++) {
-        const userid = 'LOCAL_' + ("000000" + (i+1)).slice(-6);
+        const userid = 'LOCAL_' + ('000000' + (i+1)).slice(-6);
+        const dateOfBirth = randomDateOfBirth();
+        const highSchool = randomHighSchool(dateOfBirth);
+        const education = randomEducation(dateOfBirth,highSchool);
+        const experience = randomExperience(dateOfBirth,highSchool,education);
+
 
         const CV = {
           generalInfo: {
-            language: [
-              // TODO
-            ]
-
-            //personalDescription: String,
-            //interests: String,
-            //otherMerits: String,
-            //compensation: Number
+            language: randomLanguages();
+            personalDescription: randomText(),
+            interests: randomText(),
+            otherMerits: randomText(),
+            compensation: randomNumber(240000,1200000);
           },
-          education: [
-            // TODO
-
-            //school: String,
-            //degree: String,
-            //faculty: String,
-            //fromDate: Date,
-            //toDate: Date,
-            //description: String
-          ],
-          experience: [
-            // TODO
-
-            //company: String,
-            //profession: String,
-            //industry: String,
-            //discipline: String,
-            //role: String,
-            //description: String,
-            //fromDate: Date,
-            //toDate: Date,
-            //keyCompetencies: [String],
-            //responsibilities: [{
-            //  resptype: String,
-            //  amount: mongoose.Schema.Types.Number
-            //}]
-          ],
+          education: education,
+          experience: experience,
           skills: [
             // TODO
 
             //skilltype: String,
             //level: mongoose.Schema.Types.Number
           ],
-          high_school: {
-            // TODO
-
-            //name: String,
-            //fromDate: Date,
-            //toDate: Date,
-            //faculty: String
-          }
+          high_school: highSchool
         };
 
         const person = {
@@ -129,10 +172,10 @@ const dataSpecificExperience = require('../../../database/datasets/specific_expe
           system: {
             created: 1004745600000,
             updated: 1004745600000,
-            note: "",
+            note: '',
             visible: true,
             schemaVersion: 1,
-            authenticationProvider: "LOCAL",
+            authenticationProvider: 'LOCAL',
             updateVersion: 1
           },
 
@@ -145,8 +188,8 @@ const dataSpecificExperience = require('../../../database/datasets/specific_expe
               email: userid + '@test.com',
               country: randomData(dataUser.countries),
               city: randomData(dataUser.cities),
-              dateOfBirth: randomData(dataUser.dateOfBirths),
-              phone: ("0000000000" + (i+1)).slice(-10)
+              dateOfBirth: dateOfBirth,
+              phone: ('0000000000' + (i+1)).slice(-10)
             }
           }
         };
