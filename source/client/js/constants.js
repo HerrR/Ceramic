@@ -14,6 +14,8 @@
                     toDate: new Date(),
                     description: null
                 },
+                // TODO: Eget objekt för high_school med Name och Faculty 
+                // TODO: Experience med Degree, Faculty & Major
                 WORK_OBJECT: {
                     company: null,
                     industry: null,

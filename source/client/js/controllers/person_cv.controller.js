@@ -12,6 +12,7 @@
 
     function Controller($scope, ProfileService, $http, $filter, AppConstants, UtilityService) {
         $scope.profile = ProfileService.getProfile();
+        console.log($scope.profile);
 
         $scope.cvData = angular.copy($scope.profile.person.cv);
         if($scope.cvData.high_school === undefined){
@@ -87,10 +88,14 @@
 
         $scope.saveCv = function(){
             // TODO Update CV in database
-            console.log(
-                "Save CV",
-                $scope.profile.person.cv
-            )
+            ProfileService.save(function(data){
+                console.log("Profile saved");
+                console.log(data);
+            })
+            // console.log(
+            //     "Save CV",
+            //     $scope.profile.person.cv
+            // )
         }
 
         var hasNullValues = function(obj){

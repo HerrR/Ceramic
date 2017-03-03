@@ -47,6 +47,7 @@
 
         $scope.getTextKey = function(field){
             if(!$scope.experiencedata[field]){
+                console.log("Field not found", field);
                 return;
             }
 
