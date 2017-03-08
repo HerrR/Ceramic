@@ -87,7 +87,7 @@ const mongoose = require('mongoose');
         personalDescription: String,
         interests: String,
         otherMerits: String,
-        compensation: Number
+        compensation: mongoose.Schema.Types.Number
     };
 
     const PersonBasic = {

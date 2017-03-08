@@ -17,6 +17,18 @@ const fs = require('fs');
 
 const cvcDatabase = require('../../server/cvc-database');
 
+const dataUser = require('./data.json');
+const dataCompetencyHierarchy = require('../../../database/datasets/competency_hierarchy.json');
+const dataDomainExperience = require('../../../database/datasets/domain_experience.json');
+const dataEducationFaculty = require('../../../database/datasets/education_faculty.json');
+const dataEducationHighSchoolMajor = require('../../../database/datasets/education_high_school_major.json');
+const dataEducationLevel = require('../../../database/datasets/education_level.json');
+const dataIndustry = require('../../../database/datasets/industry.json');
+const dataLanguageLevel = require('../../../database/datasets/language_level.json');
+const dataProfession = require('../../../database/datasets/professions.json');
+const dataRoles = require('../../../database/datasets/roles.json');
+const dataSpecificExperience = require('../../../database/datasets/specific_experience.json');
+
 (function () {
   'use strict';
 
@@ -36,6 +48,158 @@ const cvcDatabase = require('../../server/cvc-database');
 
   function readJsonFileSync(filepath) {
     return JSON.parse(fs.readFileSync(filepath));
+  }
+
+  function randomNumber(min, max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+  }
+
+  function randomData(dataArray) {
+    const count = dataArray ? dataArray.length : 0;
+
+    if (count == 0) {
+      return '';
+    }
+
+    if (count == 1) {
+      return dataArray[0];
+    }
+
+    return dataArray[Math.floor(Math.random()*(count+1))];
+  }
+
+  function randomDateOfBirth() {
+    // TODO
+    return 0;
+  }
+
+  function randomLanguages() {
+    // TODO: name (string), level (number)
+    return [];
+  }
+
+  function randomText() {
+    const count = randomNumber(10,20);
+    var text = dataUser.words[randomNumber(0,dataUser.words.length)];;
+    for (var i = 0; i < count; i++) {
+      text += ' ' + dataUser.words[randomNumber(0,dataUser.words.length)];
+    }
+    return text;
+  }
+
+  function randomHighSchool(dateOfBirth) {
+    // TODO
+    //name: String,
+    //fromDate: Date,
+    //toDate: Date,
+    //faculty: String
+    return {};
+  }
+
+  function randomEducation(dateOfBirth,highSchool) {
+    const count = randomNumber(0,4);
+    
+    // TODO
+
+    //school: String,
+    //degree: String,
+    //faculty: String,
+    //fromDate: Date,
+    //toDate: Date,
+    //description: String
+
+    return [];
+  }
+
+  function randomExperience(dateOfBirth,highSchool,education) {
+    const count = randomNumber(0,8);
+
+    // TODO
+
+    //company: String,
+    //profession: String,
+    //industry: String,
+    //discipline: String,
+    //role: String,
+    //description: String,
+    //fromDate: Date,
+    //toDate: Date,
+    //keyCompetencies: [String],
+    //responsibilities: [{
+    //  resptype: String,
+    //  amount: mongoose.Schema.Types.Number
+    //}]
+
+    return [];
+  }
+
+  function generateData() {
+    if (program.generate && program.generate > 0) {
+      logger.info('Generating data: ' + program.generate);
+      
+      var persons = [];
+
+      for (var i = 0; i < program.generate; i++) {
+        const userid = 'LOCAL_' + ('000000' + (i+1)).slice(-6);
+        const dateOfBirth = randomDateOfBirth();
+        const highSchool = randomHighSchool(dateOfBirth);
+        const education = randomEducation(dateOfBirth,highSchool);
+        const experience = randomExperience(dateOfBirth,highSchool,education);
+
+
+        const CV = {
+          generalInfo: {
+            language: randomLanguages();
+            personalDescription: randomText(),
+            interests: randomText(),
+            otherMerits: randomText(),
+            compensation: randomNumber(240000,1200000);
+          },
+          education: education,
+          experience: experience,
+          skills: [
+            // TODO
+
+            //skilltype: String,
+            //level: mongoose.Schema.Types.Number
+          ],
+          high_school: highSchool
+        };
+
+        const person = {
+          userid: userid,
+          email: userid + '@test.com',
+          system: {
+            created: 1004745600000,
+            updated: 1004745600000,
+            note: '',
+            visible: true,
+            schemaVersion: 1,
+            authenticationProvider: 'LOCAL',
+            updateVersion: 1
+          },
+
+          person: {
+            library: [],
+            cv: CV,
+            basic: {
+              name: randomData(dataUser.firstNames) + ' ' + randomData(dataUser.lastNames),
+              profilePicture: randomData(dataUser.profilePictures),
+              email: userid + '@test.com',
+              country: randomData(dataUser.countries),
+              city: randomData(dataUser.cities),
+              dateOfBirth: dateOfBirth,
+              phone: ('0000000000' + (i+1)).slice(-10)
+            }
+          }
+        };
+
+        persons.push(person);
+      }
+
+      console.log(JSON.stringify({person: persons}));
+      logger.info('Done generating data');
+    }
   }
 
   function createPersons(data) {
@@ -139,6 +303,7 @@ const cvcDatabase = require('../../server/cvc-database');
     .version('CV121 Devtool v1.0.0')
     .option('-c, --config [configfile]','Specify config file to load')
     .option('-f, --fill [datafile]', 'Fill database with data')
+    .option('-g, --generate [rowcount]', 'Generate testdata')
     // NOTE: add more options here
     .parse(process.argv);
 
@@ -146,17 +311,21 @@ const cvcDatabase = require('../../server/cvc-database');
       console.log(chalk.yellow('Loading config file (' + program.config +')...'));
       const config = require(program.config);
 
-      console.log(chalk.yellow('Initializing database...'));
-      cvcDatabase.init(config,logger, function() {
-        async.series([
-          fillDatabase()
-        ])
-        .exec(function(error, result) {
-          if (error) {
-            logger.error(error);
-          }
+      if (program.fill) {
+        console.log(chalk.yellow('Initializing database...'));
+        cvcDatabase.init(config,logger, function() {
+          async.series([
+            fillDatabase()
+          ])
+          .exec(function(error, result) {
+            if (error) {
+              logger.error(error);
+            }
+          });
         });
-      });
+      }
+
+      generateData();
     }
 
     function exitHandler(options, err) {
