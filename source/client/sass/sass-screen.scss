@@ -171,19 +171,11 @@ ng-form.formly {
     }
 
     &.general {
-        &#languages {
-            margin-right:1%;
-            width:49%;
-            display: inline-block;
-        }
-
-        &#compensation {
-            margin-left:1%;
-            width:49%;
-            display: inline-block;
-        }
-
         &#languages, &#compensation {
+            width:49%;
+            display: inline-block;
+            vertical-align: top;
+
             @media #{$mobileCssQuery}{
                 display: block;
                 width:100%;
@@ -191,6 +183,15 @@ ng-form.formly {
                 margin-right:0;
             }
         }
+
+        &#languages {
+            margin-right:1%;
+        }
+
+        &#compensation {
+            margin-left:1%;
+        }
+
     }
 
     .card-header {
@@ -206,8 +207,7 @@ ng-form.formly {
             flex-grow:1;
         }
         .editButtons {
-            flex-grow:1;
-            text-align:right;
+            padding:0px 5px;
         }
     }
 
@@ -283,3 +283,10 @@ ng-form.formly {
     margin-left:auto;
     margin-right:auto;
 }
+
+.bigAndBold {
+    font-size:1.7em;
+    font-weight:bold;
+}
+
+@import 'cv';

@@ -15,8 +15,9 @@
         console.log($scope.profile);
 
         $scope.cvData = angular.copy($scope.profile.person.cv);
+        
         if($scope.cvData.high_school === undefined){
-            $scope.cvData.high_school = angular.copy(AppConstants.CV_OBJECTS.EDUCATION_OBJECT);
+            $scope.cvData.high_school = angular.copy(AppConstants.CV_OBJECTS.HIGH_SCHOOL_OBJECT);
         }
     
         $scope.addEducation = function(){
@@ -25,7 +26,7 @@
         }
 
         $scope.addExperience = function(){
-            var experience = angular.copy(AppConstants.CV_OBJECTS.WORK_OBJECT);
+            var experience = angular.copy(AppConstants.CV_OBJECTS.EXPERIENCE_OBJECT);
             $scope.cvData.experience.push(experience);
         }
 
@@ -39,6 +40,16 @@
             $scope.updateExperience();
         }
 
+        $scope.savePersonalDescription = function(data){
+            $scope.profile.person.cv.generalInfo.personalDescription = data;
+            $scope.saveCv();
+        }
+
+        $scope.clearPersonalDescription = function(data){
+            delete($scope.profile.person.cv.generalInfo.personalDescription);
+            $scope.saveCv();
+        }
+
         $scope.removeEducation = function(index){
             $scope.cvData.education.splice(index, 1);
             $scope.updateEducation();
@@ -46,7 +57,7 @@
 
         $scope.removeExperience = function(index){
             $scope.cvData.experience.splice(index, 1);
-            $scope.updateEducation();
+            $scope.updateExperience();
         }
 
         $scope.updateHighschool = function(data){
@@ -56,8 +67,21 @@
         }
 
         $scope.clearHighschool = function(){
-            $scope.cvData.high_school = angular.copy(AppConstants.CV_OBJECTS.EDUCATION_OBJECT);
+            $scope.cvData.high_school = angular.copy(AppConstants.CV_OBJECTS.HIGH_SCHOOL_OBJECT);
             delete $scope.profile.person.cv.high_school;
+            $scope.saveCv();
+        }
+
+        $scope.updateLanguages = function(data){
+            $scope.cvData.generalInfo.language = data;
+            $scope.profile.person.cv.generalInfo.language = angular.copy($scope.cvData.generalInfo.language);
+            $scope.saveCv();
+        }
+
+        $scope.updateCompensation = function(data){
+            $scope.cvData.generalInfo.compensation = data;
+            $scope.profile.person.cv.generalInfo.compensation = angular.copy($scope.cvData.generalInfo.compensation);
+            $scope.saveCv();
         }
 
         $scope.updateEducation = function(){
@@ -87,15 +111,10 @@
         
 
         $scope.saveCv = function(){
-            // TODO Update CV in database
             ProfileService.save(function(data){
                 console.log("Profile saved");
                 console.log(data);
-            })
-            // console.log(
-            //     "Save CV",
-            //     $scope.profile.person.cv
-            // )
+            });
         }
 
         var hasNullValues = function(obj){

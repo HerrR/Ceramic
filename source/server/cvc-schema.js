@@ -36,6 +36,7 @@ const mongoose = require('mongoose');
     const PersonExperience = {
         company: String,
         industry: String,
+        profession: String,
         discipline: String,
         role: String,
         description: String,
@@ -70,6 +71,7 @@ const mongoose = require('mongoose');
         school: String,
         degree: String,
         faculty: String,
+        major: String,
         fromDate: Date,
         toDate: Date,
         description: String
@@ -99,10 +101,11 @@ const mongoose = require('mongoose');
     };
 
     const PersonHighSchool = {
-        name: String,
+        school: String,
         fromDate: Date,
         toDate: Date,
-        faculty: String
+        faculty: String,
+        description: String
     };
 
     const PersonCV = {

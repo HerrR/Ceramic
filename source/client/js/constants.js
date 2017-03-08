@@ -7,38 +7,46 @@
         .module('cvc')
         .constant('AppConstants', {
             CV_OBJECTS: {
-                EDUCATION_OBJECT: {
+                HIGH_SCHOOL_OBJECT: {
                     school: null,
-                    program: null,
-                    fromDate: new Date(),
-                    toDate: new Date(),
+                    fromDate: null,
+                    toDate: null,
+                    faculty: null,
                     description: null
                 },
-                // TODO: Eget objekt för high_school med Name och Faculty 
-                // TODO: Experience med Degree, Faculty & Major
-                WORK_OBJECT: {
+
+                EDUCATION_OBJECT: {
+                    school: null,
+                    degree: null,
+                    faculty: null,
+                    major: null,
+                    fromDate: null,
+                    toDate: null,
+                    description: null
+                },
+
+                EXPERIENCE_OBJECT: {
                     company: null,
                     industry: null,
                     profession: null,
                     discipline: null,
                     role: null,
                     description: null,
-                    fromDate: new Date(),
-                    toDate: new Date(),
+                    fromDate: null,
+                    toDate: null,
                     keyCompetencies: [],
                     responsibilities: []
+                },
+
+                RESPONSIBILITY_OBJECT: {
+                    resptype: null,
+                    ammount: null
+                },
+
+                LANGUAGE_OBJECT: {
+                    name: null,
+                    level: null
                 }
-                // WORK_OBJECT: {
-                //     company: null,
-                //     industry: null,
-                //     discipline: null,
-                //     role: null,
-                //     description: null,
-                //     fromDate: new Date(),
-                //     toDate: new Date(),
-                //     keyCompetencies: [],
-                //     responsibilities: []
-                // }
             },
             COOKIES: {
                 LANGUAGE: 'cvc-language',

@@ -5,20 +5,18 @@
 
     angular
         .module('cvc')
-        .directive('educationCard', Directive);
+        .directive('personalDescriptionCard', Directive);
 
     function Directive() {
         return {
             restrict: 'E',
-            replace: 'true',
             scope: {
-                type:"@",
-                educationdata:"=",
+                personaldescription:"=",
                 ondelete:"&",
                 onsave:"&"
             },
-            templateUrl: 'partials/person/cv/cards/education_card.html',
-            controller: 'EducationCardController'
+            templateUrl: 'partials/person/cv/cards/personal_description_card.html',
+            controller: 'PersonalDescriptionCardController'
         };
     }
 })();

@@ -1,0 +1,25 @@
+.languageRow, .responsibilityRow {
+    .removeButton {
+        text-align: center;
+        margin-top:10px;
+        cursor:pointer;
+    }
+
+    md-input-container {
+        margin:0;
+    }
+
+    md-slider-container {
+        margin:0;
+    }
+
+    div.languageProficiency {
+        text-align:center;
+    }
+}
+
+.inputLabel {
+    font-size: 0.8em;
+    color: rgba(0,0,0,0.54);
+    margin:5px 3px;
+}

@@ -11,8 +11,10 @@
         return {
             restrict: 'E',
             scope: {
+                compensation:"=",
+                onupdate:"&"
             },
-            templateUrl: 'partials/person/cv/cards/compensation.html',
+            templateUrl: 'partials/person/cv/cards/compensation_card.html',
             controller: 'CompensationCardController'
         };
     }

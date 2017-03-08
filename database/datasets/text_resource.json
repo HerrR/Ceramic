@@ -17,6 +17,8 @@
 				"home.sign_in_using": "Sign in using",
 
 				"label.selectLanguage": "Select language:",
+				"label.year": "Year",
+				"label.month": "Month",
 
 				"dialog.education.delete_row.title": "Remove this education card?",
 				"dialog.education.delete_row.text_content": "The education card will be removed from your CV.",
@@ -42,11 +44,13 @@
 				"profile.label.add_education": "Add Education",
 				"profile.label.add_work": "Add Work Experience",
 				"profile.label.add_language": "Add Language",
+				"probile.label.add_responsibility": "Add responsibility",
 
 				"profile.cv.education.name": "Name",
 				"profile.cv.education.school": "School",
 				"profile.cv.education.degree": "Degree",
 				"profile.cv.education.faculty": "Faculty",
+				"profile.cv.education.major": "Major",
 				"profile.cv.education.from": "From date",
 				"profile.cv.education.to": "To date",
 				"profile.cv.education.empty_list": "No education added.",
@@ -66,6 +70,7 @@
 				"profile.cv.experience.key_competencies.add": "Add more",
 				"profile.cv.experience.key_competencies.delete_hint": "Press backspace to remove",
 				"profile.cv.experience.key_competencies.delete": "Remove",
+				"profile.cv.experience.responsibilities": "Responsibilities",
 				"profile.cv.experience.description": "Description",
 
 				"profile.cv.generalInfo.language.name": "Language",
@@ -74,6 +79,7 @@
 				"profile.cv.generalInfo.language.empty_list": "No languages added.",
 
 				"profile.cv.generalInfo.compensation": "Minimum compensation (SEK/Year)",
+
 
 				"profile.library.empty_list": "No files added.",
 				"profile.label.add_library": "Add file",
@@ -353,6 +359,8 @@
 				"home.sign_in_using": "Logga in med hjälp av",
 
 				"label.selectLanguage": "Välj språk:",
+				"label.year": "År",
+				"label.month": "Månad",
 
 				"dialog.education.delete_row.title": "Ta bort denna utbildning?",
 				"dialog.education.delete_row.text_content": "Den valda utbildningen kommer att tas bort från ditt CV.",
@@ -378,11 +386,13 @@
 				"profile.label.add_education": "Lägg till utbildning",
 				"profile.label.add_work": "Lägg till arbetslivserfarenhet",
 				"profile.label.add_language": "Lägg till språk",
+				"probile.label.add_responsibility": "Lägg till ansvarsområde",
 
 				"profile.cv.education.name": "Namn",
 				"profile.cv.education.school": "Skola",
 				"profile.cv.education.degree": "Examen",
 				"profile.cv.education.faculty": "Fakultet",
+				"profile.cv.education.major": "Huvudämne",
 				"profile.cv.education.from": "Från datum",
 				"profile.cv.education.to": "Till datum",
 				"profile.cv.education.empty_list": "Ingen utbildning tillagd.",
@@ -403,6 +413,7 @@
 				"profile.cv.experience.key_competencies.add": "Lägg till",
 				"profile.cv.experience.key_competencies.delete_hint": "Tryck backspace för att ta bort",
 				"profile.cv.experience.key_competencies.delete": "Ta bort",
+				"profile.cv.experience.responsibilities": "Ansvarsområden",
 				"profile.cv.experience.description": "Beskrivning",
 
 				"profile.cv.generalInfo.language.name": "Språk",

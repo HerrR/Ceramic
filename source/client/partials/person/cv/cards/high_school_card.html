@@ -1,0 +1,75 @@
+<div class="card education">
+    <div class="card-header">
+        <h2 ng-if="!editMode">{{ educationdata.school }}</h2>
+        <div class="editButtons">
+            <i class="fa fa-pencil" ng-if="!editMode" ng-click="edit()" aria-hidden="true"></i>
+            <i class="fa fa-times" ng-if="!editMode" ng-click="delete()" aria-hidden="true"></i>
+        </div>
+    </div>
+
+    <div class="card-content" ng-if="!editMode">
+        <div layout="row" layout-xs="column">
+            <div class="card-item" flex>
+                <div class="label">{{ 'profile.cv.education.faculty' | translate}}</div>
+                <div><b>{{ educationdata.faculty }}</b></div>
+            </div>
+
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.education.from' | translate }}</div>
+                <div><b>{{ educationdata.toDate | date }}</b></div>
+            </div>
+
+            <div class="card-item" flex>
+                <div class="label">{{ 'profile.cv.education.to' | translate}}</div>
+                <div><b>{{ educationdata.fromDate | date }}</b></div>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div class="card-item description" flex>
+                <div class="label">{{'profile.cv.education.description' | translate}}</div>
+                <div>{{ educationdata.description }}</div>
+            </div>
+        </div>
+    </div>
+
+    <form name="editEducationForm" class="card-content" ng-if="editMode" ng-submit="save()">
+        <div layout="row" layout-xs="column">
+            <md-input-container flex>
+                <label>{{'profile.cv.education.school' | translate}}</label>
+                <input type="text" ng-model="tempData.school" required>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>{{'profile.cv.education.faculty' | translate}}</label>
+                <input type="text" ng-model="tempData.faculty" required>
+            </md-input-container>
+        </div>
+
+        <div layout="row" layout-xs="column">
+            <md-input-container flex>
+                <label>{{'profile.cv.education.from' | translate}}</label>
+                <input type="date" ng-model="tempData.fromDate" required>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>{{'profile.cv.education.to' | translate}}</label>
+                <input type="date" ng-model="tempData.toDate" required>
+            </md-input-container>
+        </div>
+        
+        <div layout="row">
+            <md-input-container flex>
+                <label>{{'profile.cv.education.description' | translate}}</label>
+                <textarea ng-model="tempData.description" required>
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <button type="submit" class="cvc-button" ng-disabled="editEducationForm.$invalid" flex>
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ 'profile.save' | translate | capitalize }}
+            </button>
+
+        </div>
+    </form>
+</div>

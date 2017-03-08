@@ -11,8 +11,10 @@
         return {
             restrict: 'E',
             scope: {
+                languages:"=",
+                onupdate:"&"
             },
-            templateUrl: 'partials/person/cv/cards/languages.html',
+            templateUrl: 'partials/person/cv/cards/languages_card.html',
             controller: 'LanguageCardController'
         };
     }

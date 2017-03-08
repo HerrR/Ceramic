@@ -19,8 +19,11 @@
             </div>
             <div class="card-item" flex>
                 <div class="label"> {{ 'profile.cv.experience.discipline' | translate }} </div>
-                <div><b>{{ getTextKey('discipline') | translate}}</b></div>
+                <div><b>{{ getTextKey('discipline') | translate }}</b></div>
             </div>
+        </div>
+
+        <div layout="row" layout-xs="column">
             <div class="card-item" flex>
                 <div class="label"> {{ 'profile.cv.experience.from' | translate }} </div>
                 <div><b>{{ experiencedata.fromDate | date }}</b></div>
@@ -30,32 +33,31 @@
                 <div><b>{{ experiencedata.toDate | date }}</b></div>
             </div>
         </div>
+        <div layout="row" layout-xs="column">
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.experience.key_competencies' | translate }} </div>
+                <div ng-repeat="kc in experiencedata.keyCompetencies">
+                    <b>{{ getKeyCompetencyTextKey(kc) | translate }}</b>
+                </div>
+            </div>
+
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.experience.responsibilities' | translate }} </div>
+                <div ng-repeat="r in experiencedata.responsibilities">
+                    <b>{{ r.resptype }}</b> - {{ r.amount }}/10
+                </div>
+            </div>
+        </div>
+        
         <div layout="row">
             <div class="card-item description" flex>
                 <div class="label">{{'profile.cv.experience.description' | translate}}</div>
                 <div>{{ experiencedata.description }}</div>
             </div>
         </div>
-
-        <!-- TODO: Responsibilities & Key Competencies-->
     </div>
 
     <form name="editExperienceForm" class="card-content" ng-if="editMode" ng-submit="save()">
-        <!--<div layout="row" layout-xs="column">
-            <div flex>
-                Industry: {{ getTextKey('industry') | translate}}
-            </div>
-            <div flex>
-                Profession: {{ getTextKey('profession') | translate }}
-            </div>
-            <div flex>
-                Discipline: {{ getTextKey('discipline') | translate }}
-            </div>
-            <div flex>
-                Role: {{ getTextKey('role') | translate }}
-            </div>
-        </div>-->
-
         <div layout="row" layout-xs="column">
             <!--COMPANY -->
             <md-input-container flex>
@@ -100,13 +102,41 @@
             <!-- ROLE -->
             <md-input-container flex>
                 <label>{{ 'profile.cv.experience.role' | translate }}</label>
-                <md-select ng-model="tempData.role" placeholder="{{ 'profile.cv.experience.role' | translate }}">
+                <md-select ng-model="tempData.role" placeholder="{{ 'profile.cv.experience.role' | translate }}" ng-change="resetKeyCompetencies()">
                     <md-option ng-repeat="r in roles()" ng-value="r.id">
                         {{ r.textKey | translate }}
                     </md-option>
                 </md-select>
             </md-input-container>
+
         </div>
+        <div layout="row" layout-xs="column">
+            <!-- KEY COMPETENCES -->
+            <md-input-container flex>
+                <label>{{ 'profile.cv.experience.key_competencies' | translate }}</label>
+                <md-select ng-model="tempData.keyCompetencies" placeholder="{{ 'profile.cv.experience.key_competencies' | translate }}" multiple="true">
+                    <md-option ng-repeat="kc in keyCompetencies()" ng-value="kc.id">
+                        {{ kc.textKey | translate }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+
+        <div class="inputLabel">{{ 'profile.cv.experience.responsibilities' | translate}}</div>
+        <div ng-repeat="resp in tempData.responsibilities" layout="row" class="responsibilityRow">
+            <i class="fa fa-trash-o removeButton" aria-hidden="true" ng-click="removeResponsibility(resp)" flex="5"></i>
+            <md-input-container>
+                <input type="text" ng-model="resp.resptype" aria-label="responsibility description">
+            </md-input-container>
+            <md-slider-container flex>
+                <md-slider min="0" max="10" step="1" md-discrete ng-model="resp.amount" aria-label="amount" id="resp-amount-slider">
+                </md-slider>
+            </md-slider-container>
+        </div>
+
+        <button class="cvc-button centered" ng-click="addResponsibility()" type="button">
+            {{ 'probile.label.add_responsibility' | translate }}
+        </button>
 
         <div layout="row" layout-xs="column">
             <md-input-container flex>

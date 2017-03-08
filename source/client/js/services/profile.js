@@ -155,6 +155,9 @@
 
         self.save = function(callback) {
             if (profileData) {
+                console.log(profileData);
+                console.log(AppConstants.PATHS.PRIVATE + userType.toLowerCase(),profileData);
+
                 $http.post(AppConstants.PATHS.PRIVATE + userType.toLowerCase(),profileData).then(function(resp) {
                     ScreenMessageService.info(AppConstants.TEXT_KEYS.PROFILE_SAVED);
                     if (callback) {

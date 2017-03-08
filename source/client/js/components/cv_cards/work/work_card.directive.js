@@ -16,7 +16,7 @@
                 onsave:"&",
                 ondelete:"&"
             },
-            templateUrl: 'partials/person/cv/cards/work.html',
+            templateUrl: 'partials/person/cv/cards/work_card.html',
             controller: 'WorkCardController'
         };
     }

@@ -10,9 +10,22 @@
         <div layout="row" layout-xs="column">
             <div class="card-item" flex>
                 <div class="label">{{ 'profile.cv.education.degree' | translate}}</div>
-                <div><b>{{ educationdata.program }}</b></div>
+                <div><b>{{ getTextKey('degree') | translate}}</b></div>
             </div>
 
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.education.faculty' | translate }}</div>
+                <div><b>{{ getTextKey('faculty') | translate }}</b></div>
+            </div>
+
+            <div class="card-item" flex>
+                <div class="label"> {{ 'profile.cv.education.major' | translate }}</div>
+                <div><b>{{ getTextKey('major') | translate }}</b></div>
+                <!--<div><b>{{ educationdata.major }}</b></div>-->
+            </div>
+        </div>
+
+        <div layout="row" layout-xs="column">
             <div class="card-item" flex>
                 <div class="label"> {{ 'profile.cv.education.from' | translate }}</div>
                 <div><b>{{ educationdata.toDate | date }}</b></div>
@@ -34,14 +47,44 @@
 
     <form name="editEducationForm" class="card-content" ng-if="editMode" ng-submit="save()">
         <div layout="row" layout-xs="column">
+
+            <!--SCHOOL -->
             <md-input-container flex>
                 <label>{{'profile.cv.education.school' | translate}}</label>
                 <input type="text" ng-model="tempData.school" required>
             </md-input-container>
 
+            <!--DEGREE -->
             <md-input-container flex>
-                <label>{{'profile.cv.education.degree' | translate}}</label>
-                <input type="text" ng-model="tempData.program" required>
+                <label>{{ 'profile.cv.education.degree' | translate }}</label>
+                <md-select ng-model="tempData.degree" placeholder="{{ 'profile.cv.education.degree' | translate }}">
+                    <md-option ng-repeat="i in degrees" ng-value="i.id">
+                        {{ i.textKey | translate }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+
+        <div layout="row" layout-xs="column">
+
+            <!-- FACULTY -->
+            <md-input-container flex>
+                <label>{{ 'profile.cv.education.faculty' | translate }}</label>
+                <md-select ng-model="tempData.faculty" placeholder="{{ 'profile.cv.education.faculty' | translate }}" ng-change="resetMajor()">
+                    <md-option ng-repeat="i in faculties" ng-value="i.id">
+                        {{ i.textKey | translate }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <!-- MAJOR -->
+            <md-input-container flex>
+                <label>{{ 'profile.cv.education.major' | translate }}</label>
+                <md-select ng-model="tempData.major" placeholder="{{ 'profile.cv.education.major' | translate }}">
+                    <md-option ng-repeat="i in majors()" ng-value="i.id">
+                        {{ i.textKey | translate }}
+                    </md-option>
+                </md-select>
             </md-input-container>
         </div>
 

@@ -1,0 +1,34 @@
+<div class="card general" id="compensation">
+    <div class="card-header">
+        <h2>{{ 'profile.general.compensation' | translate}}</h2>
+        <div class="editButtons" ng-if="!editMode">
+            <i class="fa fa-pencil" ng-click="edit()" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="card-content" ng-if="!editMode">
+        <div class="card-item" flex>
+            <div class="label">{{ 'profile.cv.generalInfo.compensation' | translate }}</div>
+            <div class="bigAndBold">{{ compensation | number }}</div>
+        </div>
+        <!--<div>{{ 'profile.cv.generalInfo.compensation' | translate }}</div>-->
+    </div>
+
+    <form name="editCompensationForm" ng-if="editMode" ng-submit="save()" class="card-content">
+        <div layout="row" layout-xs="column">
+            <md-input-container flex>
+                    <label>{{'profile.cv.generalInfo.compensation' | translate}}</label>
+                    <input type="number" ng-model="tempData.compensation" aria-label="Minimum compensation" required>
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <button class="cvc-button" ng-click="save()" flex ng-disabled="editCompensationForm.$invalid">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ 'profile.save' | translate | capitalize }}
+            </button>
+            <button class="cvc-button" ng-click="cancel()" flex ng-disabled="!hasCompensation()">
+                <i class="fa fa-ban" aria-hidden="true"></i> {{ 'profile.cancel' | translate | capitalize }}
+            </button>
+        </div>
+
+    </form>
+</div>

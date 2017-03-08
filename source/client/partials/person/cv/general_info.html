@@ -1,7 +1,20 @@
-<personal-card></personal-card>
-<language-card></language-card>
-<compensation-card></compensation-card>
-<computer-skills-card></computer-skills-card>
+<personal-description-card
+    personaldescription="cvData.generalInfo.personalDescription"
+    ondelete="clearPersonalDescription()"
+    onsave="savePersonalDescription(data)"
+></personal-description-card>
+<language-card
+    languages="cvData.generalInfo.language"
+    onupdate="updateLanguages(data)"
+></language-card>
+<compensation-card
+    compensation="cvData.generalInfo.compensation"
+    onupdate="updateCompensation(data)"
+></compensation-card>
+<computer-skills-card
+    generalinfo="cvData.generalInfo"
+    onupdate="updateComputerSkills()"
+></computer-skills-card>
 <!-- Dropdown med computer skills -->
 
 

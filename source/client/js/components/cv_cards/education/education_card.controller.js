@@ -7,13 +7,72 @@
         .module('cvc')
         .controller('EducationCardController', Controller);
 
-    Controller.$inject = ['$scope', '$mdDialog', '$translate', '$filter', 'ProfileService', 'ScreenMessageService', 'DatasetService', 'AppConstants', 'UtilityService'];
-    function Controller($scope, $mdDialog ,$translate, $filter, ProfileService, ScreenMessageService, DatasetService, AppConstants, UtilityService) {
-        // Enable or disable editmode depending on what was passed from parent
-        // $scope.editMode = typeof($scope.editmode) === "boolean" ? $scope.editmode : false;
-
+    Controller.$inject = ['$scope', '$mdDialog', '$translate', '$filter', 'ProfileService', 'DatasetService', 'AppConstants'];
+    function Controller($scope, $mdDialog ,$translate, $filter, ProfileService, DatasetService, AppConstants) {
         $scope.tempData = {};
-        
+
+        DatasetService.getAsync(AppConstants.DATASETS.DEGREE.NAME, function(data) {
+            $scope.degrees = data.list;
+        });
+
+        DatasetService.getAsync(AppConstants.DATASETS.FACULTY.NAME, function(data) {
+            $scope.faculties = data.list;
+        });
+
+        $scope.getTextKey = function(field){
+            if(!$scope.educationdata[field]){
+                console.error("Field not found", field);
+                return;
+            }
+
+            if(field === "degree") {
+                for(var i = 0; i < $scope.degrees.length ; i++){
+                    if($scope.degrees[i].id === $scope.educationdata.degree){
+                        return $scope.degrees[i].textKey;
+                    }
+                }
+            }
+
+            if(field === "faculty") {
+                for(var i = 0; i < $scope.faculties.length ; i++){
+                    if($scope.faculties[i].id === $scope.educationdata.faculty){
+                        return $scope.faculties[i].textKey;
+                    }
+                }
+            }
+
+            if(field === "major") {
+                for(var i = 0 ; i < $scope.faculties.length ; i++){
+                    
+                    if($scope.faculties[i].id === $scope.educationdata.faculty){
+                        // console.log("Looping through "+ $scope.faculties[i].major.length +" majors");
+                        for(var j = 0 ; j < $scope.faculties[i].major.length ; j++){
+                            // console.log($scope.faculties[i].major[j].id);
+                            // console.log($scope.faculties[i].major[j].id + "  === " + $scope.educationdata.major + " ? " + ($scope.faculties[i].major[j].id === $scope.educationdata.major));
+                            if($scope.faculties[i].major[j].id === $scope.educationdata.major){
+                                return $scope.faculties[i].major[j].textKey;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $scope.resetMajor = function(){
+            $scope.tempData.major = null;
+        }
+
+        $scope.majors = function(){
+            if($scope.tempData.faculty){
+                for(var i = 0; i < $scope.faculties.length ; i++){
+                    if($scope.faculties[i].id === $scope.tempData.faculty){
+                        return $scope.faculties[i].major;
+                    }
+                }
+            } 
+            return undefined;
+        };
+
         $scope.toggleEditMode = function(){
             $scope.editMode = !$scope.editMode;
         }
@@ -27,6 +86,7 @@
 
         $scope.clearAndEdit = function(){
             $scope.tempData = angular.copy(AppConstants.CV_OBJECTS.EDUCATION_OBJECT);
+
             if(!$scope.editMode){
                 $scope.toggleEditMode();
             }
@@ -68,12 +128,6 @@
             $mdDialog.show(confirm).then(function() {
                 // Confirmed
                 $scope.ondelete();
-                if($scope.type="high_school"){
-                    $scope.clearAndEdit();
-                }
-                // $scope.edit();
-            }, function() {
-                // Cancel
             });
         }
 

@@ -1,0 +1,30 @@
+<div class="card general">
+    <div class="card-header">
+        <h2>{{ 'profile.description' | translate | capitalize}}</h2>
+        <div class="editButtons" ng-if="!editMode">
+            <i class="fa fa-pencil" aria-hidden="true" ng-click="edit()"></i>
+            <i class="fa fa-times" aria-hidden="true" ng-click="clear()"></i>
+        </div>
+    </div>
+    <div class="card-content" ng-if="!editMode">
+        {{ personaldescription }}
+    </div>
+
+    <form name="editPersonalDescriptionForm" class="card-content" ng-if="editMode" ng-submit="save()">
+        <div layout="row">
+            <md-input-container flex>
+                <label>{{'profile.cv.education.description' | translate}}</label>
+                <textarea ng-model="tempData.personalDescription" required>
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <button type="submit" class="cvc-button" ng-disabled="editPersonalDescriptionForm.$invalid" flex>
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ 'profile.save' | translate | capitalize }}
+            </button>
+            <button class="cvc-button" ng-click="cancel()" flex>
+                <i class="fa fa-ban" aria-hidden="true"></i> {{ 'profile.cancel' | translate | capitalize }}
+            </button>
+        </div>
+    </form>
+</div>

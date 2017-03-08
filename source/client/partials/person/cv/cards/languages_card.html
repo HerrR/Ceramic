@@ -1,0 +1,41 @@
+<div class="card general" id="languages">
+    <div class="card-header">
+        <h2>{{ 'profile.languages' | translate }}</h2>
+        <div class="editButtons" ng-if="!editMode">
+            <i class="fa fa-pencil" aria-hidden="true" ng-click="edit()"></i>
+        </div>
+    </div>
+    <div class="card-content" ng-if="!editMode">
+        <span ng-if="emptyLanguages()"> {{ 'profile.cv.generalInfo.language.empty_list' | translate }}</span>
+        <div
+        ng-repeat="language in languages">
+            <b>{{ language.name }}</b> - {{ getLanguageLevelInfo(language.level).textKey | translate}}
+        </div>
+    </div>
+
+    <div class="card-content" ng-if="editMode">
+        <div ng-repeat="tempLang in tempData" layout="row" class="languageRow">
+            <i class="fa fa-trash-o removeButton" aria-hidden="true" ng-click="removeLanguage(tempLang)" flex="5"></i>
+            <md-input-container flex="25">
+                <input type="text" ng-model="tempLang.name" aria-label="language name">
+            </md-input-container>
+            <md-slider-container flex>
+                <md-slider min="1" max="{{ languageLevels.length }}" step="1" ng-model="tempLang.level" aria-label="language level">
+                </md-slider>
+            </md-slider-container>
+            <div class="languageProficiency" flex>{{ getLanguageLevelInfo(tempLang.level).textKey | translate }}</div>
+        </div>
+
+
+        <button class="cvc-button centered" ng-click="addLanguage()">{{ 'profile.label.add_language' | translate }}</button>
+        
+        <div layout="row">
+            <button class="cvc-button" ng-click="save()" flex>
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ 'profile.save' | translate | capitalize }}
+            </button>
+            <button class="cvc-button" ng-click="cancel()" flex>
+                <i class="fa fa-ban" aria-hidden="true"></i> {{ 'profile.cancel' | translate | capitalize }}
+            </button>
+        </div>
+    </div>
+</div>

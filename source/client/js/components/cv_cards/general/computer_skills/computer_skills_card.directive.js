@@ -11,8 +11,10 @@
         return {
             restrict: 'E',
             scope: {
+                generalinfo:"=",
+                onupdate:"&"
             },
-            templateUrl: 'partials/person/cv/cards/computer_skills.html',
+            templateUrl: 'partials/person/cv/cards/computer_skills_card.html',
             controller: 'ComputerSkillsCardController'
         };
     }

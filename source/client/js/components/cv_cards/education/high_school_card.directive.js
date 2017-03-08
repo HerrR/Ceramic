@@ -5,7 +5,7 @@
 
     angular
         .module('cvc')
-        .directive('educationCard', Directive);
+        .directive('highSchoolCard', Directive);
 
     function Directive() {
         return {
@@ -17,8 +17,8 @@
                 ondelete:"&",
                 onsave:"&"
             },
-            templateUrl: 'partials/person/cv/cards/education_card.html',
-            controller: 'EducationCardController'
+            templateUrl: 'partials/person/cv/cards/high_school_card.html',
+            controller: 'HighSchoolCardController'
         };
     }
 })();
